@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    font-family: "Roboto", system-ui, sans-serif;
+  }
+
+  body {
+    font-family: "Roboto", system-ui, sans-serif;
+  }
+}
+
+.home-carousel-title-from-right {
+  animation: homeCarouselTitleFromRight 280ms cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+.home-carousel-title-from-left {
+  animation: homeCarouselTitleFromLeft 280ms cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+.home-carousel-copy-from-right {
+  animation: homeCarouselCopyFromRight 330ms cubic-bezier(0.22, 1, 0.36, 1)
+    45ms both;
+}
+
+.home-carousel-copy-from-left {
+  animation: homeCarouselCopyFromLeft 330ms cubic-bezier(0.22, 1, 0.36, 1)
+    45ms both;
+}
+
+.home-carousel-buttons-from-right {
+  animation: homeCarouselButtonsFromRight 300ms cubic-bezier(0.22, 1, 0.36, 1)
+    90ms both;
+}
+
+.home-carousel-buttons-from-left {
+  animation: homeCarouselButtonsFromLeft 300ms cubic-bezier(0.22, 1, 0.36, 1)
+    90ms both;
+}
+
+.home-carousel-image-from-right {
+  animation: homeCarouselImageFromRight 390ms cubic-bezier(0.22, 1, 0.36, 1)
+    35ms both;
+}
+
+.home-carousel-image-from-left {
+  animation: homeCarouselImageFromLeft 390ms cubic-bezier(0.22, 1, 0.36, 1)
+    35ms both;
+}
+
+.about-color-line-track {
+  animation: aboutColorLineMove 1.8s linear infinite;
+  will-change: transform;
+}
+
+.nav-desktop-menu {
+  gap: 1.25rem;
+}
+
+.nav-desktop-link {
+  column-gap: 0.375rem;
+  padding-inline: 0.5rem;
+}
+
+.nav-desktop-menu-compact {
+  gap: 0.5rem;
+}
+
+.nav-desktop-link-compact {
+  column-gap: 0.25rem;
+  padding-inline: 0.375rem;
+}
+
+.home-animated-item,
+.stats-counter-item {
+  opacity: 0;
+  transform: translateY(42px);
+  transition:
+    opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.home-animated-item-visible,
+.stats-counter-item-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes aboutColorLineMove {
+  from {
+    transform: translateX(-220px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes homeCarouselTitleFromRight {
+  from {
+    transform: translateX(42px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes homeCarouselTitleFromLeft {
+  from {
+    transform: translateX(-42px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes homeCarouselCopyFromRight {
+  from {
+    transform: translateX(34px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes homeCarouselCopyFromLeft {
+  from {
+    transform: translateX(-34px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes homeCarouselButtonsFromRight {
+  from {
+    transform: translateX(26px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes homeCarouselButtonsFromLeft {
+  from {
+    transform: translateX(-26px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes homeCarouselImageFromRight {
+  from {
+    transform: translateX(78px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes homeCarouselImageFromLeft {
+  from {
+    transform: translateX(-78px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-color-line-track {
+    animation: none;
+  }
+
+  .home-animated-item,
+  .stats-counter-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}
