@@ -4,11 +4,14 @@ import BrandLogo from "./BrandLogo";
 import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
 import TopBar from "./TopBar";
+import DrawerButton from "./DrawerButton";
+import RequirementDrawer from "./RequirementDrawer";
 import { navbarContainerClass } from "./styles";
 
 function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isNavCompact, setIsNavCompact] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   useEffect(() => {
     let frame = 0;
@@ -77,7 +80,7 @@ function Navbar() {
         aria-label="Main navigation"
       >
         <div
-          className={`${navbarContainerClass} flex h-[86px] items-center justify-between`}
+          className={`${navbarContainerClass} relative flex h-[86px] items-center justify-between`}
         >
           <BrandLogo />
           <DesktopNavigation isCompact={isNavCompact} />
@@ -90,6 +93,11 @@ function Navbar() {
               label={isMobileOpen ? "Close navigation" : "Open navigation"}
             />
           </div>
+
+          {/* Drawer Button hanging off the bottom of the navbar */}
+          <div className="absolute right-6 max-[640px]:right-3 xl:right-0 top-full -translate-y-1/2 z-[1000]">
+            <DrawerButton isOpen={isDrawerOpen} isNavbarCompact={isNavCompact} onClick={() => setIsDrawerOpen(true)} />
+          </div>
         </div>
         <div id="mobile-navigation">
           <MobileNavigation
@@ -98,6 +106,7 @@ function Navbar() {
           />
         </div>
       </nav>
+      <RequirementDrawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
     </>
   );
 }

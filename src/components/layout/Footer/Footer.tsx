@@ -1,11 +1,10 @@
 import { useEffect, useRef, type FormEvent } from "react";
 import { layoutContainerClass } from "../styles";
 import { CompassIcon, MailIcon, PhoneIcon } from "./FooterIcons";
-type FooterBg = "teal" | "lime";
 
 type FooterProps = {
-  bg?: FooterBg;
-  newsletterBg?: FooterBg;
+  bg?: string;
+  newsletterBg?: string;
   organizationName?: string;
   phone?: string;
   phoneHref?: string;
@@ -16,11 +15,6 @@ type FooterProps = {
   address?: string;
   copyrightYear?: number;
   copyrightName?: string;
-};
-
-const newsletterBgClass: Record<FooterBg, string> = {
-  teal: "bg-[#09c7ca] before:opacity-[0.82]",
-  lime: "bg-[#80df00] before:opacity-[0.22]",
 };
 
 function Footer({
@@ -38,7 +32,10 @@ function Footer({
   copyrightName = "AG Solutions",
 }: FooterProps) {
   const footerRef = useRef<HTMLElement>(null);
-  const activeBg = bg ?? newsletterBg;
+
+  const isLime = (bg || newsletterBg)?.includes("lime");
+  const bgFileName = isLime ? "pattern-bg-lime.jpg" : "pattern-bg-breez.jpg";
+  const bgUrl = `/images/${bgFileName}`;
 
   useEffect(() => {
     const footer = footerRef.current;
@@ -114,8 +111,16 @@ function Footer({
   return (
     <>
       <section
-        className={`relative h-76 overflow-hidden pt-15 text-left text-base leading-[25.6px] text-[#495057] before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/images/pattern-bg-breez.jpg')] before:bg-[length:450px_330px] before:bg-top before:content-[''] max-[980px]:h-auto ${newsletterBgClass[activeBg]}`}
+        className="relative h-76 overflow-hidden pt-15 text-left text-base leading-[25.6px] text-[#495057] max-[980px]:h-auto"
       >
+        {/* Background Pattern */}
+        <div
+          className="pointer-events-none absolute inset-0 bg-top bg-repeat"
+          style={{
+            backgroundImage: `url('${bgUrl}')`,
+            backgroundSize: "450px 330px",
+          }}
+        />
         <div
           className={`${layoutContainerClass} relative z-1 flex h-full items-start justify-between max-[980px]:h-auto`}
         >
