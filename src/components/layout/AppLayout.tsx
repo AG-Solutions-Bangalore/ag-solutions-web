@@ -4,8 +4,13 @@ import Navbar from "./Navbar";
 
 function AppLayout() {
   const location = useLocation();
-  const isAboutPage = location.pathname === "/about" || location.pathname === "/about/";
-  const isContactsPage = location.pathname === "/contacts" || location.pathname === "/contacts/";
+  const isAboutPage =
+    location.pathname === "/about" || location.pathname === "/about/";
+  const isContactsPage =
+    location.pathname === "/contacts" || location.pathname === "/contacts/";
+
+  const isPortfolioPage =
+    location.pathname === "/portfolio" || location.pathname === "/portfolio/";
 
   return (
     <div className="min-h-screen bg-white">
@@ -13,7 +18,13 @@ function AppLayout() {
       <main>
         <Outlet />
       </main>
-      <Footer bg={(isAboutPage || isContactsPage) ? "lime" : "teal"} />
+      <Footer
+        bg={
+          isAboutPage || isContactsPage || isPortfolioPage
+            ? "pattern-bg-lime.jpg"
+            : "pattern-bg-teal.jpg"
+        }
+      />
     </div>
   );
 }

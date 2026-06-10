@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 import ContactSEO from "../seo/ContactSEO";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
-import { PhoneIcon, MailIcon, CompassIcon } from "@/components/layout/Footer/FooterIcons";
+import {
+  PhoneIcon,
+  MailIcon,
+  CompassIcon,
+} from "@/components/layout/Footer/FooterIcons";
 
 const colorLineSegments = [
   "w-[18%] bg-[#1b2c38]",
@@ -12,7 +16,6 @@ const colorLineSegments = [
   "w-[20%] bg-[#ffcb05]",
   "w-[20%] bg-[#8bd82b]",
 ] as const;
-
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -60,15 +63,18 @@ export default function ContactPage() {
       <ContactSEO />
 
       {/* 1. Breadcrumbs Header Banner */}
-      <section className="relative overflow-hidden bg-[#132d3e] py-24 text-center text-white max-[760px]:py-16">
-        <div className="absolute inset-0 bg-[url('/images/pattern-bg-blue-light.jpg')] bg-[length:450px_330px] bg-top opacity-[0.15]" />
-        <div className="absolute inset-0 bg-[#132d3e]/55" />
+      <section className="relative overflow-hidden py-24 text-center text-white max-[760px]:py-16">
+        <div className="absolute inset-0 bg-[url('/images/pattern-bg-moon.jpg')] bg-[length:450px_330px] bg-top" />
+
         <div className="relative z-1">
           <h1 className="m-0 text-5xl font-black tracking-normal max-[760px]:text-4xl">
             Contact Us
           </h1>
-          <div className="mt-4 flex items-center justify-center gap-2.5 text-base font-semibold text-white/90">
-            <Link to="/" className="text-white hover:text-white/80 no-underline transition-colors border-b border-transparent hover:border-white">
+          <div className="mt-4 flex items-center justify-center gap-2.5 text-base font-normal text-white/90">
+            <Link
+              to="/"
+              className="text-white hover:text-white/80 no-underline transition-colors border-b border-transparent hover:border-white"
+            >
               Homepage
             </Link>
             <span className="text-white/70">&bull;</span>
@@ -88,13 +94,16 @@ export default function ContactPage() {
             <div className="absolute inset-0 bg-[url('/images/pattern-bg-grey.jpg')] bg-[length:450px_330px] bg-top  pointer-events-none" />
 
             <div className={`${layoutContainerClass} relative z-1`}>
-              <div className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`}>
+              <div
+                className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`}
+              >
                 <h2 className="m-0 text-[42px] leading-[1.16] font-black tracking-normal max-[980px]:text-[36px] max-[560px]:text-[28px]">
                   Have Any Questions?
                 </h2>
                 {renderColorLine()}
                 <p className="mt-7 text-lg leading-[1.55] text-[#4f5a62] max-[760px]:text-base">
-                  Please contact us using the form and we'll get back to you as soon as possible.
+                  Please contact us using the form and we'll get back to you as
+                  soon as possible.
                 </p>
               </div>
 
@@ -113,7 +122,9 @@ export default function ContactPage() {
                           required
                           placeholder="Your Full Name"
                           value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, name: e.target.value })
+                          }
                           className="w-full rounded-full border border-slate-200 bg-white px-6 py-4 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/65 focus:border-[#5c60f5] focus:ring-2 focus:ring-[#5c60f5]/20 transition-all"
                         />
                       </div>
@@ -123,7 +134,9 @@ export default function ContactPage() {
                           required
                           placeholder="Email Address"
                           value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, email: e.target.value })
+                          }
                           className="w-full rounded-full border border-slate-200 bg-white px-6 py-4 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/65 focus:border-[#5c60f5] focus:ring-2 focus:ring-[#5c60f5]/20 transition-all"
                         />
                       </div>
@@ -136,7 +149,9 @@ export default function ContactPage() {
                           required
                           placeholder="Phone Number"
                           value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, phone: e.target.value })
+                          }
                           className="w-full rounded-full border border-slate-200 bg-white px-6 py-4 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/65 focus:border-[#5c60f5] focus:ring-2 focus:ring-[#5c60f5]/20 transition-all"
                         />
                       </div>
@@ -146,7 +161,12 @@ export default function ContactPage() {
                           required
                           placeholder="Subject"
                           value={formData.subject}
-                          onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              subject: e.target.value,
+                            })
+                          }
                           className="w-full rounded-full border border-slate-200 bg-white px-6 py-4 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/65 focus:border-[#5c60f5] focus:ring-2 focus:ring-[#5c60f5]/20 transition-all"
                         />
                       </div>
@@ -158,7 +178,9 @@ export default function ContactPage() {
                         rows={5}
                         placeholder="Details"
                         value={formData.details}
-                        onChange={(e) => setFormData({ ...formData, details: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, details: e.target.value })
+                        }
                         className="w-full rounded-2xl border border-slate-200 bg-white px-6 py-4 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/65 focus:border-[#5c60f5] focus:ring-2 focus:ring-[#5c60f5]/20 transition-all resize-none min-h-[140px]"
                       />
                     </div>
@@ -171,20 +193,31 @@ export default function ContactPage() {
                         Send Message
                       </button>
                       <p className="text-[13px] leading-relaxed text-[#5c6873] font-normal max-w-sm">
-                        Please, let us know any particular things to check and the best time to contact you by phone (if provided).
+                        Please, let us know any particular things to check and
+                        the best time to contact you by phone (if provided).
                       </p>
                     </div>
                   </form>
                 ) : (
                   <div className="flex flex-col items-center justify-center py-10 text-center animate-fadeIn">
                     <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600 mb-4 animate-scaleUp">
-                      <svg className="h-10 w-10 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      <svg
+                        className="h-10 w-10 fill-none stroke-current stroke-2"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M5 13l4 4L19 7"
+                        />
                       </svg>
                     </div>
-                    <h3 className="text-2xl font-bold text-[#1b2c38] mb-2">Message Sent!</h3>
+                    <h3 className="text-2xl font-bold text-[#1b2c38] mb-2">
+                      Message Sent!
+                    </h3>
                     <p className="text-[#4f5a62] text-[16px]">
-                      Thank you for contacting us. We'll get back to you shortly.
+                      Thank you for contacting us. We'll get back to you
+                      shortly.
                     </p>
                   </div>
                 )}
@@ -202,7 +235,9 @@ export default function ContactPage() {
         {(isVisible) => (
           <>
             <div className={`${layoutContainerClass} pb-14`}>
-              <div className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`}>
+              <div
+                className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`}
+              >
                 <h2 className="m-0 text-[42px] leading-[1.16] font-black tracking-normal text-[#1b2c38] max-[980px]:text-[36px] max-[560px]:text-[28px]">
                   Get In Touch
                 </h2>
@@ -217,7 +252,9 @@ export default function ContactPage() {
               }`}
               style={{ transitionDelay: "100ms" }}
             >
-              <div className={`${layoutContainerClass} grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-4`}>
+              <div
+                className={`${layoutContainerClass} grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-4`}
+              >
                 {/* Phone Card */}
                 <div className="flex items-center gap-5">
                   <div className="flex-none">

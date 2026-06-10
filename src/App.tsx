@@ -3,6 +3,7 @@ import AppLayout from "./components/layout/AppLayout";
 import HomePage from "./module/home/pages/HomePage";
 import AboutPage from "./module/about/pages/AboutPage";
 import ContactPage from "./module/contact-us/pages/ContactPage";
+import PortfolioPage from "./module/portfolio/pages/PortfolioPage";
 
 function PageSpacer() {
   return <div className="h-[94px] bg-white" />;
@@ -18,7 +19,7 @@ function App() {
           <Route path="about" element={<AboutPage />} />
           <Route path="services" element={<PageSpacer />} />
           <Route path="products" element={<PageSpacer />} />
-          <Route path="portfolio" element={<PageSpacer />} />
+          <Route path="portfolio" element={<PortfolioPage />} />
           <Route path="contacts" element={<ContactPage />} />
           <Route path="*" element={<PageSpacer />} />
         </Route>
