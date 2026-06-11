@@ -11,6 +11,15 @@ const colorLineSegments = [
   "w-[20%] bg-[#8bd82b]",
 ] as const;
 
+// Configure indices (0-based) to specify which project image to use for each category cover.
+// Change these indices to pick different project images easily.
+// e.g. web: 1 will use the second project in the "web_development" category.
+export const COVER_IMAGE_INDICES = {
+  web: 1,      // Websites/Ecommerce category (Index 0 image "1.PNG" is broken)
+  mobile: 0,   // Mobile Apps category
+  desktop: 1,  // Web/Desktop Applications category (Index 0 image "10.jpg" is broken)
+};
+
 function RecentWorksSection() {
   const { data: projectsData } = useProjects();
 
@@ -18,9 +27,15 @@ function RecentWorksSection() {
     (img) => img.image_for === "Projects"
   )?.image_url || "https://ag-solutions.in/webapi/public/assets/images/project_images/";
 
-  const webProj = projectsData?.data.find((p) => p.page === "web_development");
-  const mobileProj = projectsData?.data.find((p) => p.page === "mobile_app_development");
-  const desktopProj = projectsData?.data.find((p) => p.page === "desktop_application");
+  // Filter projects by category
+  const webProjects = projectsData?.data.filter((p) => p.page === "web_development") || [];
+  const mobileProjects = projectsData?.data.filter((p) => p.page === "mobile_app_development") || [];
+  const desktopProjects = projectsData?.data.filter((p) => p.page === "desktop_application") || [];
+
+  // Pick project based on configured index, falling back to index 0 if not found
+  const webProj = webProjects[COVER_IMAGE_INDICES.web] ?? webProjects[0];
+  const mobileProj = mobileProjects[COVER_IMAGE_INDICES.mobile] ?? mobileProjects[0];
+  const desktopProj = desktopProjects[COVER_IMAGE_INDICES.desktop] ?? desktopProjects[0];
 
   const works = [
     {
