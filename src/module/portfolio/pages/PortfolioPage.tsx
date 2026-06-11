@@ -1,6 +1,7 @@
 import PortfolioSEO from "../seo/PortfolioSEO";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
+import { useProjects } from "../hooks/useProjects";
 
 interface PortfolioItem {
   title: string;
@@ -91,6 +92,50 @@ const desktopItems: readonly PortfolioItem[] = [
 ];
 
 export default function PortfolioPage() {
+  const { data: projectsData, isLoading } = useProjects();
+
+  const projectBaseUrl = projectsData?.image_url.find(
+    (img) => img.image_for === "Projects"
+  )?.image_url || "https://ag-solutions.in/webapi/public/assets/images/project_images/";
+
+  const apiWebItems = projectsData?.data
+    .filter((p) => p.page === "web_development")
+    .map((p) => ({
+      title: p.project_name,
+      subtitle: p.project_type || "Web Development",
+      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : "/images/portfolio/web1.png",
+    })) || [];
+
+  const apiMobileItems = projectsData?.data
+    .filter((p) => p.page === "mobile_app_development")
+    .map((p) => ({
+      title: p.project_name,
+      subtitle: p.project_type || "Mobile App",
+      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : "/images/portfolio/em.jpg",
+    })) || [];
+
+  const apiDesktopItems = projectsData?.data
+    .filter((p) => p.page === "desktop_application")
+    .map((p) => ({
+      title: p.project_name,
+      subtitle: p.project_type || "Desktop Application",
+      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : "/images/portfolio/desktop1.png",
+    })) || [];
+
+  const apiFeaturedItems = projectsData?.data
+    .filter((p) => p.page !== "web_development" && p.page !== "mobile_app_development" && p.page !== "desktop_application")
+    .slice(0, 2)
+    .map((p) => ({
+      title: p.project_name,
+      subtitle: p.project_type || p.page.replace(/_/g, " "),
+      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : "/images/portfolio/case1.jpg",
+    })) || [];
+
+  const webList = apiWebItems.length > 0 ? apiWebItems : webItems;
+  const mobileList = apiMobileItems.length > 0 ? apiMobileItems : mobileItems;
+  const desktopList = apiDesktopItems.length > 0 ? apiDesktopItems : desktopItems;
+  const featuredList = apiFeaturedItems.length > 0 ? apiFeaturedItems : featuredItems;
+
   function renderCard(item: PortfolioItem) {
     const barBgClass =
       "bg-[#f4f5ee] text-[#1b2c38] group-hover:bg-[#09c7ca] group-hover:text-white";
@@ -127,6 +172,38 @@ export default function PortfolioPage() {
     );
   }
 
+  function renderSkeletonGrid(count: number = 3) {
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        {Array.from({ length: count }).map((_, i) => (
+          <div key={i} className="animate-pulse border border-slate-100 bg-white">
+            <div className="aspect-[3/2] bg-slate-100" />
+            <div className="py-5 px-6 text-center bg-[#f4f5ee]/50 space-y-2">
+              <div className="h-4 bg-slate-200 rounded w-2/3 mx-auto" />
+              <div className="h-3 bg-slate-100 rounded w-1/2 mx-auto" />
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  function renderFeaturedSkeleton() {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {Array.from({ length: 2 }).map((_, i) => (
+          <div key={i} className="animate-pulse border border-slate-100 bg-white">
+            <div className="aspect-[3/2] bg-slate-100" />
+            <div className="py-5 px-6 text-center bg-[#f4f5ee]/50 space-y-2">
+              <div className="h-4 bg-slate-200 rounded w-2/3 mx-auto" />
+              <div className="h-3 bg-slate-100 rounded w-1/2 mx-auto" />
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <>
       <PortfolioSEO />
@@ -158,12 +235,16 @@ export default function PortfolioPage() {
             </div>
 
             <div
-              className={`mt-14 grid grid-cols-1 md:grid-cols-2 gap-8 home-animated-item ${
+              className={`mt-14 home-animated-item ${
                 isVisible ? "home-animated-item-visible" : ""
               }`}
               style={{ transitionDelay: "100ms" }}
             >
-              {featuredItems.map(renderCard)}
+              {isLoading ? renderFeaturedSkeleton() : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {featuredList.map(renderCard)}
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -185,12 +266,16 @@ export default function PortfolioPage() {
             </div>
 
             <div
-              className={`mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 home-animated-item ${
+              className={`mt-12 home-animated-item ${
                 isVisible ? "home-animated-item-visible" : ""
               }`}
               style={{ transitionDelay: "100ms" }}
             >
-              {webItems.map(renderCard)}
+              {isLoading ? renderSkeletonGrid(3) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                  {webList.map(renderCard)}
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -212,12 +297,16 @@ export default function PortfolioPage() {
             </div>
 
             <div
-              className={`mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 home-animated-item ${
+              className={`mt-12 home-animated-item ${
                 isVisible ? "home-animated-item-visible" : ""
               }`}
               style={{ transitionDelay: "100ms" }}
             >
-              {mobileItems.map(renderCard)}
+              {isLoading ? renderSkeletonGrid(3) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                  {mobileList.map(renderCard)}
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -239,12 +328,16 @@ export default function PortfolioPage() {
             </div>
 
             <div
-              className={`mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 home-animated-item ${
+              className={`mt-12 home-animated-item ${
                 isVisible ? "home-animated-item-visible" : ""
               }`}
               style={{ transitionDelay: "100ms" }}
             >
-              {desktopItems.map(renderCard)}
+              {isLoading ? renderSkeletonGrid(3) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                  {desktopList.map(renderCard)}
+                </div>
+              )}
             </div>
           </div>
         )}

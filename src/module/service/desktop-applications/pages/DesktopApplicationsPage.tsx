@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import DesktopApplicationsSEO from "../seo/DesktopApplicationsSEO";
 import AnimatedSection from "@/components/animation/AnimatedSection";
+import { useCreateNewsletter } from "@/module/newsletter/hooks/useCreateNewsletter";
 import { layoutContainerClass } from "@/components/layout/styles";
 
 interface PortfolioItem {
@@ -78,14 +79,23 @@ export default function DesktopApplicationsPage() {
   const [expandedFaqIndex, setExpandedFaqIndex] = useState<number | null>(null);
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
+  const createNewsletter = useCreateNewsletter();
 
   function handleNewsletterSubmit(e: FormEvent) {
     e.preventDefault();
-    setNewsletterSubmitted(true);
-    setTimeout(() => {
-      setNewsletterSubmitted(false);
-      setNewsletterEmail("");
-    }, 4000);
+    if (!newsletterEmail) return;
+    createNewsletter.mutate(
+      { newsletter_email: newsletterEmail },
+      {
+        onSuccess: () => {
+          setNewsletterSubmitted(true);
+          setNewsletterEmail("");
+          setTimeout(() => {
+            setNewsletterSubmitted(false);
+          }, 5000);
+        },
+      }
+    );
   }
 
   function toggleFaq(index: number) {
@@ -343,22 +353,31 @@ export default function DesktopApplicationsPage() {
                 </div>
 
                 {!newsletterSubmitted ? (
-                  <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-[540px]">
-                    <input
-                      type="email"
-                      required
-                      placeholder="Your email address"
-                      value={newsletterEmail}
-                      onChange={(e) => setNewsletterEmail(e.target.value)}
-                      className="flex-1 rounded-full border-none bg-white text-[#1d2d3b] px-6 py-4 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b2c38]"
-                    />
-                    <button
-                      type="submit"
-                      className="cursor-pointer rounded-full bg-[#1b2c38] hover:bg-[#2c3f51] text-white px-10 py-4 font-bold text-[15px] uppercase tracking-wider transition-all active:scale-[0.98] shrink-0"
-                    >
-                      SUBSCRIBE
-                    </button>
-                  </form>
+                  <div className="max-w-[540px]">
+                    <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4">
+                      <input
+                        type="email"
+                        required
+                        placeholder="Your email address"
+                        value={newsletterEmail}
+                        onChange={(e) => setNewsletterEmail(e.target.value)}
+                        disabled={createNewsletter.isPending}
+                        className="flex-1 rounded-full border-none bg-white text-[#1d2d3b] px-6 py-4 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b2c38]"
+                      />
+                      <button
+                        type="submit"
+                        disabled={createNewsletter.isPending}
+                        className="cursor-pointer rounded-full bg-[#1b2c38] hover:bg-[#2c3f51] text-white px-10 py-4 font-bold text-[15px] uppercase tracking-wider transition-all active:scale-[0.98] shrink-0 disabled:opacity-50"
+                      >
+                        {createNewsletter.isPending ? "..." : "SUBSCRIBE"}
+                      </button>
+                    </form>
+                    {createNewsletter.isError && (
+                      <p className="text-red-600 text-sm mt-2 font-bold">
+                        Error: Please try again.
+                      </p>
+                    )}
+                  </div>
                 ) : (
                   <div className="text-base font-bold text-[#1b2c38] animate-fadeIn">
                     Thank you! You have successfully subscribed to our newsletter.
