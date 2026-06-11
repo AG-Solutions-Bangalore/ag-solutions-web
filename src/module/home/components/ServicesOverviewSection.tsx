@@ -6,21 +6,21 @@ const services = [
   {
     title: "Web Development",
     image: "/images/home/services_web.png",
-    path: "/services/web-development",
+    path: "/web-development",
     description:
       "We offer end-to-end best web development services by strategically combining latest web technologies with mature project development methodologies & robust project management tools.",
   },
   {
     title: "Mobile App Development",
     image: "/images/home/services_mob.png",
-    path: "/services/mobile-app-development",
+    path: "/mobile-app-development",
     description:
       "We offer best mobile app development services from strategy & design to development, testing, and deployment, we provide enterprise mobility solutions for a wide range of industries that are guaranteed to help you thrive in this mobile-first world.",
   },
   {
     title: "Desktop Applications",
     image: "/images/home/services_desk.png",
-    path: "/services/desktop-applications",
+    path: "/desktop-applications",
     description:
       "Whether you're struggling with an outdated legacy software that needs to be migrated to latest technologies, or developing a software for the first time, we ensure to minimize your risk, project timeline, and cost to implement with our 9+ years of domain expertise.",
   },

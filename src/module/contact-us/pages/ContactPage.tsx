@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import ContactSEO from "../seo/ContactSEO";
+import { useCreateEnquiry } from "../hooks/useCreateEnquiry";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
 import {
@@ -26,14 +27,30 @@ export default function ContactPage() {
     details: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const createEnquiry = useCreateEnquiry();
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: "", email: "", phone: "", subject: "", details: "" });
-    }, 4000);
+    createEnquiry.mutate(
+      {
+        enquiryFullName: formData.name,
+        enquiryEmail: formData.email,
+        enquiryMobile: formData.phone,
+        enquiryMessage: `Subject: ${formData.subject}\n\nDetails: ${formData.details}`,
+        utm_medium: "",
+        utm_source: "",
+        utm_campaign: "",
+      },
+      {
+        onSuccess: () => {
+          setIsSubmitted(true);
+          setFormData({ name: "", email: "", phone: "", subject: "", details: "" });
+          setTimeout(() => {
+            setIsSubmitted(false);
+          }, 5000);
+        },
+      }
+    );
   }
 
   function renderColorLine() {
@@ -188,10 +205,16 @@ export default function ContactPage() {
                     <div className="flex flex-col md:flex-row md:items-center gap-6 pt-2">
                       <button
                         type="submit"
-                        className="cursor-pointer rounded-full bg-[#8bd82b] hover:bg-[#7bc81f] text-white px-10 py-4 font-bold text-[16px] transition-all hover:shadow-[0_4px_15px_rgba(139,216,43,0.35)] active:scale-[0.98]"
+                        disabled={createEnquiry.isPending}
+                        className="cursor-pointer rounded-full bg-[#8bd82b] hover:bg-[#7bc81f] text-white px-10 py-4 font-bold text-[16px] transition-all hover:shadow-[0_4px_15px_rgba(139,216,43,0.35)] active:scale-[0.98] disabled:opacity-50"
                       >
-                        Send Message
+                        {createEnquiry.isPending ? "Sending..." : "Send Message"}
                       </button>
+                      {createEnquiry.isError && (
+                        <p className="text-red-500 text-sm">
+                          Error: Please try again.
+                        </p>
+                      )}
                       <p className="text-[13px] leading-relaxed text-[#5c6873] font-normal max-w-sm">
                         Please, let us know any particular things to check and
                         the best time to contact you by phone (if provided).

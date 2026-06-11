@@ -2,6 +2,8 @@ import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import WebDevelopmentSEO from "../seo/WebDevelopmentSEO";
 import AnimatedSection from "@/components/animation/AnimatedSection";
+import { useProjects } from "@/module/portfolio/hooks/useProjects";
+import { useFAQs } from "@/module/service/hooks/useFAQs";
 import { layoutContainerClass } from "@/components/layout/styles";
 
 interface ServiceCard {
@@ -117,6 +119,30 @@ const faqs: readonly FAQItem[] = [
 
 export default function WebDevelopmentPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { data: projectsData, isLoading: isProjectsLoading } = useProjects("web-development");
+  const { data: faqResponse } = useFAQs("web-development");
+
+  const faqList = faqResponse?.data && faqResponse.data.length > 0
+    ? faqResponse.data.map((faq) => ({
+        question: faq.faq_que,
+        answer: faq.faq_ans,
+      }))
+    : faqs;
+
+  const projectBaseUrl = projectsData?.image_url.find(
+    (img) => img.image_for === "Projects"
+  )?.image_url || "https://ag-solutions.in/webapi/public/assets/images/project_images/";
+
+  const apiWorks = projectsData?.data
+    .filter((p) => p.page === "web_development")
+    .map((p) => ({
+      title: p.project_name,
+      subtitle: p.project_type || "Web Development",
+      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : "/images/services/web-development/web1.png",
+    })) || [];
+
+  const worksList = apiWorks.length > 0 ? apiWorks : recentWorks;
+  const totalSlides = Math.ceil(worksList.length / 3);
   const [expandedFaqIndex, setExpandedFaqIndex] = useState<number | null>(null);
   const [formData, setFormData] = useState({
     name: "",
@@ -281,59 +307,72 @@ export default function WebDevelopmentPage() {
             </div>
 
             {/* Works Cards Grid */}
-            <div
-              key={currentSlide}
-              className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 animate-fadeIn"
-            >
-              {recentWorks.slice(currentSlide * 3, currentSlide * 3 + 3).map((work) => {
-                const barBgClass = "bg-[#f4f5ee] text-[#1b2c38] group-hover:bg-[#09c7ca] group-hover:text-white";
-                const subtitleClass = "text-[#7a8894] group-hover:text-white/85";
-
-                return (
-                  <div
-                    key={work.title}
-                    className="group overflow-hidden rounded-none border border-slate-100 bg-white cursor-pointer"
-                  >
-                    {/* Image Zoom */}
-                    <div className="relative aspect-[3/2] overflow-hidden bg-slate-100">
-                      <img
-                        src={work.image}
-                        alt={`${work.title} recent work screenshot`}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
-                    {/* Bottom bar */}
-                    <div className={`py-5 px-6 text-center transition-all duration-300 ease-in-out ${barBgClass}`}>
-                      <h4 className="m-0 text-[17px] font-bold tracking-tight">{work.title}</h4>
-                      <p className={`m-0 mt-1 text-[13.5px] font-medium transition-colors duration-300 ${subtitleClass}`}>
-                        {work.subtitle}
-                      </p>
+            {isProjectsLoading ? (
+              <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <div key={i} className="animate-pulse border border-slate-100 bg-white">
+                    <div className="aspect-[3/2] bg-slate-100" />
+                    <div className="py-5 px-6 text-center bg-[#f4f5ee]/50 space-y-2">
+                      <div className="h-4 bg-slate-200 rounded w-2/3 mx-auto" />
+                      <div className="h-3 bg-slate-100 rounded w-1/2 mx-auto" />
                     </div>
                   </div>
-                );
-              })}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <>
+                <div
+                  key={currentSlide}
+                  className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 animate-fadeIn"
+                >
+                  {worksList.slice(currentSlide * 3, currentSlide * 3 + 3).map((work) => {
+                    const barBgClass = "bg-[#f4f5ee] text-[#1b2c38] group-hover:bg-[#09c7ca] group-hover:text-white";
+                    const subtitleClass = "text-[#7a8894] group-hover:text-white/85";
 
-            {/* Interactive Pagination Slider Dots */}
-            <div className="flex justify-center gap-2 mt-8">
-              <button
-                type="button"
-                onClick={() => setCurrentSlide(0)}
-                aria-label="View first recent works group"
-                className={`w-2.5 h-2.5 rounded-full cursor-pointer transition-all duration-300 ${
-                  currentSlide === 0 ? "bg-[#09c7ca] scale-110" : "bg-slate-300 hover:bg-[#09c7ca]/50"
-                }`}
-              />
-              <button
-                type="button"
-                onClick={() => setCurrentSlide(1)}
-                aria-label="View second recent works group"
-                className={`w-2.5 h-2.5 rounded-full cursor-pointer transition-all duration-300 ${
-                  currentSlide === 1 ? "bg-[#09c7ca] scale-110" : "bg-slate-300 hover:bg-[#09c7ca]/50"
-                }`}
-              />
-            </div>
+                    return (
+                      <div
+                        key={work.title}
+                        className="group overflow-hidden rounded-none border border-slate-100 bg-white cursor-pointer"
+                      >
+                        {/* Image Zoom */}
+                        <div className="relative aspect-[3/2] overflow-hidden bg-slate-100">
+                          <img
+                            src={work.image}
+                            alt={`${work.title} recent work screenshot`}
+                            loading="lazy"
+                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                        </div>
+                        {/* Bottom bar */}
+                        <div className={`py-5 px-6 text-center transition-all duration-300 ease-in-out ${barBgClass}`}>
+                          <h4 className="m-0 text-[17px] font-bold tracking-tight">{work.title}</h4>
+                          <p className={`m-0 mt-1 text-[13.5px] font-medium transition-colors duration-300 ${subtitleClass}`}>
+                            {work.subtitle}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Interactive Pagination Slider Dots */}
+                {totalSlides > 1 && (
+                  <div className="flex justify-center gap-2 mt-8">
+                    {Array.from({ length: totalSlides }).map((_, slideIdx) => (
+                      <button
+                        key={slideIdx}
+                        type="button"
+                        onClick={() => setCurrentSlide(slideIdx)}
+                        aria-label={`View recent works group ${slideIdx + 1}`}
+                        className={`w-2.5 h-2.5 rounded-full cursor-pointer transition-all duration-300 ${
+                          currentSlide === slideIdx ? "bg-[#09c7ca] scale-110" : "bg-slate-300 hover:bg-[#09c7ca]/50"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                )}
+              </>
+            )}
           </div>
         )}
       </AnimatedSection>
@@ -360,7 +399,7 @@ export default function WebDevelopmentPage() {
               }`}
               style={{ transitionDelay: "100ms" }}
             >
-              {faqs.map((faq, idx) => {
+              {faqList.map((faq, idx) => {
                 const isOpen = expandedFaqIndex === idx;
 
                 return (

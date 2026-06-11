@@ -13,10 +13,10 @@ function AppLayout() {
     location.pathname === "/portfolio" || location.pathname === "/portfolio/";
 
   const isServicesPage =
-    location.pathname === "/services/web-development" ||
-    location.pathname === "/services/web-development/" ||
-    location.pathname === "/services/desktop-applications" ||
-    location.pathname === "/services/desktop-applications/";
+    location.pathname === "/web-development" ||
+    location.pathname === "/web-development/" ||
+    location.pathname === "/desktop-applications" ||
+    location.pathname === "/desktop-applications/";
 
   return (
     <div className="min-h-screen bg-white">

@@ -105,7 +105,7 @@ function HeroCarousel() {
         >
           <img
             className={`h-[30px] w-10 ${activeSlide.arrowClass}`}
-            src="/images/home/leftArrow.svg"
+            src="/images/leftArrow.svg"
             alt=""
             aria-hidden="true"
           />
@@ -118,7 +118,7 @@ function HeroCarousel() {
         >
           <img
             className={`h-[30px] w-10 ${activeSlide.arrowClass}`}
-            src="/images/home/rightArrow.svg"
+            src="/images/rightArrow.svg"
             alt=""
             aria-hidden="true"
           />

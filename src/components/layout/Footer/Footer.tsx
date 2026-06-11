@@ -1,11 +1,12 @@
-import { useEffect, useRef, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useCreateNewsletter } from "@/module/newsletter/hooks/useCreateNewsletter";
 import { layoutContainerClass } from "../styles";
 import { CompassIcon, MailIcon, PhoneIcon } from "./FooterIcons";
 
 type FooterProps = {
   bg?: string;
   newsletterBg?: string;
-  organizationName?: string;
+  // organizationName?: string;
   phone?: string;
   phoneHref?: string;
   supportHours?: string;
@@ -20,7 +21,7 @@ type FooterProps = {
 function Footer({
   bg,
   newsletterBg = "teal",
-  organizationName = "South India Garments Association",
+  // organizationName = "South India Garments Association",
   phone = "+91 8867171060",
   phoneHref = "tel:8867171060",
   supportHours = "Mon-Fri 10am-7pm",
@@ -32,6 +33,9 @@ function Footer({
   copyrightName = "AG Solutions",
 }: FooterProps) {
   const footerRef = useRef<HTMLElement>(null);
+  const [emailValue, setEmailValue] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const createNewsletter = useCreateNewsletter();
 
   const isLime = (bg || newsletterBg)?.includes("lime");
   const bgFileName = isLime ? "pattern-bg-lime.jpg" : "pattern-bg-breez.jpg";
@@ -106,6 +110,19 @@ function Footer({
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (!emailValue) return;
+    createNewsletter.mutate(
+      { newsletter_email: emailValue },
+      {
+        onSuccess: () => {
+          setIsSubmitted(true);
+          setEmailValue("");
+          setTimeout(() => {
+            setIsSubmitted(false);
+          }, 5000);
+        },
+      }
+    );
   }
 
   return (
@@ -132,24 +149,40 @@ function Footer({
               <span className="font-bold">Join Our Newsletter</span> &amp;
               Marketing Communication. We'll send you news and offers.
             </p>
-            <form method="post" className="w-full" onSubmit={handleSubmit}>
-              <div className="mt-[36px] flex h-[60px] w-[669px] items-center gap-3.5 p-0 text-left text-base leading-[25.6px] text-[#495057] max-[980px]:w-full max-[640px]:h-auto max-[640px]:flex-col max-[640px]:items-stretch">
-                <input
-                  className="block h-[60px] w-[502px] min-w-0 rounded-full border-0 bg-white px-[30px] py-[16.384px] text-base leading-[25.6px] text-[#495057] outline-none placeholder:text-[#34414c] placeholder:opacity-100 focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-white/65 max-[640px]:w-full"
-                  type="email"
-                  name="uemail"
-                  id="uemail"
-                  placeholder="Your email address"
-                />
-                <button
-                  id="butnew"
-                  type="submit"
-                  className="h-[60px] flex-[0_0_153px] cursor-pointer rounded-full border-0 bg-[#132d3e] text-base font-bold text-white transition-[transform,background-color] duration-150 hover:-translate-y-px hover:bg-[#0f2534] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-white/65 max-[640px]:w-full max-[640px]:flex-auto"
-                >
-                  SUBSCRIBE
-                </button>
-              </div>
-            </form>
+            {!isSubmitted ? (
+              <form method="post" className="w-full" onSubmit={handleSubmit}>
+                <div className="mt-[36px] flex h-[60px] w-[669px] items-center gap-3.5 p-0 text-left text-base leading-[25.6px] text-[#495057] max-[980px]:w-full max-[640px]:h-auto max-[640px]:flex-col max-[640px]:items-stretch">
+                  <input
+                    className="block h-[60px] w-[502px] min-w-0 rounded-full border-0 bg-white px-[30px] py-[16.384px] text-base leading-[25.6px] text-[#495057] outline-none placeholder:text-[#34414c] placeholder:opacity-100 focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-white/65 max-[640px]:w-full"
+                    type="email"
+                    name="uemail"
+                    id="uemail"
+                    required
+                    placeholder="Your email address"
+                    value={emailValue}
+                    onChange={(e) => setEmailValue(e.target.value)}
+                    disabled={createNewsletter.isPending}
+                  />
+                  <button
+                    id="butnew"
+                    type="submit"
+                    disabled={createNewsletter.isPending}
+                    className="h-[60px] flex-[0_0_153px] cursor-pointer rounded-full border-0 bg-[#132d3e] text-base font-bold text-white transition-[transform,background-color] duration-150 hover:-translate-y-px hover:bg-[#0f2534] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-white/65 max-[640px]:w-full max-[640px]:flex-auto disabled:opacity-50"
+                  >
+                    {createNewsletter.isPending ? "..." : "SUBSCRIBE"}
+                  </button>
+                </div>
+                {createNewsletter.isError && (
+                  <p className="text-red-500 text-sm mt-2 font-semibold">
+                    Error: Please try again.
+                  </p>
+                )}
+              </form>
+            ) : (
+              <p className="mt-[36px] block text-left text-base leading-[25.6px] font-bold text-[#8bd82b]">
+                Thank you! You have successfully subscribed to our newsletter.
+              </p>
+            )}
           </div>
           <div
             className="pointer-events-none mt-auto block h-[244px] w-[399px] px-[15px] text-left text-base leading-[25.6px] text-[#495057] max-[980px]:hidden"
@@ -170,10 +203,10 @@ function Footer({
         className="bg-[#151d23] text-[#9daab7]"
       >
         <div className={layoutContainerClass}>
-          <div className="pt-4 text-center text-[22px] leading-[1.4] font-normal text-[#a5b0bd] max-[980px]:pt-5 max-[640px]:text-xl">
+          {/* <div className="pt-4 text-center text-[22px] leading-[1.4] font-normal text-[#a5b0bd] max-[980px]:pt-5 max-[640px]:text-xl">
             {organizationName}
-          </div>
-          <div className="mt-[15px] h-px bg-[#29343d]" />
+          </div> */}
+          {/* <div className="mt-[15px] h-px bg-[#29343d]" /> */}
           <div className="flex justify-between gap-8 pt-12 pb-11 max-[1200px]:gap-6 max-[980px]:grid max-[980px]:grid-cols-1 max-[980px]:gap-8 max-[980px]:pt-9 max-[980px]:pb-10">
             <div className="flex min-w-0 items-center gap-7 max-[1200px]:gap-6 max-[980px]:gap-7 max-[640px]:gap-4">
               <div className="flex flex-[0_0_50.4px] items-center justify-center max-[640px]:flex-[0_0_43.2px]">
