@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import MobileAppDevelopmentSEO from "../seo/MobileAppDevelopmentSEO";
 import AnimatedSection from "@/components/animation/AnimatedSection";
+import { useProjects } from "@/module/portfolio/hooks/useProjects";
 import { layoutContainerClass } from "@/components/layout/styles";
 
 interface PortfolioItem {
@@ -71,6 +72,21 @@ const faqs: readonly FAQItem[] = [
 
 export default function MobileAppDevelopmentPage() {
   const [expandedFaqIndex, setExpandedFaqIndex] = useState<number | null>(null);
+  const { data: projectsData, isLoading: isProjectsLoading } = useProjects();
+
+  const projectBaseUrl = projectsData?.image_url.find(
+    (img) => img.image_for === "Projects"
+  )?.image_url || "https://ag-solutions.in/webapi/public/assets/images/project_images/";
+
+  const apiWorks = projectsData?.data
+    .filter((p) => p.page === "mobile_app_development")
+    .map((p) => ({
+      title: p.project_name,
+      subtitle: p.project_type || "Mobile App",
+      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : "/images/services/mobile-app-development/em.jpg",
+    })) || [];
+
+  const worksList = apiWorks.length > 0 ? apiWorks : recentWorks;
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -246,47 +262,63 @@ export default function MobileAppDevelopmentPage() {
 
             {/* Works Cards Grid */}
             <div
-              className={`mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 home-animated-item ${
+              className={`mt-12 home-animated-item ${
                 isVisible ? "home-animated-item-visible" : ""
               }`}
               style={{ transitionDelay: "150ms" }}
             >
-              {recentWorks.map((work) => {
-                const barBgClass =
-                  "bg-[#f4f5ee] text-[#1b2c38] group-hover:bg-[#09c7ca] group-hover:text-white";
-                const subtitleClass =
-                  "text-[#7a8894] group-hover:text-white/85";
+              {isProjectsLoading ? (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {Array.from({ length: 3 }).map((_, i) => (
+                    <div key={i} className="animate-pulse border border-slate-100 bg-white">
+                      <div className="aspect-[3/2] bg-slate-100" />
+                      <div className="py-5 px-6 text-center bg-[#f4f5ee]/50 space-y-2">
+                        <div className="h-4 bg-slate-200 rounded w-2/3 mx-auto" />
+                        <div className="h-3 bg-slate-100 rounded w-1/2 mx-auto" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {worksList.map((work) => {
+                    const barBgClass =
+                      "bg-[#f4f5ee] text-[#1b2c38] group-hover:bg-[#09c7ca] group-hover:text-white";
+                    const subtitleClass =
+                      "text-[#7a8894] group-hover:text-white/85";
 
-                return (
-                  <div
-                    key={work.title}
-                    className="group overflow-hidden rounded-none border border-slate-100 bg-white cursor-pointer"
-                  >
-                    {/* Image Zoom */}
-                    <div className="relative aspect-[3/2] overflow-hidden bg-slate-100">
-                      <img
-                        src={work.image}
-                        alt={`${work.title} recent work screenshot`}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
-                    {/* Bottom bar */}
-                    <div
-                      className={`py-5 px-6 text-center transition-all duration-300 ease-in-out ${barBgClass}`}
-                    >
-                      <h4 className="m-0 text-[17px] font-bold tracking-tight">
-                        {work.title}
-                      </h4>
-                      <p
-                        className={`m-0 mt-1 text-[13.5px] font-medium transition-colors duration-300 ${subtitleClass}`}
+                    return (
+                      <div
+                        key={work.title}
+                        className="group overflow-hidden rounded-none border border-slate-100 bg-white cursor-pointer"
                       >
-                        {work.subtitle}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
+                        {/* Image Zoom */}
+                        <div className="relative aspect-[3/2] overflow-hidden bg-slate-100">
+                          <img
+                            src={work.image}
+                            alt={`${work.title} recent work screenshot`}
+                            loading="lazy"
+                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                        </div>
+                        {/* Bottom bar */}
+                        <div
+                          className={`py-5 px-6 text-center transition-all duration-300 ease-in-out ${barBgClass}`}
+                        >
+                          <h4 className="m-0 text-[17px] font-bold tracking-tight">
+                            {work.title}
+                          </h4>
+                          <p
+                            className={`m-0 mt-1 text-[13.5px] font-medium transition-colors duration-300 ${subtitleClass}`}
+                          >
+                            {work.subtitle}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           </div>
         )}
