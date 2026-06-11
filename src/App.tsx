@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Lenis from "lenis";
 import AppLayout from "./components/layout/AppLayout";
 import HomePage from "./module/home/pages/HomePage";
 import AboutPage from "./module/about/pages/AboutPage";
@@ -15,6 +17,27 @@ function PageSpacer() {
 }
 
 function App() {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // easeOutExpo
+      smoothWheel: true,
+    });
+
+    let rafId: number;
+    function raf(time: number) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
