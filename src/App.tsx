@@ -46,9 +46,9 @@ function App() {
           <Route path="projects" element={<PageSpacer />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="services" element={<PageSpacer />} />
-          <Route path="services/web-development" element={<WebDevelopmentPage />} />
-          <Route path="services/mobile-app-development" element={<MobileAppDevelopmentPage />} />
-          <Route path="services/desktop-applications" element={<DesktopApplicationsPage />} />
+          <Route path="web-development" element={<WebDevelopmentPage />} />
+          <Route path="mobile-app-development" element={<MobileAppDevelopmentPage />} />
+          <Route path="desktop-applications" element={<DesktopApplicationsPage />} />
           <Route path="products" element={<PageSpacer />} />
           <Route path="portfolio" element={<PortfolioPage />} />
           <Route path="blogs" element={<BlogListPage />} />

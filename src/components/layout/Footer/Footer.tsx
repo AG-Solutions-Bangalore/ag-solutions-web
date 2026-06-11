@@ -6,7 +6,7 @@ import { CompassIcon, MailIcon, PhoneIcon } from "./FooterIcons";
 type FooterProps = {
   bg?: string;
   newsletterBg?: string;
-  organizationName?: string;
+  // organizationName?: string;
   phone?: string;
   phoneHref?: string;
   supportHours?: string;
@@ -21,7 +21,7 @@ type FooterProps = {
 function Footer({
   bg,
   newsletterBg = "teal",
-  organizationName = "South India Garments Association",
+  // organizationName = "South India Garments Association",
   phone = "+91 8867171060",
   phoneHref = "tel:8867171060",
   supportHours = "Mon-Fri 10am-7pm",
@@ -203,10 +203,10 @@ function Footer({
         className="bg-[#151d23] text-[#9daab7]"
       >
         <div className={layoutContainerClass}>
-          <div className="pt-4 text-center text-[22px] leading-[1.4] font-normal text-[#a5b0bd] max-[980px]:pt-5 max-[640px]:text-xl">
+          {/* <div className="pt-4 text-center text-[22px] leading-[1.4] font-normal text-[#a5b0bd] max-[980px]:pt-5 max-[640px]:text-xl">
             {organizationName}
-          </div>
-          <div className="mt-[15px] h-px bg-[#29343d]" />
+          </div> */}
+          {/* <div className="mt-[15px] h-px bg-[#29343d]" /> */}
           <div className="flex justify-between gap-8 pt-12 pb-11 max-[1200px]:gap-6 max-[980px]:grid max-[980px]:grid-cols-1 max-[980px]:gap-8 max-[980px]:pt-9 max-[980px]:pb-10">
             <div className="flex min-w-0 items-center gap-7 max-[1200px]:gap-6 max-[980px]:gap-7 max-[640px]:gap-4">
               <div className="flex flex-[0_0_50.4px] items-center justify-center max-[640px]:flex-[0_0_43.2px]">

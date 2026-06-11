@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import WebDevelopmentSEO from "../seo/WebDevelopmentSEO";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { useProjects } from "@/module/portfolio/hooks/useProjects";
+import { useFAQs } from "@/module/service/hooks/useFAQs";
 import { layoutContainerClass } from "@/components/layout/styles";
 
 interface ServiceCard {
@@ -118,7 +119,15 @@ const faqs: readonly FAQItem[] = [
 
 export default function WebDevelopmentPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const { data: projectsData, isLoading: isProjectsLoading } = useProjects();
+  const { data: projectsData, isLoading: isProjectsLoading } = useProjects("web-development");
+  const { data: faqResponse } = useFAQs("web-development");
+
+  const faqList = faqResponse?.data && faqResponse.data.length > 0
+    ? faqResponse.data.map((faq) => ({
+        question: faq.faq_que,
+        answer: faq.faq_ans,
+      }))
+    : faqs;
 
   const projectBaseUrl = projectsData?.image_url.find(
     (img) => img.image_for === "Projects"
@@ -390,7 +399,7 @@ export default function WebDevelopmentPage() {
               }`}
               style={{ transitionDelay: "100ms" }}
             >
-              {faqs.map((faq, idx) => {
+              {faqList.map((faq, idx) => {
                 const isOpen = expandedFaqIndex === idx;
 
                 return (

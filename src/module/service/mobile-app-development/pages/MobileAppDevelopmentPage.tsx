@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import MobileAppDevelopmentSEO from "../seo/MobileAppDevelopmentSEO";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { useProjects } from "@/module/portfolio/hooks/useProjects";
+import { useFAQs } from "@/module/service/hooks/useFAQs";
 import { layoutContainerClass } from "@/components/layout/styles";
 
 interface PortfolioItem {
@@ -72,7 +73,15 @@ const faqs: readonly FAQItem[] = [
 
 export default function MobileAppDevelopmentPage() {
   const [expandedFaqIndex, setExpandedFaqIndex] = useState<number | null>(null);
-  const { data: projectsData, isLoading: isProjectsLoading } = useProjects();
+  const { data: projectsData, isLoading: isProjectsLoading } = useProjects("mobile-app-development");
+  const { data: faqResponse } = useFAQs("mobile-app-development");
+
+  const faqList = faqResponse?.data && faqResponse.data.length > 0
+    ? faqResponse.data.map((faq) => ({
+        question: faq.faq_que,
+        answer: faq.faq_ans,
+      }))
+    : faqs;
 
   const projectBaseUrl = projectsData?.image_url.find(
     (img) => img.image_for === "Projects"
@@ -348,7 +357,7 @@ export default function MobileAppDevelopmentPage() {
               }`}
               style={{ transitionDelay: "100ms" }}
             >
-              {faqs.map((faq, idx) => {
+              {faqList.map((faq, idx) => {
                 const isOpen = expandedFaqIndex === idx;
 
                 return (

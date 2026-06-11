@@ -22,7 +22,9 @@ export default function BlogDetailPage() {
     (img) => img.image_for === "Blog"
   )?.image_url || "https://ag-solutions.in/webapi/public/assets/images/blog_images/";
 
-  const sponsorBaseUrl = "https://ag-solutions.in/webapi/public/assets/images/sponsors_images/";
+  const sponsorBaseUrl = blogData?.image_url.find(
+    (img) => img.image_for === "Sponsors"
+  )?.image_url || "https://ag-solutions.in/webapi/public/assets/images/sponsors_images/";
 
   function renderColorLine() {
     return (

@@ -1,9 +1,9 @@
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import DesktopApplicationsSEO from "../seo/DesktopApplicationsSEO";
 import AnimatedSection from "@/components/animation/AnimatedSection";
-import { useCreateNewsletter } from "@/module/newsletter/hooks/useCreateNewsletter";
 import { useProjects } from "@/module/portfolio/hooks/useProjects";
+import { useFAQs } from "@/module/service/hooks/useFAQs";
 import { layoutContainerClass } from "@/components/layout/styles";
 
 interface PortfolioItem {
@@ -78,41 +78,36 @@ const faqs: readonly FAQItem[] = [
 
 export default function DesktopApplicationsPage() {
   const [expandedFaqIndex, setExpandedFaqIndex] = useState<number | null>(null);
-  const [newsletterEmail, setNewsletterEmail] = useState("");
-  const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
-  const createNewsletter = useCreateNewsletter();
-  const { data: projectsData, isLoading: isProjectsLoading } = useProjects();
+  const { data: projectsData, isLoading: isProjectsLoading } = useProjects(
+    "desktop-applications",
+  );
+  const { data: faqResponse } = useFAQs("desktop-applications");
 
-  const projectBaseUrl = projectsData?.image_url.find(
-    (img) => img.image_for === "Projects"
-  )?.image_url || "https://ag-solutions.in/webapi/public/assets/images/project_images/";
+  const faqList =
+    faqResponse?.data && faqResponse.data.length > 0
+      ? faqResponse.data.map((faq) => ({
+          question: faq.faq_que,
+          answer: faq.faq_ans,
+        }))
+      : faqs;
 
-  const apiWorks = projectsData?.data
-    .filter((p) => p.page === "desktop_application")
-    .map((p) => ({
-      title: p.project_name,
-      subtitle: p.project_type || "Desktop Application",
-      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : "/images/services/desktop-applications/desktop1.png",
-    })) || [];
+  const projectBaseUrl =
+    projectsData?.image_url.find((img) => img.image_for === "Projects")
+      ?.image_url ||
+    "https://ag-solutions.in/webapi/public/assets/images/project_images/";
+
+  const apiWorks =
+    projectsData?.data
+      .filter((p) => p.page === "desktop_application")
+      .map((p) => ({
+        title: p.project_name,
+        subtitle: p.project_type || "Desktop Application",
+        image: p.project_image
+          ? `${projectBaseUrl}${p.project_image}`
+          : "/images/services/desktop-applications/desktop1.png",
+      })) || [];
 
   const worksList = apiWorks.length > 0 ? apiWorks : recentWorks;
-
-  function handleNewsletterSubmit(e: FormEvent) {
-    e.preventDefault();
-    if (!newsletterEmail) return;
-    createNewsletter.mutate(
-      { newsletter_email: newsletterEmail },
-      {
-        onSuccess: () => {
-          setNewsletterSubmitted(true);
-          setNewsletterEmail("");
-          setTimeout(() => {
-            setNewsletterSubmitted(false);
-          }, 5000);
-        },
-      }
-    );
-  }
 
   function toggleFaq(index: number) {
     setExpandedFaqIndex(expandedFaqIndex === index ? null : index);
@@ -244,7 +239,10 @@ export default function DesktopApplicationsPage() {
               {isProjectsLoading ? (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   {Array.from({ length: 3 }).map((_, i) => (
-                    <div key={i} className="animate-pulse border border-slate-100 bg-white">
+                    <div
+                      key={i}
+                      className="animate-pulse border border-slate-100 bg-white"
+                    >
                       <div className="aspect-[3/2] bg-slate-100" />
                       <div className="py-5 px-6 text-center bg-[#f4f5ee]/50 space-y-2">
                         <div className="h-4 bg-slate-200 rounded w-2/3 mx-auto" />
@@ -322,7 +320,7 @@ export default function DesktopApplicationsPage() {
               }`}
               style={{ transitionDelay: "100ms" }}
             >
-              {faqs.map((faq, idx) => {
+              {faqList.map((faq, idx) => {
                 const isOpen = expandedFaqIndex === idx;
 
                 return (
@@ -362,77 +360,6 @@ export default function DesktopApplicationsPage() {
               })}
             </div>
           </div>
-        )}
-      </AnimatedSection>
-      {/* 5. Newsletter Subscription Section */}
-      <AnimatedSection
-        className="relative overflow-hidden py-16 text-[#1b2c38] max-[760px]:py-12"
-        ariaLabel="Subscribe to newsletter"
-      >
-        {(isVisible) => (
-          <>
-            <div className="absolute inset-0 bg-[url('/images/pattern-bg-lime.jpg')] bg-[length:450px_330px] bg-top" />
-            <div className={`${layoutContainerClass} relative z-1 grid grid-cols-1 md:grid-cols-12 gap-8 items-center`}>
-              {/* Left & Middle Column copy + form */}
-              <div className={`md:col-span-8 space-y-6 home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`}>
-                <div className="space-y-2">
-                  <h2 className="m-0 text-[32px] font-black leading-tight text-[#1b2c38]">
-                    Subscribe to our Newsletter
-                  </h2>
-                  <p className="m-0 text-base font-semibold text-[#1b2c38]/90">
-                    Join Our Newsletter & Marketing Communication. We'll send you news and offers.
-                  </p>
-                </div>
-
-                {!newsletterSubmitted ? (
-                  <div className="max-w-[540px]">
-                    <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4">
-                      <input
-                        type="email"
-                        required
-                        placeholder="Your email address"
-                        value={newsletterEmail}
-                        onChange={(e) => setNewsletterEmail(e.target.value)}
-                        disabled={createNewsletter.isPending}
-                        className="flex-1 rounded-full border-none bg-white text-[#1d2d3b] px-6 py-4 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b2c38]"
-                      />
-                      <button
-                        type="submit"
-                        disabled={createNewsletter.isPending}
-                        className="cursor-pointer rounded-full bg-[#1b2c38] hover:bg-[#2c3f51] text-white px-10 py-4 font-bold text-[15px] uppercase tracking-wider transition-all active:scale-[0.98] shrink-0 disabled:opacity-50"
-                      >
-                        {createNewsletter.isPending ? "..." : "SUBSCRIBE"}
-                      </button>
-                    </form>
-                    {createNewsletter.isError && (
-                      <p className="text-red-600 text-sm mt-2 font-bold">
-                        Error: Please try again.
-                      </p>
-                    )}
-                  </div>
-                ) : (
-                  <div className="text-base font-bold text-[#1b2c38] animate-fadeIn">
-                    Thank you! You have successfully subscribed to our newsletter.
-                  </div>
-                )}
-              </div>
-
-              {/* Right Megaphone Illustration */}
-              <div
-                className={`hidden md:flex md:col-span-4 justify-end home-animated-item ${
-                  isVisible ? "home-animated-item-visible" : ""
-                }`}
-                style={{ transitionDelay: "150ms" }}
-              >
-                <img
-                  src="/images/08-subscribe.svg"
-                  alt="Newsletter megaphone illustration"
-                  className="w-full max-w-[200px] object-contain"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </>
         )}
       </AnimatedSection>
     </>

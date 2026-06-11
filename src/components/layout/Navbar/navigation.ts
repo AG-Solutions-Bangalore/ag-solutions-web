@@ -10,7 +10,7 @@ export const navItems: readonly NavItem[] = [
     children: [
       {
         label: "Web Development",
-        path: "/services/web-development",
+        path: "/web-development",
         description: "Responsive websites, portals, and business platforms.",
         badge: "WD",
         accentClass: "bg-[#e7f7ff] text-[#1289bc]",
@@ -18,7 +18,7 @@ export const navItems: readonly NavItem[] = [
       },
       {
         label: "Mobile App Development",
-        path: "/services/mobile-app-development",
+        path: "/mobile-app-development",
         description: "Android and cross-platform apps built for daily use.",
         badge: "MA",
         accentClass: "bg-[#fff4d6] text-[#bd7b00]",
@@ -26,7 +26,7 @@ export const navItems: readonly NavItem[] = [
       },
       {
         label: "Desktop Applications",
-        path: "/services/desktop-applications",
+        path: "/desktop-applications",
         description: "Reliable internal tools for teams and operations.",
         badge: "DA",
         accentClass: "bg-[#eef9e7] text-[#4f941a]",
@@ -65,5 +65,6 @@ export const navItems: readonly NavItem[] = [
     ],
   },
   { label: "Portfolio", path: "/portfolio" },
+  { label: "Blogs", path: "/blogs" },
   { label: "Contacts", path: "/contacts" },
 ];

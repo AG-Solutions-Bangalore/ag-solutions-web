@@ -20,7 +20,7 @@ export interface ProjectsResponse {
   image_url: ProjectImageUrl[];
 }
 
-export const getProjects = async (): Promise<ProjectsResponse> => {
-  const response = await apiClient.get<ProjectsResponse>("/getProjects/all");
+export const getProjects = async (category: string = "all"): Promise<ProjectsResponse> => {
+  const response = await apiClient.get<ProjectsResponse>(`/getProjects/${category}`);
   return response.data;
 };
