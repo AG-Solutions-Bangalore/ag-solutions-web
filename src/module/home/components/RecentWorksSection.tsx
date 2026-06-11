@@ -1,24 +1,7 @@
 import { Link } from "react-router-dom";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
-
-const works = [
-  {
-    title: "Websites/Ecommerce",
-    image: "/images/home/home-18.jpg",
-    path: "/portfolio",
-  },
-  {
-    title: "Mobile Apps",
-    image: "/images/home/home-19.jpg",
-    path: "/portfolio",
-  },
-  {
-    title: "Web/Desktop Applications",
-    image: "/images/home/home-20.jpg",
-    path: "/portfolio",
-  },
-] as const;
+import { useProjects } from "@/module/portfolio/hooks/useProjects";
 
 const colorLineSegments = [
   "w-[18%] bg-[#1b2c38]",
@@ -29,6 +12,34 @@ const colorLineSegments = [
 ] as const;
 
 function RecentWorksSection() {
+  const { data: projectsData } = useProjects();
+
+  const projectBaseUrl = projectsData?.image_url.find(
+    (img) => img.image_for === "Projects"
+  )?.image_url || "https://ag-solutions.in/webapi/public/assets/images/project_images/";
+
+  const webProj = projectsData?.data.find((p) => p.page === "web_development");
+  const mobileProj = projectsData?.data.find((p) => p.page === "mobile_app_development");
+  const desktopProj = projectsData?.data.find((p) => p.page === "desktop_application");
+
+  const works = [
+    {
+      title: "Websites/Ecommerce",
+      image: webProj?.project_image ? `${projectBaseUrl}${webProj.project_image}` : "/images/home/home-18.jpg",
+      path: "/portfolio",
+    },
+    {
+      title: "Mobile Apps",
+      image: mobileProj?.project_image ? `${projectBaseUrl}${mobileProj.project_image}` : "/images/home/home-19.jpg",
+      path: "/portfolio",
+    },
+    {
+      title: "Web/Desktop Applications",
+      image: desktopProj?.project_image ? `${projectBaseUrl}${desktopProj.project_image}` : "/images/home/home-20.jpg",
+      path: "/portfolio",
+    },
+  ] as const;
+
   return (
     <AnimatedSection
       className="bg-white py-22 text-[#1b2c38] max-[760px]:py-14"
