@@ -1,0 +1,254 @@
+import React, { useState, type FormEvent } from "react";
+import { PageHero, SectionTitle } from "@/components/layout";
+import AnimatedSection from "@/components/animation/AnimatedSection";
+import { layoutContainerClass } from "@/components/layout/styles";
+import { SEO } from "@/components/seo/SEO";
+
+interface FeatureItem {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+const features: readonly FeatureItem[] = [
+  {
+    title: "Campaign Workflow Builder",
+    description:
+      "Design, assign, and organize marketing operations across teams. A unified visual calendar tracks content design, scheduling, and releases.",
+    icon: "📅",
+  },
+  {
+    title: "Multi-Channel Dashboard",
+    description:
+      "Gather marketing analytics, social metrics, newsletter clicks, and conversion rates into one dashboard to measure true ROI.",
+    icon: "📈",
+  },
+  {
+    title: "Centralized Assets Library",
+    description:
+      "Store, categorize, and share approved assets, copywriting snippets, logos, and advertising templates safely within your marketing team.",
+    icon: "📁",
+  },
+];
+
+export const EaseMarketingPage: React.FC = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    details: "I am interested in a demo of EASE Marketing workflows.",
+  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setIsSubmitted(false);
+      setFormData({ name: "", phone: "", email: "", details: "" });
+    }, 4000);
+  }
+
+  return (
+    <>
+      <SEO
+        title="EASE Marketing Workflow Software - AG Solutions"
+        description="Simplify and track your marketing campaigns, task lists, assets, and conversion performance with EASE Marketing from AG Solutions."
+        keywords={["marketing workflow", "EASE Marketing", "campaign manager", "digital operations"]}
+      />
+
+      <PageHero
+        title="EASE Marketing Solutions"
+        bgImage="/images/pattern-bg-breez.jpg"
+        textColorClass="text-[#1b2c38]"
+        breadcrumbs={[
+          { label: "Homepage", path: "/" },
+          { label: "Products", path: "/products" },
+          { label: "EASE Marketing" },
+        ]}
+      />
+
+      {/* 2. Intro Section */}
+      <AnimatedSection
+        className="bg-white py-20 text-[#1b2c38] max-[760px]:py-14"
+        ariaLabel="EASE Marketing introduction"
+      >
+        {(isVisible) => (
+          <div className={`${layoutContainerClass} grid grid-cols-1 md:grid-cols-2 gap-12 items-center`}>
+            {/* Left Image */}
+            <div className={`home-animated-item flex justify-center ${isVisible ? "home-animated-item-visible" : ""}`}>
+              <img
+                src="/images/services/web-development/banner-website-design.jpg"
+                alt="EASE marketing operations visualization"
+                className="w-full max-w-135 object-contain"
+                loading="lazy"
+              />
+            </div>
+
+            {/* Right Copy */}
+            <div className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`} style={{ transitionDelay: "100ms" }}>
+              <SectionTitle
+                title="Simplify Your Marketing Operations"
+                align="left"
+                titleClassName="text-[36px] font-black leading-tight text-[#1a2b3c] max-[560px]:text-2xl"
+              />
+              <p className="mt-8 text-base leading-relaxed text-[#4f5a62]">
+                EASE Marketing simplifies how business teams coordinate digital strategies. Stop juggling countless chat threads, spreadsheets, and asset folders. Manage campaigns, execute tasks, and measure performance metrics in one consolidated platform.
+              </p>
+              <div className="mt-8 space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="text-[#bf3159] text-xl font-bold">✓</span>
+                  <p className="m-0 text-sm text-[#4f5a62]">Faster marketing cycle times through structured task handoffs.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-[#bf3159] text-xl font-bold">✓</span>
+                  <p className="m-0 text-sm text-[#4f5a62]">Clear visibility of project status and campaign deadlines.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-[#bf3159] text-xl font-bold">✓</span>
+                  <p className="m-0 text-sm text-[#4f5a62]">Consistent brand quality using standardized asset libraries.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </AnimatedSection>
+
+      {/* 3. Features Section */}
+      <AnimatedSection
+        className="bg-[#fafafa] py-20 border-t border-slate-100 text-[#1b2c38] max-[760px]:py-14"
+        ariaLabel="EASE Marketing features"
+      >
+        {(isVisible) => (
+          <div className={layoutContainerClass}>
+            <SectionTitle
+              title="Product Features"
+              align="center"
+              titleClassName="text-[38px] leading-tight font-black text-[#1a2b3c]"
+              className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`}
+            />
+
+            <div
+              className={`mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 home-animated-item ${
+                isVisible ? "home-animated-item-visible" : ""
+              }`}
+              style={{ transitionDelay: "100ms" }}
+            >
+              {features.map((feat) => (
+                <div
+                  key={feat.title}
+                  className="bg-white border border-slate-100 p-8 rounded-none flex flex-col items-center text-center shadow-xs hover:shadow-md transition-all duration-300"
+                >
+                  <div className="text-4xl mb-4">{feat.icon}</div>
+                  <h4 className="m-0 text-lg font-bold text-[#1a2b3c]">{feat.title}</h4>
+                  <p className="mt-4 text-[14.5px] leading-relaxed text-[#5c6873] font-normal flex-1">
+                    {feat.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </AnimatedSection>
+
+      {/* 4. Inquiry Form */}
+      <AnimatedSection
+        className="bg-white py-20 border-t border-slate-100 text-[#1b2c38] max-[760px]:py-14"
+        ariaLabel="EASE Marketing inquiry form"
+      >
+        {(isVisible) => (
+          <div className={`${layoutContainerClass} grid grid-cols-1 md:grid-cols-2 gap-12`}>
+            <div className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`}>
+              <SectionTitle
+                title="Connect With Our Team"
+                align="left"
+                titleClassName="text-[38px] leading-[1.16] font-black tracking-normal max-[760px]:text-[30px] text-[#1a2b3c]"
+              />
+              <p className="mt-7 text-[17px] font-semibold leading-[1.55] text-[#1a2b3c]">
+                Empower your marketing execution with EASE.
+              </p>
+              <p className="mt-4 text-[14.5px] leading-relaxed text-[#5c6873] font-normal">
+                Let us know what your current marketing challenges are, and we'll show you how EASE Marketing can keep your campaign managers aligned and focus on core metrics.
+              </p>
+            </div>
+
+            <div
+              className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`}
+              style={{ transitionDelay: "100ms" }}
+            >
+              {!isSubmitted ? (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Your Full Name"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full rounded-full border-none bg-[#f1f1eb] px-7 py-4 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="tel"
+                      required
+                      placeholder="Phone Number"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full rounded-full border-none bg-[#f1f1eb] px-7 py-4 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="email"
+                      required
+                      placeholder="Email Address"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full rounded-full border-none bg-[#f1f1eb] px-7 py-4 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all"
+                    />
+                  </div>
+                  <div>
+                    <textarea
+                      required
+                      rows={4}
+                      placeholder="Details"
+                      value={formData.details}
+                      onChange={(e) => setFormData({ ...formData, details: e.target.value })}
+                      className="w-full rounded-[2rem] border-none bg-[#f1f1eb] px-7 py-5 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all resize-none min-h-[130px]"
+                    />
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-2">
+                    <button
+                      type="submit"
+                      className="cursor-pointer rounded-full bg-[#93d034] text-white hover:bg-[#82c024] px-10 py-4 font-bold text-[15px] tracking-wider transition-all active:scale-[0.98] shrink-0"
+                    >
+                      SEND INQUIRY
+                    </button>
+                    <p className="text-[12px] leading-relaxed text-[#7a8894] font-normal max-w-[280px]">
+                      Our team will reach out to schedule a live product walk-through shortly.
+                    </p>
+                  </div>
+                </form>
+              ) : (
+                <div className="flex flex-col items-center justify-center py-10 text-center animate-fadeIn">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600 mb-4 animate-scaleUp">
+                    <svg className="h-10 w-10 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-[#1b2c38] mb-2">Thank you!</h3>
+                  <p className="text-[#4f5a62] text-[15px]">
+                    Your inquiry has been submitted successfully.
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </AnimatedSection>
+    </>
+  );
+};
+
+export default EaseMarketingPage;

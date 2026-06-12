@@ -1,5 +1,4 @@
-import { type ReactNode, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 
 type AnimatedSectionRender = (isVisible: boolean) => ReactNode;
 
@@ -16,29 +15,56 @@ function AnimatedSection({
   children,
   className,
   id,
-  threshold = 0.25,
+  threshold = 0.1,
 }: AnimatedSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(() => {
+    if (typeof window === "undefined") {
+      return true;
+    }
 
-  // useInView provides a highly optimized, hardware-accelerated scroll check
-  const isVisible = useInView(sectionRef, {
-    once: true,
-    amount: threshold,
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   });
 
+  useEffect(() => {
+    const section = sectionRef.current;
+
+    if (!section || isVisible) {
+      return undefined;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      const frame = requestAnimationFrame(() => setIsVisible(true));
+      return () => cancelAnimationFrame(frame);
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold },
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, [isVisible, threshold]);
+
   return (
-    <motion.section
+    <section
       ref={sectionRef}
       id={id}
-      className={className}
+      className={`${className ?? ""} transition-[opacity,transform] duration-700 ease-out motion-reduce:translate-y-0 motion-reduce:opacity-100 ${
+        isVisible ? "translate-y-0 opacity-100" : "translate-y-7 opacity-0"
+      }`}
       aria-label={ariaLabel}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
       data-animated-section-visible={isVisible ? "true" : "false"}
     >
       {typeof children === "function" ? children(isVisible) : children}
-    </motion.section>
+    </section>
   );
 }
 

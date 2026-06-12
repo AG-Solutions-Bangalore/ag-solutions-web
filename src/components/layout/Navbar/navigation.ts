@@ -37,32 +37,6 @@ export const navItems: readonly NavItem[] = [
   {
     label: "Products",
     path: "/products",
-    children: [
-      {
-        label: "Export Documentation",
-        path: "/products/export-documentation",
-        description: "Documentation and management tools for export teams.",
-        badge: "EX",
-        accentClass: "bg-[#eaf0ff] text-[#435fc2]",
-        productIcon: "export",
-      },
-      {
-        label: "EASE Marketing",
-        path: "/products/ease-marketing",
-        description: "Marketing workflows made easier to run and track.",
-        badge: "EM",
-        accentClass: "bg-[#ffeaf0] text-[#bf3159]",
-        productIcon: "marketing",
-      },
-      {
-        label: "Grow Together",
-        path: "/products/grow-together",
-        description: "A simple collaboration space for business growth.",
-        badge: "GT",
-        accentClass: "bg-[#e9fbf3] text-[#13875f]",
-        productIcon: "grow",
-      },
-    ],
   },
   { label: "Portfolio", path: "/portfolio" },
   { label: "Blogs", path: "/blogs" },

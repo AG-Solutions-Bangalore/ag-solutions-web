@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { ChevronDownIcon } from "./HeaderIcons";
 import NavigationDropdown from "./NavigationDropdown";
 import { navItems } from "./navigation";
+import { preloadRoute } from "@/routes/lazyRoutes";
 
 type DesktopNavigationProps = {
   isCompact: boolean;
@@ -25,6 +26,8 @@ function DesktopNavigation({ isCompact }: DesktopNavigationProps) {
             <NavLink
               to={item.path}
               end={item.path === "/"}
+              onPointerEnter={() => preloadRoute(item.children?.[0]?.path ?? item.path)}
+              onFocus={() => preloadRoute(item.children?.[0]?.path ?? item.path)}
               className={({ isActive }) =>
                 `nav-desktop-link flex items-center whitespace-nowrap rounded-full py-2 no-underline transition-[color,padding,gap] duration-500 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1289bc] focus-visible:ring-offset-4 ${
                   isCompact ? "nav-desktop-link-compact" : ""
@@ -34,6 +37,7 @@ function DesktopNavigation({ isCompact }: DesktopNavigationProps) {
                     : "text-[#1d2d3b] hover:text-[#1289bc]"
                 }`
               }
+              aria-haspopup={hasDropdown ? "menu" : undefined}
             >
               <span>{item.label}</span>
               {hasDropdown && (

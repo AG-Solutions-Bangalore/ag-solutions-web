@@ -1,16 +1,15 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Type-safe debounce utility to delay function execution until after
  * a specified wait time has elapsed since the last time it was invoked.
  * Helps optimize INP (Interaction to Next Paint) by deferring expensive calculations.
  */
-export function debounce<T extends (...args: any[]) => any>(
-  func: T,
+export function debounce<TArgs extends unknown[], TReturn>(
+  func: (...args: TArgs) => TReturn,
   wait: number,
-): (...args: Parameters<T>) => void {
+): (...args: TArgs) => void {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
-  return function (...args: Parameters<T>): void {
+  return function (...args: TArgs): void {
     if (timeoutId !== undefined) {
       clearTimeout(timeoutId);
     }
@@ -26,13 +25,13 @@ export function debounce<T extends (...args: any[]) => any>(
  * Restricts invocation to at most once per specified duration.
  * Useful for high-frequency events like scroll, resize, or mousemove.
  */
-export function throttle<T extends (...args: any[]) => any>(
-  func: T,
+export function throttle<TArgs extends unknown[], TReturn>(
+  func: (...args: TArgs) => TReturn,
   limit: number,
-): (...args: Parameters<T>) => void {
+): (...args: TArgs) => void {
   let inThrottle = false;
 
-  return function (...args: Parameters<T>): void {
+  return function (...args: TArgs): void {
     if (!inThrottle) {
       func(...args);
       inThrottle = true;

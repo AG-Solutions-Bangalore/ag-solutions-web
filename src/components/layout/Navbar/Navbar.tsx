@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Rotate as Hamburger } from "hamburger-react";
 import BrandLogo from "./BrandLogo";
 import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
@@ -84,15 +83,32 @@ function Navbar() {
         >
           <BrandLogo />
           <DesktopNavigation isCompact={isNavCompact} />
-          <div className="hidden h-11 w-11 place-items-center rounded-full bg-[#132d3e] text-white transition-colors hover:bg-[#1289bc] focus-within:ring-2 focus-within:ring-[#1289bc] focus-within:ring-offset-4 max-[1080px]:grid">
-            <Hamburger
-              toggled={isMobileOpen}
-              toggle={setIsMobileOpen}
-              size={22}
-              color="#ffffff"
-              label={isMobileOpen ? "Close navigation" : "Open navigation"}
-            />
-          </div>
+          <button
+            type="button"
+            className="hidden h-11 w-11 place-items-center rounded-full bg-[#132d3e] text-white transition-colors hover:bg-[#1289bc] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1289bc] focus-visible:ring-offset-4 max-[1080px]:grid"
+            onClick={() => setIsMobileOpen((open) => !open)}
+            aria-label={isMobileOpen ? "Close navigation" : "Open navigation"}
+            aria-expanded={isMobileOpen}
+            aria-controls="mobile-navigation"
+          >
+            <span className="relative block h-4 w-5" aria-hidden="true">
+              <span
+                className={`absolute left-0 top-0 h-0.5 w-5 rounded-full bg-current transition-transform ${
+                  isMobileOpen ? "translate-y-[7px] rotate-45" : ""
+                }`}
+              />
+              <span
+                className={`absolute left-0 top-[7px] h-0.5 w-5 rounded-full bg-current transition-opacity ${
+                  isMobileOpen ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <span
+                className={`absolute bottom-0 left-0 h-0.5 w-5 rounded-full bg-current transition-transform ${
+                  isMobileOpen ? "-translate-y-[7px] -rotate-45" : ""
+                }`}
+              />
+            </span>
+          </button>
 
           {/* Drawer Button hanging off the bottom of the navbar */}
           <div className="absolute right-6 max-[640px]:right-3 xl:right-0 top-full -translate-y-1/2 z-[1000]">
