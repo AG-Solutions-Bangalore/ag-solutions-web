@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { createPortal } from "react-dom";
 
 type RequirementDrawerProps = {
@@ -7,14 +7,9 @@ type RequirementDrawerProps = {
 };
 
 export default function RequirementDrawer({ isOpen, onClose }: RequirementDrawerProps) {
-  const [mounted, setMounted] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({ name: "", phone: "", details: "" });
-
-  useEffect(() => {
-    setMounted(true);
-    return () => setMounted(false);
-  }, []);
+  const submitTimerRef = useRef<number | null>(null);
 
   // Prevent scroll when drawer is open
   useEffect(() => {
@@ -39,14 +34,24 @@ export default function RequirementDrawer({ isOpen, onClose }: RequirementDrawer
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
-  if (!mounted) return null;
+  useEffect(() => {
+    return () => {
+      if (submitTimerRef.current !== null) {
+        window.clearTimeout(submitTimerRef.current);
+      }
+    };
+  }, []);
+
+  if (typeof document === "undefined") return null;
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    // Simulate API request submission
+    if (submitTimerRef.current !== null) {
+      window.clearTimeout(submitTimerRef.current);
+    }
+
     setIsSubmitted(true);
-    setTimeout(() => {
-      // Reset after success
+    submitTimerRef.current = window.setTimeout(() => {
       setIsSubmitted(false);
       setFormData({ name: "", phone: "", details: "" });
       onClose();
@@ -61,6 +66,7 @@ export default function RequirementDrawer({ isOpen, onClose }: RequirementDrawer
           isOpen ? "opacity-100" : "opacity-0"
         }`}
         onClick={onClose}
+        aria-hidden="true"
       />
 
       {/* Drawer Container */}
@@ -68,6 +74,9 @@ export default function RequirementDrawer({ isOpen, onClose }: RequirementDrawer
         className={`absolute right-0 top-0 bottom-0 flex h-full w-full max-w-[460px] flex-col bg-white shadow-2xl transition-transform duration-300 ease-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Send your requirement"
       >
         {/* Floating Close Button */}
         <button
@@ -106,7 +115,10 @@ export default function RequirementDrawer({ isOpen, onClose }: RequirementDrawer
           <div className="mt-8 flex-1 flex flex-col justify-center">
             {!isSubmitted ? (
               <form onSubmit={handleSubmit} className="space-y-4">
-                <h3 className="text-[22px] font-bold text-[#1a2b3c] tracking-tight mb-6">
+                <h3
+                  id="requirement-drawer-title"
+                  className="text-[22px] font-bold text-[#1a2b3c] tracking-tight mb-6"
+                >
                   Send Your Requirement
                 </h3>
 
@@ -114,6 +126,7 @@ export default function RequirementDrawer({ isOpen, onClose }: RequirementDrawer
                   <input
                     type="text"
                     required
+                    aria-label="Your name"
                     placeholder="Enter your Name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -125,6 +138,7 @@ export default function RequirementDrawer({ isOpen, onClose }: RequirementDrawer
                   <input
                     type="tel"
                     required
+                    aria-label="Mobile number"
                     placeholder="Mobile Number"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -136,6 +150,7 @@ export default function RequirementDrawer({ isOpen, onClose }: RequirementDrawer
                   <textarea
                     required
                     rows={4}
+                    aria-label="Requirement details"
                     placeholder="Details"
                     value={formData.details}
                     onChange={(e) => setFormData({ ...formData, details: e.target.value })}
@@ -165,12 +180,6 @@ export default function RequirementDrawer({ isOpen, onClose }: RequirementDrawer
             )}
           </div>
         </div>
-
-        {/* Bottom Pattern Decorator */}
-        <div
-          className="h-28 w-full bg-[url('/images/pattern-bg-grey.jpg')] bg-repeat bg-center opacity-70 shrink-0 border-t border-slate-100"
-          style={{ backgroundSize: "280px" }}
-        />
       </div>
     </div>
   );

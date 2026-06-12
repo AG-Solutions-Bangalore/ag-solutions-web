@@ -180,8 +180,27 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+
   .about-color-line-track {
     animation: none;
+  }
+
+  .home-carousel-title-from-right,
+  .home-carousel-title-from-left,
+  .home-carousel-copy-from-right,
+  .home-carousel-copy-from-left,
+  .home-carousel-buttons-from-right,
+  .home-carousel-buttons-from-left,
+  .home-carousel-image-from-right,
+  .home-carousel-image-from-left,
+  .animate-fadeIn,
+  .animate-scaleUp {
+    animation: none !important;
   }
 
   .home-animated-item,
@@ -222,4 +241,3 @@
     opacity: 1;
   }
 }
-
