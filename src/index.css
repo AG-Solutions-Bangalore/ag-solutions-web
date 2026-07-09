@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --font-space-grotesk: "Space Grotesk", sans-serif;
+}
+
 @layer base {
   html {
     font-family: "Roboto", system-ui, sans-serif;
@@ -240,4 +244,12 @@
     transform: scale(1);
     opacity: 1;
   }
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

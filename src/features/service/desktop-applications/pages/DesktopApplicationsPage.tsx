@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect, useRef, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import DesktopApplicationsSEO from "../seo/DesktopApplicationsSEO";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import Lightbox from "@/components/ui/Lightbox";
 import { useProjects } from "@/features/portfolio/hooks/useProjects";
 import { useFAQs } from "@/features/service/hooks/useFAQs";
+import { useCreateEnquiry } from "@/features/contact-us/hooks/useCreateEnquiry";
 import { layoutContainerClass } from "@/components/layout/styles";
 import { PageHero, SectionTitle } from "@/components/layout";
 import { Card } from "@/components/ui";
@@ -75,6 +76,53 @@ const faqs: readonly FAQItem[] = [
 ];
 
 export default function DesktopApplicationsPage() {
+  const createEnquiry = useCreateEnquiry();
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    details: "",
+  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const submitTimerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (submitTimerRef.current !== null) {
+        window.clearTimeout(submitTimerRef.current);
+      }
+    };
+  }, []);
+
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    createEnquiry.mutate(
+      {
+        enquiryFullName: formData.name,
+        enquiryEmail: formData.email,
+        enquiryMobile: formData.phone,
+        enquiryMessage: formData.details,
+        utm_medium: "",
+        utm_source: "",
+        utm_campaign: "",
+        enquiryFrom: "Desktop Applications",
+      },
+      {
+        onSuccess: () => {
+          if (submitTimerRef.current !== null) {
+            window.clearTimeout(submitTimerRef.current);
+          }
+
+          setIsSubmitted(true);
+          setFormData({ name: "", phone: "", email: "", details: "" });
+          submitTimerRef.current = window.setTimeout(() => {
+            setIsSubmitted(false);
+          }, 4000);
+        },
+      }
+    );
+  }
+
   const [expandedFaqIndex, setExpandedFaqIndex] = useState<number | null>(null);
   const [selectedImage, setSelectedImage] = useState<{ image: string; title: string; subtitle?: string } | null>(null);
   const { data: projectsData, isLoading: isProjectsLoading } = useProjects(
@@ -307,6 +355,120 @@ export default function DesktopApplicationsPage() {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        )}
+      </AnimatedSection>
+
+      {/* Requirement Form Section */}
+      <AnimatedSection
+        className="bg-white py-20 border-t border-slate-100 text-[#1b2c38] max-[760px]:py-14"
+        ariaLabel="Submit requirement details"
+      >
+        {(isVisible) => (
+          <div className={`${layoutContainerClass} grid grid-cols-1 md:grid-cols-2 gap-12`}>
+            {/* Left info column */}
+            <div className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`}>
+              <SectionTitle
+                title="Submit Your Requirement"
+                align="left"
+                titleClassName="text-[38px] leading-[1.16] font-black tracking-normal max-[760px]:text-[30px] text-[#1a2b3c]"
+              />
+              <p className="mt-7 text-[17px] font-semibold leading-[1.55] text-[#1a2b3c]">
+                Let us help you get your business online and grow it with passion.
+              </p>
+              <p className="mt-4 text-[14.5px] leading-relaxed text-[#5c6873] font-normal">
+                Our team of professional experts is the perfect partner for a successful business partnership.
+              </p>
+            </div>
+
+            {/* Right form column */}
+            <div
+              className={`home-animated-item ${
+                isVisible ? "home-animated-item-visible" : ""
+              }`}
+              style={{ transitionDelay: "100ms" }}
+            >
+              {!isSubmitted ? (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <input type="hidden" name="enquiryFrom" value="Desktop Applications" />
+                  <div>
+                    <input
+                      type="text"
+                      required
+                      aria-label="Your full name"
+                      placeholder="Your Full Name"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full rounded-full border-none bg-[#f1f1eb] px-7 py-4 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="tel"
+                      required
+                      aria-label="Phone number"
+                      placeholder="Phone Number"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full rounded-full border-none bg-[#f1f1eb] px-7 py-4 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="email"
+                      required
+                      aria-label="Email address"
+                      placeholder="Email Address"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full rounded-full border-none bg-[#f1f1eb] px-7 py-4 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all"
+                    />
+                  </div>
+                  <div>
+                    <textarea
+                      required
+                      rows={4}
+                      aria-label="Requirement details"
+                      placeholder="Details"
+                      value={formData.details}
+                      onChange={(e) => setFormData({ ...formData, details: e.target.value })}
+                      className="w-full rounded-[2rem] border-none bg-[#f1f1eb] px-7 py-5 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all resize-none min-h-[130px]"
+                    />
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-2">
+                    <div className="flex items-center gap-4">
+                      <button
+                        type="submit"
+                        disabled={createEnquiry.isPending}
+                        className="cursor-pointer rounded-full bg-[#93d034] text-white hover:bg-[#82c024] px-10 py-4 font-bold text-[15px] tracking-wider transition-all active:scale-[0.98] shrink-0 disabled:opacity-50"
+                      >
+                        {createEnquiry.isPending ? "SENDING..." : "SEND INQUIRY"}
+                      </button>
+                      {createEnquiry.isError && (
+                        <p className="text-red-500 text-sm">
+                          Error: Please try again.
+                        </p>
+                      )}
+                    </div>
+                    <p className="text-[12px] leading-relaxed text-[#7a8894] font-normal max-w-[280px]">
+                      Please, let us know any particular things to check and the best time to contact you by phone (if provided).
+                    </p>
+                  </div>
+                </form>
+              ) : (
+                <div className="flex flex-col items-center justify-center py-10 text-center animate-fadeIn">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600 mb-4 animate-scaleUp">
+                    <svg className="h-10 w-10 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-[#1b2c38] mb-2">Thank you!</h3>
+                  <p className="text-[#4f5a62] text-[15px]">
+                    Your request was submitted successfully.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         )}

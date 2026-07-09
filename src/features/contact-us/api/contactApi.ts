@@ -8,6 +8,7 @@ export interface EnquiryPayload {
   utm_medium?: string;
   utm_source?: string;
   utm_campaign?: string;
+  enquiryFrom?: string;
 }
 
 export interface EnquiryResponse {
@@ -27,6 +28,7 @@ export const createEnquiry = async (
   formData.append("utm_medium", payload.utm_medium || "");
   formData.append("utm_source", payload.utm_source || "");
   formData.append("utm_campaign", payload.utm_campaign || "");
+  formData.append("enquiryFrom", payload.enquiryFrom || "");
 
   const response = await apiClient.post<EnquiryResponse>(
     "/createEnquiry",

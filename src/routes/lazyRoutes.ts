@@ -29,8 +29,8 @@ export const loadBlogDetailPage = () =>
   import("@/features/blog/pages/BlogDetailPage");
 export const loadProductsPage = () =>
   import("@/features/products/pages/ProductsPage");
-export const loadExportDocumentationPage = () =>
-  import("@/features/products/pages/ExportDocumentationPage");
+export const loadExportBizPage = () =>
+  import("@/features/products/pages/ExportBizPage");
 export const loadEaseMarketingPage = () =>
   import("@/features/products/pages/EaseMarketingPage");
 export const loadGrowTogetherPage = () =>
@@ -48,7 +48,7 @@ const routeLoaders: Record<string, () => Promise<unknown>> = {
   "/desktop-applications": loadDesktopApplicationsPage,
   "/blogs": loadBlogListPage,
   "/products": loadProductsPage,
-  "/export-documentation": loadExportDocumentationPage,
+  "/export-biz": loadExportBizPage,
   "/ease-marketing": loadEaseMarketingPage,
   "/grow-together": loadGrowTogetherPage,
 };
