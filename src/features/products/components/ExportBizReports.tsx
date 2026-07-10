@@ -13,7 +13,7 @@ export const ExportBizReports: React.FC = () => {
 
   return (
     <section className="py-[78px] box-border">
-      <div className="max-w-[1200px] mx-auto box-border">
+      <div className="max-w-[1200px] mx-auto px-8 box-border">
         {/* Header Block */}
         <div className="max-w-[600px] mb-11 box-border">
           <p className="text-[#63666c] text-[15.5px] leading-[25px] font-mono tracking-[2.5px] uppercase mt-3 mb-[14px] flex items-center gap-[10px] box-border">
@@ -55,8 +55,11 @@ export const ExportBizReports: React.FC = () => {
                     <td className={`py-[14px] px-5 text-[14px] text-[#12141a] ${cellBorderClass} box-border`}>
                       {rep.name}
                     </td>
-                    <td className={`font-mono text-[11px] text-[#2fae73] py-[14px] px-5 ${cellBorderClass} box-border`}>
-                      {rep.status}
+                    <td className={`py-[14px] px-5 ${cellBorderClass} box-border`}>
+                      <span className="flex items-center gap-[6px] font-mono text-[11px] text-[#2fae73] box-border">
+                        <i className="w-1.5 h-1.5 rounded-full bg-[#2fae73] block animate-pulse box-border"></i>
+                        LIVE
+                      </span>
                     </td>
                   </tr>
                 );

@@ -15,7 +15,7 @@ export const ExportBizModules: React.FC = () => {
 
   return (
     <section className="bg-[#efede5]/60 py-[78px] box-border border-y border-[#e1ded2]/50">
-      <div className="max-w-[1200px] mx-auto box-border">
+      <div className="max-w-[1200px] mx-auto px-8 box-border">
         {/* Header Block */}
         <div className="max-w-[600px] mb-11 box-border">
           <p className="text-[#63666c] text-[15.5px] leading-[25px] font-mono tracking-[2.5px] uppercase mt-3 mb-[14px] flex items-center gap-[10px] box-border">

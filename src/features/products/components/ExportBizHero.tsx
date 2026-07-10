@@ -70,8 +70,10 @@ export const ExportBizHero: React.FC<ExportBizHeroProps> = ({ onOpenDemo }) => {
             <div className="bg-[#16283a] rounded-[12px] p-[18px] box-border space-y-[12px]">
               <div className="flex items-center justify-between py-[12px] px-1 border-b border-white/6 text-[13px] text-[#e7eef3] box-border">
                 <div className="flex items-center gap-[10px] box-border">
-                  <span className="w-[26px] h-[26px] rounded-[7px] bg-[#3386bd]/25 flex items-center justify-center text-[12px] box-border">
-                    📄
+                  <span className="w-[26px] h-[26px] rounded-[7px] bg-[#3386bd]/25 flex items-center justify-center box-border">
+                    <svg className="w-3.5 h-3.5 text-[#3386bd]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
                   </span>
                   Commercial Invoice — PO-2291
                 </div>
@@ -81,8 +83,10 @@ export const ExportBizHero: React.FC<ExportBizHeroProps> = ({ onOpenDemo }) => {
               </div>
               <div className="flex items-center justify-between py-[12px] px-1 border-b border-white/6 text-[13px] text-[#e7eef3] box-border">
                 <div className="flex items-center gap-[10px] box-border">
-                  <span className="w-[26px] h-[26px] rounded-[7px] bg-[#3386bd]/25 flex items-center justify-center text-[12px] box-border">
-                    📦
+                  <span className="w-[26px] h-[26px] rounded-[7px] bg-[#3386bd]/25 flex items-center justify-center box-border">
+                    <svg className="w-3.5 h-3.5 text-[#3386bd]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
                   </span>
                   Packing List — PO-2291
                 </div>
@@ -92,8 +96,10 @@ export const ExportBizHero: React.FC<ExportBizHeroProps> = ({ onOpenDemo }) => {
               </div>
               <div className="flex items-center justify-between py-[12px] px-1 border-b border-white/6 text-[13px] text-[#e7eef3] box-border">
                 <div className="flex items-center gap-[10px] box-border">
-                  <span className="w-[26px] h-[26px] rounded-[7px] bg-[#3386bd]/25 flex items-center justify-center text-[12px] box-border">
-                    📝
+                  <span className="w-[26px] h-[26px] rounded-[7px] bg-[#3386bd]/25 flex items-center justify-center box-border">
+                    <svg className="w-3.5 h-3.5 text-[#3386bd]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                    </svg>
                   </span>
                   Sales Contract — Buyer: Nordic Foods
                 </div>
@@ -103,8 +109,10 @@ export const ExportBizHero: React.FC<ExportBizHeroProps> = ({ onOpenDemo }) => {
               </div>
               <div className="flex items-center justify-between py-[12px] px-1 border-b border-white/6 text-[13px] text-[#e7eef3] box-border">
                 <div className="flex items-center gap-[10px] box-border">
-                  <span className="w-[26px] h-[26px] rounded-[7px] bg-[#3386bd]/25 flex items-center justify-center text-[12px] box-border">
-                    🚢
+                  <span className="w-[26px] h-[26px] rounded-[7px] bg-[#3386bd]/25 flex items-center justify-center box-border">
+                    <svg className="w-3.5 h-3.5 text-[#e39a3b]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 18h18L19 21H5L3 18zM6 14l3-6h6l3 6M12 3v5" />
+                    </svg>
                   </span>
                   Bill of Lading Draft
                 </div>
@@ -114,8 +122,10 @@ export const ExportBizHero: React.FC<ExportBizHeroProps> = ({ onOpenDemo }) => {
               </div>
               <div className="flex items-center justify-between py-[12px] px-1 text-[13px] text-[#e7eef3] box-border">
                 <div className="flex items-center gap-[10px] box-border">
-                  <span className="w-[26px] h-[26px] rounded-[7px] bg-[#3386bd]/25 flex items-center justify-center text-[12px] box-border">
-                    📋
+                  <span className="w-[26px] h-[26px] rounded-[7px] bg-[#3386bd]/25 flex items-center justify-center box-border">
+                    <svg className="w-3.5 h-3.5 text-[#e39a3b]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
                   </span>
                   Duty Drawback Statement
                 </div>

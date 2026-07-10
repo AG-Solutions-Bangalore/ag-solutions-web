@@ -33,8 +33,10 @@ export const ExportBizBenefits: React.FC = () => {
               key={idx}
               className="bg-white border border-[#e1ded2] rounded-[14px] p-5 pl-[18px] flex gap-3 items-start box-border shadow-xs hover:shadow-md hover:scale-[1.01] transition-all duration-300"
             >
-              <span className="w-[22px] h-[22px] rounded-[6px] bg-[#2fae73]/12 text-[#2fae73] flex items-center justify-center text-[12px] flex-shrink-0 mt-[2px] box-border">
-                ✓
+              <span className="w-[22px] h-[22px] rounded-[6px] bg-[#2fae73]/12 text-[#2fae73] flex items-center justify-center flex-shrink-0 mt-[2px] box-border">
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
               </span>
               <p className="m-0 text-[13.5px] leading-5 text-[#12141a] box-border">
                 {benefit}

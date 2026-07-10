@@ -11,6 +11,8 @@ import { ExportBizCommonCTA } from "@/components/common/ExportBizCommonCTA";
 import { ExportBizDemoModal } from "../components/ExportBizDemoModal";
 import { createCampaignVisit } from "../api/campaignApi";
 
+let hasOpenedDemoModalOnPageLoad = false;
+
 export interface ExportBizPageProps {
   defaultOpenModal?: boolean;
 }
@@ -19,15 +21,23 @@ export const ExportBizPage: React.FC<ExportBizPageProps> = ({ defaultOpenModal =
   const [searchParams] = useSearchParams();
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(defaultOpenModal);
 
-  // 1. Timed popup logic (5 seconds after land, if not already open and not opened manually)
+  // 1. Timed popup logic (5 seconds after land, if not already open/opened manually, and not opened on this page load/refresh)
   useEffect(() => {
-    if (!defaultOpenModal && !isDemoModalOpen) {
+    if (!defaultOpenModal && !isDemoModalOpen && !hasOpenedDemoModalOnPageLoad) {
       const popupTimer = setTimeout(() => {
         setIsDemoModalOpen(true);
+        hasOpenedDemoModalOnPageLoad = true;
       }, 5000);
       return () => clearTimeout(popupTimer);
     }
   }, [defaultOpenModal, isDemoModalOpen]);
+
+  // Mark as opened if modal opens (manually or via timer)
+  useEffect(() => {
+    if (isDemoModalOpen) {
+      hasOpenedDemoModalOnPageLoad = true;
+    }
+  }, [isDemoModalOpen]);
 
   // 2. Hidden background UTM tracking process (runs exactly once on load)
   useEffect(() => {

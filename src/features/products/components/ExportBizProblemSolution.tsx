@@ -3,7 +3,7 @@ import React from "react";
 export const ExportBizProblemSolution: React.FC = () => {
   return (
     <section id="solve" className="py-[78px] box-border">
-      <div className="max-w-[1200px] mx-auto box-border">
+      <div className="max-w-[1200px] mx-auto px-8 box-border">
         {/* Header Block */}
         <div className="max-w-[600px] mb-11 box-border">
           <p className="text-[#63666c] text-[15.5px] leading-[25px] font-mono tracking-[2.5px] uppercase mt-3 mb-[14px] flex items-center gap-[10px] box-border">
@@ -29,19 +29,27 @@ export const ExportBizProblemSolution: React.FC = () => {
             </h3>
             <ul className="list-none m-0 p-0 box-border space-y-1">
               <li className="text-[14.5px] leading-[23px] py-[9px] px-0 flex gap-3 items-start text-[#63666c] box-border">
-                <span className="text-[#ff6b6b] font-bold">✕</span>
+                <svg className="w-5 h-5 text-[#ff6b6b] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
                 Re-typing buyer, product and shipment details into every form
               </li>
               <li className="text-[14.5px] leading-[23px] py-[9px] px-0 flex gap-3 items-start text-[#63666c] box-border">
-                <span className="text-[#ff6b6b] font-bold">✕</span>
+                <svg className="w-5 h-5 text-[#ff6b6b] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
                 Clerical mismatches that trigger customs holds and penalties
               </li>
               <li className="text-[14.5px] leading-[23px] py-[9px] px-0 flex gap-3 items-start text-[#63666c] box-border">
-                <span className="text-[#ff6b6b] font-bold">✕</span>
+                <svg className="w-5 h-5 text-[#ff6b6b] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
                 Sales, stock and drawback numbers stuck in separate spreadsheets
               </li>
               <li className="text-[14.5px] leading-[23px] py-[9px] px-0 flex gap-3 items-start text-[#63666c] box-border">
-                <span className="text-[#ff6b6b] font-bold">✕</span>
+                <svg className="w-5 h-5 text-[#ff6b6b] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
                 An extra hire (or two, or three) just to keep documentation moving
               </li>
             </ul>
@@ -57,19 +65,27 @@ export const ExportBizProblemSolution: React.FC = () => {
             </h3>
             <ul className="list-none m-0 p-0 box-border space-y-1">
               <li className="text-[14.5px] leading-[23px] py-[9px] px-0 flex gap-3 items-start text-[#12141a] box-border">
-                <span className="text-[#2fae73] font-bold">✓</span>
+                <svg className="w-5 h-5 text-[#2fae73] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
                 Enter shipment data once — invoice, packing list, BL draft, contract auto-fill
               </li>
               <li className="text-[14.5px] leading-[23px] py-[9px] px-0 flex gap-3 items-start text-[#12141a] box-border">
-                <span className="text-[#2fae73] font-bold">✓</span>
+                <svg className="w-5 h-5 text-[#2fae73] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
                 Every statutory form generated straight from verified order data
               </li>
               <li className="text-[14.5px] leading-[23px] py-[9px] px-0 flex gap-3 items-start text-[#12141a] box-border">
-                <span className="text-[#2fae73] font-bold">✓</span>
+                <svg className="w-5 h-5 text-[#2fae73] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
                 Sales turnover, pending scheme dues, stock and receivables, live
               </li>
               <li className="text-[14.5px] leading-[23px] py-[9px] px-0 flex gap-3 items-start text-[#12141a] box-border">
-                <span className="text-[#2fae73] font-bold">✓</span>
+                <svg className="w-5 h-5 text-[#2fae73] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
                 One platform your existing team runs independently, no extra hires
               </li>
             </ul>
