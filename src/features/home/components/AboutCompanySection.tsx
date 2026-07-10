@@ -25,7 +25,13 @@ function AboutCompanySection() {
             }`}
           >
             <SectionTitle
-              title="Web and Mobile App Development Company"
+              title={
+                <>
+                  AG Solutions | Web Development,<br />
+                  Mobile App Development<br />
+                  & Software Solutions Company
+                </>
+              }
               align="left"
               titleClassName="max-w-[650px] text-5xl leading-[1.16] font-black tracking-normal max-[980px]:text-[44px] max-[560px]:text-[34px]"
             />
