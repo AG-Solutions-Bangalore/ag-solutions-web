@@ -31,13 +31,11 @@ function AboutCompanySection() {
             />
 
             <p className="mt-8 max-w-[680px] text-xl leading-[1.3] text-[#1d2d3b] max-[760px]:text-lg">
-              With 13+ years of experience, AG Solutions helps businesses build
-              secure, scalable, and high-performance digital solutions. We
-              specialize in custom web development, Android and iOS mobile
-              applications, desktop software, export documentation systems, and
-              digital marketing services. Our experienced team delivers
-              technology that improves efficiency, enhances customer
-              experiences, and supports long-term business growth.
+              We take immense pleasure in introducing our esteemed company "AG
+              Solutions!" TEN YEARS OLD and still rocking! Striving hard towards
+              perfection, providing all types of tech and digital solution to
+              our clients under one roof! We are into web development, desktop
+              applications (stand-alone) and mobile applications.
             </p>
 
             <div className="mt-8 space-y-0">

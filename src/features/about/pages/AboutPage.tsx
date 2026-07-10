@@ -140,11 +140,12 @@ function AboutPage() {
               />
 
               <p className="mt-8 max-w-[940px] text-lg leading-[1.55] text-[#4f5a62] max-[760px]:text-base">
-                AG Solutions is a technology company specializing in web development,
-                mobile application development, desktop software, digital marketing,
-                and export documentation solutions. We create secure, scalable, and
-                user-friendly digital products that help startups, SMEs, and
-                enterprises streamline operations and accelerate business growth.
+                We stand apart from others, in that, we provide our clients with fully
+                customized solutions and Softwares which are designed as per their needs
+                and specifications. There is no &ldquo;one-size-fits-all&rdquo; in our designs!
+                The software design done by us is completely hassle-free, user-friendly and
+                remarkably easy to install. In fact, the &ldquo;not so tech-savvy&rdquo; will also
+                fall in love with it.
               </p>
             </div>
 

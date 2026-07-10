@@ -22,16 +22,13 @@ function ExportSolutionsSection() {
               }`}
             >
               <h2 className="m-0 text-[43px] leading-[1.1] font-medium text-white max-[760px]:text-[34px] max-[480px]:text-[29px]">
-                Export Documentation and Management Solutions
+                EXPORT BIZ
               </h2>
               <p className="mt-8 text-[20px] leading-[1.2] font-light text-white/92 max-[760px]:text-base">
-                Simplify and streamline your export operations with our Export
-                Documentation and Management Solutions (EDMS). Manage export
-                documentation, regulatory compliance, reporting, monthly returns,
-                scheme claims, and outstanding records from a single, secure
-                platform. Our intelligent solution reduces manual work, improves
-                accuracy, saves valuable time, and helps your business operate
-                more efficiently.
+                with EXPORT BIZ
+                manage all your export biz documentation, reporting, monthly return
+                and scheme claims outstanding etc. organized and save your time
+                and money.
               </p>
 
               <div className="mt-10 flex flex-wrap gap-8 max-[560px]:gap-4">
