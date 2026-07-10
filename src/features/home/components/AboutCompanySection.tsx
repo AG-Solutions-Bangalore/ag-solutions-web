@@ -33,7 +33,7 @@ function AboutCompanySection() {
                 </>
               }
               align="left"
-              titleClassName="max-w-[650px] text-5xl leading-[1.16] font-black tracking-normal max-[980px]:text-[44px] max-[560px]:text-[34px]"
+              titleClassName="max-w-[650px] text-[34px] leading-[1.26] font-black tracking-normal max-[980px]:text-[30px] max-[560px]:text-[24px]"
             />
 
             <p className="mt-8 max-w-[680px] text-xl leading-[1.3] text-[#1d2d3b] max-[760px]:text-lg">
