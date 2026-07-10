@@ -94,7 +94,12 @@ export default function RequirementDrawer({ isOpen, onClose }: RequirementDrawer
         <div className="flex-1 overflow-y-auto px-9 py-10 flex flex-col">
           {/* Brand Logo Header */}
           <div className="flex shrink-0 items-center gap-2.5">
-            <img className="h-[50px] w-[74px] object-contain" src="/images/logo.png" alt="AG Solutions logo" />
+            <img
+              className="h-[50px] w-[74px] object-contain"
+              src="/images/logo.png"
+              alt="AG Solutions Logo"
+              title="AG Solutions"
+            />
             <span className="leading-none text-[#1a2936]">
               <span className="block text-[28px] font-normal tracking-normal">
                 <span className="font-black">AG</span>Solutions

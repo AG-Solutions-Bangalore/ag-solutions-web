@@ -25,17 +25,19 @@ function AboutCompanySection() {
             }`}
           >
             <SectionTitle
-              title="Web and Mobile App Development Company"
+              title="AG Solutions | Web Development, Mobile App Development & Software Solutions Company"
               align="left"
               titleClassName="max-w-[650px] text-5xl leading-[1.16] font-black tracking-normal max-[980px]:text-[44px] max-[560px]:text-[34px]"
             />
 
             <p className="mt-8 max-w-[680px] text-xl leading-[1.3] text-[#1d2d3b] max-[760px]:text-lg">
-              We take immense pleasure in introducing our esteemed company "AG
-              Solutions!" TEN YEARS OLD and still rocking! Striving hard towards
-              perfection, providing all types of tech and digital solution to
-              our clients under one roof! We are into web development, desktop
-              applications (stand-alone) and mobile applications.
+              With 13+ years of experience, AG Solutions helps businesses build
+              secure, scalable, and high-performance digital solutions. We
+              specialize in custom web development, Android and iOS mobile
+              applications, desktop software, export documentation systems, and
+              digital marketing services. Our experienced team delivers
+              technology that improves efficiency, enhances customer
+              experiences, and supports long-term business growth.
             </p>
 
             <div className="mt-8 space-y-0">
@@ -82,6 +84,7 @@ function AboutCompanySection() {
               className="w-full max-w-[560px] object-contain"
               src="/images/home/about_us1.png"
               alt="Responsive web and mobile app development illustration"
+              title="About AG Solutions"
               loading="lazy"
               width="560"
               height="450"

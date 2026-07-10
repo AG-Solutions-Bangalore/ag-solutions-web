@@ -68,8 +68,8 @@ function HeroCarousel() {
     <img
       className={`${activeSlide.imageClass} block max-h-[360px] object-contain max-[860px]:max-h-[330px] max-[560px]:max-h-[280px]`}
       src={activeSlide.image}
-      alt=""
-      aria-hidden="true"
+      alt={activeSlide.imageAlt}
+      title={activeSlide.imageTitle}
       width="560"
       height="360"
       loading={activeIndex === 0 ? "eager" : "lazy"}
@@ -95,8 +95,8 @@ function HeroCarousel() {
           <img
             className={`h-[30px] w-10 ${activeSlide.arrowClass}`}
             src="/images/leftArrow.svg"
-            alt=""
-            aria-hidden="true"
+            alt="Previous Slide"
+            title="Previous Slide"
           />
         </button>
         <button
@@ -108,8 +108,8 @@ function HeroCarousel() {
           <img
             className={`h-[30px] w-10 ${activeSlide.arrowClass}`}
             src="/images/rightArrow.svg"
-            alt=""
-            aria-hidden="true"
+            alt="Next Slide"
+            title="Next Slide"
           />
         </button>
 
@@ -168,8 +168,8 @@ function HeroCarousel() {
               <img
                 className="absolute right-6 top-1/2 h-[48px] w-[48px] -translate-y-1/2 object-contain opacity-20"
                 src={slide.tabIcon}
-                alt=""
-                aria-hidden="true"
+                alt={slide.tabIconAlt}
+                title={slide.tabIconTitle}
               />
             </button>
           );

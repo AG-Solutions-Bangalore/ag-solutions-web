@@ -22,13 +22,16 @@ function ExportSolutionsSection() {
               }`}
             >
               <h2 className="m-0 text-[43px] leading-[1.1] font-medium text-white max-[760px]:text-[34px] max-[480px]:text-[29px]">
-                EXPORT BIZ
+                Export Documentation and Management Solutions
               </h2>
               <p className="mt-8 text-[20px] leading-[1.2] font-light text-white/92 max-[760px]:text-base">
-                with EXPORT BIZ
-                manage all your export biz documentation, reporting, monthly return
-                and scheme claims outstanding etc. organized and save your time
-                and money.
+                Simplify and streamline your export operations with our Export
+                Documentation and Management Solutions (EDMS). Manage export
+                documentation, regulatory compliance, reporting, monthly returns,
+                scheme claims, and outstanding records from a single, secure
+                platform. Our intelligent solution reduces manual work, improves
+                accuracy, saves valuable time, and helps your business operate
+                more efficiently.
               </p>
 
               <div className="mt-10 flex flex-wrap gap-8 max-[560px]:gap-4">
@@ -57,6 +60,7 @@ function ExportSolutionsSection() {
                 className="relative z-1 ml-auto block w-full max-w-[720px] object-contain drop-shadow-[0_22px_45px_rgba(0,0,0,0.28)] max-[980px]:mx-auto"
                 src="/images/home/ems_web.png"
                 alt="Container ship for EXPORT BIZ software"
+                title="Export Solutions Diagram"
                 loading="lazy"
               />
             </div>
