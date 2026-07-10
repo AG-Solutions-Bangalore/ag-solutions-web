@@ -15,7 +15,7 @@ import {
   loadPortfolioPage,
   loadWebDevelopmentPage,
   loadProductsPage,
-  loadExportDocumentationPage,
+  loadExportBizPage,
   loadEaseMarketingPage,
   loadGrowTogetherPage,
 } from "./routes/lazyRoutes";
@@ -32,7 +32,7 @@ const DesktopApplicationsPage = lazy(loadDesktopApplicationsPage);
 const BlogListPage = lazy(loadBlogListPage);
 const BlogDetailPage = lazy(loadBlogDetailPage);
 const ProductsPage = lazy(loadProductsPage);
-const ExportDocumentationPage = lazy(loadExportDocumentationPage);
+const ExportBizPage = lazy(loadExportBizPage);
 const EaseMarketingPage = lazy(loadEaseMarketingPage);
 const GrowTogetherPage = lazy(loadGrowTogetherPage);
 const NotFoundPage = lazy(loadNotFoundPage);
@@ -108,8 +108,8 @@ function App() {
           <Route path="blogs/:slug" element={<BlogDetailPage />} />
           <Route path="products" element={<ProductsPage />} />
           <Route
-            path="export-documentation"
-            element={<ExportDocumentationPage />}
+            path="export-biz"
+            element={<ExportBizPage defaultOpenModal={false} />}
           />
           <Route
             path="ease-marketing"

@@ -5,6 +5,7 @@ import AnimatedSection from "@/components/animation/AnimatedSection";
 import Lightbox from "@/components/ui/Lightbox";
 import { useProjects } from "@/features/portfolio/hooks/useProjects";
 import { useFAQs } from "@/features/service/hooks/useFAQs";
+import { useCreateEnquiry } from "@/features/contact-us/hooks/useCreateEnquiry";
 import { layoutContainerClass } from "@/components/layout/styles";
 import { PageHero, SectionTitle } from "@/components/layout";
 import { Card } from "@/components/ui";
@@ -70,6 +71,7 @@ const faqs: readonly FAQItem[] = [
 ];
 
 export default function MobileAppDevelopmentPage() {
+  const createEnquiry = useCreateEnquiry();
   const [expandedFaqIndex, setExpandedFaqIndex] = useState<number | null>(null);
   const [selectedImage, setSelectedImage] = useState<{ image: string; title: string; subtitle?: string } | null>(null);
   const { data: projectsData, isLoading: isProjectsLoading } = useProjects("mobile-app-development");
@@ -114,15 +116,31 @@ export default function MobileAppDevelopmentPage() {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    if (submitTimerRef.current !== null) {
-      window.clearTimeout(submitTimerRef.current);
-    }
+    createEnquiry.mutate(
+      {
+        enquiryFullName: formData.name,
+        enquiryEmail: formData.email,
+        enquiryMobile: formData.phone,
+        enquiryMessage: formData.details,
+        utm_medium: "",
+        utm_source: "",
+        utm_campaign: "",
+        enquiryFrom: "Mobile Development",
+      },
+      {
+        onSuccess: () => {
+          if (submitTimerRef.current !== null) {
+            window.clearTimeout(submitTimerRef.current);
+          }
 
-    setIsSubmitted(true);
-    submitTimerRef.current = window.setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: "", phone: "", email: "", details: "" });
-    }, 4000);
+          setIsSubmitted(true);
+          setFormData({ name: "", phone: "", email: "", details: "" });
+          submitTimerRef.current = window.setTimeout(() => {
+            setIsSubmitted(false);
+          }, 4000);
+        },
+      }
+    );
   }
 
   function toggleFaq(index: number) {
@@ -395,6 +413,7 @@ export default function MobileAppDevelopmentPage() {
             >
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  <input type="hidden" name="enquiryFrom" value="Mobile Development" />
                   <div>
                     <input
                       type="text"
@@ -448,12 +467,20 @@ export default function MobileAppDevelopmentPage() {
                     />
                   </div>
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-2">
-                    <button
-                      type="submit"
-                      className="cursor-pointer rounded-full bg-[#93d034] text-white hover:bg-[#82c024] px-10 py-4 font-bold text-[15px] tracking-wider transition-all active:scale-[0.98] shrink-0"
-                    >
-                      SEND INQUIRY
-                    </button>
+                    <div className="flex items-center gap-4">
+                      <button
+                        type="submit"
+                        disabled={createEnquiry.isPending}
+                        className="cursor-pointer rounded-full bg-[#93d034] text-white hover:bg-[#82c024] px-10 py-4 font-bold text-[15px] tracking-wider transition-all active:scale-[0.98] shrink-0 disabled:opacity-50"
+                      >
+                        {createEnquiry.isPending ? "SENDING..." : "SEND INQUIRY"}
+                      </button>
+                      {createEnquiry.isError && (
+                        <p className="text-red-500 text-sm">
+                          Error: Please try again.
+                        </p>
+                      )}
+                    </div>
                     <p className="text-[12px] leading-relaxed text-[#7a8894] font-normal max-w-[280px]">
                       Please, let us know any particular things to check and the
                       best time to contact you by phone (if provided).

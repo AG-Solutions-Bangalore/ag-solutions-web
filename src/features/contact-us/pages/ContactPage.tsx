@@ -41,6 +41,7 @@ export default function ContactPage() {
         utm_medium: "",
         utm_source: "",
         utm_campaign: "",
+        enquiryFrom: "Contact",
       },
       {
         onSuccess: () => {
@@ -107,6 +108,7 @@ export default function ContactPage() {
               >
                 {!isSubmitted ? (
                   <form onSubmit={handleSubmit} className="space-y-5">
+                    <input type="hidden" name="enquiryFrom" value="Contact" />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <div>
                         <input

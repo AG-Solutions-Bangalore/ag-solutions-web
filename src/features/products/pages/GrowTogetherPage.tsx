@@ -1,4 +1,5 @@
-import React, { useState, type FormEvent } from "react";
+import React, { useState, type FormEvent, useRef } from "react";
+import { useCreateEnquiry } from "@/features/contact-us/hooks/useCreateEnquiry";
 import { PageHero, SectionTitle } from "@/components/layout";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
@@ -32,6 +33,7 @@ const features: readonly FeatureItem[] = [
 ];
 
 export const GrowTogetherPage: React.FC = () => {
+  const createEnquiry = useCreateEnquiry();
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -39,14 +41,35 @@ export const GrowTogetherPage: React.FC = () => {
     details: "I am interested in a demo of Grow Together collaboration software.",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const submitTimerRef = useRef<number | null>(null);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: "", phone: "", email: "", details: "" });
-    }, 4000);
+    createEnquiry.mutate(
+      {
+        enquiryFullName: formData.name,
+        enquiryEmail: formData.email,
+        enquiryMobile: formData.phone,
+        enquiryMessage: formData.details,
+        utm_medium: "",
+        utm_source: "",
+        utm_campaign: "",
+        enquiryFrom: "Grow Together",
+      },
+      {
+        onSuccess: () => {
+          if (submitTimerRef.current !== null) {
+            window.clearTimeout(submitTimerRef.current);
+          }
+
+          setIsSubmitted(true);
+          setFormData({ name: "", phone: "", email: "", details: "" });
+          submitTimerRef.current = window.setTimeout(() => {
+            setIsSubmitted(false);
+          }, 4000);
+        },
+      }
+    );
   }
 
   return (
@@ -178,6 +201,7 @@ export const GrowTogetherPage: React.FC = () => {
             >
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  <input type="hidden" name="enquiryFrom" value="Grow Together" />
                   <div>
                     <input
                       type="text"
@@ -219,12 +243,20 @@ export const GrowTogetherPage: React.FC = () => {
                     />
                   </div>
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-2">
-                    <button
-                      type="submit"
-                      className="cursor-pointer rounded-full bg-[#93d034] text-white hover:bg-[#82c024] px-10 py-4 font-bold text-[15px] tracking-wider transition-all active:scale-[0.98] shrink-0"
-                    >
-                      SEND INQUIRY
-                    </button>
+                    <div className="flex items-center gap-4">
+                      <button
+                        type="submit"
+                        disabled={createEnquiry.isPending}
+                        className="cursor-pointer rounded-full bg-[#93d034] text-white hover:bg-[#82c024] px-10 py-4 font-bold text-[15px] tracking-wider transition-all active:scale-[0.98] shrink-0 disabled:opacity-50"
+                      >
+                        {createEnquiry.isPending ? "SENDING..." : "SEND INQUIRY"}
+                      </button>
+                      {createEnquiry.isError && (
+                        <p className="text-red-500 text-sm">
+                          Error: Please try again.
+                        </p>
+                      )}
+                    </div>
                     <p className="text-[12px] leading-relaxed text-[#7a8894] font-normal max-w-[280px]">
                       Our team will reach out to schedule a live product walk-through shortly.
                     </p>

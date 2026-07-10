@@ -13,6 +13,10 @@ type HeroSlide = {
   imageClass: string;
   contentClass: string;
   arrowClass: string;
+  imageAlt: string;
+  imageTitle: string;
+  tabIconAlt: string;
+  tabIconTitle: string;
 };
 
 export const heroSlides: readonly HeroSlide[] = [
@@ -31,6 +35,10 @@ export const heroSlides: readonly HeroSlide[] = [
     imageClass: "mx-auto mt-10 w-full max-w-[850px]",
     contentClass: "mx-auto max-w-[760px] text-center",
     arrowClass: "invert-0 opacity-45",
+    imageAlt: "Web and Mobile App Development Company",
+    imageTitle: "AG Solutions Homepage Banner",
+    tabIconAlt: "Web Development Icon",
+    tabIconTitle: "Web Development",
   },
   {
     id: "mobile",
@@ -48,6 +56,10 @@ export const heroSlides: readonly HeroSlide[] = [
     imageClass: "w-full max-w-[480px]",
     contentClass: "max-w-[520px]",
     arrowClass: "brightness-0 invert opacity-70",
+    imageAlt: "Mobile App Development Services",
+    imageTitle: "Mobile App Development",
+    tabIconAlt: "Mobile App Development Icon",
+    tabIconTitle: "Mobile App Development",
   },
   {
     id: "desktop",
@@ -65,6 +77,10 @@ export const heroSlides: readonly HeroSlide[] = [
     imageClass: "w-full max-w-[560px]",
     contentClass: "max-w-[520px]",
     arrowClass: "brightness-0 invert opacity-65",
+    imageAlt: "Desktop Application Development",
+    imageTitle: "Desktop Software Development",
+    tabIconAlt: "Desktop Application Development Icon",
+    tabIconTitle: "Desktop Software Development",
   },
   {
     id: "email",
@@ -82,6 +98,10 @@ export const heroSlides: readonly HeroSlide[] = [
     imageClass: "mx-auto mt-10 w-full max-w-[830px]",
     contentClass: "mx-auto max-w-[720px] text-center",
     arrowClass: "opacity-35",
+    imageAlt: "Email Marketing Services",
+    imageTitle: "Email Marketing Services",
+    tabIconAlt: "Email Marketing Icon",
+    tabIconTitle: "Email Marketing Services",
   },
   {
     id: "digital",
@@ -99,5 +119,9 @@ export const heroSlides: readonly HeroSlide[] = [
     imageClass: "w-full max-w-[540px]",
     contentClass: "max-w-[530px]",
     arrowClass: "opacity-40",
+    imageAlt: "Digital Marketing Services",
+    imageTitle: "Digital Marketing Services",
+    tabIconAlt: "Digital Marketing Icon",
+    tabIconTitle: "Digital Marketing Services",
   },
 ];

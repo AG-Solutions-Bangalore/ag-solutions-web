@@ -10,21 +10,27 @@ const services = [
     image: "/images/home/services_web.png",
     path: "/web-development",
     description:
-      "We offer end-to-end best web development services by strategically combining latest web technologies with mature project development methodologies & robust project management tools.",
+      "We deliver end-to-end web development solutions that combine innovative technologies, user-focused design, and proven development practices. Our team builds secure, scalable, and high-performance websites and web applications that help businesses strengthen their online presence, streamline operations, and achieve long-term growth.",
+    alt: "Custom Web Development Services",
+    titleAttr: "Web Development Services",
   },
   {
     title: "Mobile App Development",
     image: "/images/home/services_mob.png",
     path: "/mobile-app-development",
     description:
-      "We offer best mobile app development services from strategy & design to development, testing, and deployment, we provide enterprise mobility solutions for a wide range of industries that are guaranteed to help you thrive in this mobile-first world.",
+      "We create innovative, high-performance mobile applications that help businesses connect with customers anytime, anywhere. From strategy and UI/UX design to development, testing, and deployment, our end-to-end mobile app solutions deliver seamless user experiences, strong security, and scalable performance for Android and iOS platforms.",
+    alt: "Mobile App Development Services",
+    titleAttr: "Mobile App Development",
   },
   {
     title: "Desktop Applications",
     image: "/images/home/services_desk.png",
     path: "/desktop-applications",
     description:
-      "Whether you're struggling with an outdated legacy software that needs to be migrated to latest technologies, or developing a software for the first time, we ensure to minimize your risk, project timeline, and cost to implement with our 9+ years of domain expertise.",
+      "Whether you need to modernize legacy software or build a custom desktop application from the ground up, AG Solutions delivers reliable, scalable, and high-performance software tailored to your business needs. With 13+ years of industry experience, we develop secure desktop solutions that streamline workflows, improve productivity, and support long-term business growth while ensuring quality, efficiency, and cost-effective implementation.",
+    alt: "Desktop Application Development",
+    titleAttr: "Desktop Software Development",
   },
 ] as const;
 
@@ -68,7 +74,8 @@ function ServicesOverviewSection() {
                     <img
                       className="max-h-[96px] w-auto object-contain"
                       src={service.image}
-                      alt=""
+                      alt={service.alt}
+                      title={service.titleAttr}
                       loading="lazy"
                     />
                   </Link>

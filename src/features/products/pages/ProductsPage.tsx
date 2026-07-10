@@ -21,12 +21,12 @@ interface ProductCard {
 
 const products: readonly ProductCard[] = [
   {
-    title: "Export Documentation & Management Solutions",
+    title: "EXPORT BIZ",
     subtitle: "EDMS Compliance Platform",
     description:
       "A complete compliance and workflow automation suite built specifically for export teams. Simplify document generation, track scheme claims outstanding, organize monthly returns, and audit trails securely.",
     iconName: "export",
-    path: "/export-documentation",
+    path: "/export-biz",
     badgeText: "EDMS",
     badgeClass: "bg-[#eaf0ff] text-[#435fc2]",
     btnHoverClass: "hover:bg-[#435fc2] focus-visible:ring-[#435fc2]",
@@ -66,7 +66,7 @@ export const ProductsPage: React.FC = () => {
     <>
       <SEO
         title="Products - AG Solutions"
-        description="Explore AG Solutions products: Export Documentation and Management Solutions (EDMS), EASE Marketing, and Grow Together collaboration tool."
+        description="Explore AG Solutions products: EXPORT BIZ, EASE Marketing, and Grow Together collaboration tool."
         keywords={["EDMS", "EASE Marketing", "Grow Together", "AG Solutions products"]}
       />
 
