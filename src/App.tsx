@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-route
 import Lenis from "lenis";
 import AppLayout from "./components/layout/AppLayout";
 import SkipToContent from "./components/accessibility/SkipToContent";
+import { getUtmParams, storeUtmParams } from "./utils/utmUtils";
 import {
   loadAboutPage,
   loadBlogDetailPage,
@@ -36,6 +37,18 @@ const ExportBizPage = lazy(loadExportBizPage);
 const EaseMarketingPage = lazy(loadEaseMarketingPage);
 const GrowTogetherPage = lazy(loadGrowTogetherPage);
 const NotFoundPage = lazy(loadNotFoundPage);
+
+function UtmTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const params = getUtmParams(searchParams);
+    storeUtmParams(params);
+  }, [location]);
+
+  return null;
+}
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -86,6 +99,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <UtmTracker />
       <SkipToContent />
       <ScrollToTop />
       <Routes>

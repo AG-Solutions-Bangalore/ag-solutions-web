@@ -17,7 +17,7 @@ function AboutCompanySection() {
     >
       {(isVisible) => (
         <div
-          className={`${layoutContainerClass} grid items-center min-[980px]:grid-cols-[0.94fr_1.06fr]`}
+          className={`${layoutContainerClass} grid items-center gap-12 min-[980px]:grid-cols-[1.15fr_0.85fr]`}
         >
           <div
             className={`home-animated-item ${
@@ -27,9 +27,7 @@ function AboutCompanySection() {
             <SectionTitle
               title={
                 <>
-                  AG Solutions | Web Development,<br />
-                  Mobile App Development<br />
-                  & Software Solutions Company
+                  AG Solutions: Web, Mobile <br className="hidden md:inline" /> & Software Solutions Company
                 </>
               }
               align="left"
