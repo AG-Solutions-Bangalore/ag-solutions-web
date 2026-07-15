@@ -10,6 +10,7 @@ import { layoutContainerClass } from "@/components/layout/styles";
 import { PageHero, SectionTitle } from "@/components/layout";
 import { Card } from "@/components/ui";
 import { FAQSchema } from "@/components/seo";
+import { getUtmParams } from "@/utils/utmUtils";
 
 interface PortfolioItem {
   title: string;
@@ -96,15 +97,16 @@ export default function DesktopApplicationsPage() {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    const utmParams = getUtmParams();
     createEnquiry.mutate(
       {
         enquiryFullName: formData.name,
         enquiryEmail: formData.email,
         enquiryMobile: formData.phone,
         enquiryMessage: formData.details,
-        utm_medium: "",
-        utm_source: "",
-        utm_campaign: "",
+        utm_medium: utmParams.utm_medium,
+        utm_source: utmParams.utm_source,
+        utm_campaign: utmParams.utm_campaign,
         enquiryFrom: "Desktop Applications",
       },
       {
@@ -210,12 +212,11 @@ export default function DesktopApplicationsPage() {
                 titleClassName="text-[36px] font-black leading-tight text-[#1a2b3c] max-[560px]:text-2xl"
               />
               <p className="mt-8 text-base leading-relaxed text-[#4f5a62]">
-                Whether you need to modernize legacy software or build a custom desktop
-                application from the ground up, AG Solutions delivers reliable, scalable, and
-                high-performance software tailored to your business needs. With 13+ years of
-                industry experience, we develop secure desktop solutions that streamline
-                workflows, improve productivity, and support long-term business growth while
-                ensuring quality, efficiency, and cost-effective implementation.
+                Whether you're struggling with an outdated legacy software that
+                needs to be migrated to latest technologies, or developing a
+                software for the first time, we ensure to minimize your risk,
+                project timeline, and cost to implement with our 6+ years of
+                experience in Desktop Application Development Services.
               </p>
             </div>
           </div>

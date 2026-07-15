@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, type FormEvent } from "react";
 import { useCreateEnquiry } from "@/features/contact-us/hooks/useCreateEnquiry";
+import { getUtmParams } from "@/utils/utmUtils";
 
 interface ExportBizDemoModalProps {
   isOpen: boolean;
@@ -42,15 +43,16 @@ export const ExportBizDemoModal: React.FC<ExportBizDemoModalProps> = ({ isOpen, 
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    const utmParams = getUtmParams();
     createEnquiry.mutate(
       {
         enquiryFullName: formData.name,
         enquiryEmail: formData.email,
         enquiryMobile: formData.phone,
         enquiryMessage: `Subject: ${formData.subject}\nCompany: ${formData.company}\nCountry: ${formData.country}\n\nDetails: ${formData.details}`,
-        utm_medium: "",
-        utm_source: "",
-        utm_campaign: "",
+        utm_medium: utmParams.utm_medium,
+        utm_source: utmParams.utm_source,
+        utm_campaign: utmParams.utm_campaign,
         enquiryFrom: "export-biz",
       },
       {

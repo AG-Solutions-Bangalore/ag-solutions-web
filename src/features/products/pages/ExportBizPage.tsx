@@ -9,7 +9,9 @@ import { ExportBizReports } from "../components/ExportBizReports";
 import { ExportBizBenefits } from "../components/ExportBizBenefits";
 import { ExportBizCommonCTA } from "@/components/common/ExportBizCommonCTA";
 import { ExportBizDemoModal } from "../components/ExportBizDemoModal";
+import ExportSolutionsSection from "@/features/home/components/ExportSolutionsSection";
 import { createCampaignVisit } from "../api/campaignApi";
+import { getUtmParams } from "@/utils/utmUtils";
 
 let hasOpenedDemoModalOnPageLoad = false;
 
@@ -41,13 +43,12 @@ export const ExportBizPage: React.FC<ExportBizPageProps> = ({ defaultOpenModal =
 
   // 2. Hidden background UTM tracking process (runs exactly once on load)
   useEffect(() => {
-    const utmSource = searchParams.get("utm_source");
-    const utmCampaign = searchParams.get("utm_campaign");
+    const utmParams = getUtmParams(searchParams);
 
-    if (utmSource || utmCampaign) {
+    if (utmParams.utm_source || utmParams.utm_campaign) {
       createCampaignVisit({
-        utm_source: utmSource || "",
-        utm_campaign: utmCampaign || "",
+        utm_source: utmParams.utm_source,
+        utm_campaign: utmParams.utm_campaign,
         page: window.location.pathname,
         fullUrl: window.location.href,
         referrer: document.referrer || "",
@@ -56,6 +57,7 @@ export const ExportBizPage: React.FC<ExportBizPageProps> = ({ defaultOpenModal =
         console.error("Failed to log campaign visit:", err);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -77,6 +79,7 @@ export const ExportBizPage: React.FC<ExportBizPageProps> = ({ defaultOpenModal =
         <ExportBizProblemSolution />
         <ExportBizModules />
         <ExportBizReports />
+        <ExportSolutionsSection />
         <ExportBizBenefits />
         <ExportBizCommonCTA onOpenDemo={() => setIsDemoModalOpen(true)} />
       </div>

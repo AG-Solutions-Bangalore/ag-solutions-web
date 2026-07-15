@@ -15,7 +15,7 @@ export const HomeSEO: React.FC = () => {
     <>
       <SEO
         title="AG Solutions | Web Development, Mobile App Development & Software Solutions Company"
-        description="With 13+ years of experience, AG Solutions helps businesses build secure, scalable, and high-performance digital solutions. We specialize in custom web development, Android and iOS mobile applications, desktop software, export documentation systems, and digital marketing services. Our experienced team delivers technology that improves efficiency, enhances customer experiences, and supports long-term business growth."
+        description="AG Solutions builds scalable web apps, mobile apps, desktop software, digital marketing systems, and EXPORT BIZ products for growing businesses."
         keywords={[
           "AG Solutions",
           "web development",

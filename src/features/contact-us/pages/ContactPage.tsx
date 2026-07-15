@@ -4,6 +4,7 @@ import { useCreateEnquiry } from "../hooks/useCreateEnquiry";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
 import { PageHero, SectionTitle } from "@/components/layout";
+import { getUtmParams } from "@/utils/utmUtils";
 import {
   PhoneIcon,
   MailIcon,
@@ -32,15 +33,16 @@ export default function ContactPage() {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    const utmParams = getUtmParams();
     createEnquiry.mutate(
       {
         enquiryFullName: formData.name,
         enquiryEmail: formData.email,
         enquiryMobile: formData.phone,
         enquiryMessage: `Subject: ${formData.subject}\n\nDetails: ${formData.details}`,
-        utm_medium: "",
-        utm_source: "",
-        utm_campaign: "",
+        utm_medium: utmParams.utm_medium,
+        utm_source: utmParams.utm_source,
+        utm_campaign: utmParams.utm_campaign,
         enquiryFrom: "Contact",
       },
       {

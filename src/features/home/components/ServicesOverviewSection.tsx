@@ -10,7 +10,7 @@ const services = [
     image: "/images/home/services_web.png",
     path: "/web-development",
     description:
-      "We deliver end-to-end web development solutions that combine innovative technologies, user-focused design, and proven development practices. Our team builds secure, scalable, and high-performance websites and web applications that help businesses strengthen their online presence, streamline operations, and achieve long-term growth.",
+      "We offer end-to-end best web development services by strategically combining latest web technologies with mature project development methodologies & robust project management tools.",
     alt: "Custom Web Development Services",
     titleAttr: "Web Development Services",
   },
@@ -19,7 +19,7 @@ const services = [
     image: "/images/home/services_mob.png",
     path: "/mobile-app-development",
     description:
-      "We create innovative, high-performance mobile applications that help businesses connect with customers anytime, anywhere. From strategy and UI/UX design to development, testing, and deployment, our end-to-end mobile app solutions deliver seamless user experiences, strong security, and scalable performance for Android and iOS platforms.",
+      "We offer best mobile app development services from strategy & design to development, testing, and deployment, we provide enterprise mobility solutions for a wide range of industries that are guaranteed to help you thrive in this mobile-first world.",
     alt: "Mobile App Development Services",
     titleAttr: "Mobile App Development",
   },
@@ -28,7 +28,7 @@ const services = [
     image: "/images/home/services_desk.png",
     path: "/desktop-applications",
     description:
-      "Whether you need to modernize legacy software or build a custom desktop application from the ground up, AG Solutions delivers reliable, scalable, and high-performance software tailored to your business needs. With 13+ years of industry experience, we develop secure desktop solutions that streamline workflows, improve productivity, and support long-term business growth while ensuring quality, efficiency, and cost-effective implementation.",
+      "Whether you're struggling with an outdated legacy software that needs to be migrated to latest technologies, or developing a software for the first time, we ensure to minimize your risk, project timeline, and cost to implement with our 9+ years of domain expertise.",
     alt: "Desktop Application Development",
     titleAttr: "Desktop Software Development",
   },

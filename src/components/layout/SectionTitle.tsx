@@ -2,7 +2,7 @@ import React from "react";
 import Heading from "../ui/Heading";
 
 interface SectionTitleProps {
-  title: string;
+  title: React.ReactNode;
   align?: "left" | "center" | "right";
   className?: string;
   titleClassName?: string;

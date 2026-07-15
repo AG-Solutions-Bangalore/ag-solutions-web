@@ -17,7 +17,7 @@ function AboutCompanySection() {
     >
       {(isVisible) => (
         <div
-          className={`${layoutContainerClass} grid items-center min-[980px]:grid-cols-[0.94fr_1.06fr]`}
+          className={`${layoutContainerClass} grid items-center gap-12 min-[980px]:grid-cols-[1.15fr_0.85fr]`}
         >
           <div
             className={`home-animated-item ${
@@ -25,19 +25,21 @@ function AboutCompanySection() {
             }`}
           >
             <SectionTitle
-              title="AG Solutions | Web Development, Mobile App Development & Software Solutions Company"
+              title={
+                <>
+                  AG Solutions: Web, Mobile <br className="hidden md:inline" /> & Software Solutions Company
+                </>
+              }
               align="left"
-              titleClassName="max-w-[650px] text-5xl leading-[1.16] font-black tracking-normal max-[980px]:text-[44px] max-[560px]:text-[34px]"
+              titleClassName="max-w-[650px] text-[34px] leading-[1.26] font-black tracking-normal max-[980px]:text-[30px] max-[560px]:text-[24px]"
             />
 
             <p className="mt-8 max-w-[680px] text-xl leading-[1.3] text-[#1d2d3b] max-[760px]:text-lg">
-              With 13+ years of experience, AG Solutions helps businesses build
-              secure, scalable, and high-performance digital solutions. We
-              specialize in custom web development, Android and iOS mobile
-              applications, desktop software, export documentation systems, and
-              digital marketing services. Our experienced team delivers
-              technology that improves efficiency, enhances customer
-              experiences, and supports long-term business growth.
+              We take immense pleasure in introducing our esteemed company "AG
+              Solutions!" TEN YEARS OLD and still rocking! Striving hard towards
+              perfection, providing all types of tech and digital solution to
+              our clients under one roof! We are into web development, desktop
+              applications (stand-alone) and mobile applications.
             </p>
 
             <div className="mt-8 space-y-0">

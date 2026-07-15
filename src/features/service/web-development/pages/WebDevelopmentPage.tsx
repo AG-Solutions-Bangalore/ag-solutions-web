@@ -10,6 +10,7 @@ import { layoutContainerClass } from "@/components/layout/styles";
 import { PageHero, SectionTitle } from "@/components/layout";
 import { Card } from "@/components/ui";
 import { FAQSchema } from "@/components/seo";
+import { getUtmParams } from "@/utils/utmUtils";
 
 interface ServiceCard {
   title: string;
@@ -164,15 +165,16 @@ export default function WebDevelopmentPage() {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    const utmParams = getUtmParams();
     createEnquiry.mutate(
       {
         enquiryFullName: formData.name,
         enquiryEmail: formData.email,
         enquiryMobile: formData.phone,
         enquiryMessage: formData.details,
-        utm_medium: "",
-        utm_source: "",
-        utm_campaign: "",
+        utm_medium: utmParams.utm_medium,
+        utm_source: utmParams.utm_source,
+        utm_campaign: utmParams.utm_campaign,
         enquiryFrom: "web Development",
       },
       {

@@ -4,6 +4,7 @@ import { PageHero, SectionTitle } from "@/components/layout";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
 import { SEO } from "@/components/seo/SEO";
+import { getUtmParams } from "@/utils/utmUtils";
 
 interface FeatureItem {
   title: string;
@@ -45,15 +46,16 @@ export const GrowTogetherPage: React.FC = () => {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    const utmParams = getUtmParams();
     createEnquiry.mutate(
       {
         enquiryFullName: formData.name,
         enquiryEmail: formData.email,
         enquiryMobile: formData.phone,
         enquiryMessage: formData.details,
-        utm_medium: "",
-        utm_source: "",
-        utm_campaign: "",
+        utm_medium: utmParams.utm_medium,
+        utm_source: utmParams.utm_source,
+        utm_campaign: utmParams.utm_campaign,
         enquiryFrom: "Grow Together",
       },
       {
@@ -97,7 +99,7 @@ export const GrowTogetherPage: React.FC = () => {
         ariaLabel="Grow Together introduction"
       >
         {(isVisible) => (
-          <div className={`${layoutContainerClass} grid grid-cols-1 md:grid-cols-2 gap-12 items-center`}>
+          <div className={`${layoutContainerClass} grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr] gap-12 items-center`}>
             {/* Left Image */}
             <div className={`home-animated-item flex justify-center ${isVisible ? "home-animated-item-visible" : ""}`}>
               <img
