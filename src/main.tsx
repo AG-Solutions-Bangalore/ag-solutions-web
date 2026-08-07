@@ -4,6 +4,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./index.css";
 import App from "./App.tsx";
+import { BrowserRouter } from "react-router-dom";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,10 +19,12 @@ const queryClient = new QueryClient({
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
+    <BrowserRouter>
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
         <App />
       </HelmetProvider>
     </QueryClientProvider>
+    </BrowserRouter>
   </StrictMode>,
 );

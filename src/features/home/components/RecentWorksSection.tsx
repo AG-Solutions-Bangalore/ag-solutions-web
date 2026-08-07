@@ -50,7 +50,7 @@ function RecentWorksSection() {
 
   return (
     <AnimatedSection
-      className="bg-white py-22 text-[#1b2c38] max-[760px]:py-14"
+      className="bg-white py-10 text-[#1b2c38] max-[760px]:py-14"
       ariaLabel="AG Solutions recent works"
     >
       {(isVisible) => (
@@ -59,9 +59,8 @@ function RecentWorksSection() {
             title="Our Recent Works"
             align="center"
             titleClassName="text-[52px] leading-none font-black max-[640px]:text-[38px]"
-            className={`home-animated-item ${
-              isVisible ? "home-animated-item-visible" : ""
-            }`}
+            className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+              }`}
           />
 
           <div className="mt-14 grid gap-8 min-[900px]:grid-cols-3">
@@ -69,9 +68,8 @@ function RecentWorksSection() {
               <Link
                 key={work.title}
                 to={work.path}
-                className={`home-animated-item group block overflow-hidden bg-[#eef1eb] text-center no-underline shadow-[0_10px_30px_rgba(27,44,56,0.08)] transition-shadow duration-300 hover:shadow-[0_18px_42px_rgba(27,44,56,0.16)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#27c7cd] focus-visible:ring-offset-4 ${
-                  isVisible ? "home-animated-item-visible" : ""
-                }`}
+                className={`home-animated-item group block overflow-hidden bg-[#eef1eb] text-center no-underline shadow-[0_10px_30px_rgba(27,44,56,0.08)] transition-shadow duration-300 hover:shadow-[0_18px_42px_rgba(27,44,56,0.16)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#27c7cd] focus-visible:ring-offset-4 ${isVisible ? "home-animated-item-visible" : ""
+                  }`}
                 style={{ transitionDelay: `${130 + index * 110}ms` }}
               >
                 <div className="relative h-[280px] overflow-hidden bg-[#e6e1da] max-[1120px]:h-[240px] max-[900px]:h-[320px] max-[560px]:h-[230px]">
@@ -93,16 +91,19 @@ function RecentWorksSection() {
           </div>
 
           <div
-            className={`home-animated-item mt-14 flex justify-center ${
-              isVisible ? "home-animated-item-visible" : ""
-            }`}
+            className={`home-animated-item mt-14 flex justify-center ${isVisible ? "home-animated-item-visible" : ""
+              }`}
             style={{ transitionDelay: "500ms" }}
           >
             <Link
               to="/portfolio"
-              className="inline-flex h-[72px] min-w-[230px] items-center justify-center rounded-full bg-[#132d3e] px-10 text-base font-black uppercase text-white no-underline transition-colors hover:bg-[#0f2534] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1289bc] focus-visible:ring-offset-4"
+              className="group inline-flex items-center gap-3 rounded-full bg-linear-to-r from-[#0053C0] via-[#0EA5E9] to-[#19D5FF] px-8 py-3 text-base font-semibold text-white shadow-[0_10px_30px_rgba(0,83,192,0.25)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,83,192,0.4)]"
             >
-              All Projects
+              <span>All Projects</span>
+
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
             </Link>
           </div>
         </div>

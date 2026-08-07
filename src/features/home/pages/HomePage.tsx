@@ -6,6 +6,7 @@ import RecentWorksSection from "../components/RecentWorksSection";
 import ServicesOverviewSection from "../components/ServicesOverviewSection";
 import StatsCounterSection from "../components/StatsCounterSection";
 import { BlogCarousel } from "@/features/blog/components/BlogCarousel";
+import WhatsAppWidget from "@/components/WhatsAppWidget";
 
 function HomePage() {
   return (
@@ -29,6 +30,8 @@ function HomePage() {
         subtitle="Stay updated with our recent tutorials, technical guides, and company news."
         bgClass="bg-[#f8fafc]"
       />
+      <WhatsAppWidget />
+      
     </>
   );
 }
