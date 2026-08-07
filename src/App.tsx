@@ -1,5 +1,5 @@
 import { lazy, useEffect } from "react";
-import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Lenis from "lenis";
 import AppLayout from "./components/layout/AppLayout";
 import SkipToContent from "./components/accessibility/SkipToContent";
@@ -98,7 +98,7 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
+    <>
       <UtmTracker />
       <SkipToContent />
       <ScrollToTop />
@@ -137,7 +137,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 

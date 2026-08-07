@@ -3,10 +3,10 @@ import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
 
 const stats = [
-  { value: 96, suffix: "%", label: "Client Retention" },
-  { value: 9, suffix: "+", label: "Years of Service" },
-  { value: 23, suffix: "+", label: "Professionals" },
-  { value: 800, suffix: "+", label: "Satisfied Clients" },
+  { value: 98, suffix: "%", label: "Client Retention" },
+  { value: 15, suffix: "+", label: "Years of Service" },
+  { value: 25, suffix: "+", label: "Professionals" },
+  { value: 950, suffix: "+", label: "Satisfied Clients" },
 ] as const;
 
 interface StatsCounterContentProps {
@@ -83,17 +83,18 @@ function StatsCounterContent({ isVisible }: StatsCounterContentProps) {
 function StatsCounterSection() {
   return (
     <AnimatedSection
-      className="relative overflow-hidden bg-[#80df00] py-18 text-center max-[760px]:py-12"
-      ariaLabel="AG Solutions company statistics"
-    >
-      {(isVisible) => (
-        <>
-          <div className="absolute inset-0 bg-[url('/images/pattern-bg-lime.jpg')] bg-[length:450px_330px] bg-top opacity-[0.18]" />
-          <div className="absolute inset-0 bg-[#80df00]/82" />
-          <StatsCounterContent isVisible={isVisible} />
-        </>
-      )}
-    </AnimatedSection>
+  className="relative overflow-hidden py-18 text-center max-[760px]:py-12"
+>
+  {(isVisible) => (
+    <>
+      <div className="absolute inset-0 bg-linear-to-br from-[#0F172A] via-[#0A4CA6] to-[#0EA5E9]" />
+
+      <div className="absolute inset-0 bg-[url('/images/pattern-bg-lime.jpg')] bg-cover opacity-10 mix-blend-soft-light" />
+
+      <StatsCounterContent isVisible={isVisible} />
+    </>
+  )}
+</AnimatedSection>
   );
 }
 

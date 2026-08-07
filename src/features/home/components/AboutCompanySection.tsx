@@ -1,28 +1,45 @@
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
 import { SectionTitle } from "@/components/layout/SectionTitle";
-import { Button } from "@/components/ui/Button";
 
-const trustPoints = [
-  "We Are Reliable.",
-  "Available Any Time.",
-  "Unique, Creative User Interfaces.",
-] as const;
+
+const features = [
+  {
+    icon: "/icons/home/trust1.png",
+    title: "Trusted. Proven. Dependable.",
+    description: "Delivering quality solutions you can count on.",
+    titleColor: "#0F766E", // Teal
+    descColor: "#475569",
+  },
+  {
+    icon: "/icons/home/Support.png",
+    title: "Always Available. Always Here.",
+    description: "Round-the-clock support whenever you need us.",
+    titleColor: "#E11D48", // Rose
+    descColor: "#475569",
+  },
+  {
+    icon: "/icons/home/bulb.png",
+    title: "Creative Designs. Unique Experiences.",
+    description: "Crafting innovative, user-friendly interfaces that inspire.",
+    titleColor: "#D97706", // Amber
+    descColor: "#475569",
+  },
+];
 
 function AboutCompanySection() {
   return (
     <AnimatedSection
-      className="bg-white py-22 text-[#1b2c38] max-[760px]:py-14"
+      className="bg-white py-14 text-[#1b2c38] max-[700px]:py-10"
       ariaLabel="AG Solutions company introduction"
     >
       {(isVisible) => (
         <div
-          className={`${layoutContainerClass} grid items-center gap-12 min-[980px]:grid-cols-[1.15fr_0.85fr]`}
+          className={layoutContainerClass}
         >
           <div
-            className={`home-animated-item ${
-              isVisible ? "home-animated-item-visible" : ""
-            }`}
+            className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+              }`}
           >
             <SectionTitle
               title={
@@ -31,66 +48,64 @@ function AboutCompanySection() {
                 </>
               }
               align="left"
-              titleClassName="max-w-[650px] text-[34px] leading-[1.26] font-black tracking-normal max-[980px]:text-[30px] max-[560px]:text-[24px]"
+              titleClassName="max-w-[760px] text-[34px] leading-[1.2] font-extrabold max-[980px]:text-[30px] max-[560px]:text-[24px]"
             />
 
-            <p className="mt-8 max-w-[680px] text-xl leading-[1.3] text-[#1d2d3b] max-[760px]:text-lg">
-              We take immense pleasure in introducing our esteemed company "AG
-              Solutions!" TEN YEARS OLD and still rocking! Striving hard towards
-              perfection, providing all types of tech and digital solution to
-              our clients under one roof! We are into web development, desktop
-              applications (stand-alone) and mobile applications.
-            </p>
+            <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-10 items-center">
 
-            <div className="mt-8 space-y-0">
-              {trustPoints.map((point) => (
+              <div className="max-w-[650px]">
+                <p className="text-[16px] leading-7 text-[#1d2d3b]">
+                  AG Solutions is a Bangalore-based software development company with over
+                  <b> 15 years of experience </b> delivering custom digital solutions for businesses
+                  across India and global markets.
+
+                  <br /><br />
+
+                  We specialize in <i><b> web development, mobile app development,
+                    custom software development, desktop applications,
+                    ERP & CRM solutions, eCommerce platforms,
+                    and digital marketing services.</b></i>
+
+                  <br /><br />
+
+                  Our goal is to help businesses streamline operations,
+                  improve customer experiences and accelerate digital growth
+                  through scalable and secure technology solutions.
+                </p>
+              </div>
+
+              <div className="flex justify-center">
+                <img
+                  src="/images/home/about_us1.png"
+                  className="w-full max-w-[450px] object-contain mx-auto"
+                  alt="About AG Solutions"
+                />
+              </div>
+
+            </div>
+
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+              {features.map((item, index) => (
                 <div
-                  key={point}
-                  className="flex items-center gap-2 text-[19px] text-[#4f5a62] max-[560px]:gap-4 max-[560px]:text-base"
+                  key={index}
+                  className="group rounded-2xl border border-gray-200 bg-white p-6 text-center shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-500 h-full"
                 >
-                  <span className="text-[22px] font-black text-[#ff3c66]">
-                    &#10003;
-                  </span>
-                  <span>{point}</span>
+                  <img
+                    src={item.icon}
+                    alt={item.title}
+                    className="mx-auto h-16 w-16 object-contain transition-transform duration-500 group-hover:scale-110"
+                  />
+
+                  <h3 className="mt-4 font-bold text-[18px] min-h-[15px]" style={{ color: item.titleColor }}>
+                    {item.title}
+                  </h3>
+
+                  <p className="mt-2 text-[15px] leading-6  min-h-[30px]" style={{ color: item.descColor }}>
+                    {item.description}
+                  </p>
                 </div>
               ))}
             </div>
-
-            <div className="mt-9 flex flex-wrap gap-6">
-              <Button
-                to="/about"
-                variant="outline"
-                size="lg"
-                className="min-w-[210px] uppercase font-black border-[#132d3e] text-[#132d3e] hover:bg-[#132d3e]"
-              >
-                Learn More
-              </Button>
-              <Button
-                to="/contacts"
-                variant="primary"
-                size="lg"
-                className="min-w-[210px] uppercase font-black bg-[#27c7cd] hover:bg-[#1289bc] border-none"
-              >
-                Get a Quote
-              </Button>
-            </div>
-          </div>
-
-          <div
-            className={`home-animated-item flex justify-center min-[980px]:justify-end ${
-              isVisible ? "home-animated-item-visible" : ""
-            }`}
-            style={{ transitionDelay: "130ms" }}
-          >
-            <img
-              className="w-full max-w-[560px] object-contain"
-              src="/images/home/about_us1.png"
-              alt="Responsive web and mobile app development illustration"
-              title="About AG Solutions"
-              loading="lazy"
-              width="560"
-              height="450"
-            />
           </div>
         </div>
       )}

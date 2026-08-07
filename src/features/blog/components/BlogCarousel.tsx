@@ -84,7 +84,7 @@ export function BlogCarousel({
 
   if (error) {
     return (
-      <section className={`${bgClass} py-14 border-t border-slate-100 text-[#1b2c38]`}>
+      <section className={`${bgClass} py-10 border-t border-slate-100 text-[#1b2c38]`}>
         <div className={layoutContainerClass}>
           <div className="text-center py-6 bg-red-50 border border-red-100 rounded">
             <p className="text-red-500 font-semibold">
@@ -102,7 +102,7 @@ export function BlogCarousel({
 
   const renderSkeleton = () => {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
         {Array.from({ length: 3 }).map((_, i) => (
           <div key={i} className="animate-pulse border border-slate-100/80 bg-white">
             <div className="aspect-[3/2] bg-slate-100" />
@@ -121,7 +121,7 @@ export function BlogCarousel({
 
   return (
     <AnimatedSection
-      className={`relative overflow-hidden ${bgClass} py-20 border-t border-slate-100 text-[#1b2c38] max-[760px]:py-14`}
+      className={`relative overflow-hidden ${bgClass} py-15 border-t border-slate-100 text-[#1b2c38] max-[760px]:py-14`}
       ariaLabel={`${title} blog carousel`}
     >
       {(isVisible) => (
@@ -239,7 +239,7 @@ export function BlogCarousel({
                               src={imageUrl}
                               alt={blog.blog_banner_image_alt || blog.blog_title}
                               loading="lazy"
-                              className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                              className="h-auto w-auto  object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                             />
                             <span className="absolute top-4 left-4 bg-[#09c7ca] text-white px-3 py-1 text-[11px] font-bold uppercase tracking-wider">
                               {blog.categories || "Article"}

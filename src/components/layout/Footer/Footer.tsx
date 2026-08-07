@@ -3,6 +3,7 @@ import { useCreateNewsletter } from "@/features/newsletter/hooks/useCreateNewsle
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "../styles";
 import { CompassIcon, MailIcon, PhoneIcon } from "./FooterIcons";
+import {FaInstagram,FaFacebookF,FaLinkedinIn,} from "react-icons/fa";
 import axios from "axios";
 
 
@@ -189,7 +190,7 @@ function Footer({
                     id="butnew"
                     type="submit"
                     disabled={createNewsletter.isPending}
-                    className="h-[60px] flex-[0_0_153px] cursor-pointer rounded-full border-0 bg-[#132d3e] text-base font-bold text-white transition-[transform,background-color] duration-150 hover:-translate-y-px hover:bg-[#0f2534] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-white/65 max-[640px]:w-full max-[640px]:flex-auto disabled:opacity-50"
+                    className="h-15 flex-[0_0_153px] cursor-pointer rounded-full border-0 bg-[#132d3e] text-base font-bold text-white transition-[transform,background-color] duration-150 hover:-translate-y-px hover:bg-[#0f2534] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-white/65 max-[640px]:w-full max-[640px]:flex-auto disabled:opacity-50"
                   >
                     {createNewsletter.isPending ? "..." : "SUBSCRIBE"}
                   </button>
@@ -242,10 +243,10 @@ function Footer({
             </div> */}
             {/* <div className="mt-[15px] h-px bg-[#29343d]" /> */}
             <div className="flex justify-between gap-8 pt-12 pb-11 max-[1200px]:gap-6 max-[980px]:grid max-[980px]:grid-cols-1 max-[980px]:gap-8 max-[980px]:pt-9 max-[980px]:pb-10">
-              <div className="flex min-w-0 items-center gap-7 max-[1200px]:gap-6 max-[980px]:gap-7 max-[640px]:gap-4">
-                <div className="flex flex-[0_0_50.4px] items-center justify-center max-[640px]:flex-[0_0_43.2px]">
-                  <PhoneIcon />
-                </div>
+              <div className="group flex min-w-0 items-center gap-7 rounded-2xl p-5 transition-all duration-500 hover:-translate-y-2 hover:bg-white/5">
+                <div className="transition-all duration-500 group-hover:scale-110 group-hover:text-[#66c61c]">
+    <PhoneIcon />
+</div>
                 <div className="min-w-0">
                   <a
                     href={phoneHref}
@@ -259,10 +260,10 @@ function Footer({
                 </div>
               </div>
 
-              <div className="flex min-w-0 items-center gap-7 max-[1200px]:gap-6 max-[980px]:gap-7 max-[640px]:gap-4">
-                <div className="flex flex-[0_0_50.4px] items-center justify-center max-[640px]:flex-[0_0_43.2px]">
-                  <MailIcon />
-                </div>
+              <div className="group flex min-w-0 items-center gap-7 rounded-2xl p-5 transition-all duration-500 hover:-translate-y-2 hover:bg-white/5">
+                <div className="transition-all duration-500 group-hover:scale-110 group-hover:text-[#66c61c]">
+    <MailIcon />
+</div>
                 <div className="min-w-0">
                   <a
                     href={`mailto:${email}`}
@@ -276,10 +277,10 @@ function Footer({
                 </div>
               </div>
 
-              <div className="flex min-w-0 items-center gap-7 max-[1200px]:gap-6 max-[980px]:gap-7 max-[640px]:gap-4">
-                <div className="flex flex-[0_0_50.4px] items-center justify-center max-[640px]:flex-[0_0_43.2px]">
-                  <CompassIcon />
-                </div>
+              <div className="group flex min-w-0 items-center gap-7 rounded-2xl p-5 transition-all duration-500 hover:-translate-y-2 hover:bg-white/5">
+                <div className="transition-all duration-500 group-hover:scale-110 group-hover:text-[#66c61c]">
+    <CompassIcon />
+</div>
                 <div className="min-w-0">
                   <div className="mb-2 block text-xl leading-[1.15] font-normal text-white max-[1200px]:text-lg max-[640px]:[overflow-wrap:anywhere]">
                     {addressTitle}
@@ -295,9 +296,54 @@ function Footer({
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
           />
+          <div className="border-t border-white/10">
+  <div
+    className={`${layoutContainerClass} flex flex-col items-center justify-between gap-6 py-8 md:flex-row`}
+  >
+    <div>
+      <h4 className="text-lg font-semibold text-white">
+        Follow AG Solutions
+      </h4>
+      <p className="mt-1 text-sm text-gray-400">
+        Stay connected with us on social media.
+      </p>
+    </div>
+
+    <div className="flex items-center gap-4">
+      <a
+        href="https://www.instagram.com/ag_solutions_official/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group rounded-full bg-white/10 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-pink-600"
+      >
+        <FaInstagram  className="h-5 w-5 text-white transition-transform duration-300 group-hover:rotate-12" />
+      </a>
+
+      <a
+        href="https://www.facebook.com/profile.php?id=61591878191618"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group rounded-full bg-white/10 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-blue-600"
+      >
+        <FaFacebookF  className="h-5 w-5 text-white transition-transform duration-300 group-hover:rotate-12" />
+      </a>
+
+      <a
+        href="https://www.linkedin.com/in/ag-solutions-104223427/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group rounded-full bg-white/10 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-sky-600"
+      >
+        <FaLinkedinIn  className="h-5 w-5 text-white transition-transform duration-300 group-hover:rotate-12" />
+      </a>
+    </div>
+  </div>
+</div>
           <div className="bg-[#11181c] py-5 text-center font-light">
             <div className={layoutContainerClass}>
-              Copyright&copy; {copyrightYear} {copyrightName} all right reserved.
+              <p className="text-sm text-gray-400">
+  © {copyrightYear} {copyrightName}. All Rights Reserved.
+</p>
             </div>
           </div>
         </footer>
