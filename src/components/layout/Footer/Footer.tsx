@@ -48,56 +48,91 @@ function Footer({
   const bgUrl = `/images/${bgFileName}`;
 
   useEffect(() => {
-    const footer = footerRef.current;
+ const footer = document.getElementById("footer-contact");
 
-    if (!footer) {
-      return undefined;
-    }
+  if (!footer) return;
 
-    const strokes = Array.from(
-      footer.querySelectorAll<SVGElement>('[data-animated-stroke="true"]'),
-    );
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+  const strokes = Array.from(
+    footer.querySelectorAll<SVGElement>('[data-animated-stroke="true"]'),
+  );
+  console.log("Number of strokes:", strokes.length);
 
-    if (reduceMotion) {
-      strokes.forEach((stroke) => {
-        stroke.style.opacity = "1";
-        stroke.style.strokeDashoffset = "0";
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (reduceMotion) {
+    strokes.forEach((stroke) => {
+      stroke.style.opacity = "1";
+      stroke.style.strokeDashoffset = "0";
+    });
+    return;
+  }
+
+  let hasAnimated = false;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      console.log(
+  "Observer fired:",
+  entry.isIntersecting,
+  entry.intersectionRatio
+);
+      if (!entry.isIntersecting || hasAnimated) return;
+
+      hasAnimated = true;
+
+      const animations = strokes.map((stroke) => {
+        const dashLength = stroke.dataset.dashLength ?? "0";
+        const delay =
+          Number.parseFloat(stroke.dataset.drawDelay ?? "0") || 0;
+
+        stroke.style.strokeDasharray = dashLength;
+        stroke.style.strokeDashoffset = dashLength;
+        stroke.style.opacity = "0";
+        stroke.classList.add("drawing-stroke");
+
+        const animation = stroke.animate(
+          [
+            {
+              opacity: 0,
+              strokeDashoffset: dashLength,
+            },
+            {
+              opacity: 1,
+              offset: 0.12,
+            },
+            {
+              opacity: 1,
+              strokeDashoffset: "0",
+            },
+          ],
+          {
+            delay,
+            duration: 1100,
+            easing: "ease-out",
+            fill: "forwards",
+          }
+        );
+        animation.onfinish = () => {
+  stroke.classList.remove("drawing-stroke");
+};
+
+return animation;
       });
 
-      return undefined;
+      observer.disconnect();
+    },
+    {
+      threshold: 0.35,
     }
+  );
 
-    const animations = strokes.map((stroke) => {
-      const dashLength = stroke.dataset.dashLength ?? "0";
-      const delay = Number.parseFloat(stroke.dataset.drawDelay ?? "0") || 0;
+  observer.observe(footer);
 
-      stroke.style.strokeDasharray = dashLength;
-      stroke.style.strokeDashoffset = dashLength;
-      stroke.style.opacity = "0";
-
-      return stroke.animate(
-        [
-          { opacity: 0, strokeDashoffset: dashLength },
-          { opacity: 1, offset: 0.12 },
-          { opacity: 1, strokeDashoffset: "0" },
-        ],
-        {
-          delay,
-          duration: 1100,
-          easing: "ease",
-          fill: "forwards",
-        },
-      );
-    });
-
-    return () => {
-      animations.forEach((animation) => animation.cancel());
-    };
-  }, []);
-
+  return () => observer.disconnect();
+}, []);
+console.log("ANIMATE CALLED");
   useEffect(() => {
     return () => {
       if (submitTimerRef.current !== null) {
@@ -228,10 +263,7 @@ function Footer({
         </div>
       </AnimatedSection>
 
-      <AnimatedSection
-        className="bg-[#151d23] text-[#9daab7]"
-        ariaLabel="Site footer wrapper"
-      >
+      <div className="bg-[#151d23] text-[#9daab7]">
         <footer
           id="site-footer"
           ref={footerRef}
@@ -242,7 +274,7 @@ function Footer({
               {organizationName}
             </div> */}
             {/* <div className="mt-[15px] h-px bg-[#29343d]" /> */}
-            <div className="flex justify-between gap-8 pt-12 pb-11 max-[1200px]:gap-6 max-[980px]:grid max-[980px]:grid-cols-1 max-[980px]:gap-8 max-[980px]:pt-9 max-[980px]:pb-10">
+           <div id="footer-contact" className="flex justify-between gap-8 pt-12 pb-11 max-[1200px]:gap-6 max-[980px]:grid max-[980px]:grid-cols-1 max-[980px]:gap-8 max-[980px]:pt-9 max-[980px]:pb-10">
               <div className="group flex min-w-0 items-center gap-7 rounded-2xl p-5 transition-all duration-500 hover:-translate-y-2 hover:bg-white/5">
                 <div className="transition-all duration-500 group-hover:scale-110 group-hover:text-[#66c61c]">
     <PhoneIcon />
@@ -347,7 +379,7 @@ function Footer({
             </div>
           </div>
         </footer>
-      </AnimatedSection>
+      </div>
     </>
   );
 }

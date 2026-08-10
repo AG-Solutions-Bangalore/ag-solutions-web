@@ -14,7 +14,9 @@ export const loadContactPage = () =>
 export const loadPortfolioPage = () =>
   import("@/features/portfolio/pages/PortfolioPage");
 export const loadWebDevelopmentPage = () =>
-  import("@/features/service/web-development/pages/WebDevelopmentPage");
+  import(
+    "@/features/service/web-development/pages/WebDevelopmentPage"
+  );
 export const loadMobileAppDevelopmentPage = () =>
   import(
     "@/features/service/mobile-app-development/pages/MobileAppDevelopmentPage"

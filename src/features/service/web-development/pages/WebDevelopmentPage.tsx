@@ -117,7 +117,7 @@ const faqs: readonly FAQItem[] = [
   },
 ];
 
-export default function WebDevelopmentPage() {
+export default function () {
   const createEnquiry = useCreateEnquiry();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedImage, setSelectedImage] = useState<{ image: string; title: string; subtitle?: string } | null>(null);

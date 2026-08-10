@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import { Link } from "react-router-dom";
 import { layoutContainerClass } from "@/components/layout/styles";
 import { heroSlides } from "../data";
@@ -18,6 +18,14 @@ function HeroCarousel() {
   const [slideDirection, setSlideDirection] =
     useState<SlideDirection>("from-right");
   const activeSlide = heroSlides[activeIndex];
+
+  useEffect(() => {
+  const interval = setInterval(() => {
+    goToSlide(getNextIndex(activeIndex), "from-right");
+  }, 2000);
+
+  return () => clearInterval(interval);
+}, [activeIndex]);
 
   const imageFirst = activeSlide.layout === "splitReverse";
   const isCentered = activeSlide.layout === "center";
@@ -84,8 +92,8 @@ function HeroCarousel() {
       aria-label="Featured AG Solutions services"
     >
       <div
-        className={`relative h-[620px] overflow-hidden max-[860px]:h-[640px] max-[560px]:h-[680px] transition-colors duration-500 ${activeSlide.backgroundClass}`}
-      >
+  className={`relative h-[520px] overflow-hidden max-[860px]:h-[560px] max-[560px]:h-[600px] transition-colors duration-500 ${activeSlide.backgroundClass}`}
+>
         <button
           type="button"
           className="absolute left-6 top-1/2 z-10 grid h-12 w-12 place-items-center rounded-full hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white max-[760px]:left-3 cursor-pointer"
