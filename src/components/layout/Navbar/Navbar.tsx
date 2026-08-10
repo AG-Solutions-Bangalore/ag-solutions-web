@@ -72,7 +72,6 @@ function Navbar() {
 
   return (
     <>
-      <TopBar />
       <nav
         id="site-header"
         className="site-header navigation navigation-justified sticky-top navigation-landscape sticky top-0 z-[999] bg-white/95"
