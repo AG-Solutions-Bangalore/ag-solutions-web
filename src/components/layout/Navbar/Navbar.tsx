@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import BrandLogo from "./BrandLogo";
 import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
-import TopBar from "./TopBar";
 import DrawerButton from "./DrawerButton";
 import RequirementDrawer from "./RequirementDrawer";
 import { navbarContainerClass } from "./styles";

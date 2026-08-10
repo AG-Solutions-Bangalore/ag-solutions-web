@@ -19,6 +19,7 @@ import {
   loadExportBizPage,
   loadEaseMarketingPage,
   loadGrowTogetherPage,
+  loadExportBizNewPage,
 } from "./routes/lazyRoutes";
 import New from "../src/features/home/pages/New/New";
 
@@ -35,6 +36,7 @@ const BlogListPage = lazy(loadBlogListPage);
 const BlogDetailPage = lazy(loadBlogDetailPage);
 const ProductsPage = lazy(loadProductsPage);
 const ExportBizPage = lazy(loadExportBizPage);
+const ExportBizNewPage = lazy(loadExportBizNewPage);
 const EaseMarketingPage = lazy(loadEaseMarketingPage);
 const GrowTogetherPage = lazy(loadGrowTogetherPage);
 const NotFoundPage = lazy(loadNotFoundPage);
@@ -135,6 +137,7 @@ function App() {
             path="grow-together"
             element={<GrowTogetherPage />}
           />
+          <Route path="export-biz-new" element={<ExportBizNewPage />} />
           <Route path="contacts" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>

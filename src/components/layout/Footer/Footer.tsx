@@ -82,7 +82,7 @@ function Footer({
 
       hasAnimated = true;
 
-      const animations = strokes.map((stroke) => {
+      strokes.forEach((stroke) => {
         const dashLength = stroke.dataset.dashLength ?? "0";
         const delay =
           Number.parseFloat(stroke.dataset.drawDelay ?? "0") || 0;

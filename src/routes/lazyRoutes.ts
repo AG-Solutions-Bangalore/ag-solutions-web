@@ -37,6 +37,8 @@ export const loadEaseMarketingPage = () =>
   import("@/features/products/pages/EaseMarketingPage");
 export const loadGrowTogetherPage = () =>
   import("@/features/products/pages/GrowTogetherPage");
+export const loadExportBizNewPage = () =>
+  import("@/features/export-biz-new/pages/ExportBizNewPage");
 export const loadNotFoundPage = () =>
   import("@/features/not-found/pages/NotFoundPage");
 
@@ -51,6 +53,7 @@ const routeLoaders: Record<string, () => Promise<unknown>> = {
   "/blogs": loadBlogListPage,
   "/products": loadProductsPage,
   "/export-biz": loadExportBizPage,
+  "/export-biz-new": loadExportBizNewPage,
   "/ease-marketing": loadEaseMarketingPage,
   "/grow-together": loadGrowTogetherPage,
 };
