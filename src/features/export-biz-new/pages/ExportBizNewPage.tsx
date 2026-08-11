@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { SEO } from "@/components/seo/SEO";
 import { Hero } from "../components/Hero";
 import { ValueStrip } from "../components/ValueStrip";
 import { Workflow } from "../components/Workflow";
 import { DocumentEcosystem } from "../components/DocumentEcosystem";
-import { DocumentEcosystemV2 } from "../components/DocumentEcosystemV2";
+// import { DocumentEcosystemV2 } from "../components/DocumentEcosystemV2";
 import { CompareSection } from "../components/CompareSection";
 import { TrustSection } from "../components/TrustSection";
 import { PainSection } from "../components/PainSection";
@@ -12,8 +12,11 @@ import { FaqSection } from "../components/FaqSection";
 import { CtaBanner } from "../components/CtaBanner";
 import { MobileSticky } from "../components/MobileSticky";
 import { ToTopButton } from "../components/ToTopButton";
+import { ExportBizDemoModal } from "@/features/products/components/ExportBizDemoModal";
 
 export const ExportBizNewPage: React.FC = () => {
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
+
   // Intersection Observer for scroll reveal animations
   useEffect(() => {
     const reveals = document.querySelectorAll(".reveal");
@@ -36,6 +39,11 @@ export const ExportBizNewPage: React.FC = () => {
   }, []);
 
   const scrollToSection = (targetId: string) => {
+    if (targetId === "demo") {
+      setIsDemoModalOpen(true);
+      return;
+    }
+
     if (targetId === "top") {
       const lenisInstance = (window as any).lenis;
       if (lenisInstance) {
@@ -109,17 +117,24 @@ export const ExportBizNewPage: React.FC = () => {
           <ValueStrip />
           <Workflow />
           <DocumentEcosystem />
-          <DocumentEcosystemV2 />
+          {/* <DocumentEcosystemV2 /> */}
           <CompareSection />
           <TrustSection />
           <PainSection />
           <FaqSection />
-          <CtaBanner onStartDemo={() => scrollToSection("cta-banner")} />
+          <CtaBanner onStartDemo={() => setIsDemoModalOpen(true)} />
         </main>
 
-        <MobileSticky onCtaClick={scrollToSection} />
+        <MobileSticky onCtaClick={() => setIsDemoModalOpen(true)} />
         <ToTopButton />
       </div>
+
+      {isDemoModalOpen && (
+        <ExportBizDemoModal
+          isOpen={isDemoModalOpen}
+          onClose={() => setIsDemoModalOpen(false)}
+        />
+      )}
     </>
   );
 };

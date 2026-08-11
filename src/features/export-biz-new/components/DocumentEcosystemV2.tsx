@@ -90,7 +90,10 @@ export const DocumentEcosystemV2: React.FC = () => {
           {/* TOP RIGHT CARDS (Right Column) */}
           <div className="lg:col-span-5 xl:col-span-5 flex flex-col gap-5 sm:gap-6">
             {/* Sales Contract */}
-            <article className="relative min-h-[220px] sm:min-h-[260px] lg:min-h-[280px] p-6 sm:p-8 lg:p-[36px_38px] border border-[#E1E8F6] rounded-[22px] bg-white/95 shadow-[0_10px_35px_rgba(40,65,120,0.06)] hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(40,65,120,0.1)] transition-all flex flex-col justify-between group">
+            <article 
+              onClick={handleScrollToCta}
+              className="relative min-h-[220px] sm:min-h-[260px] lg:min-h-[280px] p-6 sm:p-8 lg:p-[36px_38px] border border-[#E1E8F6] rounded-[22px] bg-white/95 shadow-[0_10px_35px_rgba(40,65,120,0.06)] hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(40,65,120,0.1)] transition-all flex flex-col justify-between group cursor-pointer"
+            >
               <div>
                 <div className="w-[58px] h-[58px] sm:w-[70px] sm:h-[70px] flex items-center justify-center rounded-[18px] bg-[#EEF4FF] mb-5 sm:mb-6 shrink-0">
                   <svg
@@ -130,7 +133,10 @@ export const DocumentEcosystemV2: React.FC = () => {
             </article>
 
             {/* Purchase Order */}
-            <article className="relative min-h-[220px] sm:min-h-[260px] lg:min-h-[280px] p-6 sm:p-8 lg:p-[36px_38px] border border-[#E1E8F6] rounded-[22px] bg-white/95 shadow-[0_10px_35px_rgba(40,65,120,0.06)] hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(40,65,120,0.1)] transition-all flex flex-col justify-between group">
+            <article 
+              onClick={handleScrollToCta}
+              className="relative min-h-[220px] sm:min-h-[260px] lg:min-h-[280px] p-6 sm:p-8 lg:p-[36px_38px] border border-[#E1E8F6] rounded-[22px] bg-white/95 shadow-[0_10px_35px_rgba(40,65,120,0.06)] hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(40,65,120,0.1)] transition-all flex flex-col justify-between group cursor-pointer"
+            >
               <div>
                 <div className="w-[58px] h-[58px] sm:w-[70px] sm:h-[70px] flex items-center justify-center rounded-[18px] bg-[#EEF4FF] mb-5 sm:mb-6 shrink-0">
                   <svg
@@ -172,7 +178,10 @@ export const DocumentEcosystemV2: React.FC = () => {
           {/* BOTTOM CARDS (Full Width Row) */}
           <div className="lg:col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
             {/* Payment & Claim Outstanding */}
-            <article className="relative min-h-[240px] sm:min-h-[270px] lg:min-h-[295px] p-6 sm:p-8 lg:p-[36px_38px] border border-[#E1E8F6] rounded-[22px] bg-white/95 shadow-[0_10px_35px_rgba(40,65,120,0.06)] hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(40,65,120,0.1)] transition-all flex flex-col justify-between group">
+            <article 
+              onClick={handleScrollToCta}
+              className="relative min-h-[240px] sm:min-h-[270px] lg:min-h-[295px] p-6 sm:p-8 lg:p-[36px_38px] border border-[#E1E8F6] rounded-[22px] bg-white/95 shadow-[0_10px_35px_rgba(40,65,120,0.06)] hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(40,65,120,0.1)] transition-all flex flex-col justify-between group cursor-pointer"
+            >
               <div>
                 <div className="w-[58px] h-[58px] sm:w-[70px] sm:h-[70px] flex items-center justify-center rounded-[18px] bg-[#E4F8F3] mb-5 sm:mb-6 shrink-0">
                   <svg
@@ -209,7 +218,10 @@ export const DocumentEcosystemV2: React.FC = () => {
             </article>
 
             {/* Monthly Returns */}
-            <article className="relative min-h-[240px] sm:min-h-[270px] lg:min-h-[295px] p-6 sm:p-8 lg:p-[36px_38px] border border-[#E1E8F6] rounded-[22px] bg-white/95 shadow-[0_10px_35px_rgba(40,65,120,0.06)] hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(40,65,120,0.1)] transition-all flex flex-col justify-between group">
+            <article 
+              onClick={handleScrollToCta}
+              className="relative min-h-[240px] sm:min-h-[270px] lg:min-h-[295px] p-6 sm:p-8 lg:p-[36px_38px] border border-[#E1E8F6] rounded-[22px] bg-white/95 shadow-[0_10px_35px_rgba(40,65,120,0.06)] hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(40,65,120,0.1)] transition-all flex flex-col justify-between group cursor-pointer"
+            >
               <div>
                 <div className="w-[58px] h-[58px] sm:w-[70px] sm:h-[70px] flex items-center justify-center rounded-[18px] bg-[#F0EAFF] mb-5 sm:mb-6 shrink-0">
                   <svg
@@ -249,7 +261,10 @@ export const DocumentEcosystemV2: React.FC = () => {
             </article>
 
             {/* Scheme Claims Outstanding */}
-            <article className="relative min-h-[240px] sm:min-h-[270px] lg:min-h-[295px] p-6 sm:p-8 lg:p-[36px_38px] border border-[#E1E8F6] rounded-[22px] bg-white/95 shadow-[0_10px_35px_rgba(40,65,120,0.06)] hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(40,65,120,0.1)] transition-all flex flex-col justify-between group">
+            <article 
+              onClick={handleScrollToCta}
+              className="relative min-h-[240px] sm:min-h-[270px] lg:min-h-[295px] p-6 sm:p-8 lg:p-[36px_38px] border border-[#E1E8F6] rounded-[22px] bg-white/95 shadow-[0_10px_35px_rgba(40,65,120,0.06)] hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(40,65,120,0.1)] transition-all flex flex-col justify-between group cursor-pointer"
+            >
               <div>
                 <div className="w-[58px] h-[58px] sm:w-[70px] sm:h-[70px] flex items-center justify-center rounded-[18px] bg-[#FFF2DC] mb-5 sm:mb-6 shrink-0">
                   <svg

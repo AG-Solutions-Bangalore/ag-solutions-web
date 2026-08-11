@@ -185,7 +185,7 @@ function Footer({
   return (
     <>
       <AnimatedSection
-        className="relative h-76 overflow-hidden pt-15 text-left text-base leading-[25.6px] text-[#495057] max-[980px]:h-auto"
+        className="relative h-76 z-40 overflow-hidden pt-15 text-left text-base leading-[25.6px] text-[#495057] max-[980px]:h-auto"
         ariaLabel="Subscribe to our newsletter"
       >
         {/* Background Pattern */}
