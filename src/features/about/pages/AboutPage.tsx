@@ -30,7 +30,7 @@ const timelineSteps: readonly TimelineStep[] = [
     initial: "R",
     title: "Market Research",
     description: "We study user needs and market trends to build a highly targeted and strategic product.",
-    image: "/images/about/09-story-company.svg",
+    image: "/images/about/research.webp",
     layout: "splitReverse",
   },
   {
@@ -38,7 +38,7 @@ const timelineSteps: readonly TimelineStep[] = [
     initial: "D",
     title: "Mobile App Development Company",
     description: "After receiving all the details, our expert team starts creating the final project.",
-    image: "/images/about/09-story-company.svg",
+    image: "/images/about/mobile.webp",
     layout: "splitReverse",
   },
   {
@@ -46,7 +46,7 @@ const timelineSteps: readonly TimelineStep[] = [
     initial: "T",
     title: "Testing",
     description: "Besides development, we also take care of an important aspect, TESTING, helping the client with final testing and make the final changes if required.",
-    image: "/images/about/09-story-company.svg",
+    image: "/images/about/testing.webp",
     layout: "split",
   },
   {
@@ -54,7 +54,7 @@ const timelineSteps: readonly TimelineStep[] = [
     initial: "L",
     title: "Product Launch",
     description: "We deploy the application to your environment, making sure all integrations work seamlessly.",
-    image: "/images/about/09-story-company.svg",
+    image: "/images/about/launch-rocket.svg",
     layout: "split",
   },
   {
@@ -62,7 +62,7 @@ const timelineSteps: readonly TimelineStep[] = [
     initial: "M",
     title: "Maintenance",
     description: "According to us, our work does not end after launching the project. Rather we feel that this is where our actual work begins! When our clients are using the project, we help them by solving any issues they may face and performing the timely update.",
-    image: "/images/about/09-story-company.svg",
+    image: "/images/about/maintenance.webp",
     layout: "splitReverse",
   },
 ];
@@ -359,9 +359,8 @@ function AboutPage() {
         {(isVisible) => (
           <div className={`${layoutContainerClass}`}>
             <div
-              className={`home-animated-item text-center ${
-                isVisible ? "home-animated-item-visible" : ""
-              }`}
+              className={`home-animated-item text-center ${isVisible ? "home-animated-item-visible" : ""
+                }`}
             >
               <SectionTitle
                 title="Company Snapshot"
@@ -375,9 +374,8 @@ function AboutPage() {
 
             {/* Grid of 4 Cards */}
             <div
-              className={`home-animated-item mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 ${
-                isVisible ? "home-animated-item-visible" : ""
-              }`}
+              className={`home-animated-item mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 ${isVisible ? "home-animated-item-visible" : ""
+                }`}
               style={{ transitionDelay: "100ms" }}
             >
               {/* Card 1: Founded */}
@@ -387,7 +385,7 @@ function AboutPage() {
                   <Calendar className="h-6 w-6 text-white" />
                 </div>
                 <span className="mt-6 text-[38px] font-black leading-none text-[#2b66e3] tracking-tight">
-                  2014
+                  2011
                 </span>
                 <h4 className="mt-4 text-[17px] font-bold text-[#1b2c38]">
                   Founded
@@ -451,9 +449,8 @@ function AboutPage() {
 
             {/* Serving Clients Banner */}
             <div
-              className={`home-animated-item mt-12 flex flex-col sm:flex-row items-center gap-6 bg-[#8a4dff] rounded-xl p-5 md:py-6 md:px-8 text-white shadow-[0_10px_30px_rgba(138,77,255,0.2)] ${
-                isVisible ? "home-animated-item-visible" : ""
-              }`}
+              className={`home-animated-item mt-12 flex flex-col sm:flex-row items-center gap-6 bg-[#8a4dff] rounded-xl p-5 md:py-6 md:px-8 text-white shadow-[0_10px_30px_rgba(138,77,255,0.2)] ${isVisible ? "home-animated-item-visible" : ""
+                }`}
               style={{ transitionDelay: "200ms" }}
             >
               <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white text-[#8a4dff] shadow-sm">
@@ -476,18 +473,16 @@ function AboutPage() {
           <div className={`${layoutContainerClass} flex flex-col items-center text-center`}>
             {/* Red Circle Quote Icon */}
             <div
-              className={`home-animated-item flex h-20 w-20 items-center justify-center rounded-full bg-[#ff5a5a] shadow-[0_8px_25px_rgba(255,90,90,0.3)] ${
-                isVisible ? "home-animated-item-visible" : ""
-              }`}
+              className={`home-animated-item flex h-20 w-20 items-center justify-center rounded-full bg-[#ff5a5a] shadow-[0_8px_25px_rgba(255,90,90,0.3)] ${isVisible ? "home-animated-item-visible" : ""
+                }`}
             >
               <Quote className="h-10 w-10 text-white fill-white" />
             </div>
 
             {/* Quote Text */}
             <div
-              className={`home-animated-item mt-10 max-w-[960px] ${
-                isVisible ? "home-animated-item-visible" : ""
-              }`}
+              className={`home-animated-item mt-10 max-w-[960px] ${isVisible ? "home-animated-item-visible" : ""
+                }`}
               style={{ transitionDelay: "100ms" }}
             >
               <blockquote className="m-0 text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold leading-[1.4] text-[#1b2c38] tracking-tight">
@@ -497,18 +492,16 @@ function AboutPage() {
 
             {/* Thick Red Divider Line */}
             <div
-              className={`home-animated-item mt-8 h-1.5 w-44 rounded-full bg-[#ff5a5a] ${
-                isVisible ? "home-animated-item-visible" : ""
-              }`}
+              className={`home-animated-item mt-8 h-1.5 w-44 rounded-full bg-[#ff5a5a] ${isVisible ? "home-animated-item-visible" : ""
+                }`}
               style={{ transitionDelay: "150ms" }}
               aria-hidden="true"
             />
 
             {/* Section Heading & Subtitle */}
             <div
-              className={`home-animated-item mt-6 ${
-                isVisible ? "home-animated-item-visible" : ""
-              }`}
+              className={`home-animated-item mt-6 ${isVisible ? "home-animated-item-visible" : ""
+                }`}
               style={{ transitionDelay: "200ms" }}
             >
               <h3 className="m-0 text-xs font-extrabold tracking-[0.25em] text-[#1b2c38] uppercase">
@@ -531,9 +524,8 @@ function AboutPage() {
           <div className={`${layoutContainerClass}`}>
             {/* Header Content */}
             <div
-              className={`home-animated-item flex flex-col items-center text-center ${
-                isVisible ? "home-animated-item-visible" : ""
-              }`}
+              className={`home-animated-item flex flex-col items-center text-center ${isVisible ? "home-animated-item-visible" : ""
+                }`}
             >
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#ff5a5a] shadow-[0_8px_25px_rgba(255,90,90,0.25)]">
                 <Route className="h-7 w-7 text-white" />
@@ -548,9 +540,8 @@ function AboutPage() {
 
             {/* Delivery Approach Divider */}
             <div
-              className={`home-animated-item mt-16 flex flex-col items-center text-center ${
-                isVisible ? "home-animated-item-visible" : ""
-              }`}
+              className={`home-animated-item mt-16 flex flex-col items-center text-center ${isVisible ? "home-animated-item-visible" : ""
+                }`}
               style={{ transitionDelay: "80ms" }}
             >
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#ff5a5a]">
@@ -563,9 +554,8 @@ function AboutPage() {
 
             {/* Process Timeline Steps Grid */}
             <div
-              className={`home-animated-item relative mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-5 ${
-                isVisible ? "home-animated-item-visible" : ""
-              }`}
+              className={`home-animated-item relative mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-5 ${isVisible ? "home-animated-item-visible" : ""
+                }`}
               style={{ transitionDelay: "150ms" }}
             >
               {/* Connecting Line for large screens */}
@@ -657,7 +647,7 @@ function AboutPage() {
 
       {/* 4. What Drives Us Section */}
       <AnimatedSection
-        className="relative overflow-hidden bg-[#ffcb05] py-20 text-[#1b2c38] max-[760px]:py-14"
+        className="relative bg-[#ffcb05] py-20 text-[#1b2c38] max-[760px]:py-14"
         ariaLabel="AG Solutions company vision and mission"
       >
         {(isVisible) => (
@@ -669,43 +659,41 @@ function AboutPage() {
             <div className={`${layoutContainerClass} relative z-1`}>
               {/* Heading */}
               <div
-                className={`home-animated-item text-center ${
-                  isVisible ? "home-animated-item-visible" : ""
-                }`}
+                className={`home-animated-item text-center ${isVisible ? "home-animated-item-visible" : ""
+                  }`}
               >
-                <h2 className="m-0 text-[42px] leading-tight font-black max-[760px]:text-3xl text-[#1b2c38]">
+                <h2 className="m-0 text-[42px] leading-tight font-black md:text-6xl text-[#1b2c38]">
                   What Drives Us
                 </h2>
               </div>
 
               {/* Grid content */}
               <div
-                className={`home-animated-item mt-12 grid gap-12 items-center lg:grid-cols-3 ${
-                  isVisible ? "home-animated-item-visible" : ""
-                }`}
+                className={`home-animated-item mt-12 grid gap-12 items-center lg:grid-cols-3 ${isVisible ? "home-animated-item-visible" : ""
+                  }`}
                 style={{ transitionDelay: "100ms" }}
               >
                 {/* Left: Our Vision */}
                 <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
                   <div className="flex items-center gap-4">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#2563eb] text-white shadow-[0_4px_15px_rgba(37,99,235,0.3)]">
-                      <Eye className="h-7 w-7" />
+                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-[#2563eb] text-white shadow-[0_4px_15px_rgba(37,99,235,0.3)]">
+                      <Eye className="h-8 w-8" />
                     </div>
-                    <h3 className="m-0 text-3xl font-black text-[#1b2c38] tracking-tight">
+                    <h3 className="m-0 text-3xl sm:text-6xl font-black text-[#1b2c38] tracking-tight">
                       Our Vision
                     </h3>
                   </div>
-                  <p className="mt-6 text-[17px] leading-relaxed text-[#1b2c38] font-medium max-w-[400px]">
+                  <p className="mt-6 text-[19px] sm:text-2xl leading-relaxed text-[#1b2c38] font-semibold max-w-[450px]">
                     To make technology and business services simpler, practical and accessible — enabling organizations to improve operations, customer engagement and growth.
                   </p>
                 </div>
 
                 {/* Center: Lighthouse Image */}
-                <div className="flex justify-center">
+                <div className="flex justify-center lg:self-end self-center">
                   <img
                     src="/images/about/Picture1.webp"
                     alt="Lighthouse representing vision and direction"
-                    className="h-auto w-full max-w-[340px] drop-shadow-xl"
+                    className="relative -z-10 h-auto w-full max-w-[340px] drop-shadow-xl -mb-20 max-[760px]:-mb-24"
                     loading="lazy"
                   />
                 </div>
@@ -713,14 +701,14 @@ function AboutPage() {
                 {/* Right: Mission */}
                 <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
                   <div className="flex items-center gap-4">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#ff5a5a] text-white shadow-[0_4px_15px_rgba(255,90,90,0.3)]">
-                      <Target className="h-7 w-7" />
+                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-[#ff5a5a] text-white shadow-[0_4px_15px_rgba(255,90,90,0.3)]">
+                      <Target className="h-8 w-8" />
                     </div>
-                    <h3 className="m-0 text-3xl font-black text-[#1b2c38] tracking-tight uppercase">
+                    <h3 className="m-0 text-3xl sm:text-6xl font-black text-[#1b2c38] tracking-tight uppercase">
                       MISSION
                     </h3>
                   </div>
-                  <p className="mt-6 text-[17px] leading-relaxed text-[#1b2c38] font-medium max-w-[400px]">
+                  <p className="mt-6 text-[19px] sm:text-2xl leading-relaxed text-[#1b2c38] font-semibold max-w-[450px]">
                     To deliver customized, cost-effective and dependable solutions by combining technology, business understanding, digital communication and long-term client support
                   </p>
                 </div>

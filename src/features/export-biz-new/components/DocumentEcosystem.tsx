@@ -1,6 +1,13 @@
 import React from "react";
 
 export const DocumentEcosystem: React.FC = () => {
+  const handleScrollToCta = () => {
+    const elem = document.getElementById("cta-banner");
+    if (elem) {
+      elem.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="bg-white py-14 md:py-20 lg:py-24" id="documents">
       <div className="max-w-[1180px] mx-auto px-5 sm:px-8 md:px-12">
@@ -20,7 +27,10 @@ export const DocumentEcosystem: React.FC = () => {
         {/* ORIGINAL DOCUMENT CARDS GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 reveal">
           {/* Main Hero Doc Module */}
-          <div className="sm:col-span-2 sm:row-span-2 bg-gradient-to-br from-[#071B49] via-[#0E2C6B] to-[#1557E8] text-white rounded-[24px] p-6.5 sm:p-9 flex flex-col justify-between shadow-[0_14px_34px_rgba(7,27,73,0.10)] min-h-[290px]">
+          <div 
+            onClick={handleScrollToCta}
+            className="sm:col-span-2 sm:row-span-2 bg-gradient-to-br from-[#071B49] via-[#0E2C6B] to-[#1557E8] text-white rounded-[24px] p-6.5 sm:p-9 flex flex-col justify-between shadow-[0_14px_34px_rgba(7,27,73,0.10)] min-h-[290px] cursor-pointer hover:scale-[1.01] transition-transform duration-200"
+          >
             <div>
               <span className="inline-block bg-white/15 text-[#D3E2FF] text-[0.7rem] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full mb-4">
                 CORE MODULE
@@ -51,7 +61,10 @@ export const DocumentEcosystem: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-white border border-[#E3E9F6] rounded-[24px] p-6 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(7,27,73,0.10)] hover:border-transparent transition-all duration-200">
+          <div 
+            onClick={handleScrollToCta}
+            className="bg-white border border-[#E3E9F6] rounded-[24px] p-6 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(7,27,73,0.10)] hover:border-transparent transition-all duration-200 cursor-pointer"
+          >
             <div>
               <span className="w-11 h-11 rounded-xl bg-[#F5F8FC] text-[#1557E8] flex items-center justify-center shrink-0 mb-3">
                 <svg
@@ -77,7 +90,10 @@ export const DocumentEcosystem: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-white border border-[#E3E9F6] rounded-[24px] p-6 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(7,27,73,0.10)] hover:border-transparent transition-all duration-200">
+          <div 
+            onClick={handleScrollToCta}
+            className="bg-white border border-[#E3E9F6] rounded-[24px] p-6 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(7,27,73,0.10)] hover:border-transparent transition-all duration-200 cursor-pointer"
+          >
             <div>
               <span className="w-11 h-11 rounded-xl bg-[#F5F8FC] text-[#1557E8] flex items-center justify-center shrink-0 mb-3">
                 <svg
@@ -103,7 +119,10 @@ export const DocumentEcosystem: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-white border border-[#E3E9F6] rounded-[24px] p-6 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(7,27,73,0.10)] hover:border-transparent transition-all duration-200">
+          <div 
+            onClick={handleScrollToCta}
+            className="bg-white border border-[#E3E9F6] rounded-[24px] p-6 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(7,27,73,0.10)] hover:border-transparent transition-all duration-200 cursor-pointer"
+          >
             <div>
               <span className="w-11 h-11 rounded-xl bg-[#F5F8FC] text-[#1557E8] flex items-center justify-center shrink-0 mb-3">
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -131,7 +150,10 @@ export const DocumentEcosystem: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-white border border-[#E3E9F6] rounded-[24px] p-6 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(7,27,73,0.10)] hover:border-transparent transition-all duration-200">
+          <div 
+            onClick={handleScrollToCta}
+            className="bg-white border border-[#E3E9F6] rounded-[24px] p-6 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(7,27,73,0.10)] hover:border-transparent transition-all duration-200 cursor-pointer"
+          >
             <div>
               <span className="w-11 h-11 rounded-xl bg-[#F5F8FC] text-[#1557E8] flex items-center justify-center shrink-0 mb-3">
                 <svg
@@ -157,7 +179,10 @@ export const DocumentEcosystem: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-white border border-[#E3E9F6] rounded-[24px] p-6 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(7,27,73,0.10)] hover:border-transparent transition-all duration-200">
+          <div 
+            onClick={handleScrollToCta}
+            className="bg-white border border-[#E3E9F6] rounded-[24px] p-6 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(7,27,73,0.10)] hover:border-transparent transition-all duration-200 cursor-pointer"
+          >
             <div>
               <span className="w-11 h-11 rounded-xl bg-[#F5F8FC] text-[#1557E8] flex items-center justify-center shrink-0 mb-3">
                 <svg

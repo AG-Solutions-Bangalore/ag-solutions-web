@@ -32,7 +32,7 @@ export const loadBlogDetailPage = () =>
 export const loadProductsPage = () =>
   import("@/features/products/pages/ProductsPage");
 export const loadExportBizPage = () =>
-  import("@/features/products/pages/ExportBizPage");
+  import("@/features/export-biz-new/pages/ExportBizNewPage");
 export const loadEaseMarketingPage = () =>
   import("@/features/products/pages/EaseMarketingPage");
 export const loadGrowTogetherPage = () =>

@@ -46,8 +46,7 @@ export const Hero: React.FC<HeroProps> = ({ onScrollTo }) => {
 
             <div className="flex flex-wrap items-center gap-4 mb-7">
               <a
-                href="#cta-banner"
-                onClick={(e) => handleClick(e, "cta-banner")}
+                onClick={(e) => handleClick(e, "demo")}
                 className="inline-flex items-center justify-center gap-2 font-['Inter',sans-serif] font-bold text-base sm:text-[1.05rem] px-7 py-3.5 sm:px-7.5 sm:py-4 rounded-2xl bg-[#FF5A00] text-white shadow-[0_10px_26px_rgba(255,90,0,0.35)] hover:-translate-y-0.5 hover:shadow-[0_14px_32px_rgba(255,90,0,0.45)] hover:bg-[#E64F00] transition-all duration-180 ease-in-out whitespace-nowrap min-h-[50px] cursor-pointer"
               >
                 Start Free Demo →

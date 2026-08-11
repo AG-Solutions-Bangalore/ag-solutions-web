@@ -136,10 +136,10 @@ function App() {
           <Route path="blogs" element={<BlogListPage />} />
           <Route path="blogs/:slug" element={<BlogDetailPage />} />
           <Route path="products" element={<ProductsPage />} />
-           <Route path="/new" element={<New />} />
+          <Route path="/new" element={<New />} />
           <Route
             path="export-biz"
-            element={<ExportBizPage defaultOpenModal={false} />}
+            element={<ExportBizPage />}
           />
           <Route
             path="ease-marketing"
