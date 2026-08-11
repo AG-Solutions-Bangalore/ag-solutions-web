@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import MobileAppDevelopmentSEO from "../seo/MobileAppDevelopmentSEO";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import Lightbox from "@/components/ui/Lightbox";
-import { useProjects } from "@/features/portfolio/hooks/useProjects";
-import { useFAQs } from "@/features/service/hooks/useFAQs";
 import { useCreateEnquiry } from "@/features/contact-us/hooks/useCreateEnquiry";
 import { layoutContainerClass } from "@/components/layout/styles";
 import { PageHero, SectionTitle } from "@/components/layout";
@@ -23,7 +21,153 @@ interface FAQItem {
   answer: string;
 }
 
-// colorLineSegments replaced by SectionTitle
+const defaultFaqs: readonly FAQItem[] = [
+  {
+    question: "1. What mobile app development services does AG Solutions provide?",
+    answer:
+      "AG Solutions provides custom Android and iOS app development services for businesses looking to build secure, scalable, and user-friendly mobile applications. Our services cover the complete app development lifecycle, including requirement analysis, UI/UX design, development, testing, deployment, and ongoing support.",
+  },
+  {
+    question: "2. Does AG Solutions develop both Android and iOS apps?",
+    answer:
+      "Yes. AG Solutions specializes in developing Android and iOS applications based on your business requirements and target audience. We can help businesses create applications designed specifically for Android devices, Apple devices, or both platforms.",
+  },
+  {
+    question: "3. How does AG Solutions develop a custom mobile application?",
+    answer:
+      "Our mobile app development process starts with understanding your business goals, target users, required features, and technical requirements. We then move through UI/UX design, application development, testing, deployment, and post-launch support to deliver a reliable mobile application.",
+  },
+  {
+    question: "4. How much does mobile app development cost?",
+    answer:
+      "The cost of mobile app development depends on factors such as app complexity, number of features, UI/UX requirements, platform, integrations, security requirements, and development timeline. AG Solutions evaluates your requirements and provides a practical development approach based on your project scope.",
+  },
+  {
+    question: "5. How long does it take to develop an Android or iOS app?",
+    answer:
+      "The development timeline depends on the application's features, complexity, design requirements, integrations, and testing needs. After understanding your requirements, AG Solutions can define a suitable development roadmap and timeline for your Android or iOS application.",
+  },
+  {
+    question: "6. Can AG Solutions build an app according to our specific business requirements?",
+    answer:
+      "Yes. AG Solutions focuses on custom mobile app development rather than a one-size-fits-all approach. We understand your business processes, users, and objectives before developing an application tailored to your specific requirements.",
+  },
+  {
+    question: "7. Does AG Solutions provide UI/UX design for mobile applications?",
+    answer:
+      "Yes. Our mobile app development process includes UI/UX design focused on creating intuitive navigation, clear interfaces, and engaging user experiences. Designs can be planned according to the requirements and design standards of Android and iOS platforms.",
+  },
+  {
+    question: "8. Does AG Solutions test mobile applications before launch?",
+    answer:
+      "Yes. Mobile applications are tested before deployment to identify functional issues, compatibility problems, usability concerns, and performance issues. Testing helps ensure the Android or iOS application provides a reliable experience before it reaches users.",
+  },
+  {
+    question: "9. Does AG Solutions provide app deployment services?",
+    answer:
+      "Yes. We can support the deployment and launch process for Android and iOS applications, including preparation for the relevant app distribution platforms. Our team can also assist with post-launch updates and improvements.",
+  },
+  {
+    question: "10. Does AG Solutions provide mobile app maintenance and support?",
+    answer:
+      "Yes. Our support continues after the application is launched. We can provide bug fixes, application updates, performance improvements, feature enhancements, and ongoing technical maintenance to help keep your mobile application reliable.",
+  },
+  {
+    question: "11. Why should businesses choose AG Solutions for mobile app development?",
+    answer:
+      "AG Solutions combines 15+ years of industry experience, customized development, technical expertise, clear communication, and ongoing support. We focus on understanding each business requirement and building Android and iOS applications that are practical, scalable, secure, and user-friendly.",
+  },
+  {
+    question: "12. Does AG Solutions develop apps for businesses in Bangalore?",
+    answer:
+      "Yes. AG Solutions provides Android and iOS mobile app development services for businesses in Bangalore and other locations. Our team works with businesses to understand their requirements and develop customized mobile applications based on their goals and target users.",
+  },
+];
+
+const whyChooseCards = [
+  {
+    title: "Clear Planning & Requirement Analysis",
+    emoji: "🧠",
+    description:
+      "Every successful mobile application starts with a clear understanding of the business requirement. We analyze your app idea, target users, required features, and business objectives before development to create a clear and practical development plan.",
+  },
+  {
+    title: "15+ Years of Industry Experience",
+    emoji: "🏆",
+    description:
+      "With 15+ years of industry experience, AG Solutions brings proven technical expertise to every project. We understand diverse business requirements and use this experience to plan and develop custom Android and iOS applications that are reliable, user-friendly, scalable, and aligned with your business goals.",
+  },
+  {
+    title: "Reliable App Development & Ongoing Support",
+    emoji: "🤝",
+    description:
+      "We work closely with you throughout the mobile app development journey, from planning and development to deployment and post-launch support. Our team remains available for updates, enhancements, performance improvements, and maintenance to help keep your Android and iOS applications reliable and up to date.",
+  },
+  {
+    title: "Strong Technical Expertise",
+    emoji: "⚙️",
+    description:
+      "Our experienced team uses reliable and modern technologies to develop high-quality Android and iOS applications. We focus on secure development, smooth performance, scalability, and maintainable solutions to deliver mobile apps that support your business goals and provide a dependable user experience.",
+  },
+  {
+    title: "Cost-Effective App Development",
+    emoji: "💰",
+    description:
+      "We provide cost-effective Android and iOS app development based on your actual business requirements and project scope. By focusing on essential features, efficient development, and practical solutions, we help businesses achieve a high-quality mobile application while making the most of their development budget.",
+  },
+  {
+    title: "Clear Communication & Ongoing Support",
+    emoji: "📞",
+    description:
+      "We provide regular project updates, clear timelines, and transparent communication throughout the app development process. Even after your Android or iOS app is launched, our team remains available for updates, improvements, bug fixes, and ongoing technical support to ensure your application continues to perform reliably.",
+  },
+];
+
+const processSteps = [
+  {
+    step: "01",
+    title: "Requirement Analysis & Strategy",
+    description:
+      "We begin by understanding your business objectives, target audience, industry, and app requirements. Our team conducts market research and technical analysis to define the app's features, functionality, technology stack, and development roadmap.",
+  },
+  {
+    step: "02",
+    title: "UI/UX Design",
+    description:
+      "Our UI/UX designers create intuitive user journeys, wireframes, prototypes, and engaging interfaces. We focus on usability, accessibility, responsive design, and consistent experiences across Android and iOS devices.",
+  },
+  {
+    step: "03",
+    title: "App Development & Testing",
+    description:
+      "Our developers build secure, scalable, and high-performance mobile applications using modern technologies and agile development practices. Every feature undergoes functional, security, compatibility, and performance testing to ensure a reliable app before launch.",
+  },
+  {
+    step: "04",
+    title: "Deployment & Ongoing Support",
+    description:
+      "We manage the complete app deployment process, including Google Play Store and Apple App Store submission. After launch, we provide continuous monitoring, performance optimization, bug fixes, updates, and ongoing mobile app maintenance to support long-term growth.",
+  },
+];
+
+const industries = [
+  { name: "Plastic Industries & Manufacturers", icon: "🏭" },
+  { name: "Garment Manufacturers & Association", icon: "👕" },
+  { name: "Transportation & Fleet Management", icon: "🚛" },
+  { name: "Granite & Tiles Wholesalers", icon: "🧱" },
+  { name: "Large Hardware Retailers", icon: "🛠️" },
+  { name: "Exporters & Trading Businesses", icon: "📦" },
+  { name: "Manufacturing & Industrial Companies", icon: "⚙️" },
+  { name: "Home Services & Home Automation", icon: "🏠" },
+  { name: "NGOs & Foundations", icon: "🤝" },
+  { name: "Communities, Associations & Groups", icon: "👥" },
+  { name: "Education & Professional Training", icon: "🎓" },
+  { name: "Business Networking Platforms", icon: "🌐" },
+  { name: "Matrimonial & Community Platforms", icon: "💍" },
+  { name: "Financial & Investment Platforms", icon: "📈" },
+  { name: "Service Businesses & SMEs", icon: "💼" },
+  { name: "Other Custom Business Requirements", icon: "✨" },
+];
 
 const recentWorks: readonly PortfolioItem[] = [
   {
@@ -43,61 +187,12 @@ const recentWorks: readonly PortfolioItem[] = [
   },
 ];
 
-const faqs: readonly FAQItem[] = [
-  {
-    question: "What is called mobile app?",
-    answer:
-      "A mobile application, most commonly referred to as an app, is a type of application software designed to run on a mobile device, such as a smartphone or tablet computer.",
-  },
-  {
-    question: "What is mobile app types?",
-    answer:
-      "Mobile apps generally fall into three categories: Native apps (built specifically for iOS or Android using their respective SDKs), Web apps (responsive websites running in mobile browsers), and Hybrid apps (combining native containers with web technologies like React Native or Flutter).",
-  },
-  {
-    question: "What are the uses of mobile apps?",
-    answer:
-      "Mobile apps serve many purposes, including providing general information, facilitating online shopping, enabling social connections, boosting business productivity, providing entertainment, and delivering push notifications to keep users engaged.",
-  },
-  {
-    question: "Why mobile app is important?",
-    answer:
-      "Mobile apps are important because they provide a direct marketing channel to customers, build brand awareness, improve customer loyalty, increase engagement, and offer speed and convenience compared to web browsers.",
-  },
-  {
-    question: "How mobile apps help people?",
-    answer:
-      "Mobile apps help people perform daily tasks efficiently—such as managing finances, communicating instantly, navigating via GPS, ordering food or services, tracking fitness, and accessing educational resources on the go.",
-  },
-];
-
 export default function MobileAppDevelopmentPage() {
   const createEnquiry = useCreateEnquiry();
   const [expandedFaqIndex, setExpandedFaqIndex] = useState<number | null>(null);
   const [selectedImage, setSelectedImage] = useState<{ image: string; title: string; subtitle?: string } | null>(null);
-  const { data: projectsData, isLoading: isProjectsLoading } = useProjects("mobile-app-development");
-  const { data: faqResponse } = useFAQs("mobile-app-development");
-
-  const faqList = faqResponse?.data && faqResponse.data.length > 0
-    ? faqResponse.data.map((faq) => ({
-        question: faq.faq_que,
-        answer: faq.faq_ans,
-      }))
-    : faqs;
-
-  const projectBaseUrl = projectsData?.image_url.find(
-    (img) => img.image_for === "Projects"
-  )?.image_url || "https://ag-solutions.in/webapi/public/assets/images/project_images/";
-
-  const apiWorks = projectsData?.data
-    .filter((p) => p.page === "mobile_app_development")
-    .map((p) => ({
-      title: p.project_name,
-      subtitle: p.project_type || "Mobile App",
-      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : "/images/services/mobile-app-development/em.jpg",
-    })) || [];
-
-  const worksList = apiWorks.length > 0 ? apiWorks : recentWorks;
+  const faqList = defaultFaqs;
+  const worksList = recentWorks;
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -149,13 +244,12 @@ export default function MobileAppDevelopmentPage() {
     setExpandedFaqIndex(expandedFaqIndex === index ? null : index);
   }
 
-// renderColorLine replaced by SectionTitle
-
   return (
     <>
       <MobileAppDevelopmentSEO />
       <FAQSchema faqs={faqList} />
 
+      {/* 1. Page Hero */}
       <PageHero
         title="Mobile App Development Company In Bangalore"
         bgImage="/images/pattern-bg-red.jpg"
@@ -165,151 +259,445 @@ export default function MobileAppDevelopmentPage() {
         ]}
       />
 
-      {/* 2. Overview Section */}
+      {/* 2. Top Architecture Banner & Intro */}
       <AnimatedSection
-        className="relative overflow-hidden py-20 text-[#1b2c38] max-[760px]:py-14"
+        className="relative overflow-hidden py-20 text-[#1b2c38] max-[760px]:py-14 bg-white"
         ariaLabel="Mobile Application Development details"
       >
         {(isVisible) => (
-          <>
-            <div className="absolute inset-0 bg-[url('/images/pattern-bg-breez.jpg')] bg-[length:450px_330px] bg-top" />
-            <div className={`${layoutContainerClass} relative z-1`}>
-              {/* Heading */}
-              <SectionTitle
-                title="Mobile Application Development"
-                align="center"
-                titleClassName="text-[38px] leading-[1.16] font-black tracking-normal max-[760px]:text-[30px] text-[#151d23]"
-                className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`}
-              />
+          <div className={`${layoutContainerClass} relative z-1`}>
+            {/* Main Header */}
+            <SectionTitle
+              title="Mobile Application Development"
+              align="center"
+              titleClassName="text-[38px] leading-[1.16] font-black tracking-normal max-[760px]:text-[30px] text-[#151d23]"
+              className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`}
+            />
 
-              {/* 3 Columns details */}
-              <div
-                className={`mt-16 grid grid-cols-1 lg:grid-cols-3 gap-12 items-center home-animated-item ${
-                  isVisible ? "home-animated-item-visible" : ""
+            {/* 3 Columns Banner Graphic */}
+            <div
+              className={`mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center bg-[#0d2331] text-white p-8 lg:p-12 rounded-[24px] shadow-xl home-animated-item ${isVisible ? "home-animated-item-visible" : ""
                 }`}
-                style={{ transitionDelay: "100ms" }}
-              >
-                {/* Android */}
-                <div className="flex flex-col items-center text-center">
-                  <img
-                    src="/images/services/mobile-app-development/android.png"
-                    alt="Android logo"
-                    className="w-16 h-16 object-contain"
-                    loading="lazy"
-                  />
-                  <h3 className="mt-4 text-[22px] font-black text-[#ff3c66] tracking-tight">
-                    Andriod
-                  </h3>
-                  <p className="mt-4 text-[15px] leading-relaxed text-white font-medium max-w-[320px] mx-auto">
-                    From strategy & design to development, testing, and
-                    deployment, we provide enterprise mobility solutions for a
-                    wide range of industries that are guaranteed to help you
-                    thrive in the mobile-first world. .
-                  </p>
-                </div>
+              style={{ transitionDelay: "100ms" }}
+            >
+              {/* Android Column */}
+              <div className="flex flex-col items-center text-center">
+                <img
+                  src="/images/services/mobile-app-development/android.png"
+                  alt="Android logo"
+                  className="w-16 h-16 object-contain"
+                  loading="lazy"
+                />
+                <h3 className="mt-4 text-[24px] font-black text-[#ff3c66] tracking-tight">
+                  Android
+                </h3>
+                <p className="mt-3 text-[14.5px] leading-relaxed text-slate-200 font-normal max-w-[300px] mx-auto">
+                  From strategy & design to development, testing, and deployment, we provide enterprise mobility solutions for a wide range of industries that are guaranteed to help you thrive in the mobile-first world.
+                </p>
+              </div>
 
-                {/* Central Architecture Image */}
-                <div className="flex justify-center">
-                  <img
-                    src="/images/services/mobile-app-development/mobile-app-architecture.png"
-                    alt="Mobile application architecture diagram"
-                    className="w-full max-w-[340px] object-contain"
-                    loading="lazy"
-                  />
-                </div>
+              {/* Architecture Diagram */}
+              <div className="flex justify-center my-4 lg:my-0">
+                <img
+                  src="/images/services/mobile-app-development/mobile-app-architecture.png"
+                  alt="Mobile application architecture diagram"
+                  className="w-full max-w-[340px] object-contain drop-shadow-md"
+                  loading="lazy"
+                />
+              </div>
 
-                {/* iOS */}
-                <div className="flex flex-col items-center text-center">
-                  <img
-                    src="/images/services/mobile-app-development/apple.png"
-                    alt="iOS Apple logo"
-                    className="w-16 h-16 object-contain"
-                    loading="lazy"
-                  />
-                  <h3 className="mt-4 text-[22px] font-black text-[#ff3c66] tracking-tight">
-                    IOS
-                  </h3>
-                  <p className="mt-4 text-[15px] leading-relaxed text-white font-medium max-w-[320px] mx-auto">
-                    From strategy & design to development, testing, and
-                    deployment, we provide enterprise mobility solutions for a
-                    wide range of industries that are guaranteed to help you
-                    thrive in the mobile-first world. .
-                  </p>
-                </div>
+              {/* iOS Column */}
+              <div className="flex flex-col items-center text-center">
+                <img
+                  src="/images/services/mobile-app-development/apple.png"
+                  alt="iOS Apple logo"
+                  className="w-16 h-16 object-contain"
+                  loading="lazy"
+                />
+                <h3 className="mt-4 text-[24px] font-black text-[#ff3c66] tracking-tight">
+                  iOS
+                </h3>
+                <p className="mt-3 text-[14.5px] leading-relaxed text-slate-200 font-normal max-w-[300px] mx-auto">
+                  From strategy & design to development, testing, and deployment, we provide enterprise mobility solutions for a wide range of industries that are guaranteed to help you thrive in the mobile-first world.
+                </p>
               </div>
             </div>
-          </>
-        )}
-      </AnimatedSection>
 
-      {/* 3. Few Recent Works */}
-      <AnimatedSection
-        className="bg-white py-20 border-t border-slate-100 text-[#1b2c38] max-[760px]:py-14"
-        ariaLabel="Recent mobile app works"
-      >
-        {(isVisible) => (
-          <div className={layoutContainerClass}>
-            {/* Heading row with link */}
+            {/* Introductory Text Box */}
             <div
-              className={`flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 home-animated-item ${
-                isVisible ? "home-animated-item-visible" : ""
-              }`}
+              className={`mt-16 text-center max-w-[920px] mx-auto home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+                }`}
+              style={{ transitionDelay: "200ms" }}
             >
-              <SectionTitle
-                title="Few Recent Works"
-                align="left"
-                titleClassName="text-[38px] leading-[1.16] font-black tracking-normal max-[760px]:text-[30px] text-[#1a2b3c]"
-              />
-              <Link
-                to="/portfolio"
-                className="text-[15px] font-bold text-[#09c7ca] hover:text-[#07b6b9] transition-colors no-underline flex items-center gap-1.5 self-start sm:self-end border-b border-transparent hover:border-[#09c7ca] pb-0.5"
-              >
-                See all Projects{" "}
-                <span className="text-lg leading-none">&rarr;</span>
-              </Link>
+              <h2 className="text-[28px] sm:text-[34px] font-black leading-[1.25] text-[#151d23]">
+                Why Choose AG Solutions for Web & Mobile App Development?
+              </h2>
+              <p className="mt-5 text-[16px] sm:text-[17px] leading-[1.65] text-[#4f5a62] font-normal">
+                Choosing the right mobile app development company is about more than simply building an application. At <strong className="font-bold text-[#151d23]">AG Solutions</strong>, we understand your business requirements, target users, and app objectives to create reliable, user-friendly, and scalable <strong className="font-bold text-[#151d23]">Android and iOS applications</strong> designed for real-world business needs.
+              </p>
             </div>
 
-            {/* Works Cards Grid */}
+            {/* 6 Cards Grid (Why Choose AG Solutions) */}
             <div
-              className={`mt-12 home-animated-item ${
-                isVisible ? "home-animated-item-visible" : ""
-              }`}
-              style={{ transitionDelay: "150ms" }}
+              className={`mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+                }`}
+              style={{ transitionDelay: "300ms" }}
             >
-              {isProjectsLoading ? (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  {Array.from({ length: 3 }).map((_, i) => (
-                    <div key={i} className="animate-pulse border border-slate-100 bg-white">
-                      <div className="aspect-[3/2] bg-slate-100" />
-                      <div className="py-5 px-6 text-center bg-[#f4f5ee]/50 space-y-2">
-                        <div className="h-4 bg-slate-200 rounded w-2/3 mx-auto" />
-                        <div className="h-3 bg-slate-100 rounded w-1/2 mx-auto" />
-                      </div>
+              {whyChooseCards.map((card, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white rounded-[18px] p-8 border border-slate-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-3xl">{card.emoji}</span>
+                      <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">
+                        0{idx + 1}
+                      </span>
                     </div>
-                  ))}
+                    <h3 className="text-[19px] font-bold leading-[1.3] text-[#151d23] mb-3">
+                      {card.title}
+                    </h3>
+                    <p className="text-[14.5px] leading-relaxed text-[#5c6873] font-normal">
+                      {card.description}
+                    </p>
+                  </div>
                 </div>
-              ) : (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  {worksList.map((work) => (
-                    <Card
-                      key={work.title}
-                      title={work.title}
-                      subtitle={work.subtitle}
-                      image={work.image}
-                      onClick={() => setSelectedImage({ image: work.image, title: work.title, subtitle: work.subtitle })}
-                      className="rounded-none cursor-pointer"
-                    />
-                  ))}
-                </div>
-              )}
+              ))}
             </div>
           </div>
         )}
       </AnimatedSection>
 
-      {/* 4. Frequently Asked Questions ( FAQ ) */}
+      {/* 3. Mobile App Development Services We Offer */}
       <AnimatedSection
-        className="bg-[#fafafa] py-20 border-t border-slate-100 text-[#1b2c38] max-[760px]:py-14"
+        className="py-20 bg-[#f8fafc] border-t border-slate-200/60 text-[#1b2c38] max-[760px]:py-14"
+        ariaLabel="Mobile app development services we offer"
+      >
+        {(isVisible) => (
+          <div className={layoutContainerClass}>
+            {/* Header */}
+            <div
+              className={`text-center max-w-[800px] mx-auto home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+                }`}
+            >
+              <h2 className="text-[34px] sm:text-[40px] font-black leading-[1.18] text-[#151d23]">
+                Mobile app development services we offer
+              </h2>
+              <p className="mt-3 text-[16px] sm:text-[18px] font-semibold text-[#09c7ca]">
+                High-quality, scalable, and performance-driven mobile app solutions
+              </p>
+            </div>
+
+            {/* Alternating Service Cards */}
+            <div className="mt-14 space-y-16">
+              {/* Row 1: Android App Development (Image Left, Content Right) */}
+              <div
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-white rounded-[24px] p-8 lg:p-12 border border-slate-200/80 shadow-md home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+                  }`}
+                style={{ transitionDelay: "150ms" }}
+              >
+                {/* Left: Graphic / Image */}
+                <div className="flex justify-center bg-[#0d2331] rounded-[20px] p-8 text-white relative overflow-hidden">
+                  <div className="relative z-10 text-center flex flex-col items-center">
+                    <img
+                      src="/images/services/mobile-app-development/android.png"
+                      alt="Android app development"
+                      className="w-20 h-20 object-contain mb-4"
+                      loading="lazy"
+                    />
+                    <h3 className="text-2xl font-black text-white">Android App Development</h3>
+                    <p className="mt-2 text-sm text-slate-300 max-w-[320px]">
+                      Fast, secure, and native Android smartphone solutions.
+                    </p>
+                    <img
+                      src="/images/services/mobile-app-development/mobile-app-architecture.png"
+                      alt="Android architecture"
+                      className="w-full max-w-[280px] object-contain mt-6"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+
+                {/* Right: Content */}
+                <div>
+                  <h3 className="text-[28px] font-black text-[#151d23] leading-tight">
+                    Android App Development
+                  </h3>
+                  <p className="mt-4 text-[15.5px] leading-relaxed text-[#4f5a62] font-normal">
+                    Android app development focuses on creating <strong className="font-bold text-[#151d23]">fast, secure, scalable, and user-friendly mobile applications</strong> for Android smartphones, tablets, and other Android-powered devices. Our Android app development solutions are designed to deliver seamless performance, engaging user experiences, and business-focused functionality.
+                  </p>
+
+                  <h4 className="mt-6 text-[17px] font-bold text-[#151d23]">
+                    Advantages of Android App Development:
+                  </h4>
+                  <ul className="mt-4 space-y-3 list-none p-0">
+                    {[
+                      "Wider reach across diverse Android devices and users",
+                      "Custom UI/UX design tailored to your brand and business needs",
+                      "Seamless integration with Android device features and APIs",
+                      "Scalable and secure applications built for long-term growth",
+                      "Cost-effective development with efficient deployment and maintenance",
+                    ].map((adv, idx) => (
+                      <li key={idx} className="flex items-start gap-3 text-[14.5px] text-[#334155] leading-snug">
+                        <span className="text-[#09c7ca] font-bold text-base shrink-0">✓</span>
+                        <span>{adv}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Row 2: iOS App Development (Content Left, Image Right) */}
+              <div
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-white rounded-[24px] p-8 lg:p-12 border border-slate-200/80 shadow-md home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+                  }`}
+                style={{ transitionDelay: "250ms" }}
+              >
+                {/* Left: Content */}
+                <div className="order-2 lg:order-1">
+                  <h3 className="text-[28px] font-black text-[#151d23] leading-tight">
+                    iOS App Development
+                  </h3>
+                  <p className="mt-4 text-[15.5px] leading-relaxed text-[#4f5a62] font-normal">
+                    iOS app development focuses on creating <strong className="font-bold text-[#151d23]">secure, high-performance, and intuitive mobile applications</strong> for Apple devices, including iPhone and iPad. Our custom iOS applications are designed around Apple’s development standards to provide smooth performance, consistent design, strong security, and an engaging user experience.
+                  </p>
+
+                  <h4 className="mt-6 text-[17px] font-bold text-[#151d23]">
+                    Advantages of iOS App Development:
+                  </h4>
+                  <ul className="mt-4 space-y-3 list-none p-0">
+                    {[
+                      "High performance with smooth and responsive app experiences",
+                      "Strong security and data protection for users and businesses",
+                      "Consistent UI/UX design across Apple devices",
+                      "Better user engagement with a premium mobile experience",
+                      "Scalable applications built to support business growth and future updates",
+                    ].map((adv, idx) => (
+                      <li key={idx} className="flex items-start gap-3 text-[14.5px] text-[#334155] leading-snug">
+                        <span className="text-[#09c7ca] font-bold text-base shrink-0">✓</span>
+                        <span>{adv}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Right: Graphic / Image */}
+                <div className="order-1 lg:order-2 flex justify-center bg-[#0d2331] rounded-[20px] p-8 text-white relative overflow-hidden">
+                  <div className="relative z-10 text-center flex flex-col items-center">
+                    <img
+                      src="/images/services/mobile-app-development/apple.png"
+                      alt="iOS app development"
+                      className="w-20 h-20 object-contain mb-4"
+                      loading="lazy"
+                    />
+                    <h3 className="text-2xl font-black text-white">iOS App Development</h3>
+                    <p className="mt-2 text-sm text-slate-300 max-w-[320px]">
+                      High-performance iOS apps for iPhone and iPad.
+                    </p>
+                    <img
+                      src="/images/services/mobile-app-development/mobile1.webp"
+                      alt="iOS showcase"
+                      className="w-full max-w-[260px] object-contain mt-6 rounded-lg"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </AnimatedSection>
+
+      {/* 4. Our Mobile App Development Process */}
+      <AnimatedSection
+        className="py-20 bg-[#0d2331] text-white max-[760px]:py-14"
+        ariaLabel="Our mobile app development process"
+      >
+        {(isVisible) => (
+          <div className={layoutContainerClass}>
+            {/* Title & Subtitle */}
+            <div
+              className={`text-center max-w-[850px] mx-auto home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+                }`}
+            >
+              <h2 className="text-[34px] sm:text-[40px] font-black leading-[1.18] text-white">
+                Our Mobile App Development Process
+              </h2>
+              <p className="mt-4 text-[15.5px] sm:text-[17px] leading-relaxed text-slate-300 font-normal">
+                A structured, transparent, and agile mobile app development process designed to create secure, scalable, high-performing applications that meet your business goals and deliver an excellent user experience.
+              </p>
+            </div>
+
+            {/* 4 Cards Grid */}
+            <div
+              className={`mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+                }`}
+              style={{ transitionDelay: "150ms" }}
+            >
+              {processSteps.map((proc, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white/5 rounded-[18px] p-6 border border-white/10 hover:border-[#09c7ca]/50 hover:bg-white/10 transition-all duration-300 flex flex-col justify-between"
+                >
+                  <div>
+                    <span className="text-3xl font-black font-mono text-[#09c7ca] block mb-3">
+                      {proc.step}.
+                    </span>
+                    <h3 className="text-[18px] font-bold text-white mb-3 leading-snug">
+                      {proc.title}
+                    </h3>
+                    <p className="text-[13.5px] leading-relaxed text-slate-300 font-normal">
+                      {proc.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Prominent CTA Button in the Middle */}
+            <div
+              className={`mt-14 text-center home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+                }`}
+              style={{ transitionDelay: "250ms" }}
+            >
+              <Link
+                to="/contacts"
+                className="inline-flex items-center gap-3 bg-[#facc15] text-[#0d2331] hover:bg-[#eab308] px-10 py-4 rounded-full text-[17px] font-black uppercase tracking-wider transition-all duration-300 transform hover:scale-105 shadow-xl no-underline"
+              >
+                <span>Start Now</span>
+                <span className="text-xl">&rarr;</span>
+              </Link>
+            </div>
+          </div>
+        )}
+      </AnimatedSection>
+
+      {/* 5. Industry We Serve */}
+      <AnimatedSection
+        className="py-20 bg-white text-[#1b2c38] max-[760px]:py-14"
+        ariaLabel="Industries we serve"
+      >
+        {(isVisible) => (
+          <div className={layoutContainerClass}>
+            {/* Title & Subtitle */}
+            <div
+              className={`text-center max-w-[850px] mx-auto home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+                }`}
+            >
+              <h2 className="text-[34px] sm:text-[40px] font-black leading-[1.18] text-[#151d23]">
+                Industry we serve
+              </h2>
+              <p className="mt-4 text-[15.5px] sm:text-[17px] leading-relaxed text-[#4f5a62] font-normal">
+                AG Solutions is a software development company helping businesses across industries with web development, mobile app development, and custom software solutions designed to improve efficiency and accelerate digital growth.
+              </p>
+            </div>
+
+            {/* Industry Tags Grid */}
+            <div
+              className={`mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+                }`}
+              style={{ transitionDelay: "150ms" }}
+            >
+              {industries.map((ind, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-center gap-3.5 bg-[#f8fafc] rounded-xl p-4 border border-slate-200/80 hover:border-[#09c7ca] hover:bg-white hover:shadow-md transition-all duration-200"
+                >
+                  <span className="text-2xl shrink-0">{ind.icon}</span>
+                  <span className="text-[14px] font-bold text-[#1e293b] leading-tight">
+                    {ind.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </AnimatedSection>
+
+      {/* 6. Mobile App Case Studies */}
+      <AnimatedSection
+        className="py-20 bg-[#f8fafc] border-t border-slate-200/60 text-[#1b2c38] max-[760px]:py-14"
+        ariaLabel="Mobile app case studies"
+      >
+        {(isVisible) => (
+          <div className={layoutContainerClass}>
+            {/* Heading row */}
+            <div
+              className={`flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+                }`}
+            >
+              <div>
+                <h2 className="text-[34px] sm:text-[40px] font-black leading-[1.18] text-[#151d23] uppercase">
+                  MOBILE APP CASE STUDIES
+                </h2>
+                <p className="mt-3 text-[15.5px] leading-relaxed text-[#4f5a62] max-w-[700px]">
+                  A snapshot of real mobile applications we’ve built for startups and businesses — solving real problems through strong UX, scalable architecture, and clean engineering.
+                </p>
+              </div>
+              <Link
+                to="/portfolio"
+                className="text-[15px] font-bold text-[#09c7ca] hover:text-[#07b6b9] transition-colors no-underline flex items-center gap-1.5 self-start sm:self-end border-b border-transparent hover:border-[#09c7ca] pb-0.5 shrink-0"
+              >
+                See all Projects <span className="text-lg leading-none">&rarr;</span>
+              </Link>
+            </div>
+
+            {/* Works Cards Grid */}
+            <div
+              className={`mt-12 home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+                }`}
+              style={{ transitionDelay: "150ms" }}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {worksList.map((work) => (
+                  <Card
+                    key={work.title}
+                    title={work.title}
+                    subtitle={work.subtitle}
+                    image={work.image}
+                    onClick={() => setSelectedImage({ image: work.image, title: work.title, subtitle: work.subtitle })}
+                    className="rounded-xl cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all"
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Single Click App Showcase Banner */}
+            <div className="mt-14 bg-[#0d2331] text-white rounded-[24px] p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div>
+                <span className="text-xs font-mono font-bold text-[#09c7ca] uppercase tracking-wider block mb-2">
+                  Featured Mobile Showcase
+                </span>
+                <h3 className="text-3xl font-black text-white">Single Click Solution App</h3>
+                <p className="mt-4 text-slate-300 text-sm leading-relaxed">
+                  Automate operations, manage export documentation, and empower your team on the go with AG Solutions' flagship mobile application suite.
+                </p>
+                <div className="mt-6">
+                  <Link
+                    to="/export-biz"
+                    className="inline-flex items-center gap-2 bg-[#09c7ca] hover:bg-[#07b6b9] text-white font-bold px-6 py-3 rounded-full text-sm transition-all no-underline"
+                  >
+                    Explore App Features &rarr;
+                  </Link>
+                </div>
+              </div>
+              <div className="flex justify-center">
+                <img
+                  src="/images/services/mobile-app-development/mobile1.webp"
+                  alt="Single click solution mobile app"
+                  className="w-full max-w-[320px] object-contain rounded-xl drop-shadow-2xl"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        )}
+      </AnimatedSection>
+
+      {/* 7. Frequently Asked Questions ( FAQ ) */}
+      <AnimatedSection
+        className="bg-white py-20 border-t border-slate-200/60 text-[#1b2c38] max-[760px]:py-14"
         ariaLabel="Mobile app FAQs accordion"
       >
         {(isVisible) => (
@@ -318,15 +706,14 @@ export default function MobileAppDevelopmentPage() {
             <SectionTitle
               title="Frequently Asked Questions ( FAQ )"
               align="left"
-              titleClassName="text-[38px] leading-[1.16] font-black tracking-normal max-[760px]:text-[30px] text-[#1a2b3c]"
+              titleClassName="text-[34px] sm:text-[40px] leading-[1.16] font-black tracking-normal text-[#151d23]"
               className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`}
             />
 
             {/* Accordion Rows */}
             <div
-              className={`mt-12 space-y-4 max-w-[940px] home-animated-item ${
-                isVisible ? "home-animated-item-visible" : ""
-              }`}
+              className={`mt-12 space-y-4 max-w-[940px] home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+                }`}
               style={{ transitionDelay: "100ms" }}
             >
               {faqList.map((faq, idx) => {
@@ -335,7 +722,7 @@ export default function MobileAppDevelopmentPage() {
                 return (
                   <div
                     key={faq.question}
-                    className="overflow-hidden rounded-none border border-slate-100 bg-white px-6 py-4 transition-all duration-200"
+                    className="overflow-hidden rounded-xl border border-slate-200/80 bg-white px-6 py-4 transition-all duration-200 shadow-xs hover:border-[#09c7ca]"
                   >
                     <button
                       type="button"
@@ -346,13 +733,12 @@ export default function MobileAppDevelopmentPage() {
                     >
                       <span className="flex items-center gap-4">
                         <span
-                          className={`text-[17px] font-bold text-[#09c7ca] transition-transform duration-300 block transform ${
-                            isOpen ? "rotate-90" : ""
-                          }`}
+                          className={`text-[17px] font-bold text-[#09c7ca] transition-transform duration-300 block transform ${isOpen ? "rotate-90" : ""
+                            }`}
                         >
                           &raquo;
                         </span>
-                        <span className="text-[16px] font-bold text-[#1a2b3c]">
+                        <span className="text-[16px] font-bold text-[#151d23]">
                           {faq.question}
                         </span>
                       </span>
@@ -360,9 +746,8 @@ export default function MobileAppDevelopmentPage() {
 
                     <div
                       id={`mobile-app-faq-${idx}`}
-                      className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
-                        isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                      }`}
+                      className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                        }`}
                     >
                       <div className="overflow-hidden">
                         <p className="mt-4 text-[14.5px] leading-relaxed text-[#4f5a62] font-normal border-t border-slate-100 pt-4">
@@ -378,9 +763,9 @@ export default function MobileAppDevelopmentPage() {
         )}
       </AnimatedSection>
 
-      {/* 5. Requirement Form Section */}
+      {/* 8. Requirement Form Section */}
       <AnimatedSection
-        className="bg-white py-20 border-t border-slate-100 text-[#1b2c38] max-[760px]:py-14"
+        className="bg-[#f8fafc] py-20 border-t border-slate-200/60 text-[#1b2c38] max-[760px]:py-14"
         ariaLabel="Submit requirement details"
       >
         {(isVisible) => (
@@ -397,20 +782,17 @@ export default function MobileAppDevelopmentPage() {
                 titleClassName="text-[38px] leading-[1.16] font-black tracking-normal max-[760px]:text-[30px] text-[#1a2b3c]"
               />
               <p className="mt-7 text-[17px] font-semibold leading-[1.55] text-[#1a2b3c]">
-                Let us help you get your business online and grow it with
-                passion.
+                Let us help you get your business online and grow it with passion.
               </p>
               <p className="mt-4 text-[14.5px] leading-relaxed text-[#5c6873] font-normal">
-                Our team of professional SEO experts is the perfect partner for
-                a successful business partnership.
+                Our team of professional developers and experts is the perfect partner for a successful business partnership.
               </p>
             </div>
 
             {/* Right form column */}
             <div
-              className={`home-animated-item ${
-                isVisible ? "home-animated-item-visible" : ""
-              }`}
+              className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+                }`}
               style={{ transitionDelay: "100ms" }}
             >
               {!isSubmitted ? (
@@ -426,7 +808,7 @@ export default function MobileAppDevelopmentPage() {
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
                       }
-                      className="w-full rounded-full border-none bg-[#f1f1eb] px-7 py-4 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all"
+                      className="w-full rounded-full border-none bg-white px-7 py-4 text-[15px] text-[#1d2d3b] shadow-xs outline-none placeholder:text-[#34414c]/50 focus:ring-2 focus:ring-[#09c7ca] transition-all"
                     />
                   </div>
                   <div>
@@ -439,7 +821,7 @@ export default function MobileAppDevelopmentPage() {
                       onChange={(e) =>
                         setFormData({ ...formData, phone: e.target.value })
                       }
-                      className="w-full rounded-full border-none bg-[#f1f1eb] px-7 py-4 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all"
+                      className="w-full rounded-full border-none bg-white px-7 py-4 text-[15px] text-[#1d2d3b] shadow-xs outline-none placeholder:text-[#34414c]/50 focus:ring-2 focus:ring-[#09c7ca] transition-all"
                     />
                   </div>
                   <div>
@@ -452,7 +834,7 @@ export default function MobileAppDevelopmentPage() {
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
                       }
-                      className="w-full rounded-full border-none bg-[#f1f1eb] px-7 py-4 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all"
+                      className="w-full rounded-full border-none bg-white px-7 py-4 text-[15px] text-[#1d2d3b] shadow-xs outline-none placeholder:text-[#34414c]/50 focus:ring-2 focus:ring-[#09c7ca] transition-all"
                     />
                   </div>
                   <div>
@@ -465,7 +847,7 @@ export default function MobileAppDevelopmentPage() {
                       onChange={(e) =>
                         setFormData({ ...formData, details: e.target.value })
                       }
-                      className="w-full rounded-[2rem] border-none bg-[#f1f1eb] px-7 py-5 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all resize-none min-h-[130px]"
+                      className="w-full rounded-[2rem] border-none bg-white px-7 py-5 text-[15px] text-[#1d2d3b] shadow-xs outline-none placeholder:text-[#34414c]/50 focus:ring-2 focus:ring-[#09c7ca] transition-all resize-none min-h-[130px]"
                     />
                   </div>
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-2">
@@ -484,8 +866,7 @@ export default function MobileAppDevelopmentPage() {
                       )}
                     </div>
                     <p className="text-[12px] leading-relaxed text-[#7a8894] font-normal max-w-[280px]">
-                      Please, let us know any particular things to check and the
-                      best time to contact you by phone (if provided).
+                      Please, let us know any particular things to check and the best time to contact you by phone (if provided).
                     </p>
                   </div>
                 </form>

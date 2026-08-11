@@ -6,12 +6,16 @@ function BrandLogo() {
       to="/"
       className="flex shrink-0 items-center gap-2.5 no-underline"
       aria-label="AG Solutions home"
+      title="AG Solutions Home"
     >
       <img
         className="h-[50px] w-[74px] object-contain"
         src="/images/logo.png"
         alt="AG Solutions Logo"
         title="AG Solutions"
+        width="74"
+        height="50"
+        fetchPriority="high"
       />
       <span className="leading-none text-[#1a2936]">
         <span className="block text-[28px] font-normal tracking-normal max-[480px]:text-[24px]">

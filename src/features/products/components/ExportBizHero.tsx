@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { animate } from "animejs";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState } from "react";
 
 interface ExportBizHeroProps {
   onOpenDemo: () => void;
@@ -14,16 +12,6 @@ export const ExportBizHero: React.FC<ExportBizHeroProps> = ({ onOpenDemo }) => {
   // Custom states for IKEA/Endowment Effect (user can edit live values in hero sandbox)
   const [customBuyer, setCustomBuyer] = useState("NORDIC FOODS GROUP AS");
   const [customValue, setCustomValue] = useState(148220);
-
-  useEffect(() => {
-    animate(".document-line", {
-      translateX: [15, 0],
-      opacity: [0, 1],
-      delay: ((_: any, i: number) => i * 50) as any,
-      easing: "easeOutQuad",
-      duration: 350
-    });
-  }, [activeTab]);
 
   const tabs = [
     { id: "invoice", label: "Invoice" },
@@ -171,14 +159,15 @@ export const ExportBizHero: React.FC<ExportBizHeroProps> = ({ onOpenDemo }) => {
             </button>
             <a
               href="#solve"
-              className="bg-transparent text-[#12141a] border border-[#e1ded2] flex items-center gap-2 font-space-grotesk font-bold text-[14.5px] py-[14px] px-[26px] rounded-[8px] no-underline cursor-pointer hover:scale-[1.02] hover:bg-black/5 transition-all box-border"
+              title="Explore How AG Solutions Solves Business Challenges"
+              className="bg-[#transparent] text-[#12141a] border border-[#e1ded2] flex items-center gap-2 font-space-grotesk font-bold text-[14.5px] py-[14px] px-[26px] rounded-[8px] no-underline cursor-pointer hover:scale-[1.02] hover:bg-black/5 transition-all box-border"
             >
               See what it replaces
             </a>
           </div>
           
           {/* Objection Reassurance */}
-          <p className="text-[12.5px] text-[#63666c]/80 m-0 mb-[30px] font-mono">
+          <p className="text-[12.5px] text-[#45474c] m-0 mb-[30px] font-mono">
             🛡️ No credit card required. Cancel anytime. 100% compliance guaranteed.
           </p>
 
@@ -218,101 +207,97 @@ export const ExportBizHero: React.FC<ExportBizHeroProps> = ({ onOpenDemo }) => {
                   );
                 })}
               </div>
-              <span className="text-[10px] text-[#27c7cd] font-mono animate-pulse hidden sm:inline">
+              <span className="text-[10px] text-[#38e2e9] font-mono animate-pulse hidden sm:inline">
                 ✍ Click fields to customize
               </span>
             </div>
 
             {/* Document Sandbox Body */}
             <div className="mt-4 bg-[#142637] rounded-[12px] p-[18px] border border-white/5 min-h-[295px] flex flex-col justify-between box-border">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTab}
-                  initial={{ opacity: 0, y: 5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -5 }}
-                  transition={{ duration: 0.15 }}
-                  className="space-y-[12px] flex-1 flex flex-col justify-between"
-                >
-                  <div>
-                    {/* Header */}
-                    <div className="flex justify-between items-center pb-3 border-b border-white/6 mb-4">
-                      <h4 className="text-[13.5px] font-bold text-white tracking-wide m-0">
-                        {activeDoc.title}
-                      </h4>
-                      <span
-                        className={`font-mono text-[9.5px] font-bold tracking-[0.5px] py-[3px] px-2.5 rounded-[20px] ${activeDoc.bgColor}`}
-                      >
-                        {activeDoc.badge}
-                      </span>
-                    </div>
-
-                    {/* Content Fields */}
-                    <div className="space-y-2.5">
-                      {activeDoc.lines.map((line, idx) => (
-                        <div
-                          key={idx}
-                          className={`document-line flex justify-between items-center py-1.5 px-2 rounded-[6px] text-[13px] ${
-                            line.highlight
-                              ? "bg-[#27c7cd]/10 border border-[#27c7cd]/20"
-                              : "hover:bg-white/2"
-                          }`}
-                        >
-                          <span className="text-[#9fc1db] font-mono text-[12px]">
-                            {line.key}
-                          </span>
-                          
-                          {/* Live Editable Fields (IKEA/Endowment Effect) */}
-                          {line.isEditable ? (
-                            <div className="flex items-center gap-1.5">
-                              {line.fieldId === "buyer" ? (
-                                <input
-                                  type="text"
-                                  value={customBuyer}
-                                  onChange={(e) => setCustomBuyer(e.target.value.toUpperCase())}
-                                  className="bg-transparent border-0 border-b border-dashed border-white/25 text-white font-medium text-[13px] text-right focus:border-[#27c7cd] outline-none max-w-[210px] pb-0.5"
-                                  title="Click to edit buyer profile name"
-                                />
-                              ) : (
-                                <div className="flex items-center text-right">
-                                  <span className="text-white font-medium">$</span>
-                                  <input
-                                    type="number"
-                                    value={customValue}
-                                    onChange={(e) => setCustomValue(Number(e.target.value))}
-                                    className="bg-transparent border-0 border-b border-dashed border-white/25 text-[#27c7cd] font-bold text-[13px] text-right focus:border-[#27c7cd] outline-none max-w-[85px] pb-0.5 ml-0.5"
-                                    title="Click to edit FOB commercial value"
-                                  />
-                                  <span className="text-[#27c7cd] font-bold text-[13px] ml-1">USD</span>
-                                </div>
-                              )}
-                            </div>
-                          ) : (
-                            <span
-                              className={`font-medium ${
-                                line.highlight
-                                  ? "text-[#27c7cd] font-bold"
-                                  : "text-white/90"
-                              }`}
-                            >
-                              {line.value}
-                            </span>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Visual Verification Line */}
-                  <div className="pt-3 border-t border-white/6 mt-4 flex justify-between items-center text-[11px] text-[#9fc1db]/70 font-mono">
-                    <span>STATUS: LINKED & DESERIALIZED</span>
-                    <span className="flex items-center gap-[5px] text-[#2fae73] font-bold">
-                      <i className="w-1.5 h-1.5 rounded-full bg-[#2fae73] block animate-pulse"></i>
-                      VERIFIED BY EXPORT BIZ
+              <div
+                key={activeTab}
+                className="space-y-[12px] flex-1 flex flex-col justify-between transition-opacity duration-200"
+              >
+                <div>
+                  {/* Header */}
+                  <div className="flex justify-between items-center pb-3 border-b border-white/6 mb-4">
+                    <h2 className="text-[13.5px] font-bold text-white tracking-wide m-0">
+                      {activeDoc.title}
+                    </h2>
+                    <span
+                      className={`font-mono text-[9.5px] font-bold tracking-[0.5px] py-[3px] px-2.5 rounded-[20px] ${activeDoc.bgColor}`}
+                    >
+                      {activeDoc.badge}
                     </span>
                   </div>
-                </motion.div>
-              </AnimatePresence>
+
+                  {/* Content Fields */}
+                  <div className="space-y-2.5">
+                    {activeDoc.lines.map((line, idx) => (
+                      <div
+                        key={idx}
+                        className={`document-line flex justify-between items-center py-1.5 px-2 rounded-[6px] text-[13px] ${
+                          line.highlight
+                            ? "bg-[#27c7cd]/10 border border-[#27c7cd]/20"
+                            : "hover:bg-white/2"
+                        }`}
+                      >
+                        <span className="text-[#9fc1db] font-mono text-[12px]">
+                          {line.key}
+                        </span>
+                        
+                        {/* Live Editable Fields (IKEA/Endowment Effect) */}
+                        {line.isEditable ? (
+                          <div className="flex items-center gap-1.5">
+                            {line.fieldId === "buyer" ? (
+                              <input
+                                type="text"
+                                value={customBuyer}
+                                onChange={(e) => setCustomBuyer(e.target.value.toUpperCase())}
+                                className="bg-transparent border-0 border-b border-dashed border-white/25 text-white font-medium text-[13px] text-right focus:border-[#27c7cd] outline-none max-w-[210px] pb-0.5"
+                                title="Click to edit buyer profile name"
+                                aria-label="Buyer profile name"
+                              />
+                            ) : (
+                              <div className="flex items-center text-right">
+                                <span className="text-white font-medium">$</span>
+                                <input
+                                  type="number"
+                                  value={customValue}
+                                  onChange={(e) => setCustomValue(Number(e.target.value))}
+                                  className="bg-transparent border-0 border-b border-dashed border-white/25 text-[#27c7cd] font-bold text-[13px] text-right focus:border-[#27c7cd] outline-none max-w-[85px] pb-0.5 ml-0.5"
+                                  title="Click to edit FOB commercial value"
+                                  aria-label="FOB commercial value in USD"
+                                />
+                                <span className="text-[#27c7cd] font-bold text-[13px] ml-1">USD</span>
+                              </div>
+                            )}
+                          </div>
+                        ) : (
+                          <span
+                            className={`font-medium ${
+                              line.highlight
+                                ? "text-[#27c7cd] font-bold"
+                                : "text-white/90"
+                            }`}
+                          >
+                            {line.value}
+                          </span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Visual Verification Line */}
+                <div className="pt-3 border-t border-white/6 mt-4 flex justify-between items-center text-[11px] text-[#b8d5ec] font-mono">
+                  <span>STATUS: LINKED & DESERIALIZED</span>
+                  <span className="flex items-center gap-[5px] text-[#2fae73] font-bold">
+                    <i className="w-1.5 h-1.5 rounded-full bg-[#2fae73] block animate-pulse"></i>
+                    VERIFIED BY EXPORT BIZ
+                  </span>
+                </div>
+              </div>
             </div>
 
             {/* Dashboard Footer Stats */}

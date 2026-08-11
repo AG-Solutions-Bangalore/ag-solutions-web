@@ -57,11 +57,10 @@ function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const lenisInstance = (window as any).lenis;
     if (lenisInstance) {
       lenisInstance.scrollTo(0, { immediate: true });
-    } else {
-      window.scrollTo(0, 0);
     }
   }, [pathname]);
 
@@ -70,11 +69,17 @@ function ScrollToTop() {
 
 function App() {
   useEffect(() => {
+    // Prevent browser auto-restoration from clamping scroll to unrendered document height on refresh
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    if (prefersReducedMotion) {
+    if (prefersReducedMotion || isMobile) {
       return;
     }
 
@@ -93,7 +98,14 @@ function App() {
 
     rafId = requestAnimationFrame(raf);
 
+    // Keep Lenis updated on page height as lazy components/images load
+    const resizeObserver = new ResizeObserver(() => {
+      lenis.resize();
+    });
+    resizeObserver.observe(document.body);
+
     return () => {
+      resizeObserver.disconnect();
       cancelAnimationFrame(rafId);
       lenis.destroy();
       (window as any).lenis = undefined;

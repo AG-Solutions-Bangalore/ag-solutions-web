@@ -32,6 +32,7 @@ function NavigationDropdown({ item, align = "center" }: NavigationDropdownProps)
             <NavLink
               key={child.path}
               to={child.path}
+              title={child.title}
               role="menuitem"
               onPointerEnter={() => preloadRoute(child.path)}
               onFocus={() => preloadRoute(child.path)}

@@ -25,6 +25,7 @@ function DesktopNavigation({ isCompact }: DesktopNavigationProps) {
           >
             <NavLink
               to={item.path}
+              title={item.title}
               end={item.path === "/"}
               onPointerEnter={() => preloadRoute(item.children?.[0]?.path ?? item.path)}
               onFocus={() => preloadRoute(item.children?.[0]?.path ?? item.path)}

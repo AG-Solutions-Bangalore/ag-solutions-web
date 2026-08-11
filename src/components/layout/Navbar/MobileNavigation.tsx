@@ -38,6 +38,7 @@ function MobileNavigation({ isOpen, onNavigate }: MobileNavigationProps) {
               <NavLink
                 key={item.path}
                 to={item.path}
+                title={item.title}
                 end={item.path === "/"}
                 onClick={onNavigate}
                 onFocus={() => preloadRoute(item.path)}
@@ -71,6 +72,7 @@ function MobileNavigation({ isOpen, onNavigate }: MobileNavigationProps) {
               <div className="space-y-1 px-2 pb-3 pt-1">
                 <NavLink
                   to={item.path}
+                  title={item.title}
                   onClick={onNavigate}
                   onFocus={() => preloadRoute(item.children?.[0]?.path ?? item.path)}
                   className={({ isActive }) =>
@@ -87,6 +89,7 @@ function MobileNavigation({ isOpen, onNavigate }: MobileNavigationProps) {
                   <NavLink
                     key={child.path}
                     to={child.path}
+                    title={child.title}
                     onClick={onNavigate}
                     onFocus={() => preloadRoute(child.path)}
                     className={({ isActive }) =>
@@ -142,6 +145,7 @@ function MobileNavigation({ isOpen, onNavigate }: MobileNavigationProps) {
         <div className="mt-4 px-4 pb-2">
           <NavLink
             to="/contacts"
+            title="Contact AG Solutions"
             onClick={onNavigate}
             onFocus={() => preloadRoute("/contacts")}
             className="flex w-full items-center justify-center rounded-[8px] bg-[#1289bc] px-4 py-3 text-center text-[15px] font-bold text-white no-underline transition-colors hover:bg-[#0f77a5] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1289bc] focus-visible:ring-offset-2"

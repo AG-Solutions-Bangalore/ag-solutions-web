@@ -28,6 +28,7 @@ export const ExportBizCommonCTA: React.FC<ExportBizCommonCTAProps> = ({ onOpenDe
             </button>
             <a
               href="mailto:info@exportbiz.in"
+              title="Email Export Biz"
               className="border border-white/25 text-white bg-transparent flex items-center gap-2 font-space-grotesk font-bold text-[14.5px] py-[14px] px-[26px] rounded-[8px] no-underline cursor-pointer hover:scale-[1.02] hover:bg-white/5 transition-all box-border"
             >
               Email sales
