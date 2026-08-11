@@ -71,7 +71,7 @@ function StatsCounterContent({ isVisible }: StatsCounterContentProps) {
             {counts[index]}
             {stat.suffix}
           </div>
-          <div className="mt-4 text-[29px] leading-tight font-black text-[#132d3e] max-[760px]:text-[23px]">
+          <div className="mt-4 text-[29px] leading-tight font-black text-[#cee9fa] max-[760px]:text-[23px]">
             {stat.label}
           </div>
         </div>

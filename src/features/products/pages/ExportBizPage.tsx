@@ -23,13 +23,13 @@ export const ExportBizPage: React.FC<ExportBizPageProps> = ({ defaultOpenModal =
   const [searchParams] = useSearchParams();
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(defaultOpenModal);
 
-  // 1. Timed popup logic (5 seconds after land, if not already open/opened manually, and not opened on this page load/refresh)
+  // 1. Timed popup logic (15 seconds after land, if not already open/opened manually, and not opened on this page load/refresh)
   useEffect(() => {
     if (!defaultOpenModal && !isDemoModalOpen && !hasOpenedDemoModalOnPageLoad) {
       const popupTimer = setTimeout(() => {
         setIsDemoModalOpen(true);
         hasOpenedDemoModalOnPageLoad = true;
-      }, 5000);
+      }, 15000);
       return () => clearTimeout(popupTimer);
     }
   }, [defaultOpenModal, isDemoModalOpen]);
@@ -82,12 +82,13 @@ export const ExportBizPage: React.FC<ExportBizPageProps> = ({ defaultOpenModal =
         <ExportSolutionsSection />
         <ExportBizBenefits />
         <ExportBizCommonCTA onOpenDemo={() => setIsDemoModalOpen(true)} />
+        {isDemoModalOpen && (
+          <ExportBizDemoModal 
+            isOpen={isDemoModalOpen} 
+            onClose={() => setIsDemoModalOpen(false)} 
+          />
+        )}
       </div>
-
-      <ExportBizDemoModal 
-        isOpen={isDemoModalOpen} 
-        onClose={() => setIsDemoModalOpen(false)} 
-      />
     </>
   );
 };

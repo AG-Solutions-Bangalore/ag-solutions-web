@@ -3,16 +3,19 @@ import { navbarContainerClass } from "./styles";
 const socialLinks = [
   {
     label: "Facebook",
+    title: "Follow AG Solutions on Facebook",
     image: "/images/home/fb.png",
     href: "https://www.facebook.com/agsolutionsbangalore/",
   },
   {
     label: "Instagram",
+    title: "Follow AG Solutions on Instagram",
     image: "/images/home/ig.png",
     href: "#",
   },
   {
     label: "LinkedIn",
+    title: "Connect with AG Solutions on LinkedIn",
     image: "/images/home/linkdin.png",
     href: "https://in.linkedin.com/in/garggovind",
   },
@@ -26,6 +29,7 @@ function TopBar() {
           <div className="top-bar-item flex h-full items-center border-l border-r border-[#2e373f]">
             <a
               href="tel:8867171060"
+              title="Call AG Solutions"
               className="px-8 text-white no-underline transition-colors hover:text-[#38b8e8]"
             >
               Mobile: +91-8867171060
@@ -34,6 +38,7 @@ function TopBar() {
           <div className="top-bar-item flex h-full items-center border-r border-[#2e373f] px-8">
             <a
               href="mailto:info@ag-solutions.in"
+              title="Email AG Solutions"
               className="text-white no-underline transition-colors hover:text-[#38b8e8]"
             >
               Email: info@ag-solutions.in
@@ -51,6 +56,7 @@ function TopBar() {
                   className="social-item grid h-6 w-6 place-items-center rounded-full transition-transform hover:-translate-y-0.5"
                   href={link.href}
                   aria-label={link.label}
+                  title={link.title}
                 >
                   <img
                     loading="lazy"

@@ -57,8 +57,8 @@ function AnimatedSection({
     <section
       ref={sectionRef}
       id={id}
-      className={`${className ?? ""} transition-[opacity,transform] duration-700 ease-out motion-reduce:translate-y-0 motion-reduce:opacity-100 ${
-        isVisible ? "translate-y-0 opacity-100" : "translate-y-7 opacity-0"
+      className={`${className ?? ""} transition-opacity duration-700 ease-out motion-reduce:opacity-100 ${
+        isVisible ? "opacity-100" : "opacity-0"
       }`}
       aria-label={ariaLabel}
       data-animated-section-visible={isVisible ? "true" : "false"}

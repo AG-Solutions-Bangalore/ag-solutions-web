@@ -4,6 +4,7 @@ export type ProductIconName = "export" | "marketing" | "grow";
 export type NavSubItem = {
   label: string;
   path: string;
+  title?: string;
   description: string;
   badge: string;
   accentClass: string;
@@ -14,5 +15,6 @@ export type NavSubItem = {
 export type NavItem = {
   label: string;
   path: string;
+  title?: string;
   children?: readonly NavSubItem[];
 };

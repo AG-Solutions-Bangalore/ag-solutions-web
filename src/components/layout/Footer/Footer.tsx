@@ -199,9 +199,9 @@ console.log("ANIMATE CALLED");
           className={`${layoutContainerClass} relative z-1 flex h-full items-start justify-between max-[980px]:h-auto`}
         >
           <div className="mb-6 h-55 w-174.75 px-3.75 text-left text-base leading-[25.6px] text-[#495057] max-[980px]:h-auto max-[980px]:w-full max-[980px]:pb-[62px]">
-            <h4 className="m-0 mb-[5px] block h-[36px] w-[669px] p-0 text-left text-[28px] leading-[36.4px] font-bold text-[#1b2c38] max-[980px]:h-auto max-[980px]:w-full">
+            <h2 className="m-0 mb-[5px] block h-[36px] w-[669px] p-0 text-left text-[28px] leading-[36.4px] font-bold text-[#1b2c38] max-[980px]:h-auto max-[980px]:w-full">
               Subscribe to our Newsletter
-            </h4>
+            </h2>
             <p className="m-0 block h-[25px] w-[669px] p-0 text-left text-base leading-[25.6px] font-normal text-white max-[980px]:h-auto max-[980px]:w-full">
               <span className="font-bold">Join Our Newsletter</span> &amp;
               Marketing Communication. We'll send you news and offers.
@@ -257,7 +257,12 @@ console.log("ANIMATE CALLED");
             <img
               className="h-auto w-full"
               src="/images/08-subscribe.svg"
-              alt=""
+              alt="Subscribe to AG Solutions updates and digital solutions"
+              title="Subscribe to AG Solutions Updates"
+              loading="lazy"
+              decoding="async"
+              width="399"
+              height="244"
             />
           </div>
         </div>
@@ -282,6 +287,7 @@ console.log("ANIMATE CALLED");
                 <div className="min-w-0">
                   <a
                     href={phoneHref}
+                    title="Call AG Solutions"
                     className="mb-2 block text-xl leading-[1.15] font-normal text-white no-underline hover:text-[#f6fbff] max-[1200px]:text-lg max-[640px]:[overflow-wrap:anywhere]"
                   >
                     {phone}
@@ -299,6 +305,7 @@ console.log("ANIMATE CALLED");
                 <div className="min-w-0">
                   <a
                     href={`mailto:${email}`}
+                    title="Email AG Solutions"
                     className="mb-2 block text-xl leading-[1.15] font-normal text-white no-underline hover:text-[#f6fbff] max-[1200px]:text-lg max-[640px]:[overflow-wrap:anywhere]"
                   >
                     {email}
@@ -333,10 +340,10 @@ console.log("ANIMATE CALLED");
     className={`${layoutContainerClass} flex flex-col items-center justify-between gap-6 py-8 md:flex-row`}
   >
     <div>
-      <h4 className="text-lg font-semibold text-white">
+      <h3 className="text-lg font-semibold text-white">
         Follow AG Solutions
-      </h4>
-      <p className="mt-1 text-sm text-gray-400">
+      </h3>
+      <p className="mt-1 text-sm text-slate-300">
         Stay connected with us on social media.
       </p>
     </div>
@@ -346,6 +353,7 @@ console.log("ANIMATE CALLED");
         href="https://www.instagram.com/ag_solutions_official/"
         target="_blank"
         rel="noopener noreferrer"
+        title="Follow AG Solutions on Instagram"
         className="group rounded-full bg-white/10 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-pink-600"
       >
         <FaInstagram  className="h-5 w-5 text-white transition-transform duration-300 group-hover:rotate-12" />
@@ -355,6 +363,7 @@ console.log("ANIMATE CALLED");
         href="https://www.facebook.com/profile.php?id=61591878191618"
         target="_blank"
         rel="noopener noreferrer"
+        title="Follow AG Solutions on Facebook"
         className="group rounded-full bg-white/10 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-blue-600"
       >
         <FaFacebookF  className="h-5 w-5 text-white transition-transform duration-300 group-hover:rotate-12" />
@@ -364,6 +373,7 @@ console.log("ANIMATE CALLED");
         href="https://www.linkedin.com/in/ag-solutions-104223427/"
         target="_blank"
         rel="noopener noreferrer"
+        title="Connect with AG Solutions on LinkedIn"
         className="group rounded-full bg-white/10 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-sky-600"
       >
         <FaLinkedinIn  className="h-5 w-5 text-white transition-transform duration-300 group-hover:rotate-12" />
@@ -373,7 +383,7 @@ console.log("ANIMATE CALLED");
 </div>
           <div className="bg-[#11181c] py-5 text-center font-light">
             <div className={layoutContainerClass}>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-slate-300">
   © {copyrightYear} {copyrightName}. All Rights Reserved.
 </p>
             </div>

@@ -85,7 +85,7 @@ const desktopItems: readonly PortfolioItem[] = [
   {
     title: "All Documents in 1 Minute",
     subtitle: "Invoice & Packing List",
-    image: "/images/portfolio/desktop3.png",
+    image: "/images/portfolio/desktop3.webp",
   },
   {
     title: "Print, Save As PDF, Email",
@@ -217,9 +217,8 @@ export default function PortfolioPage() {
             />
 
             <div
-              className={`mt-14 home-animated-item ${
-                isVisible ? "home-animated-item-visible" : ""
-              }`}
+              className={`mt-14 home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+                }`}
               style={{ transitionDelay: "100ms" }}
             >
               {isLoading ? renderFeaturedSkeleton() : (
@@ -247,9 +246,8 @@ export default function PortfolioPage() {
             />
 
             <div
-              className={`mt-12 home-animated-item ${
-                isVisible ? "home-animated-item-visible" : ""
-              }`}
+              className={`mt-12 home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+                }`}
               style={{ transitionDelay: "100ms" }}
             >
               {isLoading ? renderSkeletonGrid(3) : (
@@ -277,9 +275,8 @@ export default function PortfolioPage() {
             />
 
             <div
-              className={`mt-12 home-animated-item ${
-                isVisible ? "home-animated-item-visible" : ""
-              }`}
+              className={`mt-12 home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+                }`}
               style={{ transitionDelay: "100ms" }}
             >
               {isLoading ? renderSkeletonGrid(3) : (
@@ -307,9 +304,8 @@ export default function PortfolioPage() {
             />
 
             <div
-              className={`mt-12 home-animated-item ${
-                isVisible ? "home-animated-item-visible" : ""
-              }`}
+              className={`mt-12 home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+                }`}
               style={{ transitionDelay: "100ms" }}
             >
               {isLoading ? renderSkeletonGrid(3) : (

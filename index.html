@@ -11,11 +11,24 @@
     <link rel="preload" href="/images/home/01Crausle.svg" as="image" type="image/svg+xml" fetchpriority="high" />
     <link rel="preload" href="/images/logo.png" as="image" type="image/png" />
     
-    <!-- Google Fonts loading -->
+    <!-- Google Fonts loading (Non-render-blocking) -->
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&family=Roboto:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&family=Roboto:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&family=Roboto:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      />
+    </noscript>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
@@ -65,7 +78,7 @@
     -->
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JFGJ3JE7HK"></script>
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-JFGJ3JE7HK"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}

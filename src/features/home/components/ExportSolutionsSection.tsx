@@ -13,7 +13,11 @@ function ExportSolutionsSection() {
           {/* Background Banner */}
           <img
             src="/images/home/ship.png"
-            alt="Export Biz Banner"
+            alt="Export Biz export management software banner by AG Solutions"
+            title="Export Biz Export Management Software"
+            decoding="async"
+            width="1200"
+            height="400"
             className="absolute inset-0 h-full w-full object-cover object-right animate-[shipFloat_8s_ease-in-out_infinite]"
           />
 
@@ -77,12 +81,14 @@ ${isVisible
 `}>
                 <Link
                   to="/export-biz"
-                  className="rounded-full bg-gradient-to-r  from-sky-500 to-blue-600 px-6 py-2.5 text-sm font-semibold transition-all duration-300 hover:scale-150 hover:shadow-[0_20px_40px_rgba(14,165,233,.45)]"
+                  title="Export Biz Export Management Software"
+                  className="rounded-full bg-gradient-to-r  from-sky-500 to-blue-600 px-6 py-2.5 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-[0_20px_40px_rgba(14,165,233,.45)]"
                 >
                   Explore More →
                 </Link>
                 <Link
                   to="/contacts"
+                  title="Contact AG Solutions"
                   className="rounded-full border border-white/20 bg-white/10 px-6 py-2.5 text-sm font-semibold backdrop-blur-md transition-all duration-300 hover:border-cyan-300 hover-scale-105 hover:bg-white/20"
                 >
                   Get Free Demo
