@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 import { useCreateNewsletter } from "@/features/newsletter/hooks/useCreateNewsletter";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "../styles";
@@ -36,7 +36,7 @@ function Footer({
   copyrightYear = 2025,
   copyrightName = "AG Solutions",
 }: FooterProps) {
-  const footerRef = useRef<HTMLElement>(null);
+  const footerContactRef = useRef<HTMLDivElement>(null);
   const submitTimerRef = useRef<number | null>(null);
   const [emailValue, setEmailValue] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -47,92 +47,93 @@ function Footer({
   const bgFileName = isLime ? "pattern-bg-lime.jpg" : "pattern-bg-breez.jpg";
   const bgUrl = `/images/${bgFileName}`;
 
-  useEffect(() => {
- const footer = document.getElementById("footer-contact");
+  const animateFooterStrokes = useCallback(() => {
+    const footer = footerContactRef.current;
 
-  if (!footer) return;
+    if (!footer) return;
 
-  const strokes = Array.from(
-    footer.querySelectorAll<SVGElement>('[data-animated-stroke="true"]'),
-  );
-  console.log("Number of strokes:", strokes.length);
+    const strokes = Array.from(
+      footer.querySelectorAll<SVGElement>('[data-animated-stroke="true"]'),
+    );
 
-  const reduceMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
 
-  if (reduceMotion) {
-    strokes.forEach((stroke) => {
-      stroke.style.opacity = "1";
-      stroke.style.strokeDashoffset = "0";
-    });
-    return;
-  }
-
-  let hasAnimated = false;
-
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      console.log(
-  "Observer fired:",
-  entry.isIntersecting,
-  entry.intersectionRatio
-);
-      if (!entry.isIntersecting || hasAnimated) return;
-
-      hasAnimated = true;
-
+    if (reduceMotion) {
       strokes.forEach((stroke) => {
-        const dashLength = stroke.dataset.dashLength ?? "0";
-        const delay =
-          Number.parseFloat(stroke.dataset.drawDelay ?? "0") || 0;
-
-        stroke.style.strokeDasharray = dashLength;
-        stroke.style.strokeDashoffset = dashLength;
-        stroke.style.opacity = "0";
-        stroke.classList.add("drawing-stroke");
-
-        const animation = stroke.animate(
-          [
-            {
-              opacity: 0,
-              strokeDashoffset: dashLength,
-            },
-            {
-              opacity: 1,
-              offset: 0.12,
-            },
-            {
-              opacity: 1,
-              strokeDashoffset: "0",
-            },
-          ],
-          {
-            delay,
-            duration: 1100,
-            easing: "ease-out",
-            fill: "forwards",
-          }
-        );
-        animation.onfinish = () => {
-  stroke.classList.remove("drawing-stroke");
-};
-
-return animation;
+        stroke.style.opacity = "1";
+        stroke.style.strokeDashoffset = "0";
       });
-
-      observer.disconnect();
-    },
-    {
-      threshold: 0.35,
+      return;
     }
-  );
 
-  observer.observe(footer);
+    strokes.forEach((stroke) => {
+      const dashLength = stroke.dataset.dashLength ?? "0";
+      const delay = Number.parseFloat(stroke.dataset.drawDelay ?? "0") || 0;
 
-  return () => observer.disconnect();
-}, []);
-console.log("ANIMATE CALLED");
+      stroke.style.strokeDasharray = dashLength;
+      stroke.style.strokeDashoffset = dashLength;
+      stroke.style.opacity = "0";
+      stroke.classList.remove("drawing-stroke");
+      void stroke.getBoundingClientRect();
+      stroke.classList.add("drawing-stroke");
+
+      const animation = stroke.animate(
+        [
+          {
+            opacity: 0,
+            strokeDashoffset: dashLength,
+          },
+          {
+            opacity: 1,
+            offset: 0.12,
+          },
+          {
+            opacity: 1,
+            strokeDashoffset: "0",
+          },
+        ],
+        {
+          delay,
+          duration: 1100,
+          easing: "ease-out",
+          fill: "forwards",
+        }
+      );
+
+      animation.onfinish = () => {
+        stroke.classList.remove("drawing-stroke");
+      };
+    });
+  }, []);
+
+  useEffect(() => {
+    const footer = footerContactRef.current;
+
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          animateFooterStrokes();
+        }
+      },
+      {
+        threshold: 0.2,
+      }
+    );
+
+    observer.observe(footer);
+    footer.addEventListener("mouseenter", animateFooterStrokes);
+    footer.addEventListener("pointerenter", animateFooterStrokes);
+
+    return () => {
+      observer.disconnect();
+      footer.removeEventListener("mouseenter", animateFooterStrokes);
+      footer.removeEventListener("pointerenter", animateFooterStrokes);
+    };
+  }, [animateFooterStrokes]);
   useEffect(() => {
     return () => {
       if (submitTimerRef.current !== null) {
@@ -271,7 +272,6 @@ console.log("ANIMATE CALLED");
       <div className="bg-[#151d23] text-[#9daab7]">
         <footer
           id="site-footer"
-          ref={footerRef}
           className="w-full text-[#9daab7]"
         >
           <div className={layoutContainerClass}>
@@ -279,7 +279,13 @@ console.log("ANIMATE CALLED");
               {organizationName}
             </div> */}
             {/* <div className="mt-[15px] h-px bg-[#29343d]" /> */}
-           <div id="footer-contact" className="flex justify-between gap-8 pt-12 pb-11 max-[1200px]:gap-6 max-[980px]:grid max-[980px]:grid-cols-1 max-[980px]:gap-8 max-[980px]:pt-9 max-[980px]:pb-10">
+           <div
+             id="footer-contact"
+             ref={footerContactRef}
+             onMouseEnter={animateFooterStrokes}
+             onPointerEnter={animateFooterStrokes}
+             className="flex justify-between gap-8 pt-12 pb-11 max-[1200px]:gap-6 max-[980px]:grid max-[980px]:grid-cols-1 max-[980px]:gap-8 max-[980px]:pt-9 max-[980px]:pb-10"
+           >
               <div className="group flex min-w-0 items-center gap-7 rounded-2xl p-5 transition-all duration-500 hover:-translate-y-2 hover:bg-white/5">
                 <div className="transition-all duration-500 group-hover:scale-110 group-hover:text-[#66c61c]">
     <PhoneIcon />
@@ -354,9 +360,9 @@ console.log("ANIMATE CALLED");
         target="_blank"
         rel="noopener noreferrer"
         title="Follow AG Solutions on Instagram"
-        className="group rounded-full bg-white/10 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-pink-600"
+        className="group rounded-full bg-white/10 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-[radial-gradient(circle_at_30%_107%,#fdf497_0%,#fdf497_5%,#fd5949_45%,#d6249f_60%,#285AEB_90%)]"
       >
-        <FaInstagram  className="h-5 w-5 text-white transition-transform duration-300 group-hover:rotate-12" />
+        <FaInstagram className="h-5 w-5 text-white transition-transform duration-300 group-hover:rotate-12" />
       </a>
 
       <a
@@ -364,9 +370,9 @@ console.log("ANIMATE CALLED");
         target="_blank"
         rel="noopener noreferrer"
         title="Follow AG Solutions on Facebook"
-        className="group rounded-full bg-white/10 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-blue-600"
+        className="group rounded-full bg-white/10 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-[#1877F2]"
       >
-        <FaFacebookF  className="h-5 w-5 text-white transition-transform duration-300 group-hover:rotate-12" />
+        <FaFacebookF className="h-5 w-5 text-white transition-transform duration-300 group-hover:rotate-12" />
       </a>
 
       <a
@@ -374,9 +380,9 @@ console.log("ANIMATE CALLED");
         target="_blank"
         rel="noopener noreferrer"
         title="Connect with AG Solutions on LinkedIn"
-        className="group rounded-full bg-white/10 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-sky-600"
+        className="group rounded-full bg-white/10 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-[#0A66C2]"
       >
-        <FaLinkedinIn  className="h-5 w-5 text-white transition-transform duration-300 group-hover:rotate-12" />
+        <FaLinkedinIn className="h-5 w-5 text-white transition-transform duration-300 group-hover:rotate-12" />
       </a>
     </div>
   </div>

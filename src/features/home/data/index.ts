@@ -24,8 +24,8 @@ export const heroSlides: readonly HeroSlide[] = [
   id: "web",
   title: "Web Development",
   description:
-  "Transform your ideas into powerful digital experiences with custom websites and web applications that combine stunning design, seamless functionality, and business-driven performance.",
-  image: "/images/home/01Crausle.png",
+    "Transform your ideas into powerful digital experiences with custom websites and web applications that combine stunning design, seamless functionality, and business-driven performance.",
+  image: "/images/home/01Crausle.svg",
   tabIcon: "/images/home/home-08.png",
   path: "/web-development",
   backgroundClass:
@@ -33,9 +33,11 @@ export const heroSlides: readonly HeroSlide[] = [
   tabClass: "bg-[#eef5fb] text-[#1b2c38]",
   titleClass: "text-[#162938]",
   descriptionClass: "text-[#54616d]",
-  layout: "split",
-  imageClass: "w-full max-w-[520px] hover:scale-120 transition duration-700",
-  contentClass: "max-w-[520px]",
+  layout: "center",
+imageClass:
+  "w-full max-w-[560px] mx-auto object-contain object-center transition-transform duration-700 ease-out hover:scale-[1.03]",
+   contentClass: "max-w-[990px] mx-auto",
+
   arrowClass: "invert-0 opacity-45",
   imageAlt: "Web Development",
   imageTitle: "Web Development",
@@ -55,7 +57,8 @@ export const heroSlides: readonly HeroSlide[] = [
     titleClass: "text-white",
     descriptionClass: "text-white/90",
     layout: "splitReverse",
-    imageClass: "w-full max-w-[480px]  hover:scale-120 transition-all duration-700 ease-out",
+    imageClass:
+      "w-full max-w-[560px] mx-auto object-contain object-center transition-transform duration-700 ease-out hover:scale-[1.03]",
     contentClass: "max-w-[520px]",
     arrowClass: "brightness-0 invert opacity-70",
     imageAlt: "Mobile App Development Services",
@@ -76,7 +79,8 @@ export const heroSlides: readonly HeroSlide[] = [
     titleClass: "text-[#1b2c38]",
     descriptionClass: "text-white",
     layout: "split",
-    imageClass: "w-full max-w-[560px] hover:scale-120 transition-all duration-700 ease-out",
+    imageClass:
+      "w-full max-w-[560px] mx-auto object-contain object-center transition-transform duration-700 ease-out hover:scale-[1.03]",
     contentClass: "max-w-[520px]",
     arrowClass: "brightness-0 invert opacity-65",
     imageAlt: "Desktop Application Development",
@@ -96,8 +100,9 @@ export const heroSlides: readonly HeroSlide[] = [
     tabClass: "bg-[#ffcb05] text-[#1b2c38]",
     titleClass: "text-[#1b2c38]",
     descriptionClass: "text-white",
-    layout: "splitReverse",
-    imageClass: "w-full max-w-[500px] hover:scale-110 transition-all duration-700 ease-out",
+    layout: "center",
+    imageClass:
+      "w-full max-w-[560px] mx-auto object-contain object-center transition-transform duration-700 ease-out hover:scale-[1.03]",
     contentClass: "max-w-[520px]",
     arrowClass: "opacity-35",
     imageAlt: "Email Marketing Services",
@@ -118,7 +123,8 @@ export const heroSlides: readonly HeroSlide[] = [
     titleClass: "text-[#1b2c38]",
     descriptionClass: "text-[#26343d]",
     layout: "split",
-    imageClass: "w-full max-w-[500px] hover:scale-120 transition-all duration-700 ease-out",
+    imageClass:
+      "w-full max-w-[520px] mx-auto object-contain object-center transition-transform duration-700 ease-out hover:scale-[1.03]",
     contentClass: "max-w-[520px]",
     arrowClass: "opacity-40",
     imageAlt: "Digital Marketing Services",

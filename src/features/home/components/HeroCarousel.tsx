@@ -40,7 +40,7 @@ function HeroCarousel() {
   }
 
   const slideContent = (
-    <div className={activeSlide.contentClass}>
+    <div className={`${activeSlide.contentClass} py-2`}>
       <div>
         <h1
           className={`m-0 text-[42px] leading-[1.12] font-black max-[640px]:text-[32px] ${activeSlide.titleClass}`}
@@ -49,12 +49,12 @@ function HeroCarousel() {
         </h1>
       </div>
       <p
-        className={`mt-5 text-base leading-[1.75] max-[640px]:text-[15px] ${activeSlide.descriptionClass}`}
+        className={`mt-4 text-base leading-[1.65] max-[640px]:text-[15px] ${activeSlide.descriptionClass}`}
       >
         {activeSlide.description}
       </p>
       <div
-        className={`mt-7 flex flex-wrap gap-3 ${isCentered ? "justify-center" : ""}`}
+        className={`mt-6 flex flex-wrap gap-3 ${isCentered ? "justify-center" : ""}`}
       >
         <Link
           to={activeSlide.path}
@@ -73,17 +73,17 @@ function HeroCarousel() {
   );
 
   const slideImage = (
-    <img
-      className={`${activeSlide.imageClass} block max-h-[360px] object-contain max-[860px]:max-h-[330px] max-[560px]:max-h-[280px]`}
-      src={activeSlide.image}
-      alt={activeSlide.imageAlt}
-      title={activeSlide.imageTitle}
-      width="560"
-      height="360"
-      loading={activeIndex === 0 ? "eager" : "lazy"}
-      decoding="async"
-      fetchPriority={activeIndex === 0 ? "high" : "auto"}
-    />
+    <div className="mx-auto flex w-full max-w-[620px] items-center justify-center py-2">
+      <img
+        className={`${activeSlide.imageClass} h-auto w-full max-w-[560px] object-contain object-center max-[860px]:max-h-[280px] max-[560px]:max-h-[230px]`}
+        src={activeSlide.image}
+        alt={activeSlide.imageAlt}
+        title={activeSlide.imageTitle}
+        loading={activeIndex === 0 ? "eager" : "lazy"}
+        decoding="async"
+        fetchPriority={activeIndex === 0 ? "high" : "auto"}
+      />
+    </div>
   );
 
   return (
@@ -92,8 +92,8 @@ function HeroCarousel() {
       aria-label="Featured AG Solutions services"
     >
       <div
-  className={`relative h-[520px] overflow-hidden max-[860px]:h-[560px] max-[560px]:h-[600px] transition-colors duration-500 ${activeSlide.backgroundClass}`}
->
+        className={`relative min-h-[480px] overflow-hidden transition-colors duration-500 max-[860px]:min-h-[520px] max-[560px]:min-h-[560px] ${activeSlide.backgroundClass}`}
+      >
         <button
           type="button"
           className="absolute left-6 top-1/2 z-10 grid h-12 w-12 place-items-center rounded-full hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white max-[760px]:left-3 cursor-pointer"
@@ -127,19 +127,19 @@ function HeroCarousel() {
         >
           <div
             key={activeSlide.id}
-            className={`w-full px-14 max-[640px]:px-8 ${
+            className={`w-full px-6 sm:px-10 lg:px-14 ${
               slideDirection === "from-right"
                 ? "home-carousel-image-from-right"
                 : "home-carousel-image-from-left"
             }`}
           >
             {isCentered ? (
-              <div className="flex flex-col items-center text-center">
+              <div className="flex w-full flex-col items-center gap-5 text-center">
                 {slideContent}
                 {slideImage}
               </div>
             ) : (
-              <div className="grid w-full items-center gap-12 min-[860px]:grid-cols-2">
+              <div className="grid w-full items-center gap-6 lg:gap-8 min-[860px]:grid-cols-[1.02fr_0.98fr]">
                 {imageFirst && slideImage}
                 {slideContent}
                 {!imageFirst && slideImage}
