@@ -22,7 +22,7 @@ const timelineSteps: readonly TimelineStep[] = [
     initial: "I",
     title: "Ideation & Initiation",
     description: "We work closely with you to understand your initial ideas, business objectives, and requirements, setting a clear roadmap for the project.",
-    image: "/images/about/09-story-company.svg",
+    image: "/images/about/idea.webp",
     layout: "split",
   },
   {
