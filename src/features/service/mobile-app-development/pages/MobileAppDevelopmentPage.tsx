@@ -14,6 +14,8 @@ interface PortfolioItem {
   title: string;
   subtitle: string;
   image: string;
+  alt: string;
+  imageTitle: string;
 }
 
 interface FAQItem {
@@ -174,16 +176,22 @@ const recentWorks: readonly PortfolioItem[] = [
     title: "Ease Marketing",
     subtitle: "marketing",
     image: "/images/services/mobile-app-development/em.jpg",
+    alt: "Ease Marketing mobile application",
+    imageTitle: "Ease Marketing App",
   },
   {
     title: "IVF Kidney",
     subtitle: "matrimonial",
     image: "/images/services/mobile-app-development/ivf.jpg",
+    alt: "IVF healthcare mobile application",
+    imageTitle: "IVF Healthcare App",
   },
   {
     title: "Grow Together",
     subtitle: "business",
     image: "/images/services/mobile-app-development/gt.jpg",
+    alt: "Grow Together mobile application",
+    imageTitle: "Grow Together App",
   },
 ];
 
@@ -284,7 +292,8 @@ export default function MobileAppDevelopmentPage() {
               <div className="flex flex-col items-center text-center">
                 <img
                   src="/images/services/mobile-app-development/android.png"
-                  alt="Android logo"
+                  alt="Android app development by AG Solutions"
+                  title="Android App Development"
                   className="w-16 h-16 object-contain"
                   loading="lazy"
                 />
@@ -300,7 +309,8 @@ export default function MobileAppDevelopmentPage() {
               <div className="flex justify-center my-4 lg:my-0">
                 <img
                   src="/images/services/mobile-app-development/mobile-app-architecture.png"
-                  alt="Mobile application architecture diagram"
+                  alt="Mobile app architecture for Android and iOS applications"
+                  title="Mobile App Architecture"
                   className="w-full max-w-[340px] object-contain drop-shadow-md"
                   loading="lazy"
                 />
@@ -310,7 +320,8 @@ export default function MobileAppDevelopmentPage() {
               <div className="flex flex-col items-center text-center">
                 <img
                   src="/images/services/mobile-app-development/apple.png"
-                  alt="iOS Apple logo"
+                  alt="iOS app development by AG Solutions"
+                  title="iOS App Development"
                   className="w-16 h-16 object-contain"
                   loading="lazy"
                 />
@@ -402,7 +413,8 @@ export default function MobileAppDevelopmentPage() {
                   <div className="relative z-10 text-center flex flex-col items-center">
                     <img
                       src="/images/services/mobile-app-development/android.png"
-                      alt="Android app development"
+                      alt="Android application development services"
+                      title="Android Application Development"
                       className="w-20 h-20 object-contain mb-4"
                       loading="lazy"
                     />
@@ -412,7 +424,8 @@ export default function MobileAppDevelopmentPage() {
                     </p>
                     <img
                       src="/images/services/mobile-app-development/mobile-app-architecture.png"
-                      alt="Android architecture"
+                      alt="Mobile application architecture diagram"
+                      title="Mobile Application Architecture"
                       className="w-full max-w-[280px] object-contain mt-6"
                       loading="lazy"
                     />
@@ -487,7 +500,8 @@ export default function MobileAppDevelopmentPage() {
                   <div className="relative z-10 text-center flex flex-col items-center">
                     <img
                       src="/images/services/mobile-app-development/apple.png"
-                      alt="iOS app development"
+                      alt="iOS application development services"
+                      title="iOS Application Development"
                       className="w-20 h-20 object-contain mb-4"
                       loading="lazy"
                     />
@@ -497,7 +511,8 @@ export default function MobileAppDevelopmentPage() {
                     </p>
                     <img
                       src="/images/services/mobile-app-development/mobile1.webp"
-                      alt="iOS showcase"
+                      alt="Mobile app development showcase by AG Solutions"
+                      title="Mobile App Development Showcase"
                       className="w-full max-w-[260px] object-contain mt-6 rounded-lg"
                       loading="lazy"
                     />
@@ -656,6 +671,8 @@ export default function MobileAppDevelopmentPage() {
                     title={work.title}
                     subtitle={work.subtitle}
                     image={work.image}
+                    imageAlt={work.alt}
+                    imageTitle={work.imageTitle}
                     onClick={() => setSelectedImage({ image: work.image, title: work.title, subtitle: work.subtitle })}
                     className="rounded-xl cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all"
                   />
@@ -676,6 +693,7 @@ export default function MobileAppDevelopmentPage() {
                 <div className="mt-6">
                   <Link
                     to="/export-biz"
+                    title="Export Biz Export Management Software"
                     className="inline-flex items-center gap-2 bg-[#09c7ca] hover:bg-[#07b6b9] text-white font-bold px-6 py-3 rounded-full text-sm transition-all no-underline"
                   >
                     Explore App Features &rarr;
@@ -685,7 +703,8 @@ export default function MobileAppDevelopmentPage() {
               <div className="flex justify-center">
                 <img
                   src="/images/services/mobile-app-development/mobile1.webp"
-                  alt="Single click solution mobile app"
+                  alt="Single Click mobile application by AG Solutions"
+                  title="Single Click Mobile App"
                   className="w-full max-w-[320px] object-contain rounded-xl drop-shadow-2xl"
                   loading="lazy"
                 />

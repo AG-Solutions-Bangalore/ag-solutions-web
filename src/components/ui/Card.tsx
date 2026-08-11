@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 interface CardProps {
   image?: string;
   imageAlt?: string;
+  imageTitle?: string;
   badge?: string;
   title: string;
   subtitle?: string;
@@ -17,6 +18,7 @@ interface CardProps {
 export const Card: React.FC<CardProps> = ({
   image,
   imageAlt = "",
+  imageTitle,
   badge,
   title,
   subtitle,
@@ -34,6 +36,7 @@ export const Card: React.FC<CardProps> = ({
           <img
             src={image}
             alt={imageAlt || title}
+            title={imageTitle}
             loading="lazy"
             decoding="async"
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
