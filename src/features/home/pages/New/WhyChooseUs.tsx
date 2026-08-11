@@ -5,102 +5,94 @@ const features = [
     title: "Process-First Customization",
     description:
       "We design around how your business actually works — never a fixed, one-size-fits-all template.",
-    image: "/images/whychoose/process.png",
-    color: "border-blue-600",
+    color: "from-blue-500 to-cyan-500",
+    accent: "text-blue-600",
   },
   {
     title: "Business Understanding First",
     description:
       "We study your operations and real requirements before writing a single line of code.",
-    image: "/images/whychoose/business.png",
-    color: "border-red-400",
+    color: "from-rose-500 to-red-500",
+    accent: "text-red-500",
   },
   {
     title: "Cross-Industry Experience",
     description:
       "Proven delivery across manufacturing, trade, NGOs, associations, education and more.",
-    image: "/images/whychoose/industry.png",
-    color: "border-violet-500",
+    color: "from-violet-500 to-fuchsia-500",
+    accent: "text-violet-600",
   },
   {
     title: "End-to-End, One-Stop Capability",
     description:
       "Software, web, mobile, marketing, events and support — all under one roof.",
-    image: "/images/whychoose/endtoend.png",
-    color: "border-emerald-500",
+    color: "from-emerald-500 to-teal-500",
+    accent: "text-emerald-600",
   },
   {
     title: "Affordable & Practical Delivery",
     description:
       "Solutions built for real-world budgets, without compromising reliability.",
-    image: "/images/whychoose/affordable.png",
-    color: "border-blue-600",
+    color: "from-sky-500 to-blue-600",
+    accent: "text-sky-600",
   },
   {
     title: "Responsive, Long-Term Support",
     description:
       "Quick turnaround and relationships built to last well beyond go-live.",
-    image: "/images/whychoose/support.png",
-    color: "border-red-400",
+    color: "from-orange-500 to-amber-500",
+    accent: "text-orange-600",
   },
 ];
 
 export default function WhyChooseUs() {
   return (
-    <section className="bg-white py-28">
-      <div className="mx-auto max-w-7xl px-6">
-
-        {/* Heading */}
-
+    <section className="bg-white py-16 sm:py-20">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-20 text-center"
+          className="mb-10 text-center"
         >
-          <span className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.25em] text-slate-800">
-            <span className="h-3 w-3 rounded bg-red-500"></span>
+          <span className="inline-flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-slate-800">
+            <span className="h-2.5 w-2.5 rounded-full bg-red-500"></span>
             WHY AG SOLUTIONS
           </span>
 
-          <h2 className="mt-5 text-4xl font-bold text-slate-900 lg:text-5xl">
+          <h2 className="mt-4 text-2.5xl font-semibold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
             Built Around Your Business,
-            <br />
+            <br className="hidden sm:block" />
             Not the Other Way Around
           </h2>
         </motion.div>
 
-        {/* Sections */}
-
-        <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {features.map((item, index) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              whileHover={{
-                y: -8,
-                scale: 1.02,
-              }}
-              className={`group rounded-2xl border-t-4 ${item.color}
-      bg-white p-8 shadow-md transition-all duration-300
-      hover:shadow-2xl`}
+              transition={{ duration: 0.45, delay: index * 0.06 }}
+              whileHover={{ y: -6, scale: 1.01 }}
+              className="group relative overflow-hidden rounded-[1.3rem] border border-slate-200/70 bg-[linear-gradient(135deg,#ffffff_0%,#f8fafc_100%)] p-6 shadow-[0_12px_34px_-20px_rgba(15,23,42,0.35)] transition-all duration-300 hover:shadow-[0_18px_42px_-20px_rgba(15,23,42,0.45)]"
             >
-              <div className="mb-6">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="h-20 w-20 object-contain transition-transform duration-500 group-hover:scale-110"
-                />
+              <div className={`absolute inset-x-0 top-0 h-1.5 bg-linear-to-r ${item.color}`} />
+              <div className={`absolute inset-y-0 left-0 w-1 bg-linear-to-b ${item.color}`} />
+
+              <div className="mb-4 flex items-center gap-3">
+                <span className={`flex h-9 w-9 items-center justify-center rounded-2xl bg-linear-to-r ${item.color} text-sm font-semibold text-white`}>
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div className="h-px flex-1 bg-slate-200" />
               </div>
 
-              <h3 className="mb-4 text-2xl font-bold text-slate-900">
+              <h3 className={`mb-3 text-lg font-semibold leading-7 ${item.accent}`}>
                 {item.title}
               </h3>
 
-              <p className="leading-8 text-slate-600">
+              <p className="text-sm leading-7 text-slate-600">
                 {item.description}
               </p>
             </motion.div>

@@ -110,7 +110,7 @@ const supportCards: SupportCard[] = [
 
 export default function HowWeWork() {
   return (
-    <section className="relative overflow-hidden bg-white py-24 sm:py-28 lg:py-32">
+    <section className="relative overflow-hidden bg-[linear-gradient(180deg,_#fcfdff_0%,_#f7fafc_100%)] py-16 sm:py-20 lg:py-24">
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute left-[-8%] top-[-5%] h-72 w-72 rounded-full bg-sky-100/70 blur-3xl" />
         <div className="absolute right-[-6%] top-[18%] h-80 w-80 rounded-full bg-violet-100/70 blur-3xl" />
@@ -130,22 +130,22 @@ export default function HowWeWork() {
             HOW WE WORK
           </div>
 
-          <h2 className="mt-6 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
             From Idea to Long-Term Partnership
           </h2>
 
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
             We follow a structured process from understanding your business to delivering reliable software and providing long-term support after launch.
           </p>
         </motion.div>
 
-        <div className="mt-20 lg:mt-24">
-          <div className="mb-10 flex items-center justify-between gap-4">
+        <div className="mt-14 lg:mt-16">
+          <div className="mb-7 flex items-center justify-between gap-4">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.35em] text-slate-500">
                 Our Process
               </p>
-              <h3 className="mt-2 text-2xl font-semibold text-slate-900 sm:text-3xl">
+              <h3 className="mt-1.5 text-xl font-semibold text-slate-900 sm:text-2xl">
                 A calm, deliberate delivery journey
               </h3>
             </div>
@@ -180,20 +180,22 @@ export default function HowWeWork() {
                     viewport={{ once: true, amount: 0.2 }}
                     transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
                     whileHover={{ y: -6, scale: 1.01 }}
-                    className="relative overflow-hidden rounded-[1.5rem] border border-slate-200/80 bg-white/80 p-7 shadow-[0_20px_70px_-30px_rgba(15,23,42,0.45)] backdrop-blur-xl"
+                    className="relative overflow-hidden rounded-[1.4rem] border border-slate-200/80 bg-[linear-gradient(135deg,_#ffffff_0%,_#f8fbff_100%)] p-6 shadow-[0_18px_45px_-26px_rgba(15,23,42,0.45)] backdrop-blur-xl"
                   >
                     <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${item.gradient}`} />
-                    <div className={`inline-flex rounded-2xl bg-gradient-to-br ${item.gradient} p-3 text-white shadow-lg`}>
-                      <Icon className="h-6 w-6" />
+                    <div className="flex items-center gap-3">
+                      <div className={`inline-flex rounded-2xl bg-gradient-to-br ${item.gradient} p-3 text-white shadow-lg`}>
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <p className={`text-[10px] font-semibold uppercase tracking-[0.3em] ${item.accent}`}>
+                        {item.step}
+                      </p>
                     </div>
 
-                    <p className={`mt-6 text-[11px] font-semibold uppercase tracking-[0.35em] ${item.accent}`}>
-                      {item.step}
-                    </p>
-                    <h4 className="mt-3 text-2xl font-semibold text-slate-900">
+                    <h4 className="mt-4 text-xl font-semibold text-slate-900">
                       {item.title}
                     </h4>
-                    <p className="mt-4 text-sm leading-7 text-slate-600">
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
                       {item.description}
                     </p>
                   </motion.article>
@@ -208,28 +210,28 @@ export default function HowWeWork() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="mt-24 overflow-hidden rounded-[2rem] border border-slate-200/70 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 px-8 py-10 text-center text-white shadow-[0_30px_90px_-24px_rgba(2,6,23,0.7)] sm:px-10 lg:px-14"
+          className="mt-16 overflow-hidden rounded-[2rem] border border-slate-200/70 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 px-8 py-8 text-center text-white shadow-[0_30px_90px_-24px_rgba(2,6,23,0.7)] sm:px-10 lg:px-14"
         >
           <motion.div
             animate={{ y: [0, -8, 0], rotate: [0, -3, 0], scale: [1, 1.02, 1] }}
             transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-            className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border border-white/15 bg-white/10 shadow-inner"
+            className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-white/15 bg-white/10 shadow-inner sm:h-18 sm:w-18"
           >
-            <Rocket className="h-10 w-10 text-sky-300" />
+            <Rocket className="h-8 w-8 text-sky-300 sm:h-9 sm:w-9" />
           </motion.div>
 
-          <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-400">
+          <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-400">
             PROJECT GOES LIVE
           </p>
-          <h3 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+          <h3 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
             Your software is now deployed and ready for your business.
           </h3>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-300">
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
             A smooth launch marks the beginning of a stronger digital experience built to scale with your team.
           </p>
         </motion.div>
 
-        <div className="mt-24 lg:mt-28">
+        <div className="mt-16 lg:mt-20">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -237,18 +239,18 @@ export default function HowWeWork() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="mx-auto max-w-3xl text-center"
           >
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-slate-500">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-500">
               After Go-Live Support
             </p>
-            <h3 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+            <h3 className="mt-2 text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl">
               After Go-Live Support
             </h3>
-            <p className="mt-4 text-base leading-8 text-slate-600 sm:text-lg">
+            <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
               Our partnership doesn&apos;t end after deployment. We continue supporting, improving and scaling your software.
             </p>
           </motion.div>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {supportCards.map((card, index) => {
               const Icon = card.icon;
 
@@ -260,16 +262,16 @@ export default function HowWeWork() {
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ delay: index * 0.08, duration: 0.6, ease: "easeOut" }}
                   whileHover={{ y: -6, scale: 1.01 }}
-                  className="group relative overflow-hidden rounded-[1.5rem] border border-slate-200/80 bg-white/80 p-7 shadow-[0_20px_70px_-30px_rgba(15,23,42,0.4)] backdrop-blur-xl"
+                  className="group relative overflow-hidden rounded-[1.2rem] border border-slate-200/80 bg-[linear-gradient(135deg,_#ffffff_0%,_#fafbff_100%)] p-5 shadow-[0_12px_32px_-20px_rgba(15,23,42,0.42)] backdrop-blur-xl"
                 >
                   <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${card.gradient}`} />
-                  <div className={`inline-flex rounded-2xl bg-gradient-to-br ${card.gradient} p-3 text-white shadow-lg transition duration-300 group-hover:rotate-6`}>
-                    <Icon className="h-6 w-6" />
+                  <div className={`inline-flex rounded-2xl bg-gradient-to-br ${card.gradient} p-2.5 text-white shadow-lg transition duration-300 group-hover:rotate-6`}>
+                    <Icon className="h-5 w-5" />
                   </div>
-                  <h4 className="mt-6 text-xl font-semibold text-slate-900">
+                  <h4 className="mt-4 text-lg font-semibold text-slate-900">
                     {card.title}
                   </h4>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">
+                  <p className="mt-2 text-sm leading-7 text-slate-600">
                     {card.description}
                   </p>
                   <div className={`absolute -bottom-8 right-0 h-24 w-24 rounded-full bg-gradient-to-br ${card.gradient} opacity-0 blur-3xl transition duration-500 group-hover:opacity-30`} />

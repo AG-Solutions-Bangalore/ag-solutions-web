@@ -22,7 +22,7 @@ const timelineSteps: readonly TimelineStep[] = [
     initial: "I",
     title: "Ideation & Initiation",
     description: "We work closely with you to understand your initial ideas, business objectives, and requirements, setting a clear roadmap for the project.",
-    image: "/images/about/09-story-company.svg",
+    image: "/images/about/idea1.png",
     layout: "split",
   },
   {
@@ -237,11 +237,11 @@ function AboutPage() {
             {/* Dynamic Step Content */}
             <div
               key={`${activeStep.id}-${slideDirection}`}
-              className={`home-animated-item mt-16 ${isVisible ? "home-animated-item-visible" : ""
+              className={`home-animated-item mt-10 ${isVisible ? "home-animated-item-visible" : ""
                 }`}
               style={{ transitionDelay: "150ms" }}
             >
-              <div className="grid w-full items-center gap-12 min-[860px]:grid-cols-2">
+              <div className="grid w-auto items-center gap-7 min-[860px]:grid-cols-2">
                 {/* Layout Controlled Image First (Opposite/Reverse) */}
                 {imageFirst && (
                   <div className="flex justify-center min-[860px]:justify-start">
