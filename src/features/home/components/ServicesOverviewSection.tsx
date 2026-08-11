@@ -136,13 +136,13 @@ function ServicesOverviewSection() {
                       <div className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-1000 ease-out group-hover:translate-x-full transform-gpu" />
 
                       {/* Image */}
-                      <div className="relative z-10 overflow-hidden rounded-t-3xl p-4">
+                      <div className="relative z-10 overflow-hidden rounded-t-[28px] p-4">
                         <div className="animate-float">
                           <img
                             src={service.image}
                             alt={service.alt}
                             title={service.titleAttr}
-                            className="relative z-10 h-[220px] w-full object-contain p-4 transition-transform duration-500 ease-out group-hover:scale-105 group-hover:-translate-y-2 group-hover:rotate-1 transform-gpu"
+                            className="relative z-10 h-[220px] w-full object-contain object-center transition-transform duration-500 ease-out group-hover:scale-105 group-hover:-translate-y-2 group-hover:rotate-1 transform-gpu"
                           />
                         </div>
                       </div>
@@ -156,7 +156,7 @@ function ServicesOverviewSection() {
                             {service.title}
                           </h3>
 
-                          <p className="mt-4 text-[16px] leading-7 text-[#5d6974] line-clamp-5">
+                          <p className="mt-4 min-h-[96px] text-[16px] leading-7 text-[#5d6974]">
                             {service.description}
                           </p>
                         </div>

@@ -86,66 +86,60 @@ const industries = [
 
 export default function Industries() {
   return (
-    <section className="relative overflow-hidden bg-[#f8fbff] py-24">
-      {/* Background */}
-      <div className="absolute -left-32 top-0 h-72 w-72 rounded-full bg-blue-200/20 blur-3xl" />
-      <div className="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-purple-200/20 blur-3xl" />
+    <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(14,165,233,0.08),_transparent_40%),linear-gradient(180deg,_#f8fbff_0%,_#f5f9ff_100%)] py-16 sm:py-20">
+      <div className="absolute left-[-8%] top-[-8%] h-72 w-72 rounded-full bg-sky-200/30 blur-3xl" />
+      <div className="absolute bottom-[-6%] right-[-4%] h-80 w-80 rounded-full bg-violet-200/25 blur-3xl" />
 
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.55 }}
           viewport={{ once: true }}
-          className="mb-16 text-center"
+          className="mx-auto mb-10 max-w-3xl text-center"
         >
-          <span className="rounded-full bg-blue-100 px-5 py-2 text-sm font-semibold text-blue-600">
+          <span className="inline-flex items-center rounded-full border border-sky-200 bg-white/80 px-3.5 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-sky-700 shadow-sm backdrop-blur">
             WHO WE SERVE
           </span>
 
-          <h2 className="mt-6 text-5xl font-extrabold text-slate-900">
+          <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
             Industries We Empower
           </h2>
 
-          <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
             Delivering scalable digital solutions for businesses across multiple
             industries with innovation, reliability, and measurable growth.
           </p>
         </motion.div>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {industries.map((item, index) => {
             const Icon = item.icon;
 
             return (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 60 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{
-                  duration: 0.45,
-                  delay: index * 0.05,
-                }}
-                whileHover={{
-                  y: -10,
-                  scale: 1.03,
-                }}
-                className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition-all duration-300 hover:shadow-2xl"
+                transition={{ duration: 0.45, delay: index * 0.04 }}
+                whileHover={{ y: -6, scale: 1.01 }}
+                className="group relative overflow-hidden rounded-[1.05rem] border border-slate-200/80 bg-[linear-gradient(135deg,_#ffffff_0%,_#f8fbff_100%)] p-4 shadow-[0_8px_24px_-18px_rgba(15,23,42,0.35)] backdrop-blur-sm transition-all duration-300 hover:shadow-[0_14px_32px_-18px_rgba(15,23,42,0.45)]"
               >
-                <div
-                  className={`mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-r ${item.color} shadow-lg`}
-                >
-                  <Icon className="h-8 w-8 text-white" />
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-slate-200 to-transparent transition-all duration-300 group-hover:from-sky-400 group-hover:via-cyan-400 group-hover:to-violet-400" />
+
+                <div className="flex items-start gap-3">
+                  <div className={`flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-r ${item.color} shadow-sm`}>
+                    <Icon className="h-5 w-5 text-white" />
+                  </div>
+                  <div className="h-2.5 w-2.5 rounded-full bg-slate-300 transition-all duration-300 group-hover:bg-slate-500" />
                 </div>
 
-                <h3 className="text-lg font-semibold leading-7 text-slate-900">
+                <h3 className="mt-3 text-[0.95rem] font-semibold leading-6 text-slate-900">
                   {item.title}
                 </h3>
 
-                <div
-                  className={`absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r ${item.color} transition-all duration-500 group-hover:w-full`}
-                />
+                <div className="mt-3 h-0.5 w-8 rounded-full bg-slate-200 transition-all duration-300 group-hover:w-12 group-hover:bg-slate-400" />
               </motion.div>
             );
           })}
