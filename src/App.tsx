@@ -28,6 +28,7 @@ import {
 } from "./routes/lazyRoutes";
 import New from "../src/features/home/pages/New/New";
 import ExportBiz from "./features/export-biz/pages/ExportBiz";
+// import ContactUs from "./features/contact-us-new/pages/ContactUs";
 
 
 
@@ -157,6 +158,7 @@ function App() {
           <Route path="products" element={<ProductsPage />} />
           <Route path="/new" element={<New />} />
           <Route path="/exportbiz" element={<ExportBiz />} />
+          <Route path="/contactus" element={<ContactPage />} />
           <Route
             path="export-biz"
             element={<ExportBizPage />}
