@@ -20,11 +20,13 @@ const queryClient = new QueryClient({
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
-    <QueryClientProvider client={queryClient}>
-      <HelmetProvider>
-        <App />
-      </HelmetProvider>
-    </QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        <HelmetProvider>
+          <App />
+        </HelmetProvider>
+      </QueryClientProvider>
     </BrowserRouter>
   </StrictMode>,
 );
+
+

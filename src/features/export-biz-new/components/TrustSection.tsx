@@ -14,11 +14,11 @@ export const TrustSection: React.FC = () => {
         </div>
 
         <div className="flex flex-col md:flex-row flex-wrap gap-5 reveal">
-          <div className="flex-1 min-w-[200px] bg-gradient-to-br from-[#071B49] to-[#0E2C6B] text-white rounded-[24px] p-8 sm:p-7 flex flex-col justify-center">
-            <span className="font-['Plus_Jakarta_Sans',sans-serif] font-extrabold text-[2.8rem] bg-gradient-to-r from-[#8FB7FF] to-[#FF9A5A] bg-clip-text text-transparent leading-none">
-              10+
+          <div className="flex-1 min-w-[200px] bg-[#f2f5f9] text-[#1b2c38] rounded-[24px] p-8 sm:p-7 flex flex-col justify-center">
+            <span className="font-['Plus_Jakarta_Sans',sans-serif] font-extrabold text-[2.8rem] bg-gradient-to-r from-[#09c7ca] to-[#0e236a] bg-clip-text text-transparent leading-none">
+              15+
             </span>
-            <span className="text-[#B9CBF2] text-[0.92rem] mt-2">
+            <span className="text-[#1b2c38] text-[0.92rem] mt-2">
               Years building web, mobile &amp; business software
             </span>
           </div>

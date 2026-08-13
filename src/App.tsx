@@ -6,11 +6,13 @@ import SkipToContent from "./components/accessibility/SkipToContent";
 import { getUtmParams, storeUtmParams } from "./utils/utmUtils";
 import {
   loadAboutPage,
+  loadAboutPageV2,
   loadBlogDetailPage,
   loadBlogListPage,
   loadContactPage,
   loadDesktopApplicationsPage,
   loadHomePage,
+  loadHomePageV2,
   loadMobileAppDevelopmentPage,
   loadNotFoundPage,
   loadPortfolioPage,
@@ -26,7 +28,9 @@ import New from "../src/features/home/pages/New/New";
 
 
 const HomePage = lazy(loadHomePage);
+const HomePageV2 = lazy(loadHomePageV2);
 const AboutPage = lazy(loadAboutPage);
+const AboutPageV2 = lazy(loadAboutPageV2);
 const ContactPage = lazy(loadContactPage);
 const PortfolioPage = lazy(loadPortfolioPage);
 const WebDevelopmentPage = lazy(loadWebDevelopmentPage);
@@ -118,6 +122,8 @@ function App() {
       <SkipToContent />
       <ScrollToTop />
       <Routes>
+        <Route path="home-v2" element={<HomePageV2 />} />
+        <Route path="about-v2" element={<AboutPageV2 />} />
         <Route element={<AppLayout />}>
           <Route index element={<HomePage />} />
           <Route path="projects" element={<Navigate to="/portfolio" replace />} />

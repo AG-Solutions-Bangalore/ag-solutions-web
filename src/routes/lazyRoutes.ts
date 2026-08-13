@@ -8,7 +8,9 @@ const normalizePath = (path: string) => {
 };
 
 export const loadHomePage = () => import("@/features/home/pages/HomePage");
+export const loadHomePageV2 = () => import("@/features/homev2/pages/HomePageV2");
 export const loadAboutPage = () => import("@/features/about/pages/AboutPage");
+export const loadAboutPageV2 = () => import("@/features/aboutV2/pages/AboutPageV2");
 export const loadContactPage = () =>
   import("@/features/contact-us/pages/ContactPage");
 export const loadPortfolioPage = () =>
@@ -44,7 +46,9 @@ export const loadNotFoundPage = () =>
 
 const routeLoaders: Record<string, () => Promise<unknown>> = {
   "/": loadHomePage,
+  "/home-v2": loadHomePageV2,
   "/about": loadAboutPage,
+  "/about-v2": loadAboutPageV2,
   "/contacts": loadContactPage,
   "/portfolio": loadPortfolioPage,
   "/web-development": loadWebDevelopmentPage,

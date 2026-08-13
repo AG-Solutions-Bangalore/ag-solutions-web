@@ -5,6 +5,8 @@ import HeroCarousel from "../components/HeroCarousel";
 import RecentWorksSection from "../components/RecentWorksSection";
 import ServicesOverviewSection from "../components/ServicesOverviewSection";
 import StatsCounterSection from "../components/StatsCounterSection";
+import Industries from "../pages/New/Industries";
+import WhyChooseUs from "../pages/New/WhyChooseUs";
 import { BlogCarousel } from "@/features/blog/components/BlogCarousel";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
 
@@ -16,13 +18,9 @@ function HomePage() {
       <AboutCompanySection />
       <ExportSolutionsSection />
       <ServicesOverviewSection />
-      <BlogCarousel
-        type="featured"
-        title="Featured Insights"
-        subtitle="Explore handpicked stories, insights, and tech trends from our experts."
-        bgClass="bg-[#f8fafc]"
-      />
+      <Industries />
       <StatsCounterSection />
+      <WhyChooseUs />
       <RecentWorksSection />
       <BlogCarousel
         type="front"
@@ -31,7 +29,7 @@ function HomePage() {
         bgClass="bg-[#f8fafc]"
       />
       <WhatsAppWidget />
-      
+
     </>
   );
 }

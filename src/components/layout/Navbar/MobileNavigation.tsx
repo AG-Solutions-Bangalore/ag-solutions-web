@@ -31,7 +31,6 @@ function MobileNavigation({ isOpen, onNavigate }: MobileNavigationProps) {
         {navItems.map((item) => {
           const hasDropdown = Boolean(item.children?.length);
           const activeSection = isSectionActive(item, pathname);
-          const isProducts = item.label === "Products";
 
           if (!hasDropdown) {
             return (
@@ -101,11 +100,7 @@ function MobileNavigation({ isOpen, onNavigate }: MobileNavigationProps) {
                     }
                   >
                     <span
-                      className={
-                        isProducts
-                          ? "grid h-9 w-9 shrink-0 place-items-center rounded-full border border-[#1d2d3b]/20 text-[11px] font-black bg-transparent text-[#1d2d3b]"
-                          : `grid h-9 w-9 shrink-0 place-items-center rounded-[7px] text-[11px] font-black ${child.accentClass}`
-                      }
+                      className={`grid h-9 w-9 shrink-0 place-items-center rounded-[7px] text-[11px] font-black ${child.accentClass}`}
                     >
                       {child.icon && (
                         <ServiceMenuIcon
@@ -116,11 +111,7 @@ function MobileNavigation({ isOpen, onNavigate }: MobileNavigationProps) {
                       {child.productIcon && (
                         <ProductMenuIcon
                           name={child.productIcon}
-                          className={
-                            isProducts
-                              ? "h-5 w-5 shrink-0 fill-current text-[#1d2d3b]"
-                              : "h-7 w-7 shrink-0 fill-current"
-                          }
+                          className="h-5 w-5 shrink-0 fill-current"
                         />
                       )}
                       {!child.icon && !child.productIcon && child.badge}
@@ -129,11 +120,9 @@ function MobileNavigation({ isOpen, onNavigate }: MobileNavigationProps) {
                       <span className="block text-sm font-bold">
                         {child.label}
                       </span>
-                      {!isProducts && (
-                        <span className="mt-0.5 block text-xs leading-snug text-slate-500">
-                          {child.description}
-                        </span>
-                      )}
+                      <span className="mt-0.5 block text-xs leading-snug text-slate-500">
+                        {child.description}
+                      </span>
                     </span>
                   </NavLink>
                 ))}

@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
 import { SectionTitle } from "@/components/layout/SectionTitle";
+import { getImageUrl } from "@/utils/imageUrl";
 
 const services = [
   {
     title: "Web Development",
-    image: "/images/services/web-development/web7.webp",
+    image: getImageUrl("/images/services/web-development/web7.webp"),
     path: "/web-development",
     description:
       "Turn your vision into a powerful digital experience...",
@@ -19,7 +20,7 @@ const services = [
 
   {
     title: "Mobile App Development",
-    image: "/images/services/mobile-app-development/mobile1.webp",
+    image: getImageUrl("/images/services/mobile-app-development/mobile1.webp"),
     path: "/mobile-app-development",
     description:
       "Create powerful mobile experiences...",
@@ -32,7 +33,7 @@ const services = [
 
   {
     title: "Desktop Applications",
-    image: "/images/services/desktop-applications/desktop3.webp",
+    image: getImageUrl("/images/services/desktop-applications/desktop3.webp"),
     path: "/desktop-applications",
     description:
       "Turn your business vision into powerful software...",
@@ -47,7 +48,7 @@ const services = [
 function ServicesOverviewSection() {
   return (
     <AnimatedSection
-      className="relative overflow-hidden bg-white py-8 text-[#1b2c38] max-[760px]:py-14"
+      className="relative overflow-hidden bg-white text-[#1b2c38]"
       ariaLabel="AG Solutions services overview"
     >
       {(isVisible) => (
@@ -112,8 +113,9 @@ function ServicesOverviewSection() {
                       transitionDelay: `${120 + index * 100}ms`,
                     }}
                   >
-                    <article
-                      className="group relative h-full overflow-hidden rounded-[30px] border border-white/30 bg-white/60 backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,.08)] transition-all duration-500 ease-out transform-gpu hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_30px_70px_rgba(0,83,192,.22)] cursor-pointer"
+                    <Link
+                      to={service.path}
+                      className="group relative block h-full pt-8 overflow-hidden rounded-[30px] border border-white/30 bg-white/60 backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,.08)] transition-all duration-500 ease-out transform-gpu hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_30px_70px_rgba(0,83,192,.22)] cursor-pointer no-underline text-inherit"
                     >
                       {/* Glow Behind Image */}
                       <div
@@ -121,7 +123,7 @@ function ServicesOverviewSection() {
                       />
 
                       {/* Decorative Icon */}
-                      <div className="pointer-events-none absolute right-5 top-5 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/40 backdrop-blur-md transition-transform duration-500 ease-out group-hover:rotate-180 group-hover:scale-125 transform-gpu">
+                      <div className="pointer-events-none absolute right-5 top-5 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/40 backdrop-blur-md transition-transform duration-500 ease-out group-hover:rotate-180 group-hover:scale-125 transform-gpu text-[#1b2c38]">
                         ✦
                       </div>
 
@@ -142,7 +144,7 @@ function ServicesOverviewSection() {
                             src={service.image}
                             alt={service.alt}
                             title={service.titleAttr}
-                            className="relative z-10 h-[220px] w-full object-contain object-center transition-transform duration-500 ease-out group-hover:scale-105 group-hover:-translate-y-2 group-hover:rotate-1 transform-gpu"
+                            className="relative z-10 h-[120px] w-full object-contain object-center transition-transform duration-500 ease-out group-hover:scale-105 group-hover:-translate-y-2 group-hover:rotate-1 transform-gpu"
                           />
                         </div>
                       </div>
@@ -161,8 +163,7 @@ function ServicesOverviewSection() {
                           </p>
                         </div>
 
-                        <Link
-                          to={service.path}
+                        <div
                           className="group/btn relative mt-8 inline-flex overflow-hidden rounded-full self-start"
                         >
                           {/* Animated Gradient */}
@@ -183,9 +184,9 @@ function ServicesOverviewSection() {
                               →
                             </span>
                           </div>
-                        </Link>
+                        </div>
                       </div>
-                    </article>
+                    </Link>
                   </div>
                 ))}
               </div>

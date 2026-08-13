@@ -5,6 +5,7 @@ import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
 import { SEO } from "@/components/seo/SEO";
 import { getUtmParams } from "@/utils/utmUtils";
+import { getImageUrl } from "@/utils/imageUrl";
 
 interface FeatureItem {
   title: string;
@@ -84,7 +85,7 @@ export const GrowTogetherPage: React.FC = () => {
 
       <PageHero
         title="Grow Together Solutions"
-        bgImage="/images/pattern-bg-grey.jpg"
+        bgImage={getImageUrl("/images/pattern-bg-grey.jpg")}
         textColorClass="text-[#1b2c38]"
         breadcrumbs={[
           { label: "Homepage", path: "/" },
@@ -103,7 +104,7 @@ export const GrowTogetherPage: React.FC = () => {
             {/* Left Image */}
             <div className={`home-animated-item flex justify-center ${isVisible ? "home-animated-item-visible" : ""}`}>
               <img
-                src="/images/home/services_mob.png"
+                src={getImageUrl("/images/home/services_mob.png")}
                 alt="Grow Together collaboration mockups"
                 className="w-full max-w-135 object-contain"
                 loading="lazy"

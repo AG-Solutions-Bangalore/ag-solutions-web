@@ -11,6 +11,7 @@ import { PageHero, SectionTitle } from "@/components/layout";
 import { Card } from "@/components/ui";
 import { FAQSchema } from "@/components/seo";
 import { getUtmParams } from "@/utils/utmUtils";
+import { getImageUrl } from "@/utils/imageUrl";
 
 interface ServiceCard {
   title: string;
@@ -34,7 +35,7 @@ interface FAQItem {
 
 const services: readonly ServiceCard[] = [
   {
-    title: "Bussiness Website",
+    title: "Branding Websites",
     description:
       "Typically on branding websites, you will find information about the company, the product and/or the service. It's goal is to make the user familiar with the brand and to promote name recognition.",
     icon: "/images/services/web-development/icon22.svg",
@@ -60,32 +61,32 @@ const recentWorks: readonly PortfolioCard[] = [
   {
     title: "Agrawal Samaj",
     subtitle: "Community",
-    image: "/images/services/web-development/web1.png",
+    image: getImageUrl("/images/services/web-development/web1.png"),
   },
   {
     title: "Foundation India",
     subtitle: "Social",
-    image: "/images/services/web-development/web2.png",
+    image: getImageUrl("/images/services/web-development/web2.png"),
   },
   {
     title: "GPW Build Tech",
     subtitle: "Builder",
-    image: "/images/services/web-development/web3.png",
+    image: getImageUrl("/images/services/web-development/web3.png"),
   },
   {
     title: "Hera Associate",
     subtitle: "Civil",
-    image: "/images/services/web-development/web4.png",
+    image: getImageUrl("/images/services/web-development/web4.png"),
   },
   {
     title: "Naturalii",
     subtitle: "Ecommerce",
-    image: "/images/services/web-development/web5.png",
+    image: getImageUrl("/images/services/web-development/web5.png"),
   },
   {
     title: "Business Boosters",
     subtitle: "B2B Services",
-    image: "/images/services/web-development/web6 (1).png",
+    image: getImageUrl("/images/services/web-development/web6.png"),
   },
 ];
 
@@ -140,7 +141,7 @@ export default function () {
     .map((p) => ({
       title: p.project_name,
       subtitle: p.project_type || "Web Development",
-      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : "/images/services/web-development/web1.png",
+      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : getImageUrl("/images/services/web-development/web1.png"),
     })) || [];
 
   const worksList = apiWorks.length > 0 ? apiWorks : recentWorks;
@@ -206,7 +207,7 @@ export default function () {
 
       <PageHero
         title="Web Development Company In Bangalore"
-        bgImage="/images/pattern-bg-grey.jpg"
+        bgImage={getImageUrl("/images/pattern-bg-grey.jpg")}
         // bgColorClass="bg-[#fafafa]"
         textColorClass="text-[#1b2c38]"
         breadcrumbs={[
@@ -225,7 +226,7 @@ export default function () {
             {/* Left Image */}
             <div className={`home-animated-item flex justify-center ${isVisible ? "home-animated-item-visible" : ""}`}>
               <img
-                src="/images/services/web-development/banner-website-design.jpg"
+                src={getImageUrl("/images/services/web-development/banner-website-design.jpg")}
                 alt="Web design and development illustration"
                 className="w-full max-w-135 object-contain"
                 loading="lazy"

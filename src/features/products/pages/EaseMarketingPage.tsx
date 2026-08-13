@@ -5,6 +5,7 @@ import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
 import { SEO } from "@/components/seo/SEO";
 import { getUtmParams } from "@/utils/utmUtils";
+import { getImageUrl } from "@/utils/imageUrl";
 
 interface FeatureItem {
   title: string;
@@ -84,7 +85,7 @@ export const EaseMarketingPage: React.FC = () => {
 
       <PageHero
         title="EASE Marketing Solutions"
-        bgImage="/images/pattern-bg-breez.jpg"
+        bgImage={getImageUrl("/images/pattern-bg-breez.jpg")}
         textColorClass="text-[#1b2c38]"
         breadcrumbs={[
           { label: "Homepage", path: "/" },
@@ -103,7 +104,7 @@ export const EaseMarketingPage: React.FC = () => {
             {/* Left Image */}
             <div className={`home-animated-item flex justify-center ${isVisible ? "home-animated-item-visible" : ""}`}>
               <img
-                src="/images/services/web-development/banner-website-design.jpg"
+                src={getImageUrl("/images/services/web-development/banner-website-design.jpg")}
                 alt="EASE marketing operations visualization"
                 className="w-full max-w-135 object-contain"
                 loading="lazy"

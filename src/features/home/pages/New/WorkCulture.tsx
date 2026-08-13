@@ -1,23 +1,24 @@
 import { motion } from "framer-motion";
+import { getImageUrl } from "@/utils/imageUrl";
 
 const culture = [
   {
     title: "Business-First Approach",
     description:
       "We begin every project by understanding your business goals, workflows, and challenges before writing any code.",
-    image: "/images/work-culture/business.png",
+    image: getImageUrl("/images/whychoose/business.png"),
   },
   {
     title: "Agile Development",
     description:
       "Our team follows an agile process with continuous feedback, faster iterations, and transparent communication.",
-    image: "/images/work-culture/agile.png",
+    image: getImageUrl("/images/whychoose/process.png"),
   },
   {
     title: "Long-Term Partnership",
     description:
       "We stay with our clients beyond project delivery by providing maintenance, upgrades, and ongoing support.",
-    image: "/images/work-culture/support.png",
+    image: getImageUrl("/images/whychoose/support.png"),
   },
 ];
 

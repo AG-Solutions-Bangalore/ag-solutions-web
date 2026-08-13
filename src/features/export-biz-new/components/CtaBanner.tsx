@@ -51,6 +51,7 @@ export const CtaBanner: React.FC<CtaBannerProps> = ({ onStartDemo }) => {
         <div className="flex justify-center flex-wrap gap-4">
           <a
             href="#top"
+            title="Back to Top"
             onClick={handleClick}
             className="inline-flex items-center justify-center gap-2 font-['Inter',sans-serif] font-bold text-[1.05rem] px-7.5 py-4 rounded-2xl bg-[#FF5A00] text-white shadow-[0_10px_26px_rgba(255,90,0,0.32)] hover:-translate-y-0.5 hover:shadow-[0_14px_32px_rgba(255,90,0,0.4)] hover:bg-[#E64F00] transition-all duration-180 ease-in-out whitespace-nowrap min-h-[52px] cursor-pointer"
           >
@@ -58,6 +59,7 @@ export const CtaBanner: React.FC<CtaBannerProps> = ({ onStartDemo }) => {
           </a>
           <a
             href="https://ag-solutions.in/"
+            title="AG Solutions Home"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 font-['Inter',sans-serif] font-bold text-[1.05rem] px-7.5 py-4 rounded-2xl bg-transparent text-white border-1.5 border-white/50 hover:border-white hover:bg-white/8 transition-all duration-180 ease-in-out whitespace-nowrap min-h-[52px] cursor-pointer"

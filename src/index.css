@@ -1,61 +1,191 @@
 @import "tailwindcss";
 
-@theme {
-  --font-space-grotesk: "Space Grotesk", sans-serif;
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* 1. Light Mode CSS Variables */
+:root {
+  --color-background: #ffffff;
+  --color-foreground: #1e293b;
+
+  --color-card: #ffffff;
+  --color-card-foreground: #1e293b;
+
+  --color-muted: #64748b;
+  --color-muted-bg: #f8fafc;
+  --color-border: #e2e8f0;
+
+  /* AG Solutions Brand Colors - Light Mode Tints & Borders */
+  --color-ag-pink-light: #fff0f4;
+  --color-ag-pink-border: #fbcfe8;
+
+  --color-ag-teal-light: #e6f7f8;
+  --color-ag-teal-border: #a5f3fc;
+
+  --color-ag-yellow-light: #fff8ec;
+  --color-ag-yellow-border: #fde68a;
+
+  --color-ag-green-light: #f1f8e9;
+  --color-ag-green-border: #d9f99d;
+
+  --color-ag-blue-light: #e0f2fe;
+  --color-ag-blue-border: #bae6fd;
+
+  --ag-navy: #0c192c;
+  --ag-dark: #1e293b;
+  --ag-muted: #64748b;
+  --ag-light: #f8fafc;
 }
 
+/* 2. Dark Mode CSS Variables */
+.dark {
+  --color-background: #090d16;
+  --color-foreground: #f8fafc;
+
+  --color-card: #0f172a;
+  --color-card-foreground: #f8fafc;
+
+  --color-muted: #94a3b8;
+  --color-muted-bg: #1e293b;
+  --color-border: #1e293b;
+
+  /* AG Solutions Brand Colors - Dark Mode Tints & Borders */
+  --color-ag-pink-light: rgba(233, 53, 104, 0.15);
+  --color-ag-pink-border: rgba(233, 53, 104, 0.35);
+
+  --color-ag-teal-light: rgba(0, 168, 181, 0.15);
+  --color-ag-teal-border: rgba(0, 168, 181, 0.35);
+
+  --color-ag-yellow-light: rgba(245, 166, 35, 0.15);
+  --color-ag-yellow-border: rgba(245, 166, 35, 0.35);
+
+  --color-ag-green-light: rgba(124, 179, 66, 0.15);
+  --color-ag-green-border: rgba(124, 179, 66, 0.35);
+
+  --color-ag-blue-light: rgba(2, 132, 199, 0.15);
+  --color-ag-blue-border: rgba(2, 132, 199, 0.35);
+
+  --ag-navy: #030712;
+  --ag-dark: #f8fafc;
+  --ag-muted: #94a3b8;
+  --ag-light: #1e293b;
+}
+
+/* 3. Register Variables in Tailwind CSS v4 @theme */
+@theme {
+  --font-sans: "Roboto", system-ui, -apple-system, sans-serif;
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-space-grotesk: "Space Grotesk", sans-serif;
+
+  /* AG Solutions Brand Colors */
+  --color-ag-pink: #e93568;
+  --color-ag-pink-hover: #d02555;
+  --color-ag-pink-light: var(--color-ag-pink-light);
+  --color-ag-pink-border: var(--color-ag-pink-border);
+
+  --color-ag-teal: #00a8b5;
+  --color-ag-teal-hover: #008f9b;
+  --color-ag-teal-dark: #0d9488;
+  --color-ag-teal-light: var(--color-ag-teal-light);
+  --color-ag-teal-border: var(--color-ag-teal-border);
+
+  --color-ag-yellow: #f5a623;
+  --color-ag-yellow-hover: #e09216;
+  --color-ag-yellow-light: var(--color-ag-yellow-light);
+  --color-ag-yellow-border: var(--color-ag-yellow-border);
+
+  --color-ag-green: #7cb342;
+  --color-ag-green-hover: #689f38;
+  --color-ag-green-light: var(--color-ag-green-light);
+  --color-ag-green-border: var(--color-ag-green-border);
+
+  --color-ag-blue: #0284c7;
+  --color-ag-blue-hover: #0369a1;
+  --color-ag-blue-light: var(--color-ag-blue-light);
+  --color-ag-blue-border: var(--color-ag-blue-border);
+
+  /* Dark & Neutral Tones */
+  --color-ag-navy: var(--ag-navy);
+  --color-ag-dark: var(--ag-dark);
+  --color-ag-muted: var(--ag-muted);
+  --color-ag-light: var(--ag-light);
+
+  /* Standard Semantic UI Tokens */
+  --color-primary: #e93568;
+  --color-primary-hover: #d02555;
+  --color-primary-light: var(--color-ag-pink-light);
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: #00a8b5;
+  --color-secondary-hover: #008f9b;
+  --color-secondary-light: var(--color-ag-teal-light);
+  --color-secondary-foreground: #ffffff;
+
+  --color-accent-pink: #e93568;
+  --color-accent-teal: #00a8b5;
+  --color-accent-yellow: #f5a623;
+  --color-accent-green: #7cb342;
+  --color-accent-blue: #0284c7;
+
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+  --color-card: var(--color-card);
+  --color-card-foreground: var(--color-card-foreground);
+  --color-muted: var(--color-muted);
+  --color-muted-bg: var(--color-muted-bg);
+  --color-border: var(--color-border);
+}
+
+/* 4. Apply Base Styles */
 @layer base {
   html {
-    font-family: "Roboto", system-ui, sans-serif;
+    font-family: var(--font-sans);
+    color-scheme: light dark;
   }
 
   body {
-    font-family: "Roboto", system-ui, sans-serif;
+    font-family: var(--font-sans);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 }
 
+
+
 .home-carousel-title-from-right {
-  animation: homeCarouselTitleFromRight 280ms cubic-bezier(0.22, 1, 0.36, 1)
-    both;
+  animation: homeCarouselTitleFromRight 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .home-carousel-title-from-left {
-  animation: homeCarouselTitleFromLeft 280ms cubic-bezier(0.22, 1, 0.36, 1)
-    both;
+  animation: homeCarouselTitleFromLeft 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .home-carousel-copy-from-right {
-  animation: homeCarouselCopyFromRight 330ms cubic-bezier(0.22, 1, 0.36, 1)
-    45ms both;
+  animation: homeCarouselCopyFromRight 330ms cubic-bezier(0.22, 1, 0.36, 1) 45ms both;
 }
 
 .home-carousel-copy-from-left {
-  animation: homeCarouselCopyFromLeft 330ms cubic-bezier(0.22, 1, 0.36, 1)
-    45ms both;
+  animation: homeCarouselCopyFromLeft 330ms cubic-bezier(0.22, 1, 0.36, 1) 45ms both;
 }
 
 .home-carousel-buttons-from-right {
-  animation: homeCarouselButtonsFromRight 300ms cubic-bezier(0.22, 1, 0.36, 1)
-    90ms both;
+  animation: homeCarouselButtonsFromRight 300ms cubic-bezier(0.22, 1, 0.36, 1) 90ms both;
 }
 
 .home-carousel-buttons-from-left {
-  animation: homeCarouselButtonsFromLeft 300ms cubic-bezier(0.22, 1, 0.36, 1)
-    90ms both;
+  animation: homeCarouselButtonsFromLeft 300ms cubic-bezier(0.22, 1, 0.36, 1) 90ms both;
 }
 
 .home-carousel-image-from-right {
-  animation: homeCarouselImageFromRight 390ms cubic-bezier(0.22, 1, 0.36, 1)
-    35ms both;
+  animation: homeCarouselImageFromRight 390ms cubic-bezier(0.22, 1, 0.36, 1) 35ms both;
 }
 
 .home-carousel-image-from-left {
-  animation: homeCarouselImageFromLeft 390ms cubic-bezier(0.22, 1, 0.36, 1)
-    35ms both;
+  animation: homeCarouselImageFromLeft 390ms cubic-bezier(0.22, 1, 0.36, 1) 35ms both;
 }
 
 .about-color-line-track {
-  animation: aboutColorLineMove 1.8s linear infinite;
+  animation: aboutColorLineMove 4s linear infinite;
   will-change: transform;
 }
 
@@ -180,6 +310,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -225,6 +356,7 @@
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -236,6 +368,7 @@
     transform: scale(0.7);
     opacity: 0;
   }
+
   to {
     transform: scale(1);
     opacity: 1;
@@ -245,10 +378,12 @@
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }
+
 .scrollbar-none {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 @keyframes slowZoom {
   0% {
     transform: scale(1.03) translateX(0px) translateY(0px);
@@ -270,46 +405,55 @@
     transform: scale(1.03) translateX(0px) translateY(0px);
   }
 }
+
 @keyframes shipFloat {
-  0%,100%{
-    transform:translateY(0px);
+
+  0%,
+  100% {
+    transform: translateY(0px);
   }
-  50%{
-    transform:translateY(-10px);
+
+  50% {
+    transform: translateY(-10px);
   }
 }
-@keyframes shimmer{
 
-0%{
-transform:translateX(-100%);
+@keyframes shimmer {
+
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+
 }
 
-100%{
-transform:translateX(100%);
-}
+@keyframes gradientMove {
 
-}
-@keyframes gradientMove{
+  0% {
+    background-position: 0% 50%;
+  }
 
-0%{
-background-position:0% 50%;
-}
-
-100%{
-background-position:100% 50%;
-}
+  100% {
+    background-position: 100% 50%;
+  }
 }
 
 @keyframes blob {
   0% {
     transform: translate(0px, 0px) scale(1);
   }
+
   33% {
     transform: translate(40px, -20px) scale(1.08);
   }
+
   66% {
     transform: translate(-30px, 30px) scale(0.95);
   }
+
   100% {
     transform: translate(0px, 0px) scale(1);
   }
@@ -319,9 +463,11 @@ background-position:100% 50%;
   0% {
     transform: translate(0px, 0px) scale(1);
   }
+
   50% {
     transform: translate(-45px, 25px) scale(1.12);
   }
+
   100% {
     transform: translate(0px, 0px) scale(1);
   }
@@ -331,9 +477,11 @@ background-position:100% 50%;
   0% {
     transform: translateX(-50%) translateY(0px);
   }
+
   50% {
     transform: translateX(-50%) translateY(-30px);
   }
+
   100% {
     transform: translateX(-50%) translateY(0px);
   }
@@ -341,45 +489,45 @@ background-position:100% 50%;
 
 @keyframes float {
 
-    0%{
-        transform:translateY(0px);
-    }
+  0% {
+    transform: translateY(0px);
+  }
 
-    50%{
-        transform:translateY(-10px);
-    }
+  50% {
+    transform: translateY(-10px);
+  }
 
-    100%{
-        transform:translateY(0px);
-    }
+  100% {
+    transform: translateY(0px);
+  }
 
 }
 
-.animate-float{
+.animate-float {
 
-    animation:float 5s ease-in-out infinite;
+  animation: float 5s ease-in-out infinite;
 
 }
 
 @keyframes gradient-x {
 
-    0%{
-        background-position:0% 50%;
-    }
+  0% {
+    background-position: 0% 50%;
+  }
 
-    50%{
-        background-position:100% 50%;
-    }
+  50% {
+    background-position: 100% 50%;
+  }
 
-    100%{
-        background-position:0% 50%;
-    }
+  100% {
+    background-position: 0% 50%;
+  }
 
 }
 
-.animate-gradient-x{
+.animate-gradient-x {
 
-    animation:gradient-x 5s ease infinite;
+  animation: gradient-x 5s ease infinite;
 
 }
 
@@ -403,25 +551,100 @@ background-position:100% 50%;
 
   20% {
     filter:
-      drop-shadow(0 0 4px currentColor)
-      drop-shadow(0 0 8px currentColor);
+      drop-shadow(0 0 4px currentColor) drop-shadow(0 0 8px currentColor);
   }
 
   50% {
     filter:
-      drop-shadow(0 0 8px currentColor)
-      drop-shadow(0 0 16px currentColor);
+      drop-shadow(0 0 8px currentColor) drop-shadow(0 0 16px currentColor);
   }
 
   80% {
     filter:
-      drop-shadow(0 0 12px currentColor)
-      drop-shadow(0 0 22px currentColor);
+      drop-shadow(0 0 12px currentColor) drop-shadow(0 0 22px currentColor);
   }
 
   100% {
     filter:
-      drop-shadow(0 0 5px currentColor)
-      drop-shadow(0 0 10px currentColor);
+      drop-shadow(0 0 5px currentColor) drop-shadow(0 0 10px currentColor);
   }
+}
+
+/* ==========================================
+   Infinite Marquee Carousel Animation
+========================================== */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ==========================================
+   Apple Border Shine Effect
+========================================== */
+.apple-border-shine {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.apple-border-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Stretches exactly to the edges of the parent */
+  border-radius: inherit;
+  /* Automatically matches the parent's rounded corners! */
+  padding: 1px;
+  /* This controls the thickness of your border */
+
+  /* The top-left and bottom-right shine colors */
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.05) 25%,
+      rgba(255, 255, 255, 0.05) 75%,
+      rgba(255, 255, 255, 0.5) 100%);
+  /* Modern CSS Masking to cut out the inside, leaving ONLY the border */
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  /* Ensures you can still click the button underneath the border */
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }

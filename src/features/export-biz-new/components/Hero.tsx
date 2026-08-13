@@ -53,6 +53,7 @@ export const Hero: React.FC<HeroProps> = ({ onScrollTo }) => {
               </a>
               <a
                 href="#how-it-works"
+                title="How AG Solutions Works"
                 onClick={(e) => handleClick(e, "how-it-works")}
                 className="inline-flex items-center justify-center gap-2 font-['Inter',sans-serif] font-bold text-base sm:text-[1.05rem] px-7 py-3.5 sm:px-7.5 sm:py-4 rounded-2xl bg-transparent text-white border-1.5 border-white/40 hover:border-white hover:bg-white/10 transition-all duration-180 ease-in-out whitespace-nowrap min-h-[50px] cursor-pointer"
               >
@@ -92,6 +93,7 @@ export const Hero: React.FC<HeroProps> = ({ onScrollTo }) => {
                   width="900"
                   height="900"
                   alt="Cargo ship loaded with shipping containers at port"
+                  title="Cargo Ship with Shipping Containers at Port"
                   className="w-full h-full object-cover block"
                   loading="eager"
                   fetchPriority="high"

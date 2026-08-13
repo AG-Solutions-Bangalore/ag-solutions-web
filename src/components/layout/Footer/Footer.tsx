@@ -7,6 +7,8 @@ import {FaInstagram,FaFacebookF,FaLinkedinIn,} from "react-icons/fa";
 import axios from "axios";
 
 
+import { getImageUrl } from "@/utils/imageUrl";
+
 type FooterProps = {
   bg?: string;
   newsletterBg?: string;
@@ -45,7 +47,7 @@ function Footer({
 
   const isLime = (bg || newsletterBg)?.includes("lime");
   const bgFileName = isLime ? "pattern-bg-lime.jpg" : "pattern-bg-breez.jpg";
-  const bgUrl = `/images/${bgFileName}`;
+  const bgUrl = getImageUrl(`/images/${bgFileName}`);
 
   const animateFooterStrokes = useCallback(() => {
     const footer = footerContactRef.current;

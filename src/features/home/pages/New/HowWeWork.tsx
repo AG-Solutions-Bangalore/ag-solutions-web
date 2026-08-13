@@ -184,17 +184,19 @@ export default function HowWeWork() {
                   >
                     <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${item.gradient}`} />
                     <div className="flex items-center gap-3">
-                      <div className={`inline-flex rounded-2xl bg-gradient-to-br ${item.gradient} p-3 text-white shadow-lg`}>
+                      <div className={`inline-flex shrink-0 rounded-2xl bg-gradient-to-br ${item.gradient} p-3 text-white shadow-lg`}>
                         <Icon className="h-5 w-5" />
                       </div>
-                      <p className={`text-[10px] font-semibold uppercase tracking-[0.3em] ${item.accent}`}>
-                        {item.step}
-                      </p>
+                      <div className="min-w-0">
+                        <p className={`text-[10px] font-semibold uppercase tracking-[0.3em] ${item.accent}`}>
+                          {item.step}
+                        </p>
+                        <h4 className="text-lg font-bold text-slate-900 leading-tight">
+                          {item.title}
+                        </h4>
+                      </div>
                     </div>
 
-                    <h4 className="mt-4 text-xl font-semibold text-slate-900">
-                      {item.title}
-                    </h4>
                     <p className="mt-3 text-sm leading-7 text-slate-600">
                       {item.description}
                     </p>
@@ -265,13 +267,15 @@ export default function HowWeWork() {
                   className="group relative overflow-hidden rounded-[1.2rem] border border-slate-200/80 bg-[linear-gradient(135deg,_#ffffff_0%,_#fafbff_100%)] p-5 shadow-[0_12px_32px_-20px_rgba(15,23,42,0.42)] backdrop-blur-xl"
                 >
                   <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${card.gradient}`} />
-                  <div className={`inline-flex rounded-2xl bg-gradient-to-br ${card.gradient} p-2.5 text-white shadow-lg transition duration-300 group-hover:rotate-6`}>
-                    <Icon className="h-5 w-5" />
+                  <div className="flex items-center gap-3">
+                    <div className={`inline-flex shrink-0 rounded-2xl bg-gradient-to-br ${card.gradient} p-2.5 text-white shadow-lg transition duration-300 group-hover:rotate-6`}>
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h4 className="text-base sm:text-lg font-bold text-slate-900 leading-tight">
+                      {card.title}
+                    </h4>
                   </div>
-                  <h4 className="mt-4 text-lg font-semibold text-slate-900">
-                    {card.title}
-                  </h4>
-                  <p className="mt-2 text-sm leading-7 text-slate-600">
+                  <p className="mt-3 text-sm leading-7 text-slate-600">
                     {card.description}
                   </p>
                   <div className={`absolute -bottom-8 right-0 h-24 w-24 rounded-full bg-gradient-to-br ${card.gradient} opacity-0 blur-3xl transition duration-500 group-hover:opacity-30`} />

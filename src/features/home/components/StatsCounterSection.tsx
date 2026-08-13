@@ -67,11 +67,11 @@ function StatsCounterContent({ isVisible }: StatsCounterContentProps) {
           }`}
           style={{ transitionDelay: `${index * 95}ms` }}
         >
-          <div className="text-[86px] leading-none font-black text-white max-[760px]:text-[64px]">
+          <div className="text-5xl leading-none font-black text-white">
             {counts[index]}
             {stat.suffix}
           </div>
-          <div className="mt-4 text-[29px] leading-tight font-black text-[#cee9fa] max-[760px]:text-[23px]">
+          <div className="mt-4 text-2xl leading-tight font-black text-[#e1edf5]">
             {stat.label}
           </div>
         </div>

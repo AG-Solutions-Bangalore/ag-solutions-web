@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/seo";
 import { PageHero, Section } from "@/components/layout";
+import { getImageUrl } from "@/utils/imageUrl";
 
 export default function NotFoundPage() {
   return (
@@ -12,7 +13,7 @@ export default function NotFoundPage() {
       />
       <PageHero
         title="Page Not Found"
-        bgImage="/images/pattern-bg-grey.jpg"
+        bgImage={getImageUrl("/images/pattern-bg-grey.jpg")}
         bgColorClass="bg-[#fafafa]"
         textColorClass="text-[#1b2c38]"
         breadcrumbs={[

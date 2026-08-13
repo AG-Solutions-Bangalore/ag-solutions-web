@@ -81,18 +81,17 @@ export default function WhyChooseUs() {
               <div className={`absolute inset-x-0 top-0 h-1.5 bg-linear-to-r ${item.color}`} />
               <div className={`absolute inset-y-0 left-0 w-1 bg-linear-to-b ${item.color}`} />
 
-              <div className="mb-4 flex items-center gap-3">
-                <span className={`flex h-9 w-9 items-center justify-center rounded-2xl bg-linear-to-r ${item.color} text-sm font-semibold text-white`}>
+              <div className="mb-3 flex items-center gap-3">
+                <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-r ${item.color} text-sm font-bold text-white shadow-sm`}>
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <div className="h-px flex-1 bg-slate-200" />
+                <h3 className={`text-base sm:text-lg font-bold leading-tight ${item.accent}`}>
+                  {item.title}
+                </h3>
               </div>
+              <div className="mb-4 h-px w-full bg-slate-200/80" />
 
-              <h3 className={`mb-3 text-lg font-semibold leading-7 ${item.accent}`}>
-                {item.title}
-              </h3>
-
-              <p className="text-sm leading-7 text-slate-600">
+              <p className="text-sm leading-relaxed text-slate-600">
                 {item.description}
               </p>
             </motion.div>

@@ -5,6 +5,7 @@ import { layoutContainerClass } from "@/components/layout/styles";
 import { useProjects } from "../hooks/useProjects";
 import { PageHero, SectionTitle } from "@/components/layout";
 import { Card, Lightbox } from "@/components/ui";
+import { getImageUrl } from "@/utils/imageUrl";
 
 interface PortfolioItem {
   title: string;
@@ -16,12 +17,12 @@ const featuredItems: readonly PortfolioItem[] = [
   {
     title: "The Basics Web UI Kit",
     subtitle: "Technologies",
-    image: "/images/portfolio/case1.jpg",
+    image: getImageUrl("/images/portfolio/case1.jpg"),
   },
   {
     title: "Anorak Long",
     subtitle: "SMM",
-    image: "/images/portfolio/case2.jpg",
+    image: getImageUrl("/images/portfolio/case2.jpg"),
   },
 ];
 
@@ -29,32 +30,32 @@ const webItems: readonly PortfolioItem[] = [
   {
     title: "Agrawal Samaj",
     subtitle: "Community",
-    image: "/images/portfolio/web1.png",
+    image: getImageUrl("/images/portfolio/web1.png"),
   },
   {
     title: "Foundation India",
     subtitle: "Social",
-    image: "/images/portfolio/web2.png",
+    image: getImageUrl("/images/portfolio/web2.png"),
   },
   {
     title: "GPW Build Tech",
     subtitle: "Builder",
-    image: "/images/portfolio/web3.png",
+    image: getImageUrl("/images/portfolio/web3.png"),
   },
   {
     title: "Hera Associate",
     subtitle: "Civil",
-    image: "/images/portfolio/web4.png",
+    image: getImageUrl("/images/portfolio/web4.png"),
   },
   {
     title: "Naturalii",
     subtitle: "Ecommerce",
-    image: "/images/portfolio/web5.png",
+    image: getImageUrl("/images/portfolio/web5.png"),
   },
   {
     title: "Business Boosters",
     subtitle: "B2B Services",
-    image: "/images/portfolio/web6.png",
+    image: getImageUrl("/images/portfolio/web6.png"),
   },
 ];
 
@@ -62,17 +63,17 @@ const mobileItems: readonly PortfolioItem[] = [
   {
     title: "Ease Marketing",
     subtitle: "Marketing",
-    image: "/images/portfolio/em.jpg",
+    image: getImageUrl("/images/portfolio/em.jpg"),
   },
   {
     title: "IVF Kidney",
     subtitle: "matrimonial",
-    image: "/images/portfolio/ivf.jpg",
+    image: getImageUrl("/images/portfolio/ivf.jpg"),
   },
   {
     title: "Grow Together",
     subtitle: "Business",
-    image: "/images/portfolio/gt.jpg",
+    image: getImageUrl("/images/portfolio/gt.jpg"),
   },
 ];
 
@@ -80,17 +81,17 @@ const desktopItems: readonly PortfolioItem[] = [
   {
     title: "Login Page",
     subtitle: "Safe & Secure",
-    image: "/images/portfolio/desktop1.png",
+    image: getImageUrl("/images/portfolio/desktop1.png"),
   },
   {
     title: "All Documents in 1 Minute",
     subtitle: "Invoice & Packing List",
-    image: "/images/portfolio/desktop3.webp",
+    image: getImageUrl("/images/portfolio/desktop3.webp"),
   },
   {
     title: "Print, Save As PDF, Email",
     subtitle: "Print & Share",
-    image: "/images/portfolio/desktop4.png",
+    image: getImageUrl("/images/portfolio/desktop4.png"),
   },
 ];
 
@@ -111,7 +112,7 @@ export default function PortfolioPage() {
     .map((p) => ({
       title: p.project_name,
       subtitle: p.project_type || "Web Development",
-      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : "/images/portfolio/web1.png",
+      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : getImageUrl("/images/portfolio/web1.png"),
     })) || [];
 
   const apiMobileItems = projectsData?.data
@@ -119,7 +120,7 @@ export default function PortfolioPage() {
     .map((p) => ({
       title: p.project_name,
       subtitle: p.project_type || "Mobile App",
-      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : "/images/portfolio/em.jpg",
+      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : getImageUrl("/images/portfolio/em.jpg"),
     })) || [];
 
   const apiDesktopItems = projectsData?.data
@@ -127,7 +128,7 @@ export default function PortfolioPage() {
     .map((p) => ({
       title: p.project_name,
       subtitle: p.project_type || "Desktop Application",
-      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : "/images/portfolio/desktop1.png",
+      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : getImageUrl("/images/portfolio/desktop1.png"),
     })) || [];
 
   const apiFeaturedItems = projectsData?.data
@@ -136,7 +137,7 @@ export default function PortfolioPage() {
     .map((p) => ({
       title: p.project_name,
       subtitle: p.project_type || p.page.replace(/_/g, " "),
-      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : "/images/portfolio/case1.jpg",
+      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : getImageUrl("/images/portfolio/case1.jpg"),
     })) || [];
 
   const webList = apiWebItems.length > 0 ? apiWebItems : webItems;
@@ -195,7 +196,7 @@ export default function PortfolioPage() {
 
       <PageHero
         title="Portfolio"
-        bgImage="/images/pattern-bg-red.jpg"
+        bgImage={getImageUrl("/images/pattern-bg-red.jpg")}
         breadcrumbs={[
           { label: "Homepage", path: "/" },
           { label: "Portfolio" },
