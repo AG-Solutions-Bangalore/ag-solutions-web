@@ -3,6 +3,7 @@ import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
 import { useProjects } from "@/features/portfolio/hooks/useProjects";
 import { SectionTitle } from "@/components/layout/SectionTitle";
+import { getImageUrl } from "@/utils/imageUrl";
 
 // Configure indices (0-based) to specify which project image to use for each category cover.
 // Change these indices to pick different project images easily.
@@ -20,10 +21,10 @@ function RecentWorksSection() {
     (img) => img.image_for === "Projects"
   )?.image_url || "https://ag-solutions.in/webapi/public/assets/images/project_images/";
 
-  // Filter projects by category
-  const webProjects = projectsData?.data.filter((p) => p.page === "web_development") || [];
-  const mobileProjects = projectsData?.data.filter((p) => p.page === "mobile_app_development") || [];
-  const desktopProjects = projectsData?.data.filter((p) => p.page === "desktop_application") || [];
+  // Filter projects by category (supporting both hyphenated and underscore keys from API)
+  const webProjects = projectsData?.data.filter((p) => p.page === "web_development" || p.page === "web-development") || [];
+  const mobileProjects = projectsData?.data.filter((p) => p.page === "mobile_app_development" || p.page === "mobile-app-development") || [];
+  const desktopProjects = projectsData?.data.filter((p) => p.page === "desktop_application" || p.page === "desktop-applications") || [];
 
   // Pick project based on configured index, falling back to index 0 if not found
   const webProj = webProjects[COVER_IMAGE_INDICES.web] ?? webProjects[0];
@@ -33,17 +34,17 @@ function RecentWorksSection() {
   const works = [
     {
       title: "Websites/Ecommerce",
-      image: webProj?.project_image ? `${projectBaseUrl}${webProj.project_image}` : "/images/home/home-18.jpg",
+      image: webProj?.project_image ? `${projectBaseUrl}${webProj.project_image}` : getImageUrl("/images/home/home-18.jpg"),
       path: "/portfolio",
     },
     {
       title: "Mobile Apps",
-      image: mobileProj?.project_image ? `${projectBaseUrl}${mobileProj.project_image}` : "/images/home/home-19.jpg",
+      image: mobileProj?.project_image ? `${projectBaseUrl}${mobileProj.project_image}` : getImageUrl("/images/home/home-19.jpg"),
       path: "/portfolio",
     },
     {
       title: "Web/Desktop Applications",
-      image: desktopProj?.project_image ? `${projectBaseUrl}${desktopProj.project_image}` : "/images/home/home-20.jpg",
+      image: desktopProj?.project_image ? `${projectBaseUrl}${desktopProj.project_image}` : getImageUrl("/images/home/home-20.jpg"),
       path: "/portfolio",
     },
   ] as const;

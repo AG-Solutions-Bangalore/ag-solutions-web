@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
+import { getImageUrl } from "@/utils/imageUrl";
 
 function ExportSolutionsSection() {
   return (
@@ -12,26 +13,25 @@ function ExportSolutionsSection() {
         <>
           {/* Background Banner */}
           <img
-            src="/images/home/ship.png"
+            src={getImageUrl("/images/home/ship.png")}
             alt="Export Biz export management software banner by AG Solutions"
             title="Export Biz Export Management Software"
             decoding="async"
-            className="absolute inset-0 h-full w-full object-cover object-[70%_center]  animate-[shipFloat_8s_ease-in-out_infinite]"
+            className="absolute inset-0 h-full w-full object-cover object-[70%_center]"
           />
 
           {/* Left Gradient Overlay */}
-          <div className="absolute inset-0 bg-[length:200%_200%] animate-[gradientMove_5s_linear_infinite] from-transparent via-white/5 to-transparent animate-[shimmer_10s_linear_infinite]" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#03101B]/88 via-[#03101B]/45 via-50% to-transparent" />
 
           {/* Soft Glow */}
-          <div className="absolute left-0 top-0 h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-[180px] animate-pulse" />
+          <div className="absolute left-0 top-0 h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-[180px]" />
           <div
             className={`${layoutContainerClass} relative z-10 flex items-center h-full px-8 lg:px-0`}
           >
             <div
               className={`w-full max-w-[540px] lg:ml-0 pl-0 lg:pl-1 transition-all duration-1000 ease-out ${isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-10 opacity-0"
+                ? "translate-y-0 opacity-100"
+                : "translate-y-10 opacity-0"
                 }`}
             >
               {/* Badge */}
@@ -59,35 +59,34 @@ function ExportSolutionsSection() {
 
               {/* Description */}
               <div
-  className={`mt-5 max-w-[520px] text-base lg:text-lg text-white/90 leading-8 transition-all duration-700 delay-500
-  ${
-    isVisible
-      ? "translate-y-0 opacity-100"
-      : "translate-y-8 opacity-0"
-  }`}
->
-  <p>
-    Export Biz is an intelligent <strong>export documentation software</strong> that
-    helps businesses simplify and automate export operations.
-  </p>
+                className={`mt-5 max-w-[520px] text-base lg:text-lg text-white/90 leading-8 transition-all duration-700 delay-500
+  ${isVisible
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-8 opacity-0"
+                  }`}
+              >
+                <p>
+                  Export Biz is an intelligent <strong>export documentation software</strong> that
+                  helps businesses simplify and automate export operations.
+                </p>
 
-  <ul className="mt-6 space-y-4">
-    <li className="flex items-start gap-3">
-      <span className="mt-2 h-2 w-2 rounded-full bg-cyan-400 flex-shrink-0"></span>
-      <span>Create and manage export documents quickly and accurately.Organize shipping documents and shipment information from one platform.</span>
-    </li>
+                <ul className="mt-6 space-y-4">
+                  <li className="flex items-start gap-3">
+                    <span className="mt-2 h-2 w-2 rounded-full bg-cyan-400 flex-shrink-0"></span>
+                    <span>Create and manage export documents quickly and accurately.Organize shipping documents and shipment information from one platform.</span>
+                  </li>
 
-    <li className="flex items-start gap-3">
-      <span className="mt-2 h-2 w-2 rounded-full bg-cyan-400 flex-shrink-0"></span>
-      <span>Reduce manual paperwork and improve operational efficiency.</span>
-    </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-2 h-2 w-2 rounded-full bg-cyan-400 flex-shrink-0"></span>
+                    <span>Reduce manual paperwork and improve operational efficiency.</span>
+                  </li>
 
-    <li className="flex items-start gap-3">
-      <span className="mt-2 h-2 w-2 rounded-full bg-cyan-400 flex-shrink-0"></span>
-      <span>Streamline documentation while ensuring speed, accuracy, and compliance.</span>
-    </li>
-  </ul>
-</div>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-2 h-2 w-2 rounded-full bg-cyan-400 flex-shrink-0"></span>
+                    <span>Streamline documentation while ensuring speed, accuracy, and compliance.</span>
+                  </li>
+                </ul>
+              </div>
 
               {/* Buttons */}
               <div className={`mt-5 flex flex-wrap gap-3 transition-all duration-700 delay-700

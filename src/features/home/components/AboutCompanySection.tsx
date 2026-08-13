@@ -1,6 +1,7 @@
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
 import { SectionTitle } from "@/components/layout/SectionTitle";
+import { getImageUrl } from "@/utils/imageUrl";
 
 
 const features = [
@@ -76,7 +77,7 @@ function AboutCompanySection() {
 
               <div className="flex justify-center">
                 <img
-                  src="/images/home/about_us1.png"
+                  src={getImageUrl("/images/home/about_us1.png")}
                   className="w-full max-w-[450px] object-contain mx-auto"
                   alt="About AG Solutions"
                 />

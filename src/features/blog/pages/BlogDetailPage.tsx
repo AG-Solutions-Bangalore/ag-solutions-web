@@ -6,6 +6,7 @@ import { layoutContainerClass } from "@/components/layout/styles";
 import { useBlogBySlug } from "../hooks/useBlogs";
 import { PageHero, SectionTitle } from "@/components/layout";
 import { FAQSchema } from "@/components/seo";
+import { formatDate } from "@/utils/formatDate";
 
 export default function BlogDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -133,7 +134,7 @@ export default function BlogDetailPage() {
 
               {/* Author & Date metadata */}
               <div className="flex items-center gap-4 text-[#7a8894] text-[14.5px] font-medium border-b border-slate-100 pb-5 mb-8">
-                <span>Published on {blog.blog_created_date}</span>
+                <span>Published on {formatDate(blog.blog_created_date)}</span>
                 <span>&bull;</span>
                 <span>By {blog.created_by || "Super Admin"}</span>
               </div>
@@ -181,7 +182,7 @@ export default function BlogDetailPage() {
                           </a>
                           <div className="space-y-1">
                             <span className="text-xs text-[#7a8894] font-medium">
-                              {featBlog.blog_created_date}
+                              {formatDate(featBlog.blog_created_date)}
                             </span>
                             <h4 className="m-0 text-[14.5px] leading-snug font-bold text-[#1b2c38] group-hover:text-[#09c7ca] transition-colors duration-200">
                               <a

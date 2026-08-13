@@ -2,15 +2,15 @@ import { useState, useEffect, useRef, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import DesktopApplicationsSEO from "../seo/DesktopApplicationsSEO";
 import AnimatedSection from "@/components/animation/AnimatedSection";
-import Lightbox from "@/components/ui/Lightbox";
+import { layoutContainerClass } from "@/components/layout/styles";
 import { useProjects } from "@/features/portfolio/hooks/useProjects";
 import { useFAQs } from "@/features/service/hooks/useFAQs";
 import { useCreateEnquiry } from "@/features/contact-us/hooks/useCreateEnquiry";
-import { layoutContainerClass } from "@/components/layout/styles";
-import { PageHero, SectionTitle } from "@/components/layout";
-import { Card } from "@/components/ui";
-import { FAQSchema } from "@/components/seo";
 import { getUtmParams } from "@/utils/utmUtils";
+import { PageHero, SectionTitle } from "@/components/layout";
+import { Card, Lightbox } from "@/components/ui";
+import { FAQSchema } from "@/components/seo";
+import { getImageUrl } from "@/utils/imageUrl";
 
 interface PortfolioItem {
   title: string;
@@ -29,17 +29,17 @@ const recentWorks: readonly PortfolioItem[] = [
   {
     title: "Login Page",
     subtitle: "Safe & Secure",
-    image: "/images/services/desktop-applications/desktop1.png",
+    image: getImageUrl("/images/services/desktop-applications/desktop1.png"),
   },
   {
     title: "All Documents in 1 Minute",
     subtitle: "Invoice & Packing List",
-    image: "/images/services/desktop-applications/desktop2.png",
+    image: getImageUrl("/images/services/desktop-applications/desktop2.png"),
   },
   {
     title: "Print, Save As PDF, Email",
     subtitle: "Print & Share",
-    image: "/images/services/desktop-applications/desktop4.png",
+    image: getImageUrl("/images/services/desktop-applications/desktop4.png"),
   },
 ];
 
@@ -153,7 +153,7 @@ export default function DesktopApplicationsPage() {
         subtitle: p.project_type || "Desktop Application",
         image: p.project_image
           ? `${projectBaseUrl}${p.project_image}`
-          : "/images/services/desktop-applications/desktop1.png",
+          : getImageUrl("/images/services/desktop-applications/desktop1.png"),
       })) || [];
 
   const worksList = apiWorks.length > 0 ? apiWorks : recentWorks;
@@ -171,7 +171,7 @@ export default function DesktopApplicationsPage() {
 
       <PageHero
         title="Desktop App Development Company In Bangalore"
-        bgImage="/images/pattern-bg-lime.jpg"
+        bgImage={getImageUrl("/images/pattern-bg-lime.jpg")}
         bgColorClass="bg-[#ffffff]"
         textColorClass="text-[#1b2c38]"
         breadcrumbs={[
@@ -194,7 +194,7 @@ export default function DesktopApplicationsPage() {
               className={`home-animated-item flex justify-center ${isVisible ? "home-animated-item-visible" : ""}`}
             >
               <img
-                src="/images/services/desktop-applications/desktop-application-development.png"
+                src={getImageUrl("/images/services/desktop-applications/desktop-application-development.png")}
                 alt="Desktop application development illustration"
                 className="w-full max-w-135 object-contain"
                 loading="lazy"

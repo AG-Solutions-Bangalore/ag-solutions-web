@@ -6,7 +6,8 @@ export const PainSection: React.FC = () => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <img
           src="https://images.unsplash.com/photo-1742576437150-3a79cae681f2?fm=jpg&q=65&w=1400&auto=format&fit=crop"
-          alt=""
+          alt="Cargo ship transporting shipping containers for international trade"
+          title="Cargo Ship Transporting Shipping Containers"
           loading="lazy"
           width="1400"
           height="800"

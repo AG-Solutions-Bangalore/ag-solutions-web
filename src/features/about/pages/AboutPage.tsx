@@ -1,292 +1,90 @@
-import { useState } from "react";
 import { Calendar, Monitor, Boxes, TrendingUp, Globe, Quote, Route, Lightbulb, ClipboardList, Code2, ShieldCheck, HeartHandshake, Eye, Target } from "lucide-react";
 import AboutSEO from "../seo/AboutSEO";
+import HeroSectionV2 from "../components/HeroSectionV2";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
-import { PageHero, SectionTitle } from "@/components/layout";
-
-type SlideDirection = "from-left" | "from-right";
-
-interface TimelineStep {
-  id: string;
-  initial: string;
-  title: string;
-  description: string;
-  image: string;
-  layout: "split" | "splitReverse";
-}
-
-const timelineSteps: readonly TimelineStep[] = [
-  {
-    id: "initiation",
-    initial: "I",
-    title: "Ideation & Initiation",
-    description: "We work closely with you to understand your initial ideas, business objectives, and requirements, setting a clear roadmap for the project.",
-    image: "/images/about/idea.webp",
-    layout: "split",
-  },
-  {
-    id: "research",
-    initial: "R",
-    title: "Market Research",
-    description: "We study user needs and market trends to build a highly targeted and strategic product.",
-    image: "/images/about/research.webp",
-    layout: "splitReverse",
-  },
-  {
-    id: "design",
-    initial: "D",
-    title: "Mobile App Development Company",
-    description: "After receiving all the details, our expert team starts creating the final project.",
-    image: "/images/about/mobile.webp",
-    layout: "splitReverse",
-  },
-  {
-    id: "testing",
-    initial: "T",
-    title: "Testing",
-    description: "Besides development, we also take care of an important aspect, TESTING, helping the client with final testing and make the final changes if required.",
-    image: "/images/about/testing.webp",
-    layout: "split",
-  },
-  {
-    id: "launch",
-    initial: "L",
-    title: "Product Launch",
-    description: "We deploy the application to your environment, making sure all integrations work seamlessly.",
-    image: "/images/about/launch-rocket.svg",
-    layout: "split",
-  },
-  {
-    id: "maintenance",
-    initial: "M",
-    title: "Maintenance",
-    description: "According to us, our work does not end after launching the project. Rather we feel that this is where our actual work begins! When our clients are using the project, we help them by solving any issues they may face and performing the timely update.",
-    image: "/images/about/maintenance.webp",
-    layout: "splitReverse",
-  },
-];
-
-// colorLineSegments replaced by SectionTitle
+import { SectionTitle } from "@/components/layout";
+import { getImageUrl } from "@/utils/imageUrl";
+import HowWeWork from "@/features/home/pages/New/HowWeWork";
 
 function AboutPage() {
-  const [activeIndex, setActiveIndex] = useState(5); // Default to 'Maintenance'
-  const [slideDirection, setSlideDirection] = useState<SlideDirection>("from-right");
-  const activeStep = timelineSteps[activeIndex];
-
-  const titleAnimationClass =
-    slideDirection === "from-right"
-      ? "home-carousel-title-from-right"
-      : "home-carousel-title-from-left";
-  const copyAnimationClass =
-    slideDirection === "from-right"
-      ? "home-carousel-copy-from-right"
-      : "home-carousel-copy-from-left";
-  const imageAnimationClass =
-    slideDirection === "from-right"
-      ? "home-carousel-image-from-right"
-      : "home-carousel-image-from-left";
-
-  function handlePrev() {
-    const nextIndex = (activeIndex - 1 + timelineSteps.length) % timelineSteps.length;
-    setSlideDirection("from-left");
-    setActiveIndex(nextIndex);
-  }
-
-  function handleNext() {
-    const nextIndex = (activeIndex + 1) % timelineSteps.length;
-    setSlideDirection("from-right");
-    setActiveIndex(nextIndex);
-  }
-
-  // Handle clicking on specific nodes
-  function handleNodeClick(index: number) {
-    if (index === activeIndex) return;
-    setSlideDirection(index > activeIndex ? "from-right" : "from-left");
-    setActiveIndex(index);
-  }
-
-  const imageFirst = activeStep.layout === "splitReverse";
-
   return (
     <>
       <AboutSEO />
 
-      <PageHero
-        title="About Us"
-        bgImage="/images/pattern-bg-blue-light.jpg"
-        breadcrumbs={[
-          { label: "Homepage", path: "/" },
-          { label: "About Us" },
-        ]}
-      />
+      <HeroSectionV2 />
 
       {/* 2. Short Story Section */}
       <AnimatedSection
         className="bg-white py-20 text-[#1b2c38] max-[760px]:py-14"
-        ariaLabel="AG Solutions story and workflow process"
+        ariaLabel="AG Solutions story"
       >
         {(isVisible) => (
           <div className={`${layoutContainerClass}`}>
-            {/* Header Content */}
-            <div
-              className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""
-                }`}
-            >
+            {/* Header & Top Story Content (Full Width) */}
+            <div className={`home-animated-item space-y-4 ${isVisible ? "home-animated-item-visible" : ""}`}>
               <SectionTitle
                 title="Short Story About Our Company"
                 align="left"
                 titleClassName="text-[42px] leading-[1.16] font-black tracking-normal max-[980px]:text-[36px] max-[560px]:text-[28px]"
               />
 
-              <p className="mt-8 max-w-[940px] text-lg leading-[1.55] text-[#4f5a62] max-[760px]:text-base">
+              <p className="text-lg leading-[1.6] text-[#4f5a62] max-[760px]:text-base font-medium max-w-[1020px]">
                 At AG Solutions, we believe that every successful business deserves technology built exclusively for its unique vision. That's why we don't deliver generic software—we create custom digital solutions that perfectly match your business goals, processes, and future growth.
+              </p>
+
+              <p className="text-base leading-[1.6] text-[#5e6d77] max-w-[1020px]">
                 With 15+ years of industry expertise, we've helped businesses transform their operations through innovative custom software development, web applications, mobile apps, desktop software, cloud solutions, digital marketing, and business automation. Our mission is simple: deliver technology that makes your business faster, smarter, and more competitive.
+              </p>
+
+              <p className="text-base leading-[1.6] text-[#5e6d77] max-w-[1020px]">
                 We combine innovation, creativity, and cutting-edge technology to develop solutions that are secure, scalable, user-friendly, and future-ready. Every product is designed with an exceptional user experience, allowing anyone—from beginners to experienced professionals—to use it effortlessly without complex training.
-                Our team works as your technology partner, understanding your challenges, identifying opportunities, and delivering tailor-made solutions that improve productivity, automate workflows, reduce operational costs, and accelerate business growth. Every project is built with performance, security, and long-term scalability at its core.
-                What truly sets AG Solutions apart is our commitment to quality, transparency, and customer success. We don't just develop software—we create digital experiences that empower businesses to innovate, adapt, and lead in today's competitive world.
-                Whether you're a startup launching your first product, a growing business looking to automate operations, or an enterprise planning digital transformation, AG Solutions provides end-to-end technology solutions that turn ideas into impactful business success.
-                Your Vision. Our Innovation. One Smart Digital Solution for Every Business.
               </p>
             </div>
 
-            {/* Interactive Timeline Slider Navigation */}
+            {/* Bottom Story Content & Image (Split Layout) */}
             <div
-              className={`home-animated-item mt-16 flex items-center justify-between gap-4 max-[640px]:mt-10 ${isVisible ? "home-animated-item-visible" : ""
+              className={`home-animated-item mt-4 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-end ${isVisible ? "home-animated-item-visible" : ""
                 }`}
-              style={{ transitionDelay: "80ms" }}
             >
-              {/* Prev Arrow */}
-              <button
-                type="button"
-                onClick={handlePrev}
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white shadow-none transition-all group"
-                aria-label="Previous story phase"
-              >
-                <img
-                  className="h-[30px] w-10 object-contain opacity-40 group-hover:opacity-80 transition-opacity"
-                  src="/images/leftArrow.svg"
-                  alt=""
-                  aria-hidden="true"
-                />
-              </button>
+              {/* Bottom Paragraphs Column */}
+              <div className="lg:col-span-7 space-y-4">
+                <p className="text-base leading-[1.6] text-[#5e6d77]">
+                  Our team works as your technology partner, understanding your challenges, identifying opportunities, and delivering tailor-made solutions that improve productivity, automate workflows, reduce operational costs, and accelerate business growth. Every project is built with performance, security, and long-term scalability at its core.
+                </p>
 
-              {/* Connecting Line + Nodes */}
-              <div className="relative flex flex-1 items-center justify-between px-2 max-w-[800px]">
-                {/* Horizontal Bar background - Gray for future */}
-                <div className="absolute left-0 right-0 top-1/2 h-[2.5px] -translate-y-1/2 bg-gray-100" />
+                <p className="text-base leading-[1.6] text-[#5e6d77]">
+                  What truly sets AG Solutions apart is our commitment to quality, transparency, and customer success. We don't just develop software—we create digital experiences that empower businesses to innovate, adapt, and lead in today's competitive world.
+                </p>
 
-                {/* Highlighted Teal line up to active node */}
-                <div
-                  className="absolute left-0 top-1/2 h-[2.5px] -translate-y-1/2 bg-[#27c7cd] transition-all duration-300"
-                  style={{
-                    width: `${(activeIndex / (timelineSteps.length - 1)) * 100}%`,
-                  }}
-                />
+                <p className="text-base leading-[1.6] text-[#5e6d77]">
+                  Whether you're a startup launching your first product, a growing business looking to automate operations, or an enterprise planning digital transformation, AG Solutions provides end-to-end technology solutions that turn ideas into impactful business success.
+                </p>
 
-                {/* Circles */}
-                {timelineSteps.map((step, idx) => {
-                  const isActive = idx === activeIndex;
-                  const isCompletedOrActive = idx <= activeIndex;
-
-                  return (
-                    <div key={step.id} className="relative flex flex-col items-center">
-                      <button
-                        type="button"
-                        onClick={() => handleNodeClick(idx)}
-                        className={`relative z-1 flex h-[52px] w-[52px] items-center justify-center rounded-full text-lg font-black transition-all duration-300 max-[560px]:h-10 max-[560px]:w-10 max-[560px]:text-sm ${isActive
-                          ? "bg-[#27c7cd] text-white scale-110"
-                          : isCompletedOrActive
-                            ? "border-[2.5px] border-[#27c7cd] bg-white text-[#27c7cd] hover:bg-teal-50"
-                            : "border-[2.5px] border-[#ffcb05] bg-white text-[#ffcb05] hover:bg-yellow-50"
-                          }`}
-                        aria-label={`Show ${step.title} details`}
-                        aria-current={isActive ? "step" : undefined}
-                      >
-                        {step.initial}
-                      </button>
-
-                      {/* Small dot below node when active */}
-                      {isActive && (
-                        <span
-                          className="absolute -bottom-4 h-2.5 w-2.5 rounded-full bg-[#27c7cd] max-[560px]:-bottom-3"
-                          aria-hidden="true"
-                        />
-                      )}
-                    </div>
-                  );
-                })}
+                <div className="mt-4 rounded-xl border-none  p-4 text-[#1b2c38] font-bold text-base">
+                  Your Vision. Our Innovation. One Smart Digital Solution for Every Business.
+                </div>
               </div>
 
-              {/* Next Arrow */}
-              <button
-                type="button"
-                onClick={handleNext}
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full  bg-white shadow-none transition-all group"
-                aria-label="Next story phase"
-              >
+              {/* Bottom Right Illustration */}
+              <div className="lg:col-span-5 flex justify-center lg:justify-end items-end self-end">
                 <img
-                  className="h-[30px] w-10 object-contain opacity-40 group-hover:opacity-80 transition-opacity"
-                  src="/images/rightArrow.svg"
-                  alt=""
-                  aria-hidden="true"
+                  src={getImageUrl("/images/about/shortStory.webp")}
+                  alt="AG Solutions Short Story Illustration"
+                  className="w-full max-w-[540px] h-auto object-contain"
+                  loading="lazy"
                 />
-              </button>
-            </div>
-
-            {/* Dynamic Step Content */}
-            <div
-              key={`${activeStep.id}-${slideDirection}`}
-              className={`home-animated-item mt-16 ${isVisible ? "home-animated-item-visible" : ""
-                }`}
-              style={{ transitionDelay: "150ms" }}
-            >
-              <div className="grid w-full items-center gap-12 min-[860px]:grid-cols-2">
-                {/* Layout Controlled Image First (Opposite/Reverse) */}
-                {imageFirst && (
-                  <div className="flex justify-center min-[860px]:justify-start">
-                    <img
-                      className={`block w-full max-w-[340px] object-contain max-[560px]:max-w-[260px] ${imageAnimationClass}`}
-                      src={activeStep.image}
-                      alt={`${activeStep.title} process phase illustration`}
-                      loading="lazy"
-                    />
-                  </div>
-                )}
-
-                {/* Content Block */}
-                <div>
-                  <div className={titleAnimationClass}>
-                    <h3 className="m-0 text-[32px] font-black leading-tight text-[#1b2c38] max-[560px]:text-2xl">
-                      {activeStep.title}
-                    </h3>
-                  </div>
-                  <p
-                    className={`mt-6 text-[17px] leading-relaxed text-[#4f5a62] max-[560px]:text-base ${copyAnimationClass}`}
-                  >
-                    {activeStep.description}
-                  </p>
-                </div>
-
-                {/* Layout Controlled Image Last (Normal/Default) */}
-                {!imageFirst && (
-                  <div className="flex justify-center min-[860px]:justify-end">
-                    <img
-                      className={`block w-full max-w-[340px] object-contain max-[560px]:max-w-[260px] ${imageAnimationClass}`}
-                      src={activeStep.image}
-                      alt={`${activeStep.title} process phase illustration`}
-                      loading="lazy"
-                    />
-                  </div>
-                )}
               </div>
             </div>
           </div>
         )}
       </AnimatedSection>
 
+      {/* 3. How We Work Section */}
+      <HowWeWork />
+
       {/* 3. Key Features Banner Section */}
-      <AnimatedSection
+      {/* <AnimatedSection
         className="bg-[#f4f5ef] py-18 text-[#1b2c38] max-[760px]:py-12"
         ariaLabel="Key features and strengths"
       >
@@ -294,7 +92,7 @@ function AboutPage() {
           <div
             className={`${layoutContainerClass} grid gap-8 min-[760px]:grid-cols-3`}
           >
-            {/* Feature 1: Excellent Support */}
+
             <div
               className={`home-animated-item flex flex-col items-center text-center p-6 bg-[#f4f5ef]/40 rounded-2xl  transition-all duration-300  ${isVisible ? "home-animated-item-visible" : ""
                 }`}
@@ -302,9 +100,9 @@ function AboutPage() {
             >
               <img
                 src="/images/about/icon31.svg"
-                alt=""
+                alt="Custom software development icon"
+                title="Custom Software Development"
                 className="h-16 w-16 object-contain transition-transform duration-300 hover:rotate-12"
-                aria-hidden="true"
                 loading="lazy"
               />
               <h4 className="mt-5 text-xl font-bold tracking-tight">
@@ -312,7 +110,6 @@ function AboutPage() {
               </h4>
             </div>
 
-            {/* Feature 2: Awesome Team */}
             <div
               className={`home-animated-item flex flex-col items-center text-center p-6 bg-[#f4f5ef]/40 rounded-2xl  transition-all duration-300  ${isVisible ? "home-animated-item-visible" : ""
                 }`}
@@ -320,9 +117,9 @@ function AboutPage() {
             >
               <img
                 src="/images/about/icon32.svg"
-                alt=""
+                alt="Web and mobile application development icon"
+                title="Web and Mobile App Development"
                 className="h-16 w-16 object-contain transition-transform duration-300 hover:scale-110"
-                aria-hidden="true"
                 loading="lazy"
               />
               <h4 className="mt-5 text-xl font-bold tracking-tight">
@@ -330,7 +127,7 @@ function AboutPage() {
               </h4>
             </div>
 
-            {/* Feature 3: Faster Performance */}
+
             <div
               className={`home-animated-item flex flex-col items-center text-center p-6 bg-[#f4f5ef]/40 rounded-2xl  transition-all duration-300  ${isVisible ? "home-animated-item-visible" : ""
                 }`}
@@ -338,9 +135,9 @@ function AboutPage() {
             >
               <img
                 src="/images/about/icon33.svg"
-                alt=""
+                alt="Digital transformation solutions icon"
+                title="Digital Transformation Solutions"
                 className="h-16 w-16 object-contain transition-transform duration-300 hover:rotate-6"
-                aria-hidden="true"
                 loading="lazy"
               />
               <h4 className="mt-5 text-xl font-bold tracking-tight">
@@ -349,7 +146,7 @@ function AboutPage() {
             </div>
           </div>
         )}
-      </AnimatedSection>
+      </AnimatedSection> */}
 
       {/* Company Snapshot Section */}
       <AnimatedSection
@@ -653,7 +450,10 @@ function AboutPage() {
         {(isVisible) => (
           <>
             {/* Background Pattern overlay (Calculators/Gears) */}
-            <div className="absolute inset-0 bg-[url('/images/pattern-bg-lime.jpg')] bg-[length:450px_330px] bg-top opacity-[0.16]" />
+            <div
+              className="absolute inset-0 bg-[length:450px_330px] bg-top opacity-[0.16]"
+              style={{ backgroundImage: `url('${getImageUrl("/images/pattern-bg-lime.jpg")}')` }}
+            />
             <div className="absolute inset-0 bg-[#ffcb05]/75" />
 
             <div className={`${layoutContainerClass} relative z-1`}>
@@ -691,8 +491,9 @@ function AboutPage() {
                 {/* Center: Lighthouse Image */}
                 <div className="flex justify-center lg:self-end self-center">
                   <img
-                    src="/images/about/Picture1.webp"
+                    src={getImageUrl("/images/about/Picture1.webp")}
                     alt="Lighthouse representing vision and direction"
+                    title="Our Vision and Direction"
                     className="relative -z-10 h-auto w-full max-w-[340px] drop-shadow-xl -mb-20 max-[760px]:-mb-24"
                     loading="lazy"
                   />

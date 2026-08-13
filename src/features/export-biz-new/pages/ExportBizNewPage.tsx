@@ -3,8 +3,8 @@ import { SEO } from "@/components/seo/SEO";
 import { Hero } from "../components/Hero";
 import { ValueStrip } from "../components/ValueStrip";
 import { Workflow } from "../components/Workflow";
-import { DocumentEcosystem } from "../components/DocumentEcosystem";
-// import { DocumentEcosystemV2 } from "../components/DocumentEcosystemV2";
+// import { DocumentEcosystem } from "../components/DocumentEcosystem";
+import { DocumentEcosystemV2 } from "../components/DocumentEcosystemV2";
 import { CompareSection } from "../components/CompareSection";
 import { TrustSection } from "../components/TrustSection";
 import { PainSection } from "../components/PainSection";
@@ -116,8 +116,8 @@ export const ExportBizNewPage: React.FC = () => {
           <Hero onScrollTo={scrollToSection} />
           <ValueStrip />
           <Workflow />
-          <DocumentEcosystem />
-          {/* <DocumentEcosystemV2 /> */}
+          {/* <DocumentEcosystem /> */}
+          <DocumentEcosystemV2 />
           <CompareSection />
           <TrustSection />
           <PainSection />

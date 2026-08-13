@@ -43,18 +43,18 @@ function HeroCarousel() {
     <div className={`${activeSlide.contentClass} py-2`}>
       <div>
         <h1
-          className={`m-0 text-[42px] leading-[1.12] font-black max-[640px]:text-[32px] ${activeSlide.titleClass}`}
+          className={`m-0 text-[32px] sm:text-[42px] leading-[1.12] font-black ${activeSlide.titleClass}`}
         >
           {activeSlide.title}
         </h1>
       </div>
       <p
-        className={`mt-4 text-base leading-[1.65] max-[640px]:text-[15px] ${activeSlide.descriptionClass}`}
+        className={`mt-3 text-[15px] sm:text-base leading-[1.6] ${activeSlide.descriptionClass}`}
       >
         {activeSlide.description}
       </p>
       <div
-        className={`mt-6 flex flex-wrap gap-3 ${isCentered ? "justify-center" : ""}`}
+        className={`mt-5 flex flex-wrap gap-3 ${isCentered ? "justify-center" : ""}`}
       >
         <Link
           to={activeSlide.path}
@@ -75,7 +75,7 @@ function HeroCarousel() {
   const slideImage = (
     <div className="mx-auto flex w-full max-w-[620px] items-center justify-center py-2">
       <img
-        className={`${activeSlide.imageClass} h-auto w-full max-w-[560px] object-contain object-center max-[860px]:max-h-[280px] max-[560px]:max-h-[230px]`}
+        className={`${activeSlide.imageClass} h-[210px] sm:h-[240px] lg:h-[270px] w-full max-w-[560px] object-contain object-center`}
         src={activeSlide.image}
         alt={activeSlide.imageAlt}
         title={activeSlide.imageTitle}
@@ -92,11 +92,11 @@ function HeroCarousel() {
       aria-label="Featured AG Solutions services"
     >
       <div
-        className={`relative min-h-[480px] overflow-hidden transition-colors duration-500 max-[860px]:min-h-[520px] max-[560px]:min-h-[560px] ${activeSlide.backgroundClass}`}
+        className={`relative h-[520px] sm:h-[555px] lg:h-[578px] flex items-center overflow-hidden transition-colors duration-500 ${activeSlide.backgroundClass}`}
       >
         <button
           type="button"
-          className="absolute left-6 top-1/2 z-10 grid h-12 w-12 place-items-center rounded-full hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white max-[760px]:left-3 cursor-pointer"
+          className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-10 grid h-12 w-12 place-items-center rounded-full hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer"
           onClick={() => goToSlide(getPreviousIndex(activeIndex), "from-left")}
           aria-label="Previous carousel slide"
         >
@@ -109,7 +109,7 @@ function HeroCarousel() {
         </button>
         <button
           type="button"
-          className="absolute right-6 top-1/2 z-10 grid h-12 w-12 place-items-center rounded-full hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white max-[760px]:right-3 cursor-pointer"
+          className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-10 grid h-12 w-12 place-items-center rounded-full hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer"
           onClick={() => goToSlide(getNextIndex(activeIndex), "from-right")}
           aria-label="Next carousel slide"
         >
@@ -122,7 +122,7 @@ function HeroCarousel() {
         </button>
 
         <div
-          className={`${layoutContainerClass} relative flex h-full items-center justify-center`}
+          className={`${layoutContainerClass} relative flex h-full w-full items-center justify-center py-6 sm:py-8`}
           id={`home-carousel-${activeSlide.id}`}
         >
           <div
@@ -134,12 +134,12 @@ function HeroCarousel() {
             }`}
           >
             {isCentered ? (
-              <div className="flex w-full flex-col items-center gap-5 text-center">
+              <div className="flex w-full flex-col items-center gap-3 text-center">
                 {slideContent}
                 {slideImage}
               </div>
             ) : (
-              <div className="grid w-full items-center gap-6 lg:gap-8 min-[860px]:grid-cols-[1.02fr_0.98fr]">
+              <div className="grid w-full items-center gap-6 lg:gap-8 md:grid-cols-[1.02fr_0.98fr]">
                 {imageFirst && slideImage}
                 {slideContent}
                 {!imageFirst && slideImage}
@@ -149,9 +149,8 @@ function HeroCarousel() {
         </div>
       </div>
 
-
       <div
-        className="grid h-[70px] grid-cols-5 overflow-hidden max-[780px]:hidden"
+        className="hidden md:grid h-[70px] grid-cols-5 overflow-hidden"
         role="tablist"
         aria-label="Choose a featured service"
       >

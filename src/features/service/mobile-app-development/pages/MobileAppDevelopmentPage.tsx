@@ -9,6 +9,7 @@ import { PageHero, SectionTitle } from "@/components/layout";
 import { Card } from "@/components/ui";
 import { FAQSchema } from "@/components/seo";
 import { getUtmParams } from "@/utils/utmUtils";
+import { getImageUrl } from "@/utils/imageUrl";
 
 interface PortfolioItem {
   title: string;
@@ -175,21 +176,21 @@ const recentWorks: readonly PortfolioItem[] = [
   {
     title: "Ease Marketing",
     subtitle: "marketing",
-    image: "/images/services/mobile-app-development/em.jpg",
+    image: getImageUrl("/images/services/mobile-app-development/em.jpg"),
     alt: "Ease Marketing mobile application",
     imageTitle: "Ease Marketing App",
   },
   {
     title: "IVF Kidney",
     subtitle: "matrimonial",
-    image: "/images/services/mobile-app-development/ivf.jpg",
+    image: getImageUrl("/images/services/mobile-app-development/ivf.jpg"),
     alt: "IVF healthcare mobile application",
     imageTitle: "IVF Healthcare App",
   },
   {
     title: "Grow Together",
     subtitle: "business",
-    image: "/images/services/mobile-app-development/gt.jpg",
+    image: getImageUrl("/images/services/mobile-app-development/gt.jpg"),
     alt: "Grow Together mobile application",
     imageTitle: "Grow Together App",
   },
@@ -260,7 +261,7 @@ export default function MobileAppDevelopmentPage() {
       {/* 1. Page Hero */}
       <PageHero
         title="Mobile App Development Company In Bangalore"
-        bgImage="/images/pattern-bg-red.jpg"
+        bgImage={getImageUrl("/images/pattern-bg-red.jpg")}
         breadcrumbs={[
           { label: "Homepage", path: "/" },
           { label: "Mobile Application Development" },
@@ -291,7 +292,7 @@ export default function MobileAppDevelopmentPage() {
               {/* Android Column */}
               <div className="flex flex-col items-center text-center">
                 <img
-                  src="/images/services/mobile-app-development/android.png"
+                  src={getImageUrl("/images/services/mobile-app-development/android.png")}
                   alt="Android app development by AG Solutions"
                   title="Android App Development"
                   className="w-16 h-16 object-contain"
@@ -308,7 +309,7 @@ export default function MobileAppDevelopmentPage() {
               {/* Architecture Diagram */}
               <div className="flex justify-center my-4 lg:my-0">
                 <img
-                  src="/images/services/mobile-app-development/mobile-app-architecture.png"
+                  src={getImageUrl("/images/services/mobile-app-development/mobile-app-architecture.png")}
                   alt="Mobile app architecture for Android and iOS applications"
                   title="Mobile App Architecture"
                   className="w-full max-w-[340px] object-contain drop-shadow-md"
@@ -319,7 +320,7 @@ export default function MobileAppDevelopmentPage() {
               {/* iOS Column */}
               <div className="flex flex-col items-center text-center">
                 <img
-                  src="/images/services/mobile-app-development/apple.png"
+                  src={getImageUrl("/images/services/mobile-app-development/apple.png")}
                   alt="iOS app development by AG Solutions"
                   title="iOS App Development"
                   className="w-16 h-16 object-contain"
@@ -412,7 +413,7 @@ export default function MobileAppDevelopmentPage() {
                 <div className="flex justify-center bg-[#0d2331] rounded-[20px] p-8 text-white relative overflow-hidden">
                   <div className="relative z-10 text-center flex flex-col items-center">
                     <img
-                      src="/images/services/mobile-app-development/android.png"
+                      src={getImageUrl("/images/services/mobile-app-development/android.png")}
                       alt="Android application development services"
                       title="Android Application Development"
                       className="w-20 h-20 object-contain mb-4"
@@ -423,7 +424,7 @@ export default function MobileAppDevelopmentPage() {
                       Fast, secure, and native Android smartphone solutions.
                     </p>
                     <img
-                      src="/images/services/mobile-app-development/mobile-app-architecture.png"
+                      src={getImageUrl("/images/services/mobile-app-development/mobile-app-architecture.png")}
                       alt="Mobile application architecture diagram"
                       title="Mobile Application Architecture"
                       className="w-full max-w-[280px] object-contain mt-6"
@@ -499,7 +500,7 @@ export default function MobileAppDevelopmentPage() {
                 <div className="order-1 lg:order-2 flex justify-center bg-[#0d2331] rounded-[20px] p-8 text-white relative overflow-hidden">
                   <div className="relative z-10 text-center flex flex-col items-center">
                     <img
-                      src="/images/services/mobile-app-development/apple.png"
+                      src={getImageUrl("/images/services/mobile-app-development/apple.png")}
                       alt="iOS application development services"
                       title="iOS Application Development"
                       className="w-20 h-20 object-contain mb-4"
@@ -510,7 +511,7 @@ export default function MobileAppDevelopmentPage() {
                       High-performance iOS apps for iPhone and iPad.
                     </p>
                     <img
-                      src="/images/services/mobile-app-development/mobile1.webp"
+                      src={getImageUrl("/images/services/mobile-app-development/mobile1.webp")}
                       alt="Mobile app development showcase by AG Solutions"
                       title="Mobile App Development Showcase"
                       className="w-full max-w-[260px] object-contain mt-6 rounded-lg"
@@ -702,7 +703,7 @@ export default function MobileAppDevelopmentPage() {
               </div>
               <div className="flex justify-center">
                 <img
-                  src="/images/services/mobile-app-development/mobile1.webp"
+                  src={getImageUrl("/images/services/mobile-app-development/single_clik_four_phones_transparent.webp")}
                   alt="Single Click mobile application by AG Solutions"
                   title="Single Click Mobile App"
                   className="w-full max-w-[320px] object-contain rounded-xl drop-shadow-2xl"

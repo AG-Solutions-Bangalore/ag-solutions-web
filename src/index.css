@@ -55,7 +55,7 @@
 }
 
 .about-color-line-track {
-  animation: aboutColorLineMove 1.8s linear infinite;
+  animation: aboutColorLineMove 4s linear infinite;
   will-change: transform;
 }
 

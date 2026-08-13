@@ -1,3 +1,5 @@
+import { getImageUrl } from "@/utils/imageUrl";
+
 type HeroSlide = {
   id: string;
   title: string;
@@ -25,8 +27,8 @@ export const heroSlides: readonly HeroSlide[] = [
   title: "Web Development",
   description:
     "Transform your ideas into powerful digital experiences with custom websites and web applications that combine stunning design, seamless functionality, and business-driven performance.",
-  image: "/images/home/01Crausle.svg",
-  tabIcon: "/images/home/home-08.png",
+  image: getImageUrl("/images/home/01Crausle.svg"),
+  tabIcon: getImageUrl("/images/home/home-08.png"),
   path: "/web-development",
   backgroundClass:
     "bg-gradient-to-r from-[#eef5fb] via-[#f9fcff] to-[#eef5fb]",
@@ -49,8 +51,8 @@ imageClass:
     title: "Mobile App Development",
     description:
        "We build high-performance Android, iOS, and cross-platform mobile applications that deliver seamless user experiences, strengthen customer engagement, and accelerate business growth.",
-    image: "/images/home/02Crausle.png",
-    tabIcon: "/images/home/home-09.png",
+    image: getImageUrl("/images/home/02Crausle.png"),
+    tabIcon: getImageUrl("/images/home/home-09.png"),
     path: "/mobile-app-development",
     backgroundClass: "bg-[#27c7cd]",
     tabClass: "bg-[#27c7cd] text-white",
@@ -71,8 +73,8 @@ imageClass:
     title: "Desktop Application Development",
     description:
       "We develop secure, scalable desktop applications that streamline business operations, improve productivity, and deliver reliable performance for organizations of every size.",
-    image: "/images/home/03Crausle.png",
-    tabIcon: "/images/home/home-10.png",
+    image: getImageUrl("/images/home/03Crausle.png"),
+    tabIcon: getImageUrl("/images/home/home-10.png"),
     path: "/desktop-applications",
     backgroundClass: "bg-[#ff3c66]",
     tabClass: "bg-[#ff3c66] text-[#1b2c38]",
@@ -93,8 +95,8 @@ imageClass:
     title: "Email Marketing",
     description:
       "We create tailored marketing campaigns for each segment of your audience to advertise products and services and engage new customers.",
-    image: "/images/home/04Crausle.svg",
-    tabIcon: "/images/home/home-11.png",
+    image: getImageUrl("/images/home/04Crausle.svg"),
+    tabIcon: getImageUrl("/images/home/home-11.png"),
     path: "/services/email-marketing",
     backgroundClass: "bg-[#ffcb05]",
     tabClass: "bg-[#ffcb05] text-[#1b2c38]",
@@ -115,8 +117,8 @@ imageClass:
     title: "Digital Marketing",
     description:
       "Campaign planning, content systems, and measurable digital activity for teams that want cleaner outreach and better visibility.",
-    image: "/images/home/05Crausle.png",
-    tabIcon: "/images/home/home-12.png",
+    image: getImageUrl("/images/home/05Crausle.png"),
+    tabIcon: getImageUrl("/images/home/home-12.png"),
     path: "/services/digital-marketing",
     backgroundClass: "bg-[#8bd82b]",
     tabClass: "bg-[#8bd82b] text-[#1b2c38]",

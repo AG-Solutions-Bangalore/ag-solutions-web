@@ -5,6 +5,7 @@ import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
 import ProductMenuIcon from "@/components/layout/Navbar/ProductMenuIcon";
 import { SEO } from "@/components/seo/SEO";
+import { getImageUrl } from "@/utils/imageUrl";
 
 interface ProductCard {
   title: string;
@@ -72,7 +73,7 @@ export const ProductsPage: React.FC = () => {
 
       <PageHero
         title="Our Products"
-        bgImage="/images/pattern-bg-breez.jpg"
+        bgImage={getImageUrl("/images/pattern-bg-breez.jpg")}
         bgColorClass="bg-[#ffffff]"
         textColorClass="text-[#1b2c38]"
         breadcrumbs={[

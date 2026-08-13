@@ -4,6 +4,7 @@ import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
 import { useBlogs } from "../hooks/useBlogs";
 import { PageHero, SectionTitle } from "@/components/layout";
+import { formatDate } from "@/utils/formatDate";
 
 export default function BlogListPage() {
   const { data: blogsData, isLoading, error } = useBlogs();
@@ -105,7 +106,7 @@ export default function BlogListPage() {
                       {/* Content Card Body */}
                       <div className="p-6 flex flex-col flex-1">
                         <span className="text-[13px] text-[#7a8894] font-medium">
-                          {blog.blog_created_date} &bull; By {blog.created_by || "Admin"}
+                          {formatDate(blog.blog_created_date)} &bull; By {blog.created_by || "Admin"}
                         </span>
                         
                         <h3 className="m-0 mt-3 text-xl font-bold leading-snug tracking-tight text-[#1b2c38] group-hover:text-[#09c7ca] transition-colors duration-300">
