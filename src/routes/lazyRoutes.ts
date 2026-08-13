@@ -11,6 +11,10 @@ export const loadHomePage = () => import("@/features/home/pages/HomePage");
 export const loadHomePageV2 = () => import("@/features/homev2/pages/HomePageV2");
 export const loadAboutPage = () => import("@/features/about/pages/AboutPage");
 export const loadAboutPageV2 = () => import("@/features/aboutV2/pages/AboutPageV2");
+export const loadWebDevelopmentPageV2 = () => import("@/features/serviceV2/pages/WebDevelopmentPageV2");
+export const loadServicePageV2 = loadWebDevelopmentPageV2;
+export const loadMobileAppPageV2 = () => import("@/features/serviceV2/pages/MobileAppPageV2");
+export const loadDigitalMarketingPageV2 = () => import("@/features/serviceV2/pages/DigitalMarketingPageV2");
 export const loadContactPage = () =>
   import("@/features/contact-us/pages/ContactPage");
 export const loadPortfolioPage = () =>
@@ -49,6 +53,12 @@ const routeLoaders: Record<string, () => Promise<unknown>> = {
   "/home-v2": loadHomePageV2,
   "/about": loadAboutPage,
   "/about-v2": loadAboutPageV2,
+  "/service-v2": loadServicePageV2,
+  "/web-development-v2": loadServicePageV2,
+  "/mobile-app-v2": loadMobileAppPageV2,
+  "/mobile-app-development-v2": loadMobileAppPageV2,
+  "/digital-marketing-v2": loadDigitalMarketingPageV2,
+  "/ease-marketing-v2": loadDigitalMarketingPageV2,
   "/contacts": loadContactPage,
   "/portfolio": loadPortfolioPage,
   "/web-development": loadWebDevelopmentPage,
