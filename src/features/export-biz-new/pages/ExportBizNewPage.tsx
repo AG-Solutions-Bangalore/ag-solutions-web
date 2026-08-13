@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SEO } from "@/components/seo/SEO";
 import { Hero } from "../components/Hero";
-import { ValueStrip } from "../components/ValueStrip";
 import { Workflow } from "../components/Workflow";
 // import { DocumentEcosystem } from "../components/DocumentEcosystem";
 import { DocumentEcosystemV2 } from "../components/DocumentEcosystemV2";
@@ -114,7 +113,6 @@ export const ExportBizNewPage: React.FC = () => {
           <span id="top"></span>
 
           <Hero onScrollTo={scrollToSection} />
-          <ValueStrip />
           <Workflow />
           {/* <DocumentEcosystem /> */}
           <DocumentEcosystemV2 />

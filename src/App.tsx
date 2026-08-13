@@ -24,6 +24,7 @@ import {
   loadExportBizNewPage,
 } from "./routes/lazyRoutes";
 import New from "../src/features/home/pages/New/New";
+import ExportBiz from "./features/export-biz/pages/ExportBiz";
 
 
 
@@ -143,6 +144,7 @@ function App() {
           <Route path="blogs/:slug" element={<BlogDetailPage />} />
           <Route path="products" element={<ProductsPage />} />
           <Route path="/new" element={<New />} />
+          <Route path="/exportbiz" element={<ExportBiz />} />
           <Route
             path="export-biz"
             element={<ExportBizPage />}
