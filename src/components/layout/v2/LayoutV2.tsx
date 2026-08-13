@@ -5,7 +5,7 @@ import FooterV2 from "./FooterV2";
 
 interface LayoutV2Props {
     children?: ReactNode;
-    activeNav?: "home" | "about" | "services" | "career" | "contact";
+    activeNav?: "home" | "about" | "services" | "products" | "contact";
 }
 
 export function LayoutV2({ children, activeNav }: LayoutV2Props) {
