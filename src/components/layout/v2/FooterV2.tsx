@@ -1,0 +1,136 @@
+import { Link } from "react-router-dom";
+import { Rocket, Phone, Mail, MapPin } from "lucide-react";
+import FlipButton from "@/features/homev2/components/FlipButton";
+
+const quickLinks = [
+    { to: "/home-v2", label: "Home" },
+    { to: "/about-v2", label: "About Us" },
+    { to: "/web-development", label: "Services" },
+    { to: "/about-v2", label: "Career" },
+    { to: "/contacts", label: "Contact Us" },
+];
+
+const serviceLinks = [
+    { to: "/web-development", label: "Web Development" },
+    { to: "/mobile-app-development", label: "Mobile App Development" },
+    { to: "/web-development", label: "E-Commerce Solutions" },
+    { to: "/desktop-applications", label: "Cloud Solutions" },
+    { to: "/about-v2", label: "IT Consulting" },
+];
+
+const socialLinks = [
+    { href: "https://linkedin.com", label: "in" },
+    { href: "https://facebook.com", label: "fb" },
+    { href: "https://twitter.com", label: "tw" },
+    { href: "https://instagram.com", label: "ig" },
+];
+
+export function FooterV2() {
+    return (
+        <footer className="mt-16 bg-slate-900 text-white">
+            {/* Top 4 Multi-Color Connected Columns */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+                {/* Block 1: Teal */}
+                <div className="bg-ag-teal p-8 md:p-10 text-white flex flex-col justify-between">
+                    <div>
+                        <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-full bg-white/20 backdrop-blur-xs">
+                            <Rocket className="h-7 w-7 text-white" />
+                        </div>
+                        <h3 className="text-2xl font-extrabold text-white">
+                            Ready to Start Your Project?
+                        </h3>
+                        <p className="mt-2.5 text-sm text-teal-50 leading-relaxed">
+                            Let's work together to build something amazing.
+                        </p>
+                    </div>
+                    <div className="mt-8">
+                        <FlipButton to="/contacts" variant="white">
+                            Get a Quote
+                        </FlipButton>
+                    </div>
+                </div>
+
+                {/* Block 2: Pink */}
+                <div className="bg-ag-pink p-8 md:p-10 text-white">
+                    <h3 className="text-lg font-bold text-white mb-5">Quick Links</h3>
+                    <ul className="space-y-3 text-sm font-medium text-pink-100 list-none p-0 m-0">
+                        {quickLinks.map((link) => (
+                            <li key={link.label}>
+                                <Link to={link.to} className="hover:text-white transition-colors text-pink-100 no-underline">
+                                    {link.label}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                {/* Block 3: Yellow */}
+                <div className="bg-ag-yellow p-8 md:p-10 text-white">
+                    <h3 className="text-lg font-bold text-white mb-5">Services</h3>
+                    <ul className="space-y-3 text-sm font-medium text-amber-50 list-none p-0 m-0">
+                        {serviceLinks.map((link) => (
+                            <li key={link.label}>
+                                <Link to={link.to} className="hover:text-white transition-colors text-amber-50 no-underline">
+                                    {link.label}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                {/* Block 4: Lime Green */}
+                <div className="bg-ag-green p-8 md:p-10 text-white flex flex-col justify-between">
+                    <div>
+                        <h3 className="text-lg font-bold text-white mb-5">Contact Us</h3>
+                        <ul className="space-y-3 text-sm text-lime-50 list-none p-0 m-0">
+                            <li className="flex items-center gap-2.5">
+                                <Phone className="h-4 w-4 shrink-0 text-white" />
+                                <span>+91 120 456 2073</span>
+                            </li>
+                            <li className="flex items-center gap-2.5">
+                                <Mail className="h-4 w-4 shrink-0 text-white" />
+                                <span>info@ag-solutions.in</span>
+                            </li>
+                            <li className="flex items-start gap-2.5">
+                                <MapPin className="h-4 w-4 shrink-0 text-white mt-0.5" />
+                                <span>B-109, Sector-63, Noida, UP - 201301</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className="mt-8 flex items-center gap-2.5">
+                        {socialLinks.map((social) => (
+                            <a
+                                key={social.label}
+                                href={social.href}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-ag-green font-bold text-xs hover:bg-lime-100 transition-colors"
+                            >
+                                {social.label}
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Bottom Dark Strip */}
+            <div className="bg-ag-navy py-4 px-6 md:px-12 text-xs text-slate-400">
+                <div className="mx-auto max-w-7xl flex flex-col sm:flex-row justify-between items-center gap-3">
+                    <div>© 2025 AG Solutions. All Rights Reserved.</div>
+                    <div className="flex items-center gap-4">
+                        <Link to="/privacy-policy" className="text-slate-400 hover:text-white transition-colors no-underline">
+                            Privacy Policy
+                        </Link>
+                        <span>|</span>
+                        <Link to="/terms-and-conditions" className="text-slate-400 hover:text-white transition-colors no-underline">
+                            Terms & Conditions
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    );
+}
+
+export default FooterV2;
