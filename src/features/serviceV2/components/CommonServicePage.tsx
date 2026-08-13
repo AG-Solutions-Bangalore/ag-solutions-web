@@ -1,21 +1,23 @@
-import type { ReactNode } from "react";
-import type { LucideIcon } from "lucide-react";
+import type { ReactNode, ComponentType } from "react";
 import SEO from "@/components/seo/SEO";
 import HeaderV2 from "@/components/layout/v2/HeaderV2";
 import FooterV2 from "@/components/layout/v2/FooterV2";
 import FlipButton from "@/features/homev2/components/FlipButton";
 import Industries from "@/features/home/pages/New/Industries";
 
+// Generic Icon type compatible with both react-icons and lucide-react
+export type ServiceIcon = ComponentType<{ className?: string; size?: number }>;
+
 export interface HeroFeature {
     label: string;
-    icon: LucideIcon;
+    icon: ServiceIcon;
     bgColor: string; // e.g. "bg-ag-teal", "bg-ag-pink", "bg-ag-yellow", "bg-ag-green"
 }
 
 export interface ServiceOfferingItem {
     title: string;
     description: string;
-    icon: LucideIcon;
+    icon: ServiceIcon;
     bgColor: string;
     accentColor?: string;
 }
@@ -23,7 +25,7 @@ export interface ServiceOfferingItem {
 export interface WhyChooseFeature {
     title: string;
     description: string;
-    icon: LucideIcon;
+    icon: ServiceIcon;
     bgColor: string;
 }
 
@@ -31,7 +33,7 @@ export interface ProcessStep {
     step: string; // e.g. "01"
     title: string;
     description: string;
-    icon: LucideIcon;
+    icon: ServiceIcon;
     bgColor: string;
     textColor: string;
 }
@@ -39,7 +41,7 @@ export interface ProcessStep {
 export interface StatItem {
     number: string; // e.g. "120+"
     label: string;
-    icon?: LucideIcon;
+    icon?: ServiceIcon;
     bgColor?: string;
     textColor?: string;
 }
@@ -47,7 +49,7 @@ export interface StatItem {
 export interface CommonServicePageProps {
     seoTitle?: string;
     seoDescription?: string;
-    activeNav?: "home" | "about" | "services" | "career" | "contact";
+    activeNav?: "home" | "about" | "services" | "products" | "contact";
 
     // Hero Props
     heroBadge: string;
@@ -240,8 +242,15 @@ export function CommonServicePage({
                                 </div>
                             </div>
 
-                            {/* Service Cards */}
-                            <div className={`mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 ${offerItems.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
+                            {/* Service Cards - Supports 3, 4, or 5 cards in 1 row */}
+                            <div
+                                className={`mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 ${offerItems.length === 5
+                                    ? "lg:grid-cols-5"
+                                    : offerItems.length === 4
+                                        ? "lg:grid-cols-4"
+                                        : "lg:grid-cols-3"
+                                    }`}
+                            >
                                 {offerItems.map((item) => {
                                     const Icon = item.icon;
                                     return (
@@ -311,11 +320,10 @@ export function CommonServicePage({
                                                 return (
                                                     <div
                                                         key={feat.title}
-                                                        className={`flex flex-col items-center text-center px-3 ${
-                                                            idx < whyFeatures.length - 1
-                                                                ? "lg:border-r lg:border-slate-200/70"
-                                                                : ""
-                                                        }`}
+                                                        className={`flex flex-col items-center text-center px-3 ${idx < whyFeatures.length - 1
+                                                            ? "lg:border-r lg:border-slate-200/70"
+                                                            : ""
+                                                            }`}
                                                     >
                                                         <div
                                                             className={`mb-4 flex h-14 w-14 items-center justify-center rounded-full ${feat.bgColor} text-white shadow-md transition-transform duration-300 hover:scale-110`}
@@ -427,11 +435,10 @@ export function CommonServicePage({
                                                 return (
                                                     <div
                                                         key={statItem.label}
-                                                        className={`flex flex-col items-center justify-center p-4 ${
-                                                            idx < stats.length - 1
-                                                                ? "sm:border-r sm:border-pink-200/70"
-                                                                : ""
-                                                        }`}
+                                                        className={`flex flex-col items-center justify-center p-4 ${idx < stats.length - 1
+                                                            ? "sm:border-r sm:border-pink-200/70"
+                                                            : ""
+                                                            }`}
                                                     >
                                                         {Icon && (
                                                             <div className="mb-3 text-ag-dark">
