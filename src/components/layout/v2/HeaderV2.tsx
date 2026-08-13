@@ -4,19 +4,40 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import FlipButton from "@/features/homev2/components/FlipButton";
 
 interface HeaderV2Props {
-    activeNav?: "home" | "about" | "services" | "career" | "contact";
+    activeNav?: "home" | "about" | "services" | "products" | "contact";
 }
 
 export function HeaderV2({ activeNav }: HeaderV2Props) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+    const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
     const location = useLocation();
 
     // Determine current active tab automatically if not explicitly passed
+    const isProductsPath =
+        location.pathname === "/export-biz" ||
+        location.pathname === "/export-biz-new" ||
+        location.pathname === "/ease-marketing" ||
+        location.pathname === "/grow-together" ||
+        location.pathname === "/products";
+
+    const isServicesPath =
+        location.pathname === "/service-v2" ||
+        location.pathname === "/services-v2" ||
+        location.pathname === "/web-development-v2" ||
+        location.pathname === "/mobile-app-v2" ||
+        location.pathname === "/mobile-app-development-v2" ||
+        location.pathname === "/digital-marketing-v2" ||
+        location.pathname === "/ease-marketing-v2";
+
     const currentTab =
         activeNav ||
         (location.pathname === "/about-v2"
             ? "about"
+            : isServicesPath
+            ? "services"
+            : isProductsPath
+            ? "products"
             : location.pathname === "/contacts"
             ? "contact"
             : "home");
@@ -90,25 +111,19 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                             <div className="absolute left-0 top-full hidden group-hover:block w-56 pt-2 z-50">
                                 <div className="rounded-2xl bg-white p-2 shadow-xl border border-slate-100">
                                     <Link
-                                        to="/web-development"
+                                        to="/service-v2"
                                         className="block px-4 py-2.5 text-sm font-medium text-ag-dark hover:bg-ag-pink-light hover:text-ag-pink rounded-xl transition-colors no-underline"
                                     >
                                         Web Development
                                     </Link>
                                     <Link
-                                        to="/mobile-app-development"
+                                        to="/mobile-app-v2"
                                         className="block px-4 py-2.5 text-sm font-medium text-ag-dark hover:bg-ag-teal-light hover:text-ag-teal rounded-xl transition-colors no-underline"
                                     >
                                         Mobile App Development
                                     </Link>
                                     <Link
-                                        to="/desktop-applications"
-                                        className="block px-4 py-2.5 text-sm font-medium text-ag-dark hover:bg-ag-yellow-light hover:text-ag-yellow rounded-xl transition-colors no-underline"
-                                    >
-                                        Desktop Applications
-                                    </Link>
-                                    <Link
-                                        to="/ease-marketing"
+                                        to="/digital-marketing-v2"
                                         className="block px-4 py-2.5 text-sm font-medium text-ag-dark hover:bg-ag-green-light hover:text-ag-green rounded-xl transition-colors no-underline"
                                     >
                                         Digital Marketing
@@ -117,16 +132,44 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                             </div>
                         </div>
 
-                        <Link
-                            to="/about-v2"
-                            className={`relative text-sm font-semibold transition-colors no-underline py-1 ${
-                                currentTab === "career"
-                                    ? "text-ag-pink"
-                                    : "text-ag-dark hover:text-ag-pink"
-                            }`}
-                        >
-                            Career
-                        </Link>
+                        {/* Products Dropdown */}
+                        <div className="relative group">
+                            <button
+                                onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
+                                onMouseEnter={() => setProductsDropdownOpen(true)}
+                                className={`flex items-center gap-1 text-sm font-semibold transition-colors bg-transparent border-none cursor-pointer py-1 ${
+                                    currentTab === "products"
+                                        ? "text-ag-pink"
+                                        : "text-ag-dark hover:text-ag-pink"
+                                }`}
+                            >
+                                <span>Products</span>
+                                <ChevronDown className="h-4 w-4 text-ag-muted transition-transform group-hover:rotate-180" />
+                            </button>
+
+                            <div className="absolute left-0 top-full hidden group-hover:block w-56 pt-2 z-50">
+                                <div className="rounded-2xl bg-white p-2 shadow-xl border border-slate-100">
+                                    <Link
+                                        to="/export-biz-new"
+                                        className="block px-4 py-2.5 text-sm font-medium text-ag-dark hover:bg-ag-pink-light hover:text-ag-pink rounded-xl transition-colors no-underline"
+                                    >
+                                        ExportBiz
+                                    </Link>
+                                    <Link
+                                        to="/ease-marketing"
+                                        className="block px-4 py-2.5 text-sm font-medium text-ag-dark hover:bg-ag-teal-light hover:text-ag-teal rounded-xl transition-colors no-underline"
+                                    >
+                                        Ease Marketing
+                                    </Link>
+                                    <Link
+                                        to="/grow-together"
+                                        className="block px-4 py-2.5 text-sm font-medium text-ag-dark hover:bg-ag-yellow-light hover:text-ag-yellow rounded-xl transition-colors no-underline"
+                                    >
+                                        Grow Together
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
 
                         <Link
                             to="/contacts"
@@ -184,18 +227,22 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                         About Us
                     </Link>
                     <Link
-                        to="/web-development"
+                        to="/service-v2"
                         onClick={() => setMobileMenuOpen(false)}
                         className="block px-3 py-2 text-base font-semibold text-ag-dark hover:text-ag-pink no-underline"
                     >
                         Services
                     </Link>
                     <Link
-                        to="/about-v2"
+                        to="/export-biz-new"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2 text-base font-semibold text-ag-dark hover:text-ag-pink no-underline"
+                        className={`block px-3 py-2 text-base font-semibold rounded-lg no-underline ${
+                            currentTab === "products"
+                                ? "text-ag-pink bg-ag-pink-light"
+                                : "text-ag-dark hover:text-ag-pink"
+                        }`}
                     >
-                        Career
+                        Products (ExportBiz)
                     </Link>
                     <Link
                         to="/contacts"

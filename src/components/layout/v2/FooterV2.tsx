@@ -5,8 +5,7 @@ import FlipButton from "@/features/homev2/components/FlipButton";
 const quickLinks = [
     { to: "/home-v2", label: "Home" },
     { to: "/about-v2", label: "About Us" },
-    { to: "/web-development", label: "Services" },
-    { to: "/about-v2", label: "Career" },
+    { to: "/service-v2", label: "Services" },
     { to: "/contacts", label: "Contact Us" },
 ];
 

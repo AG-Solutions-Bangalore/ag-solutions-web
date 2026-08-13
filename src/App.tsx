@@ -7,6 +7,9 @@ import { getUtmParams, storeUtmParams } from "./utils/utmUtils";
 import {
   loadAboutPage,
   loadAboutPageV2,
+  loadServicePageV2,
+  loadMobileAppPageV2,
+  loadDigitalMarketingPageV2,
   loadBlogDetailPage,
   loadBlogListPage,
   loadContactPage,
@@ -33,6 +36,9 @@ const HomePage = lazy(loadHomePage);
 const HomePageV2 = lazy(loadHomePageV2);
 const AboutPage = lazy(loadAboutPage);
 const AboutPageV2 = lazy(loadAboutPageV2);
+const ServicePageV2 = lazy(loadServicePageV2);
+const MobileAppPageV2 = lazy(loadMobileAppPageV2);
+const DigitalMarketingPageV2 = lazy(loadDigitalMarketingPageV2);
 const ContactPage = lazy(loadContactPage);
 const PortfolioPage = lazy(loadPortfolioPage);
 const WebDevelopmentPage = lazy(loadWebDevelopmentPage);
@@ -126,6 +132,12 @@ function App() {
       <Routes>
         <Route path="home-v2" element={<HomePageV2 />} />
         <Route path="about-v2" element={<AboutPageV2 />} />
+        <Route path="service-v2" element={<ServicePageV2 />} />
+        <Route path="web-development-v2" element={<ServicePageV2 />} />
+        <Route path="mobile-app-v2" element={<MobileAppPageV2 />} />
+        <Route path="mobile-app-development-v2" element={<MobileAppPageV2 />} />
+        <Route path="digital-marketing-v2" element={<DigitalMarketingPageV2 />} />
+        <Route path="ease-marketing-v2" element={<DigitalMarketingPageV2 />} />
         <Route element={<AppLayout />}>
           <Route index element={<HomePage />} />
           <Route path="projects" element={<Navigate to="/portfolio" replace />} />
