@@ -7,59 +7,80 @@ const normalizePath = (path: string) => {
     : withLeadingSlash;
 };
 
-export const loadHomePage = () => import("@/features/home/pages/HomePage");
-export const loadHomePageV2 = () => import("@/features/homev2/pages/HomePageV2");
-export const loadAboutPage = () => import("@/features/about/pages/AboutPage");
-export const loadAboutPageV2 = () => import("@/features/aboutV2/pages/AboutPageV2");
-export const loadWebDevelopmentPageV2 = () => import("@/features/serviceV2/pages/WebDevelopmentPageV2");
-export const loadServicePageV2 = loadWebDevelopmentPageV2;
-export const loadMobileAppPageV2 = () => import("@/features/serviceV2/pages/MobileAppPageV2");
-export const loadDigitalMarketingPageV2 = () => import("@/features/serviceV2/pages/DigitalMarketingPageV2");
-export const loadContactPage = () =>
-  import("@/features/contact-us/pages/ContactPage");
-export const loadPortfolioPage = () =>
-  import("@/features/portfolio/pages/PortfolioPage");
-export const loadWebDevelopmentPage = () =>
-  import(
-    "@/features/service/web-development/pages/WebDevelopmentPage"
-  );
-export const loadMobileAppDevelopmentPage = () =>
-  import(
-    "@/features/service/mobile-app-development/pages/MobileAppDevelopmentPage"
-  );
-export const loadDesktopApplicationsPage = () =>
-  import(
-    "@/features/service/desktop-applications/pages/DesktopApplicationsPage"
-  );
-export const loadBlogListPage = () =>
-  import("@/features/blog/pages/BlogListPage");
-export const loadBlogDetailPage = () =>
-  import("@/features/blog/pages/BlogDetailPage");
-export const loadProductsPage = () =>
-  import("@/features/products/pages/ProductsPage");
-export const loadExportBizPage = () =>
-  import("@/features/export-biz-new/pages/ExportBizNewPage");
-export const loadEaseMarketingPage = () =>
-  import("@/features/products/pages/EaseMarketingPage");
-export const loadGrowTogetherPage = () =>
-  import("@/features/products/pages/GrowTogetherPage");
-export const loadExportBizNewPage = () =>
-  import("@/features/export-biz-new/pages/ExportBizNewPage");
-export const loadNotFoundPage = () =>
-  import("@/features/not-found/pages/NotFoundPage");
+/* ==========================================================================
+   VERSION 1 (v1) PAGE LOADERS
+   ========================================================================== */
+export const v1Loaders = {
+  home: () => import("@/features/v1/home/pages/HomePage"),
+  about: () => import("@/features/v1/about/pages/AboutPage"),
+  contact: () => import("@/features/v1/contact-us/pages/ContactPage"),
+  portfolio: () => import("@/features/v1/portfolio/pages/PortfolioPage"),
+  webDevelopment: () => import("@/features/v1/service/web-development/pages/WebDevelopmentPage"),
+  mobileAppDevelopment: () => import("@/features/v1/service/mobile-app-development/pages/MobileAppDevelopmentPage"),
+  desktopApplications: () => import("@/features/v1/service/desktop-applications/pages/DesktopApplicationsPage"),
+  blogList: () => import("@/features/v1/blog/pages/BlogListPage"),
+  blogDetail: () => import("@/features/v1/blog/pages/BlogDetailPage"),
+  products: () => import("@/features/v1/products/pages/ProductsPage"),
+  exportBiz: () => import("@/features/v1/products/pages/ExportBizPage"),
+  easeMarketing: () => import("@/features/v1/products/pages/EaseMarketingPage"),
+  growTogether: () => import("@/features/v1/products/pages/GrowTogetherPage"),
+  notFound: () => import("@/features/v1/not-found/pages/NotFoundPage"),
+};
 
+/* ==========================================================================
+   VERSION 2 (v2) PAGE LOADERS
+   ========================================================================== */
+export const v2Loaders = {
+  home: () => import("@/features/v2/home/pages/HomePage"),
+  about: () => import("@/features/v2/about/pages/AboutPage"),
+  webDevelopment: () => import("@/features/v2/services/pages/WebDevelopmentPageV2"),
+  mobileApp: () => import("@/features/v2/services/pages/MobileAppPageV2"),
+  digitalMarketing: () => import("@/features/v2/services/pages/DigitalMarketingPageV2"),
+  exportBizNew: () => import("@/features/v2/export-biz/pages/ExportBizNewPage"),
+};
+
+/* ==========================================================================
+   VERSION 3 (v3) PAGE LOADERS (Scalable placeholder for future v3)
+   ========================================================================== */
+export const v3Loaders = {
+  // e.g. home: () => import("@/features/v3/home/pages/HomePageV3"),
+};
+
+/* ==========================================================================
+   CONVENIENCE NAMED EXPORTS (Maintains backward compatibility)
+   ========================================================================== */
+export const loadHomePage = v1Loaders.home;
+export const loadAboutPage = v1Loaders.about;
+export const loadContactPage = v1Loaders.contact;
+export const loadPortfolioPage = v1Loaders.portfolio;
+export const loadWebDevelopmentPage = v1Loaders.webDevelopment;
+export const loadMobileAppDevelopmentPage = v1Loaders.mobileAppDevelopment;
+export const loadDesktopApplicationsPage = v1Loaders.desktopApplications;
+export const loadBlogListPage = v1Loaders.blogList;
+export const loadBlogDetailPage = v1Loaders.blogDetail;
+export const loadProductsPage = v1Loaders.products;
+export const loadExportBizPage = v1Loaders.exportBiz;
+export const loadEaseMarketingPage = v1Loaders.easeMarketing;
+export const loadGrowTogetherPage = v1Loaders.growTogether;
+export const loadNotFoundPage = v1Loaders.notFound;
+
+export const loadHomePageV2 = v2Loaders.home;
+export const loadAboutPageV2 = v2Loaders.about;
+export const loadWebDevelopmentPageV2 = v2Loaders.webDevelopment;
+export const loadServicePageV2 = v2Loaders.webDevelopment;
+export const loadMobileAppPageV2 = v2Loaders.mobileApp;
+export const loadDigitalMarketingPageV2 = v2Loaders.digitalMarketing;
+export const loadExportBizNewPage = v2Loaders.exportBizNew;
+
+/* ==========================================================================
+   ROUTE PRELOADING MAP
+   ========================================================================== */
 const routeLoaders: Record<string, () => Promise<unknown>> = {
+  // V1 Routes
   "/": loadHomePage,
-  "/home-v2": loadHomePageV2,
   "/about": loadAboutPage,
-  "/about-v2": loadAboutPageV2,
-  "/service-v2": loadServicePageV2,
-  "/web-development-v2": loadServicePageV2,
-  "/mobile-app-v2": loadMobileAppPageV2,
-  "/mobile-app-development-v2": loadMobileAppPageV2,
-  "/digital-marketing-v2": loadDigitalMarketingPageV2,
-  "/ease-marketing-v2": loadDigitalMarketingPageV2,
   "/contacts": loadContactPage,
+  "/contactus": loadContactPage,
   "/portfolio": loadPortfolioPage,
   "/web-development": loadWebDevelopmentPage,
   "/mobile-app-development": loadMobileAppDevelopmentPage,
@@ -67,9 +88,19 @@ const routeLoaders: Record<string, () => Promise<unknown>> = {
   "/blogs": loadBlogListPage,
   "/products": loadProductsPage,
   "/export-biz": loadExportBizPage,
-  "/export-biz-new": loadExportBizNewPage,
   "/ease-marketing": loadEaseMarketingPage,
   "/grow-together": loadGrowTogetherPage,
+
+  // V2 Routes
+  "/home-v2": loadHomePageV2,
+  "/about-v2": loadAboutPageV2,
+  "/service-v2": loadServicePageV2,
+  "/web-development-v2": loadWebDevelopmentPageV2,
+  "/mobile-app-v2": loadMobileAppPageV2,
+  "/mobile-app-development-v2": loadMobileAppPageV2,
+  "/digital-marketing-v2": loadDigitalMarketingPageV2,
+  "/ease-marketing-v2": loadDigitalMarketingPageV2,
+  "/export-biz-new": loadExportBizNewPage,
 };
 
 export const preloadRoute = (path: string) => {
@@ -79,4 +110,3 @@ export const preloadRoute = (path: string) => {
     void loader();
   }
 };
-

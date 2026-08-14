@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
-import { useCreateNewsletter } from "@/features/newsletter/hooks/useCreateNewsletter";
+import { useCreateNewsletter } from "@/features/v1/newsletter/hooks/useCreateNewsletter";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "../styles";
 import { CompassIcon, MailIcon, PhoneIcon } from "./FooterIcons";
