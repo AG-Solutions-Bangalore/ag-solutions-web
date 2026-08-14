@@ -29,29 +29,42 @@ export const renderV2Routes = () => (
     <Route path="privacy-policy" element={<AboutPageV2 />} />
     <Route path="terms-and-conditions" element={<AboutPageV2 />} />
 
-    {/* Services */}
+    {/* Services (Direct top-level & aliases) */}
     <Route path="services" element={<WebDevelopmentPageV2 />} />
-    <Route path="service-v2" element={<WebDevelopmentPageV2 />} />
     <Route path="web-development" element={<WebDevelopmentPageV2 />} />
     <Route path="web-development-v2" element={<WebDevelopmentPageV2 />} />
     <Route path="services/web-development" element={<WebDevelopmentPageV2 />} />
-    <Route path="services/mobile-app" element={<MobileAppPageV2 />} />
-    <Route path="services/mobile-app-development" element={<MobileAppPageV2 />} />
+
+    <Route path="mobile-app" element={<MobileAppPageV2 />} />
     <Route path="mobile-app-development" element={<MobileAppPageV2 />} />
     <Route path="mobile-app-v2" element={<MobileAppPageV2 />} />
     <Route path="mobile-app-development-v2" element={<MobileAppPageV2 />} />
-    <Route path="services/digital-marketing" element={<DigitalMarketingPageV2 />} />
-    <Route path="services/ease-marketing" element={<DigitalMarketingPageV2 />} />
+    <Route path="services/mobile-app" element={<MobileAppPageV2 />} />
+    <Route path="services/mobile-app-development" element={<MobileAppPageV2 />} />
+
+    <Route path="digital-marketing" element={<DigitalMarketingPageV2 />} />
     <Route path="digital-marketing-v2" element={<DigitalMarketingPageV2 />} />
     <Route path="ease-marketing" element={<DigitalMarketingPageV2 />} />
+    <Route path="services/digital-marketing" element={<DigitalMarketingPageV2 />} />
+    <Route path="services/ease-marketing" element={<DigitalMarketingPageV2 />} />
 
-    {/* Products */}
+    {/* Products (Direct top-level & aliases) */}
     <Route path="products" element={<ProductsPage />} />
-    <Route path="products/export-biz" element={<ExportBizPage />} />
     <Route path="export-biz" element={<ExportBizPage />} />
     <Route path="export-biz-new" element={<ExportBizPage />} />
+    <Route path="products/export-biz" element={<ExportBizPage />} />
     
     {/* Coming Soon Products */}
+    <Route
+      path="ss-marketing"
+      element={
+        <ComingSoonPage
+          title="SS Marketing"
+          subtitle="Intelligent Marketing & Campaign Workflow Platform"
+          description="We are crafting a comprehensive digital marketing operations and workflow builder to simplify multi-channel campaign coordination."
+        />
+      }
+    />
     <Route
       path="products/ss-marketing"
       element={
@@ -63,12 +76,12 @@ export const renderV2Routes = () => (
       }
     />
     <Route
-      path="products/ease-marketing"
+      path="grow-together"
       element={
         <ComingSoonPage
-          title="SS Marketing"
-          subtitle="Intelligent Marketing & Campaign Workflow Platform"
-          description="We are crafting a comprehensive digital marketing operations and workflow builder to simplify multi-channel campaign coordination."
+          title="Grow Together"
+          subtitle="Collaborative Business Networking & Growth Platform"
+          description="A centralized collaborative platform for cross-industry networking, lead exchange, and scalable community growth."
         />
       }
     />

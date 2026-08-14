@@ -8,7 +8,7 @@ const services = [
         title: "Web Development",
         description:
             "We build progressive, scalable and high-performance websites tailored to your business goals.",
-        link: "/services/web-development",
+        link: "/web-development",
         linkTitle: "Web Development Services – AG Solutions",
         variant: "link-teal" as const,
         iconClass: "bg-accent-teal shadow-accent-teal/20",
@@ -19,7 +19,7 @@ const services = [
         title: "Mobile App Development",
         description:
             "We create intuitive and feature-rich mobile apps for iOS and Android platforms.",
-        link: "/services/mobile-app",
+        link: "/mobile-app-development",
         linkTitle: "Mobile App Development Services – AG Solutions",
         variant: "link-teal" as const,
         iconClass: "bg-accent-teal shadow-accent-teal/20",
@@ -30,7 +30,7 @@ const services = [
         title: "E-Commerce Solutions",
         description:
             "We develop secure and scalable e-commerce platforms to grow your online business.",
-        link: "/services/web-development",
+        link: "/web-development",
         linkTitle: "Web Development Services – AG Solutions",
         variant: "link-green" as const,
         iconClass: "bg-accent-green shadow-accent-green/20",
@@ -41,8 +41,8 @@ const services = [
         title: "Cloud Solutions",
         description:
             "We help you leverage the cloud for scalability, flexibility and operational efficiency.",
-        link: "/desktop-applications",
-        linkTitle: "Desktop Application Development",
+        link: "/about",
+        linkTitle: "About AG Solutions",
         variant: "link-pink" as const,
         iconClass: "bg-accent-pink shadow-accent-pink/20",
         barBg: "bg-accent-pink",
@@ -63,7 +63,7 @@ const services = [
         title: "Digital Marketing",
         description:
             "We help you build your brand, reach your audience and grow your business online.",
-        link: "/services/digital-marketing",
+        link: "/digital-marketing",
         linkTitle: "Digital Marketing Services – AG Solutions",
         variant: "link-green" as const,
         iconClass: "bg-accent-green shadow-accent-green/20",

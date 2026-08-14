@@ -1,6 +1,6 @@
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLeadModal } from "@/context/LeadModalContext";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { AGSLogo } from "@/components/brand/AGSLogo";
@@ -12,10 +12,10 @@ interface HeaderV2Props {
 
 export function HeaderV2({ activeNav }: HeaderV2Props) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
-    const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
+    const [activeDropdown, setActiveDropdown] = useState<"services" | "products" | null>(null);
     const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
     const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+    const navRef = useRef<HTMLElement>(null);
     const location = useLocation();
     const { openLeadModal } = useLeadModal();
 
@@ -31,22 +31,46 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
         };
     }, [mobileMenuOpen]);
 
-    // Close mobile menu on route change
+    // Close menus on route change
     useEffect(() => {
         setMobileMenuOpen(false);
         setMobileServicesOpen(false);
         setMobileProductsOpen(false);
+        setActiveDropdown(null);
     }, [location.pathname]);
+
+    // Close desktop dropdowns when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (navRef.current && !navRef.current.contains(e.target as Node)) {
+                setActiveDropdown(null);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     // Determine current active tab automatically if not explicitly passed
     const isProductsPath =
         location.pathname.startsWith("/products") ||
         location.pathname === "/export-biz" ||
-        location.pathname === "/export-biz-new";
+        location.pathname === "/export-biz-new" ||
+        location.pathname === "/ss-marketing" ||
+        location.pathname === "/grow-together" ||
+        location.pathname === "/ease-marketing";
 
     const isServicesPath =
         location.pathname === "/services" ||
-        location.pathname.startsWith("/services/");
+        location.pathname.startsWith("/services/") ||
+        location.pathname === "/web-development" ||
+        location.pathname === "/web-development-v2" ||
+        location.pathname === "/mobile-app" ||
+        location.pathname === "/mobile-app-development" ||
+        location.pathname === "/mobile-app-v2" ||
+        location.pathname === "/digital-marketing" ||
+        location.pathname === "/digital-marketing-v2";
 
     const isBlogPath =
         location.pathname === "/blogs" ||
@@ -83,7 +107,7 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+                    <nav ref={navRef} className="hidden md:flex items-center gap-6 lg:gap-8">
                         <Link
                             to="/"
                             title="AG Solutions – Web & Mobile App Development"
@@ -113,101 +137,105 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                         </Link>
 
                         {/* Services Dropdown */}
-                        <div className="relative group">
+                        <div 
+                            className="relative"
+                            onMouseEnter={() => setActiveDropdown("services")}
+                            onMouseLeave={() => setActiveDropdown(null)}
+                        >
                             <button
                                 type="button"
                                 title="AG Solutions Services"
-                                onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
-                                onMouseEnter={() => setServicesDropdownOpen(true)}
-                                className={`flex items-center gap-1 text-sm font-semibold transition-colors bg-transparent border-none cursor-pointer py-1 ${currentTab === "services"
+                                onClick={() => setActiveDropdown((prev) => prev === "services" ? null : "services")}
+                                className={`flex items-center gap-1 text-sm font-semibold transition-colors bg-transparent border-none cursor-pointer py-1 ${currentTab === "services" || activeDropdown === "services"
                                     ? "text-pink"
                                     : "text-foreground hover:text-pink"
                                     }`}
                             >
                                 <span>Services</span>
-                                <ChevronDown className={`h-4 w-4 text-muted transition-transform group-hover:rotate-180 ${servicesDropdownOpen ? "rotate-180 text-pink" : ""}`} />
+                                <ChevronDown className={`h-4 w-4 text-muted transition-transform duration-200 ${activeDropdown === "services" ? "rotate-180 text-pink" : ""}`} />
                             </button>
 
-                            <div 
-                                onMouseLeave={() => setServicesDropdownOpen(false)}
-                                className={`absolute left-0 top-full ${servicesDropdownOpen ? "block" : "hidden group-hover:block"} w-60 pt-2 z-50`}
-                            >
-                                <div className="rounded-2xl bg-card p-2 shadow-xl border border-border">
-                                    <Link
-                                        to="/services/web-development"
-                                        title="Web Development Services – AG Solutions"
-                                        onClick={() => setServicesDropdownOpen(false)}
-                                        className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-pink-light hover:text-pink rounded-xl transition-colors no-underline"
-                                    >
-                                        Web Development
-                                    </Link>
-                                    <Link
-                                        to="/services/mobile-app"
-                                        title="Mobile App Development Services – AG Solutions"
-                                        onClick={() => setServicesDropdownOpen(false)}
-                                        className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-teal-light hover:text-teal rounded-xl transition-colors no-underline"
-                                    >
-                                        Mobile App Development
-                                    </Link>
-                                    <Link
-                                        to="/services/digital-marketing"
-                                        title="Digital Marketing Services – AG Solutions"
-                                        onClick={() => setServicesDropdownOpen(false)}
-                                        className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-green-light hover:text-green rounded-xl transition-colors no-underline"
-                                    >
-                                        Digital Marketing
-                                    </Link>
+                            {activeDropdown === "services" && (
+                                <div className="absolute left-0 top-full w-60 pt-2 z-50 animate-fadeIn">
+                                    <div className="rounded-2xl bg-card p-2 shadow-xl border border-border">
+                                        <Link
+                                            to="/web-development"
+                                            title="Web Development Services – AG Solutions"
+                                            onClick={() => setActiveDropdown(null)}
+                                            className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-pink-light hover:text-pink rounded-xl transition-colors no-underline"
+                                        >
+                                            Web Development
+                                        </Link>
+                                        <Link
+                                            to="/mobile-app-development"
+                                            title="Mobile App Development Services – AG Solutions"
+                                            onClick={() => setActiveDropdown(null)}
+                                            className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-teal-light hover:text-teal rounded-xl transition-colors no-underline"
+                                        >
+                                            Mobile App Development
+                                        </Link>
+                                        <Link
+                                            to="/digital-marketing"
+                                            title="Digital Marketing Services – AG Solutions"
+                                            onClick={() => setActiveDropdown(null)}
+                                            className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-green-light hover:text-green rounded-xl transition-colors no-underline"
+                                        >
+                                            Digital Marketing
+                                        </Link>
+                                    </div>
                                 </div>
-                            </div>
+                            )}
                         </div>
 
                         {/* Products Dropdown */}
-                        <div className="relative group">
+                        <div 
+                            className="relative"
+                            onMouseEnter={() => setActiveDropdown("products")}
+                            onMouseLeave={() => setActiveDropdown(null)}
+                        >
                             <button
                                 type="button"
                                 title="AG Solutions Products"
-                                onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
-                                onMouseEnter={() => setProductsDropdownOpen(true)}
-                                className={`flex items-center gap-1 text-sm font-semibold transition-colors bg-transparent border-none cursor-pointer py-1 ${currentTab === "products"
+                                onClick={() => setActiveDropdown((prev) => prev === "products" ? null : "products")}
+                                className={`flex items-center gap-1 text-sm font-semibold transition-colors bg-transparent border-none cursor-pointer py-1 ${currentTab === "products" || activeDropdown === "products"
                                     ? "text-pink"
                                     : "text-foreground hover:text-pink"
                                     }`}
                             >
                                 <span>Products</span>
-                                <ChevronDown className={`h-4 w-4 text-muted transition-transform group-hover:rotate-180 ${productsDropdownOpen ? "rotate-180 text-pink" : ""}`} />
+                                <ChevronDown className={`h-4 w-4 text-muted transition-transform duration-200 ${activeDropdown === "products" ? "rotate-180 text-pink" : ""}`} />
                             </button>
 
-                            <div 
-                                onMouseLeave={() => setProductsDropdownOpen(false)}
-                                className={`absolute left-0 top-full ${productsDropdownOpen ? "block" : "hidden group-hover:block"} w-64 pt-2 z-50`}
-                            >
-                                <div className="rounded-2xl bg-card p-2 shadow-xl border border-border">
-                                    <Link
-                                        to="/products/export-biz"
-                                        title="Export Biz – Export Documentation Software"
-                                        onClick={() => setProductsDropdownOpen(false)}
-                                        className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-pink-light hover:text-pink rounded-xl transition-colors no-underline"
-                                    >
-                                        Export Biz Software
-                                    </Link>
-                                    <Link
-                                        to="/products/ss-marketing"
-                                        title="SS Marketing – AG Solutions"
-                                        onClick={() => setProductsDropdownOpen(false)}
-                                        className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-teal-light hover:text-teal rounded-xl transition-colors no-underline"
-                                    >
-                                        SS Marketing
-                                    </Link>
-                                    <Link
-                                        to="/products/grow-together"
-                                        title="Grow Together – AG Solutions"
-                                        onClick={() => setProductsDropdownOpen(false)}
-                                        className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-yellow-light hover:text-yellow rounded-xl transition-colors no-underline"
-                                    >
-                                        Grow Together
-                                    </Link>
+                            {activeDropdown === "products" && (
+                                <div className="absolute left-0 top-full w-64 pt-2 z-50 animate-fadeIn">
+                                    <div className="rounded-2xl bg-card p-2 shadow-xl border border-border">
+                                        <Link
+                                            to="/export-biz"
+                                            title="Export Biz – Export Documentation Software"
+                                            onClick={() => setActiveDropdown(null)}
+                                            className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-pink-light hover:text-pink rounded-xl transition-colors no-underline"
+                                        >
+                                            Export Biz Software
+                                        </Link>
+                                        <Link
+                                            to="/ss-marketing"
+                                            title="SS Marketing – AG Solutions"
+                                            onClick={() => setActiveDropdown(null)}
+                                            className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-teal-light hover:text-teal rounded-xl transition-colors no-underline"
+                                        >
+                                            SS Marketing
+                                        </Link>
+                                        <Link
+                                            to="/grow-together"
+                                            title="Grow Together – AG Solutions"
+                                            onClick={() => setActiveDropdown(null)}
+                                            className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-yellow-light hover:text-yellow rounded-xl transition-colors no-underline"
+                                        >
+                                            Grow Together
+                                        </Link>
+                                    </div>
                                 </div>
-                            </div>
+                            )}
                         </div>
 
                         {/* Blog Navigation Link */}
@@ -310,7 +338,10 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                             <button
                                 type="button"
                                 title="AG Solutions Services"
-                                onClick={() => setMobileServicesOpen((prev) => !prev)}
+                                onClick={() => {
+                                    setMobileServicesOpen((prev) => !prev);
+                                    setMobileProductsOpen(false);
+                                }}
                                 className={`w-full flex items-center justify-between px-4 py-3 text-base font-semibold transition-colors bg-transparent border-none cursor-pointer ${isServicesPath ? "text-pink bg-pink-light/40" : "text-foreground hover:bg-muted/10"
                                     }`}
                             >
@@ -323,7 +354,7 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                             {mobileServicesOpen && (
                                 <div className="bg-muted/5 px-3 py-2 space-y-1 border-t border-border">
                                     <Link
-                                        to="/services/web-development"
+                                        to="/web-development"
                                         title="Web Development Services – AG Solutions"
                                         onClick={() => setMobileMenuOpen(false)}
                                         className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-pink hover:bg-card rounded-lg no-underline transition-colors"
@@ -331,7 +362,7 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                                         Web Development
                                     </Link>
                                     <Link
-                                        to="/services/mobile-app"
+                                        to="/mobile-app-development"
                                         title="Mobile App Development Services – AG Solutions"
                                         onClick={() => setMobileMenuOpen(false)}
                                         className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-teal hover:bg-card rounded-lg no-underline transition-colors"
@@ -339,7 +370,7 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                                         Mobile App Development
                                     </Link>
                                     <Link
-                                        to="/services/digital-marketing"
+                                        to="/digital-marketing"
                                         title="Digital Marketing Services – AG Solutions"
                                         onClick={() => setMobileMenuOpen(false)}
                                         className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-green hover:bg-card rounded-lg no-underline transition-colors"
@@ -355,7 +386,10 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                             <button
                                 type="button"
                                 title="AG Solutions Products"
-                                onClick={() => setMobileProductsOpen((prev) => !prev)}
+                                onClick={() => {
+                                    setMobileProductsOpen((prev) => !prev);
+                                    setMobileServicesOpen(false);
+                                }}
                                 className={`w-full flex items-center justify-between px-4 py-3 text-base font-semibold transition-colors bg-transparent border-none cursor-pointer ${isProductsPath ? "text-pink bg-pink-light/40" : "text-foreground hover:bg-muted/10"
                                     }`}
                             >
@@ -368,7 +402,7 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                             {mobileProductsOpen && (
                                 <div className="bg-muted/5 px-3 py-2 space-y-1 border-t border-border">
                                     <Link
-                                        to="/products/export-biz"
+                                        to="/export-biz"
                                         title="Export Biz – Export Documentation Software"
                                         onClick={() => setMobileMenuOpen(false)}
                                         className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-pink hover:bg-card rounded-lg no-underline transition-colors"
@@ -376,7 +410,7 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                                         Export Biz
                                     </Link>
                                     <Link
-                                        to="/products/ss-marketing"
+                                        to="/ss-marketing"
                                         title="SS Marketing – AG Solutions"
                                         onClick={() => setMobileMenuOpen(false)}
                                         className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-teal hover:bg-card rounded-lg no-underline transition-colors"
@@ -384,7 +418,7 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                                         SS Marketing
                                     </Link>
                                     <Link
-                                        to="/products/grow-together"
+                                        to="/grow-together"
                                         title="Grow Together – AG Solutions"
                                         onClick={() => setMobileMenuOpen(false)}
                                         className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-yellow hover:bg-card rounded-lg no-underline transition-colors"

@@ -271,8 +271,8 @@ export function CommonServicePage({
                                 </div>
                             </motion.div>
 
-                            {/* Service Cards with ExportBiz Lift, Icon Scale/Rotate, & Bottom Expanding Accent Line */}
-                            <div className="mt-10 sm:mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                            {/* Service Cards with ExportBiz Lift, Icon Scale/Rotate, & Bottom Expanding Accent Line (Centered Rows) */}
+                            <div className="mt-10 sm:mt-12 flex flex-wrap justify-center gap-5 sm:gap-6">
                                 {offerItems.map((item, idx) => {
                                     const Icon = item.icon;
                                     return (
@@ -282,7 +282,7 @@ export function CommonServicePage({
                                             whileInView={{ opacity: 1, y: 0 }}
                                             viewport={{ once: true }}
                                             transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                            className="group relative overflow-hidden flex flex-col items-center justify-between rounded-2xl border border-border bg-card p-6 sm:p-7 pb-8 sm:pb-9 text-center shadow-2xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-pink/30"
+                                            className="group relative overflow-hidden flex flex-col items-center justify-between rounded-2xl border border-border bg-card p-6 sm:p-7 pb-8 sm:pb-9 text-center shadow-2xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-pink/30 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-[390px]"
                                         >
                                             <div className="flex flex-col items-center w-full">
                                                 {/* Icon Plate with Rotate & Scale on Hover */}
@@ -364,9 +364,17 @@ export function CommonServicePage({
                                         </div>
                                     </div>
 
-                                    {/* Right Side: 4 Vertical Feature Columns with Vertical Dividers */}
+                                    {/* Right Side: Vertical Feature Columns with Vertical Dividers (Dynamically adapted to item count) */}
                                     <div className="lg:col-span-8">
-                                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                                        <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 ${
+                                            whyFeatures.length === 3
+                                                ? "lg:grid-cols-3"
+                                                : whyFeatures.length === 2
+                                                    ? "lg:grid-cols-2"
+                                                    : whyFeatures.length === 1
+                                                        ? "lg:grid-cols-1"
+                                                        : "lg:grid-cols-4"
+                                        }`}>
                                             {whyFeatures.map((feat, idx) => {
                                                 const Icon = feat.icon;
                                                 return (
@@ -431,7 +439,13 @@ export function CommonServicePage({
                                 {/* Dotted Line Connector */}
                                 <div className="hidden lg:block absolute top-12 left-[10%] right-[10%] h-0.5 border-t-2 border-dashed border-border z-0" />
 
-                                <div className={`grid grid-cols-1 gap-8 sm:grid-cols-2 relative z-10 ${processSteps.length === 4 ? "lg:grid-cols-4" : "lg:grid-cols-5"}`}>
+                                <div className={`grid grid-cols-1 gap-8 sm:grid-cols-2 relative z-10 ${
+                                    processSteps.length === 3
+                                        ? "lg:grid-cols-3"
+                                        : processSteps.length === 4
+                                            ? "lg:grid-cols-4"
+                                            : "lg:grid-cols-5"
+                                }`}>
                                     {processSteps.map((stepItem, idx) => {
                                         const Icon = stepItem.icon;
                                         return (

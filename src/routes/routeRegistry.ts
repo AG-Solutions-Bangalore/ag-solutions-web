@@ -32,7 +32,7 @@ export const ROUTE_REGISTRY: RouteRegistryItem[] = [
     apiRequirements: ["LeadCapture API"],
   },
   {
-    path: "/services/web-development",
+    path: "/web-development",
     name: "Web Development",
     category: "Services",
     status: "Production Ready",
@@ -41,7 +41,7 @@ export const ROUTE_REGISTRY: RouteRegistryItem[] = [
     apiRequirements: ["LeadCapture API"],
   },
   {
-    path: "/services/mobile-app",
+    path: "/mobile-app-development",
     name: "Mobile App Development",
     category: "Services",
     status: "Production Ready",
@@ -50,7 +50,7 @@ export const ROUTE_REGISTRY: RouteRegistryItem[] = [
     apiRequirements: ["LeadCapture API"],
   },
   {
-    path: "/services/digital-marketing",
+    path: "/digital-marketing",
     name: "Digital Marketing",
     category: "Services",
     status: "Production Ready",
@@ -59,7 +59,7 @@ export const ROUTE_REGISTRY: RouteRegistryItem[] = [
     apiRequirements: ["LeadCapture API"],
   },
   {
-    path: "/products/export-biz",
+    path: "/export-biz",
     name: "Export Biz",
     category: "Products",
     status: "Production Ready",
@@ -68,7 +68,7 @@ export const ROUTE_REGISTRY: RouteRegistryItem[] = [
     apiRequirements: ["LeadCapture API", "CampaignTracking API"],
   },
   {
-    path: "/products/ss-marketing",
+    path: "/ss-marketing",
     name: "SS Marketing",
     category: "Products",
     status: "Coming Soon",
@@ -77,7 +77,7 @@ export const ROUTE_REGISTRY: RouteRegistryItem[] = [
     apiRequirements: ["LeadCapture API"],
   },
   {
-    path: "/products/grow-together",
+    path: "/grow-together",
     name: "Grow Together",
     category: "Products",
     status: "Coming Soon",

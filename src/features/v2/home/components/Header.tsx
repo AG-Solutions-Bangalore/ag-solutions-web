@@ -76,28 +76,28 @@ function Header({ activeNav = "home" }: HeaderProps) {
                             <div className="absolute left-0 top-full hidden group-hover:block w-56 pt-2 z-50">
                                 <div className="rounded-2xl bg-white p-2 shadow-xl border border-slate-100">
                                     <Link
-                                        to="/services/web-development"
+                                        to="/web-development"
                                         title="Web Development Services – AG Solutions"
                                         className="block px-4 py-2.5 text-sm font-medium text-ag-dark hover:bg-ag-pink-light hover:text-ag-pink rounded-xl transition-colors no-underline"
                                     >
                                         Web Development
                                     </Link>
                                     <Link
-                                        to="/services/mobile-app"
+                                        to="/mobile-app-development"
                                         title="Mobile App Development Services – AG Solutions"
                                         className="block px-4 py-2.5 text-sm font-medium text-ag-dark hover:bg-ag-teal-light hover:text-ag-teal rounded-xl transition-colors no-underline"
                                     >
                                         Mobile App Development
                                     </Link>
                                     <Link
-                                        to="/desktop-applications"
-                                        title="Desktop Application Development"
+                                        to="/export-biz"
+                                        title="Export Biz Software"
                                         className="block px-4 py-2.5 text-sm font-medium text-ag-dark hover:bg-ag-yellow-light hover:text-ag-yellow rounded-xl transition-colors no-underline"
                                     >
-                                        Desktop Applications
+                                        Export Biz
                                     </Link>
                                     <Link
-                                        to="/services/digital-marketing"
+                                        to="/digital-marketing"
                                         title="Digital Marketing Services – AG Solutions"
                                         className="block px-4 py-2.5 text-sm font-medium text-ag-dark hover:bg-ag-green-light hover:text-ag-green rounded-xl transition-colors no-underline"
                                     >

@@ -74,14 +74,14 @@ function ServiceOfferings() {
                     </div>
                 </div>
 
-                {/* 6 Cards Grid */}
-                <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {/* Cards Grid Centered */}
+                <div className="mt-12 flex flex-wrap justify-center gap-6 sm:gap-8">
                     {servicesList.map((item) => {
                         const Icon = item.icon;
                         return (
                             <div
                                 key={item.title}
-                                className={`group flex flex-col items-center rounded-2xl border border-border bg-card p-8 text-center shadow-2xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${item.hoverBorder}`}
+                                className={`group flex flex-col items-center rounded-2xl border border-border bg-card p-8 text-center shadow-2xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl w-full sm:w-[calc(50%-16px)] lg:w-[calc(33.333%-22px)] max-w-[390px] ${item.hoverBorder}`}
                             >
                                 <div
                                     className={`mb-6 flex h-16 w-16 items-center justify-center rounded-full ${item.bgColor} text-white shadow-md transition-transform duration-300 group-hover:scale-110`}

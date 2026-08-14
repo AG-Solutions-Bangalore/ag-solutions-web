@@ -32,7 +32,7 @@ const QUICK_LINKS: QuickLink[] = [
   {
     title: "Web Development",
     description: "Custom scalable web applications, SPAs, and enterprise cloud solutions.",
-    path: "/services/web-development",
+    path: "/web-development",
     category: "Services",
     icon: Globe,
     accent: "teal",
@@ -40,7 +40,7 @@ const QUICK_LINKS: QuickLink[] = [
   {
     title: "Mobile App Development",
     description: "High-performance iOS, Android, and cross-platform mobile experiences.",
-    path: "/services/mobile-app",
+    path: "/mobile-app-development",
     category: "Services",
     icon: Smartphone,
     accent: "pink",
@@ -48,7 +48,7 @@ const QUICK_LINKS: QuickLink[] = [
   {
     title: "Digital Marketing & SEO",
     description: "Data-driven marketing, brand visibility, SEO, and lead generation.",
-    path: "/services/digital-marketing",
+    path: "/digital-marketing",
     category: "Services",
     icon: TrendingUp,
     accent: "yellow",
@@ -56,7 +56,7 @@ const QUICK_LINKS: QuickLink[] = [
   {
     title: "ExportBiz ERP",
     description: "Intelligent software for export-import management and trade workflows.",
-    path: "/products/export-biz",
+    path: "/export-biz",
     category: "Products",
     icon: Package,
     accent: "blue",

@@ -2,30 +2,29 @@ import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Rocket } from "lucide-react";
 import { FaLinkedinIn, FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 import NewsletterSection from "@/components/common/NewsletterSection";
-import ThemeCustomizer from "@/components/ui/ThemeCustomizer";
 import { useLeadModal } from "@/context/LeadModalContext";
 import { FlipButton } from "@/components/ui/FlipButton";
 
 const quickLinks = [
     { to: "/", label: "Home", title: "AG Solutions – Web & Mobile App Development" },
     { to: "/about", label: "About Us", title: "About AG Solutions" },
-    { to: "/services/web-development", label: "Services", title: "Web Development Services – AG Solutions" },
+    { to: "/web-development", label: "Services", title: "Web Development Services – AG Solutions" },
     { to: "/blogs", label: "Blog", title: "AG Solutions Blogs – Technology & Digital Marketing" },
     { to: "/contacts", label: "Contact Us", title: "Contact AG Solutions" },
 ];
 
 const serviceLinks = [
-    { to: "/services/web-development", label: "Web Development", title: "Web Development Services – AG Solutions" },
-    { to: "/services/mobile-app", label: "Mobile App Development", title: "Mobile App Development Services – AG Solutions" },
-    { to: "/services/digital-marketing", label: "Digital Marketing", title: "Digital Marketing Services – AG Solutions" },
-    { to: "/products/export-biz", label: "Export Biz Software", title: "Export Biz – Export Documentation Software" },
+    { to: "/web-development", label: "Web Development", title: "Web Development Services – AG Solutions" },
+    { to: "/mobile-app-development", label: "Mobile App Development", title: "Mobile App Development Services – AG Solutions" },
+    { to: "/digital-marketing", label: "Digital Marketing", title: "Digital Marketing Services – AG Solutions" },
+    { to: "/export-biz", label: "Export Biz Software", title: "Export Biz – Export Documentation Software" },
     { to: "/about", label: "IT Consulting", title: "About AG Solutions" },
 ];
 
 const productLinks = [
-    { to: "/products/export-biz", label: "Export Biz", title: "Export Biz – Export Documentation Software" },
-    { to: "/products/ss-marketing", label: "SS Marketing", title: "SS Marketing – AG Solutions" },
-    { to: "/products/grow-together", label: "Grow Together", title: "Grow Together – AG Solutions" },
+    { to: "/export-biz", label: "Export Biz", title: "Export Biz – Export Documentation Software" },
+    { to: "/ss-marketing", label: "SS Marketing", title: "SS Marketing – AG Solutions" },
+    { to: "/grow-together", label: "Grow Together", title: "Grow Together – AG Solutions" },
 ];
 
 const socialLinks = [
@@ -85,35 +84,6 @@ function FooterFlipLink({
                 </span>
             </span>
         </Link>
-    );
-}
-
-function FooterFlipAnchor({
-    href,
-    title,
-    hoverColor = "hover:text-white",
-    children,
-}: {
-    href: string;
-    title: string;
-    hoverColor?: string;
-    children: string;
-}) {
-    return (
-        <a
-            href={href}
-            title={title}
-            className={`group relative inline-flex items-center text-slate-400 ${hoverColor} transition-colors no-underline overflow-hidden py-0.5`}
-        >
-            <span className="relative inline-block overflow-hidden h-[1.35em] leading-[1.35em]">
-                <span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
-                    {children}
-                </span>
-                <span className="absolute inset-0 block transition-transform duration-300 ease-out translate-y-full group-hover:translate-y-0">
-                    {children}
-                </span>
-            </span>
-        </a>
     );
 }
 
@@ -253,21 +223,58 @@ export function FooterV2() {
                                 Contact
                             </h4>
                             <ul className="space-y-2 text-xs text-slate-400 list-none p-0 m-0">
-                                <li className="flex items-center gap-2">
-                                    <Phone className="h-3.5 w-3.5 text-green shrink-0" />
-                                    <FooterFlipAnchor href="tel:+918867171060" title="Call AG Solutions">
-                                        +91 8867171060
-                                    </FooterFlipAnchor>
+                                <li>
+                                    <a
+                                        href="tel:+918867171060"
+                                        title="Call AG Solutions: +91 8867171060"
+                                        className="group inline-flex items-center gap-2 text-slate-400 hover:text-green transition-colors no-underline py-0.5"
+                                    >
+                                        <Phone className="h-3.5 w-3.5 text-green shrink-0 transition-transform duration-200 group-hover:scale-110" />
+                                        <span className="relative inline-block overflow-hidden h-[1.35em] leading-[1.35em]">
+                                            <span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
+                                                +91 8867171060
+                                            </span>
+                                            <span className="absolute inset-0 block transition-transform duration-300 ease-out translate-y-full group-hover:translate-y-0 text-green">
+                                                +91 8867171060
+                                            </span>
+                                        </span>
+                                    </a>
                                 </li>
-                                <li className="flex items-center gap-2">
-                                    <Mail className="h-3.5 w-3.5 text-pink shrink-0" />
-                                    <FooterFlipAnchor href="mailto:info@ag-solutions.in" title="Email AG Solutions" hoverColor="hover:text-pink">
-                                        info@ag-solutions.in
-                                    </FooterFlipAnchor>
+                                <li>
+                                    <a
+                                        href="mailto:info@ag-solutions.in"
+                                        title="Email AG Solutions: info@ag-solutions.in"
+                                        className="group inline-flex items-center gap-2 text-slate-400 hover:text-pink transition-colors no-underline py-0.5"
+                                    >
+                                        <Mail className="h-3.5 w-3.5 text-pink shrink-0 transition-transform duration-200 group-hover:scale-110" />
+                                        <span className="relative inline-block overflow-hidden h-[1.35em] leading-[1.35em]">
+                                            <span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
+                                                info@ag-solutions.in
+                                            </span>
+                                            <span className="absolute inset-0 block transition-transform duration-300 ease-out translate-y-full group-hover:translate-y-0 text-pink">
+                                                info@ag-solutions.in
+                                            </span>
+                                        </span>
+                                    </a>
                                 </li>
-                                <li className="flex items-start gap-2">
-                                    <MapPin className="h-3.5 w-3.5 text-teal shrink-0 mt-0.5" />
-                                    <span>Jayanagara 9th Block, Bengaluru, 560069</span>
+                                <li>
+                                    <a
+                                        href="https://www.google.com/maps/place/AG+Solutions/@12.9207136,77.5897955,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae150995555555:0x440eaf1d21e4db01!8m2!3d12.9207136!4d77.5923704!16s%2Fg%2F11p67397gv?entry=ttu&g_ep=EgoyMDI2MDgxMS4wIKXMDSoASAFQAw%3D%3D"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        title="View AG Solutions on Google Maps"
+                                        className="group inline-flex items-start gap-2 text-slate-400 hover:text-teal transition-colors no-underline py-0.5"
+                                    >
+                                        <MapPin className="h-3.5 w-3.5 text-teal shrink-0 mt-0.5 transition-transform duration-200 group-hover:scale-110" />
+                                        <span className="relative inline-block overflow-hidden h-[1.35em] leading-[1.35em]">
+                                            <span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
+                                                Jayanagara 9th Block, Bengaluru, 560069
+                                            </span>
+                                            <span className="absolute inset-0 block transition-transform duration-300 ease-out translate-y-full group-hover:translate-y-0 text-teal">
+                                                Jayanagara 9th Block, Bengaluru, 560069
+                                            </span>
+                                        </span>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -290,8 +297,7 @@ export function FooterV2() {
                     </div>
                 </div>
 
-                {/* Theme Customizer Panel */}
-                <ThemeCustomizer />
+
             </footer>
         </div>
     );

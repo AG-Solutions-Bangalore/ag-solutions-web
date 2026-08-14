@@ -82,31 +82,32 @@ export const loadExportBizNewPage = v2Loaders.exportBiz;
    ROUTE PRELOADING MAP
    ========================================================================== */
 const routeLoaders: Record<string, () => Promise<unknown>> = {
-  // V1 Routes
-  "/": loadHomePage,
-  "/about": loadAboutPage,
+  "/": loadHomePageV2,
+  "/home": loadHomePageV2,
+  "/home-v2": loadHomePageV2,
+  "/about": loadAboutPageV2,
+  "/about-v2": loadAboutPageV2,
   "/contacts": loadContactPage,
   "/contactus": loadContactPage,
   "/portfolio": loadPortfolioPage,
-  "/web-development": loadWebDevelopmentPage,
-  "/mobile-app-development": loadMobileAppDevelopmentPage,
-  "/desktop-applications": loadDesktopApplicationsPage,
-  "/blogs": loadBlogListPage,
-  "/products": loadProductsPage,
-  "/export-biz": loadExportBizPage,
-  "/ease-marketing": loadEaseMarketingPage,
-  "/grow-together": loadGrowTogetherPage,
-
-  // V2 Routes
-  "/home-v2": loadHomePageV2,
-  "/about-v2": loadAboutPageV2,
+  "/services": loadWebDevelopmentPageV2,
   "/service-v2": loadServicePageV2,
+  "/web-development": loadWebDevelopmentPageV2,
   "/web-development-v2": loadWebDevelopmentPageV2,
+  "/mobile-app": loadMobileAppPageV2,
+  "/mobile-app-development": loadMobileAppPageV2,
   "/mobile-app-v2": loadMobileAppPageV2,
   "/mobile-app-development-v2": loadMobileAppPageV2,
+  "/digital-marketing": loadDigitalMarketingPageV2,
   "/digital-marketing-v2": loadDigitalMarketingPageV2,
+  "/ease-marketing": loadDigitalMarketingPageV2,
   "/ease-marketing-v2": loadDigitalMarketingPageV2,
+  "/products": loadProductsPage,
+  "/export-biz": loadExportBizNewPage,
   "/export-biz-new": loadExportBizNewPage,
+  "/grow-together": loadGrowTogetherPage,
+  "/desktop-applications": loadDesktopApplicationsPage,
+  "/blogs": loadBlogListPage,
 };
 
 export const preloadRoute = (path: string) => {

@@ -5,16 +5,16 @@ import FlipButton from "@/components/ui/FlipButton";
 const quickLinks = [
     { to: "/", label: "Home" },
     { to: "/about", label: "About Us" },
-    { to: "/services", label: "Services" },
+    { to: "/web-development", label: "Services" },
     { to: "/about", label: "Career" },
     { to: "/contacts", label: "Contact Us" },
 ];
 
 const serviceLinks = [
-    { to: "/services/web-development", label: "Web Development" },
-    { to: "/services/mobile-app-development", label: "Mobile App Development" },
-    { to: "/services/web-development", label: "E-Commerce Solutions" },
-    { to: "/desktop-applications", label: "Cloud Solutions" },
+    { to: "/web-development", label: "Web Development" },
+    { to: "/mobile-app-development", label: "Mobile App Development" },
+    { to: "/digital-marketing", label: "Digital Marketing" },
+    { to: "/export-biz", label: "Export Biz Software" },
     { to: "/about", label: "IT Consulting" },
 ];
 
@@ -78,21 +78,29 @@ function Footer() {
                     <div>
                         <h3 className="text-lg font-bold text-white mb-5">Contact Us</h3>
                         <ul className="space-y-3 text-sm text-lime-50 list-none p-0 m-0">
-                            <li className="flex items-center gap-2.5">
-                                <Phone className="h-4 w-4 shrink-0 text-white" />
-                                <a href="tel:+918867171060" title="Call AG Solutions" className="text-lime-50 hover:text-white transition-colors no-underline">
-                                    +91 8867171060
+                            <li>
+                                <a href="tel:+918867171060" title="Call AG Solutions: +91 8867171060" className="inline-flex items-center gap-2.5 text-lime-50 hover:text-white transition-colors no-underline">
+                                    <Phone className="h-4 w-4 shrink-0 text-white" />
+                                    <span>+91 8867171060</span>
                                 </a>
                             </li>
-                            <li className="flex items-center gap-2.5">
-                                <Mail className="h-4 w-4 shrink-0 text-white" />
-                                <a href="mailto:info@ag-solutions.in" title="Email AG Solutions" className="text-lime-50 hover:text-white transition-colors no-underline">
-                                    info@ag-solutions.in
+                            <li>
+                                <a href="mailto:info@ag-solutions.in" title="Email AG Solutions: info@ag-solutions.in" className="inline-flex items-center gap-2.5 text-lime-50 hover:text-white transition-colors no-underline">
+                                    <Mail className="h-4 w-4 shrink-0 text-white" />
+                                    <span>info@ag-solutions.in</span>
                                 </a>
                             </li>
-                            <li className="flex items-start gap-2.5">
-                                <MapPin className="h-4 w-4 shrink-0 text-white mt-0.5" />
-                                <span>Jayanagara 9th Block, Bengaluru, 560069</span>
+                            <li>
+                                <a
+                                    href="https://maps.google.com/?q=Jayanagara+9th+Block,+Bengaluru,+560069"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    title="View AG Solutions on Google Maps"
+                                    className="inline-flex items-start gap-2.5 text-lime-50 hover:text-white transition-colors no-underline"
+                                >
+                                    <MapPin className="h-4 w-4 shrink-0 text-white mt-0.5" />
+                                    <span>Jayanagara 9th Block, Bengaluru, 560069</span>
+                                </a>
                             </li>
                         </ul>
                     </div>

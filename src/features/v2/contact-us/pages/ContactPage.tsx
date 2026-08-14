@@ -16,7 +16,7 @@ import {
   Zap,
 } from "lucide-react";
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import { useCreateEnquiry } from "../hooks/useCreateEnquiry";
 import ContactSEO from "../seo/ContactSEO";
 
@@ -72,10 +72,10 @@ export default function ContactPage() {
 
   // Google Maps Links & Embed URL
   const mapEmbedUrl =
-    "https://maps.google.com/maps?q=911,%2028th%20Main%20Rd,%20Corporation%20Colony,%20Jayanagara%209th%20Block,%20Jayanagar,%20Bengaluru,%20Karnataka%20560041&t=&z=16&ie=UTF8&iwloc=&output=embed";
+    "https://maps.google.com/maps?q=12.9207136,77.5923704&t=&z=17&ie=UTF8&iwloc=&output=embed";
 
   const googleMapsDirectionsUrl =
-    "https://www.google.com/maps/search/?api=1&query=Jayanagara+9th+Block+Bengaluru+560069";
+    "https://www.google.com/maps/place/AG+Solutions/@12.9207136,77.5897955,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae150995555555:0x440eaf1d21e4db01!8m2!3d12.9207136!4d77.5923704!16s%2Fg%2F11p67397gv?entry=ttu&g_ep=EgoyMDI2MDgxMS4wIKXMDSoASAFQAw%3D%3D";
 
   return (
     <>
@@ -416,6 +416,16 @@ export default function ContactPage() {
                     title="AG Solutions on Facebook"
                   >
                     <FaFacebookF className="h-5 w-5" />
+                  </a>
+
+                  <a
+                    href="https://twitter.com"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1DA1F2] text-white shadow-sm transition-transform duration-300 hover:scale-110"
+                    title="AG Solutions on X (Twitter)"
+                  >
+                    <FaTwitter className="h-5 w-5" />
                   </a>
 
                   <a

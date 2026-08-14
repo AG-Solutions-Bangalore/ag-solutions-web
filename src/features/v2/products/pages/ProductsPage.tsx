@@ -27,7 +27,7 @@ const products: readonly ProductCard[] = [
     description:
       "Export Biz helps Exporters in creating manual export documentations into structured digital documentation, reducing repetitive data entry and making document preparation faster and easier.",
     iconName: "export",
-    path: "/products/export-biz",
+    path: "/export-biz",
     badgeText: "EDMS",
     badgeClass: "bg-teal-light text-teal border border-teal-border/40",
     btnHoverClass: "hover:bg-teal-hover focus-visible:ring-teal",
@@ -40,7 +40,7 @@ const products: readonly ProductCard[] = [
     description:
       "Run, track, and optimize all marketing workflows in one place. Design marketing campaigns, track conversion rates, orchestrate team operations, and measure multi-channel campaign performance effortlessly.",
     iconName: "marketing",
-    path: "/products/ss-marketing",
+    path: "/ss-marketing",
     badgeText: "EASE",
     badgeClass: "bg-pink-light text-pink border border-pink-border/40",
     btnHoverClass: "hover:bg-pink-hover focus-visible:ring-pink",
@@ -53,7 +53,7 @@ const products: readonly ProductCard[] = [
     description:
       "A unified, highly collaborative workspace for team productivity and customer relations. Centralize task boards, goal tracking, client portals, and secure documents to boost alignment and output.",
     iconName: "grow",
-    path: "/products/grow-together",
+    path: "/grow-together",
     badgeText: "GROW",
     badgeClass: "bg-green-light text-green border border-green-border/40",
     btnHoverClass: "hover:bg-green-hover focus-visible:ring-green",
@@ -105,7 +105,7 @@ export const ProductsPage: React.FC = () => {
 
             {/* Products grid */}
             <div
-              className={`mt-10 sm:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 home-animated-item ${
+              className={`mt-10 sm:mt-16 flex flex-wrap justify-center gap-6 sm:gap-8 home-animated-item ${
                 isVisible ? "home-animated-item-visible" : ""
               }`}
               style={{ transitionDelay: "200ms" }}
@@ -113,7 +113,7 @@ export const ProductsPage: React.FC = () => {
               {products.map((product) => (
                 <div
                   key={product.title}
-                  className="bg-card border border-border rounded-3xl shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col h-full group p-2"
+                  className="bg-card border border-border rounded-3xl shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col h-full group p-2 w-full md:w-[calc(33.333%-22px)] max-w-[390px]"
                 >
                   {/* Icon & Badge Area */}
                   <div className="p-5 sm:p-6 pb-2 flex items-center justify-between">
