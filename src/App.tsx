@@ -4,7 +4,6 @@ import Lenis from "lenis";
 import SkipToContent from "./components/accessibility/SkipToContent";
 import { getUtmParams, storeUtmParams } from "./utils/utmUtils";
 import { renderV1Routes, renderV2Routes, renderV3Routes } from "./routes";
-import { loadConfig, applyConfig } from "./hooks/useThemeCustomizer";
 
 function UtmTracker() {
   const location = useLocation();
@@ -33,10 +32,29 @@ function ScrollToTop() {
 }
 
 function App() {
-  // Apply saved theme immediately on mount
+  // Clean up any stale inline theme style overrides on mount so CSS tokens and next-themes drive theme cleanly
   useEffect(() => {
-    const saved = loadConfig();
-    if (saved) applyConfig(saved);
+    const root = document.documentElement;
+    const staleProps = [
+      "--background",
+      "--foreground",
+      "--card",
+      "--card-foreground",
+      "--popover",
+      "--popover-foreground",
+      "--border",
+      "--input",
+      "--dark",
+      "--light",
+      "--muted",
+      "--navy",
+    ];
+    staleProps.forEach((prop) => root.style.removeProperty(prop));
+    try {
+      localStorage.removeItem("ag-theme-config");
+    } catch {
+      // ignore
+    }
   }, []);
 
   useEffect(() => {

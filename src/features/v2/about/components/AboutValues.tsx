@@ -38,7 +38,7 @@ const values = [
 
 function AboutValues() {
     return (
-        <section className="py-12 sm:py-18 md:py-24 relative overflow-hidden bg-white">
+        <section className="py-12 sm:py-18 md:py-24 relative overflow-hidden bg-background transition-colors duration-200">
             {/* Ambient Background Glows */}
             <div className="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-teal/5 blur-3xl" />
             <div className="pointer-events-none absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-pink/5 blur-3xl" />
@@ -83,7 +83,7 @@ function AboutValues() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                className="group relative overflow-hidden flex flex-col items-center justify-between rounded-3xl border border-slate-100 bg-white p-6 sm:p-8 text-center shadow-xs transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-slate-200"
+                                className="group relative overflow-hidden flex flex-col items-center justify-between rounded-3xl border border-border bg-card p-6 sm:p-8 text-center shadow-xs transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-pink/30"
                             >
                                 <div className="flex flex-col items-center w-full">
                                     <div className={`mb-6 flex h-16 w-16 items-center justify-center rounded-2xl shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${val.iconContainer}`}>

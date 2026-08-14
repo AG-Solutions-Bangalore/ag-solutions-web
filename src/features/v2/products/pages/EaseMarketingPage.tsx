@@ -97,7 +97,7 @@ export const EaseMarketingPage: React.FC = () => {
 
       {/* 2. Intro Section */}
       <AnimatedSection
-        className="bg-white py-12 md:py-20 text-[#1b2c38]"
+        className="bg-background py-12 md:py-20 text-foreground transition-colors duration-200"
         ariaLabel="EASE Marketing introduction"
       >
         {(isVisible) => (
@@ -117,23 +117,23 @@ export const EaseMarketingPage: React.FC = () => {
               <SectionTitle
                 title="Simplify Your Marketing Operations"
                 align="left"
-                titleClassName="text-2xl sm:text-3xl md:text-[36px] font-black leading-tight text-[#1a2b3c]"
+                titleClassName="text-2xl sm:text-3xl md:text-[36px] font-black leading-tight text-dark"
               />
-              <p className="mt-5 sm:mt-8 text-sm sm:text-base leading-relaxed text-[#4f5a62]">
+              <p className="mt-5 sm:mt-8 text-sm sm:text-base leading-relaxed text-muted">
                 EASE Marketing simplifies how business teams coordinate digital strategies. Stop juggling countless chat threads, spreadsheets, and asset folders. Manage campaigns, execute tasks, and measure performance metrics in one consolidated platform.
               </p>
               <div className="mt-6 sm:mt-8 space-y-3">
                 <div className="flex items-start gap-3">
-                  <span className="text-[#bf3159] text-xl font-bold">✓</span>
-                  <p className="m-0 text-sm text-[#4f5a62]">Faster marketing cycle times through structured task handoffs.</p>
+                  <span className="text-pink text-xl font-bold">✓</span>
+                  <p className="m-0 text-sm text-muted">Faster marketing cycle times through structured task handoffs.</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <span className="text-[#bf3159] text-xl font-bold">✓</span>
-                  <p className="m-0 text-sm text-[#4f5a62]">Clear visibility of project status and campaign deadlines.</p>
+                  <span className="text-pink text-xl font-bold">✓</span>
+                  <p className="m-0 text-sm text-muted">Clear visibility of project status and campaign deadlines.</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <span className="text-[#bf3159] text-xl font-bold">✓</span>
-                  <p className="m-0 text-sm text-[#4f5a62]">Consistent brand quality using standardized asset libraries.</p>
+                  <span className="text-pink text-xl font-bold">✓</span>
+                  <p className="m-0 text-sm text-muted">Consistent brand quality using standardized asset libraries.</p>
                 </div>
               </div>
             </div>
@@ -143,7 +143,7 @@ export const EaseMarketingPage: React.FC = () => {
 
       {/* 3. Features Section */}
       <AnimatedSection
-        className="bg-[#fafafa] py-12 md:py-20 border-t border-slate-100 text-[#1b2c38]"
+        className="bg-section-alt py-12 md:py-20 border-t border-border text-foreground transition-colors duration-200"
         ariaLabel="EASE Marketing features"
       >
         {(isVisible) => (
@@ -151,7 +151,7 @@ export const EaseMarketingPage: React.FC = () => {
             <SectionTitle
               title="Product Features"
               align="center"
-              titleClassName="text-2xl sm:text-3xl md:text-[38px] leading-tight font-black text-[#1a2b3c]"
+              titleClassName="text-2xl sm:text-3xl md:text-[38px] leading-tight font-black text-dark"
               className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`}
             />
 
@@ -164,11 +164,11 @@ export const EaseMarketingPage: React.FC = () => {
               {features.map((feat) => (
                 <div
                   key={feat.title}
-                  className="bg-white border border-slate-100 p-6 sm:p-8 rounded-2xl flex flex-col items-center text-center shadow-xs hover:shadow-md transition-all duration-300"
+                  className="bg-card border border-border p-6 sm:p-8 rounded-2xl flex flex-col items-center text-center shadow-xs hover:shadow-md transition-all duration-300"
                 >
                   <div className="text-4xl mb-4">{feat.icon}</div>
-                  <h4 className="m-0 text-base sm:text-lg font-bold text-[#1a2b3c]">{feat.title}</h4>
-                  <p className="mt-3 sm:mt-4 text-xs sm:text-[14.5px] leading-relaxed text-[#5c6873] font-normal flex-1">
+                  <h4 className="m-0 text-base sm:text-lg font-bold text-dark">{feat.title}</h4>
+                  <p className="mt-3 sm:mt-4 text-xs sm:text-[14.5px] leading-relaxed text-muted font-normal flex-1">
                     {feat.description}
                   </p>
                 </div>
@@ -180,7 +180,7 @@ export const EaseMarketingPage: React.FC = () => {
 
       {/* 4. Inquiry Form */}
       <AnimatedSection
-        className="bg-white py-12 md:py-20 border-t border-slate-100 text-[#1b2c38]"
+        className="bg-background py-12 md:py-20 border-t border-border text-foreground transition-colors duration-200"
         ariaLabel="EASE Marketing inquiry form"
       >
         {(isVisible) => (
@@ -189,12 +189,12 @@ export const EaseMarketingPage: React.FC = () => {
               <SectionTitle
                 title="Connect With Our Team"
                 align="left"
-                titleClassName="text-2xl sm:text-3xl md:text-[38px] leading-[1.16] font-black tracking-normal text-[#1a2b3c]"
+                titleClassName="text-2xl sm:text-3xl md:text-[38px] leading-[1.16] font-black tracking-normal text-dark"
               />
-              <p className="mt-5 sm:mt-7 text-base sm:text-[17px] font-semibold leading-[1.55] text-[#1a2b3c]">
+              <p className="mt-5 sm:mt-7 text-base sm:text-[17px] font-semibold leading-[1.55] text-dark">
                 Empower your marketing execution with EASE.
               </p>
-              <p className="mt-3 sm:mt-4 text-xs sm:text-[14.5px] leading-relaxed text-[#5c6873] font-normal">
+              <p className="mt-3 sm:mt-4 text-xs sm:text-[14.5px] leading-relaxed text-muted font-normal">
                 Let us know what your current marketing challenges are, and we'll show you how EASE Marketing can keep your campaign managers aligned and focus on core metrics.
               </p>
             </div>
@@ -213,7 +213,7 @@ export const EaseMarketingPage: React.FC = () => {
                       placeholder="Your Full Name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full rounded-full border-none bg-[#f1f1eb] px-6 sm:px-7 py-3.5 sm:py-4 text-base sm:text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all"
+                      className="w-full rounded-full border border-border bg-light/50 px-6 sm:px-7 py-3.5 sm:py-4 text-base sm:text-[15px] text-foreground outline-none placeholder:text-muted focus:border-teal transition-all"
                     />
                   </div>
                   <div>
@@ -223,7 +223,7 @@ export const EaseMarketingPage: React.FC = () => {
                       placeholder="Phone Number"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full rounded-full border-none bg-[#f1f1eb] px-6 sm:px-7 py-3.5 sm:py-4 text-base sm:text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all"
+                      className="w-full rounded-full border border-border bg-light/50 px-6 sm:px-7 py-3.5 sm:py-4 text-base sm:text-[15px] text-foreground outline-none placeholder:text-muted focus:border-teal transition-all"
                     />
                   </div>
                   <div>
@@ -233,7 +233,7 @@ export const EaseMarketingPage: React.FC = () => {
                       placeholder="Email Address"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full rounded-full border-none bg-[#f1f1eb] px-6 sm:px-7 py-3.5 sm:py-4 text-base sm:text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all"
+                      className="w-full rounded-full border border-border bg-light/50 px-6 sm:px-7 py-3.5 sm:py-4 text-base sm:text-[15px] text-foreground outline-none placeholder:text-muted focus:border-teal transition-all"
                     />
                   </div>
                   <div>
@@ -243,7 +243,7 @@ export const EaseMarketingPage: React.FC = () => {
                       placeholder="Details"
                       value={formData.details}
                       onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-                      className="w-full rounded-[1.5rem] sm:rounded-[2rem] border-none bg-[#f1f1eb] px-6 sm:px-7 py-4 sm:py-5 text-base sm:text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all resize-none min-h-[120px]"
+                      className="w-full rounded-[1.5rem] sm:rounded-[2rem] border border-border bg-light/50 px-6 sm:px-7 py-4 sm:py-5 text-base sm:text-[15px] text-foreground outline-none placeholder:text-muted focus:border-teal transition-all resize-none min-h-[120px]"
                     />
                   </div>
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6 pt-2">

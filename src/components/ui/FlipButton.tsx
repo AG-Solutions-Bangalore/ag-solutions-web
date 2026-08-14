@@ -4,6 +4,7 @@ import { ArrowRight, type LucideIcon } from "lucide-react";
 interface FlipButtonProps {
     to: string;
     children: string;
+    title?: string;
     variant?: "pink" | "teal" | "white" | "link-teal" | "link-pink" | "link-yellow" | "link-green";
     className?: string;
     icon?: LucideIcon;
@@ -13,6 +14,7 @@ interface FlipButtonProps {
 export function FlipButton({
     to,
     children,
+    title,
     variant = "pink",
     className = "",
     icon: Icon = ArrowRight,
@@ -50,6 +52,7 @@ export function FlipButton({
     return (
         <Link
             to={to}
+            title={title || (typeof children === "string" ? children : undefined)}
             onClick={onClick}
             className={`group relative inline-flex items-center gap-2 overflow-hidden transition-all duration-300 no-underline ${variantStyles} ${className}`}
         >

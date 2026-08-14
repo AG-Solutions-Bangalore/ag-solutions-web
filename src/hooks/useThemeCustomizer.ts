@@ -143,18 +143,6 @@ export function applyConfig(config: ThemeConfig) {
     root.style.setProperty(`--${name}-border`, shades.border);
   }
 
-  // UI colors
-  if (config.ui) {
-    root.style.setProperty("--background", config.ui.background);
-    root.style.setProperty("--foreground", config.ui.foreground);
-    root.style.setProperty("--card", config.ui.card);
-    root.style.setProperty("--card-foreground", config.ui.foreground);
-    root.style.setProperty("--popover", config.ui.card);
-    root.style.setProperty("--popover-foreground", config.ui.foreground);
-    root.style.setProperty("--border", config.ui.border);
-    root.style.setProperty("--input", config.ui.border);
-  }
-
   // Font scale
   for (const [key, baseRem] of Object.entries(DEFAULT_FONT_SIZES)) {
     root.style.setProperty(`--font-${key}`, `${(baseRem * config.fontScale).toFixed(4)}rem`);

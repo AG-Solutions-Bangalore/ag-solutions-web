@@ -1,15 +1,15 @@
 import React from "react";
+import { useLeadModal } from "@/context/LeadModalContext";
 
 export const DocumentEcosystemV2: React.FC = () => {
-  const handleScrollToCta = () => {
-    const elem = document.getElementById("cta-banner");
-    if (elem) {
-      elem.scrollIntoView({ behavior: "smooth" });
-    }
+  const { openLeadModal } = useLeadModal();
+
+  const handleOpenLeadModal = (context: string) => {
+    openLeadModal(`Export Biz - ${context}`);
   };
 
   return (
-    <section className="bg-[#F8FAFF] py-12 sm:py-16 md:py-20 lg:py-24" id="documents-v2">
+    <section className="bg-section-alt py-12 sm:py-16 md:py-20 lg:py-24 border-t border-border transition-colors duration-200" id="documents-v2">
       <div className="max-w-[1460px] mx-auto px-4 sm:px-6 md:px-10 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 reveal">
           {/* HERO CARD (Left Column) */}
@@ -38,7 +38,8 @@ export const DocumentEcosystemV2: React.FC = () => {
               </p>
 
               <button
-                onClick={handleScrollToCta}
+                type="button"
+                onClick={() => handleOpenLeadModal("Export Documentation")}
                 className="inline-flex items-center gap-3.5 sm:gap-4.5 px-6 py-3.5 sm:px-7 sm:py-4.5 rounded-[14px] bg-white text-[#12359B] text-base sm:text-[17px] font-bold shadow-md hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(0,0,0,0.18)] active:translate-y-0 transition-all cursor-pointer border-none"
               >
                 Get Started
@@ -91,13 +92,13 @@ export const DocumentEcosystemV2: React.FC = () => {
           <div className="lg:col-span-5 xl:col-span-5 flex flex-col gap-5 sm:gap-6">
             {/* Sales Contract */}
             <article 
-              onClick={handleScrollToCta}
-              className="relative min-h-[220px] sm:min-h-[260px] lg:min-h-[280px] p-6 sm:p-8 lg:p-[36px_38px] border border-[#E1E8F6] rounded-[22px] bg-white/95 shadow-[0_10px_35px_rgba(40,65,120,0.06)] hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(40,65,120,0.1)] transition-all flex flex-col justify-between group cursor-pointer"
+              onClick={() => handleOpenLeadModal("Sales Contract & Costing")}
+              className="relative min-h-[220px] sm:min-h-[260px] lg:min-h-[280px] p-6 sm:p-8 lg:p-[36px_38px] border border-border rounded-[22px] bg-card shadow-2xs hover:-translate-y-1 hover:shadow-xl transition-all flex flex-col justify-between group cursor-pointer"
             >
               <div>
-                <div className="w-[58px] h-[58px] sm:w-[70px] sm:h-[70px] flex items-center justify-center rounded-[18px] bg-[#EEF4FF] mb-5 sm:mb-6 shrink-0">
+                <div className="w-[58px] h-[58px] sm:w-[70px] sm:h-[70px] flex items-center justify-center rounded-[18px] bg-teal-light mb-5 sm:mb-6 shrink-0 border border-teal-border/40">
                   <svg
-                    className="w-[28px] h-[28px] sm:w-[34px] sm:h-[34px] stroke-[#1760EF]"
+                    className="w-[28px] h-[28px] sm:w-[34px] sm:h-[34px] stroke-teal"
                     viewBox="0 0 24 24"
                     fill="none"
                     strokeWidth="1.7"
@@ -109,16 +110,16 @@ export const DocumentEcosystemV2: React.FC = () => {
                   </svg>
                 </div>
 
-                <h3 className="font-['Plus_Jakarta_Sans',sans-serif] text-[#0A2053] text-lg sm:text-xl lg:text-[23px] font-bold leading-[1.25] tracking-[-0.5px] mb-2.5 sm:mb-3 pr-8 sm:pr-10">
+                <h3 className="font-['Plus_Jakarta_Sans',sans-serif] text-dark text-lg sm:text-xl lg:text-[23px] font-bold leading-[1.25] tracking-[-0.5px] mb-2.5 sm:mb-3 pr-8 sm:pr-10">
                   Sales Contract &amp; Costing
                 </h3>
 
-                <p className="text-[#425985] text-sm sm:text-base lg:text-[18px] leading-[1.65] max-w-[430px]">
+                <p className="text-muted text-sm sm:text-base lg:text-[18px] leading-[1.65] max-w-[430px]">
                   Bring contract terms and costing together in one place.
                 </p>
               </div>
 
-              <span className="absolute right-6 sm:right-[36px] top-1/2 -translate-y-1/2 text-[#1461EC] group-hover:translate-x-1 transition-transform">
+              <span className="absolute right-6 sm:right-[36px] top-1/2 -translate-y-1/2 text-teal group-hover:translate-x-1 transition-transform">
                 <svg
                   className="w-5 h-5 sm:w-[25px] sm:h-[25px]"
                   viewBox="0 0 24 24"
@@ -134,13 +135,13 @@ export const DocumentEcosystemV2: React.FC = () => {
 
             {/* Purchase Order */}
             <article 
-              onClick={handleScrollToCta}
-              className="relative min-h-[220px] sm:min-h-[260px] lg:min-h-[280px] p-6 sm:p-8 lg:p-[36px_38px] border border-[#E1E8F6] rounded-[22px] bg-white/95 shadow-[0_10px_35px_rgba(40,65,120,0.06)] hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(40,65,120,0.1)] transition-all flex flex-col justify-between group cursor-pointer"
+              onClick={() => handleOpenLeadModal("Purchase Order & Stock Reports")}
+              className="relative min-h-[220px] sm:min-h-[260px] lg:min-h-[280px] p-6 sm:p-8 lg:p-[36px_38px] border border-border rounded-[22px] bg-card shadow-2xs hover:-translate-y-1 hover:shadow-xl transition-all flex flex-col justify-between group cursor-pointer"
             >
               <div>
-                <div className="w-[58px] h-[58px] sm:w-[70px] sm:h-[70px] flex items-center justify-center rounded-[18px] bg-[#EEF4FF] mb-5 sm:mb-6 shrink-0">
+                <div className="w-[58px] h-[58px] sm:w-[70px] sm:h-[70px] flex items-center justify-center rounded-[18px] bg-teal-light mb-5 sm:mb-6 shrink-0 border border-teal-border/40">
                   <svg
-                    className="w-[28px] h-[28px] sm:w-[34px] sm:h-[34px] stroke-[#1760EF]"
+                    className="w-[28px] h-[28px] sm:w-[34px] sm:h-[34px] stroke-teal"
                     viewBox="0 0 24 24"
                     fill="none"
                     strokeWidth="1.7"
@@ -151,16 +152,16 @@ export const DocumentEcosystemV2: React.FC = () => {
                   </svg>
                 </div>
 
-                <h3 className="font-['Plus_Jakarta_Sans',sans-serif] text-[#0A2053] text-lg sm:text-xl lg:text-[23px] font-bold leading-[1.25] tracking-[-0.5px] mb-2.5 sm:mb-3 pr-8 sm:pr-10">
+                <h3 className="font-['Plus_Jakarta_Sans',sans-serif] text-dark text-lg sm:text-xl lg:text-[23px] font-bold leading-[1.25] tracking-[-0.5px] mb-2.5 sm:mb-3 pr-8 sm:pr-10">
                   Purchase Order &amp; Stock Reports
                 </h3>
 
-                <p className="text-[#425985] text-sm sm:text-base lg:text-[18px] leading-[1.65] max-w-[430px]">
+                <p className="text-muted text-sm sm:text-base lg:text-[18px] leading-[1.65] max-w-[430px]">
                   Track purchase orders alongside stock on hand.
                 </p>
               </div>
 
-              <span className="absolute right-6 sm:right-[36px] top-1/2 -translate-y-1/2 text-[#1461EC] group-hover:translate-x-1 transition-transform">
+              <span className="absolute right-6 sm:right-[36px] top-1/2 -translate-y-1/2 text-teal group-hover:translate-x-1 transition-transform">
                 <svg
                   className="w-5 h-5 sm:w-[25px] sm:h-[25px]"
                   viewBox="0 0 24 24"
@@ -179,13 +180,13 @@ export const DocumentEcosystemV2: React.FC = () => {
           <div className="lg:col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
             {/* Payment & Claim Outstanding */}
             <article 
-              onClick={handleScrollToCta}
-              className="relative min-h-[240px] sm:min-h-[270px] lg:min-h-[295px] p-6 sm:p-8 lg:p-[36px_38px] border border-[#E1E8F6] rounded-[22px] bg-white/95 shadow-[0_10px_35px_rgba(40,65,120,0.06)] hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(40,65,120,0.1)] transition-all flex flex-col justify-between group cursor-pointer"
+              onClick={() => handleOpenLeadModal("Payment & Claim Outstanding")}
+              className="relative min-h-[240px] sm:min-h-[270px] lg:min-h-[295px] p-6 sm:p-8 lg:p-[36px_38px] border border-border rounded-[22px] bg-card shadow-2xs hover:-translate-y-1 hover:shadow-xl transition-all flex flex-col justify-between group cursor-pointer"
             >
               <div>
-                <div className="w-[58px] h-[58px] sm:w-[70px] sm:h-[70px] flex items-center justify-center rounded-[18px] bg-[#E4F8F3] mb-5 sm:mb-6 shrink-0">
+                <div className="w-[58px] h-[58px] sm:w-[70px] sm:h-[70px] flex items-center justify-center rounded-[18px] bg-teal-light mb-5 sm:mb-6 shrink-0 border border-teal-border/40">
                   <svg
-                    className="w-[28px] h-[28px] sm:w-[34px] sm:h-[34px] stroke-[#16B98D]"
+                    className="w-[28px] h-[28px] sm:w-[34px] sm:h-[34px] stroke-teal"
                     viewBox="0 0 24 24"
                     fill="none"
                     strokeWidth="1.8"
@@ -195,16 +196,16 @@ export const DocumentEcosystemV2: React.FC = () => {
                   </svg>
                 </div>
 
-                <h3 className="font-['Plus_Jakarta_Sans',sans-serif] text-[#0A2053] text-lg sm:text-xl lg:text-[23px] font-bold leading-[1.25] tracking-[-0.5px] mb-2.5 sm:mb-3">
+                <h3 className="font-['Plus_Jakarta_Sans',sans-serif] text-dark text-lg sm:text-xl lg:text-[23px] font-bold leading-[1.25] tracking-[-0.5px] mb-2.5 sm:mb-3">
                   Payment &amp; Claim Outstanding
                 </h3>
 
-                <p className="text-[#425985] text-sm sm:text-base lg:text-[18px] leading-[1.65]">
+                <p className="text-muted text-sm sm:text-base lg:text-[18px] leading-[1.65]">
                   See what's been paid and what's still pending.
                 </p>
               </div>
 
-              <span className="w-[34px] h-[34px] rounded-full border-1.5 border-current text-[#16B98D] flex items-center justify-center relative sm:absolute sm:right-[36px] sm:bottom-[36px] mt-4 sm:mt-0 self-end transition-transform group-hover:translate-x-1">
+              <span className="w-[34px] h-[34px] rounded-full border-1.5 border-current text-teal flex items-center justify-center relative sm:absolute sm:right-[36px] sm:bottom-[36px] mt-4 sm:mt-0 self-end transition-transform group-hover:translate-x-1">
                 <svg
                   className="w-[18px] h-[18px]"
                   viewBox="0 0 24 24"
@@ -219,13 +220,13 @@ export const DocumentEcosystemV2: React.FC = () => {
 
             {/* Monthly Returns */}
             <article 
-              onClick={handleScrollToCta}
-              className="relative min-h-[240px] sm:min-h-[270px] lg:min-h-[295px] p-6 sm:p-8 lg:p-[36px_38px] border border-[#E1E8F6] rounded-[22px] bg-white/95 shadow-[0_10px_35px_rgba(40,65,120,0.06)] hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(40,65,120,0.1)] transition-all flex flex-col justify-between group cursor-pointer"
+              onClick={() => handleOpenLeadModal("Monthly Returns")}
+              className="relative min-h-[240px] sm:min-h-[270px] lg:min-h-[295px] p-6 sm:p-8 lg:p-[36px_38px] border border-border rounded-[22px] bg-card shadow-2xs hover:-translate-y-1 hover:shadow-xl transition-all flex flex-col justify-between group cursor-pointer"
             >
               <div>
-                <div className="w-[58px] h-[58px] sm:w-[70px] sm:h-[70px] flex items-center justify-center rounded-[18px] bg-[#F0EAFF] mb-5 sm:mb-6 shrink-0">
+                <div className="w-[58px] h-[58px] sm:w-[70px] sm:h-[70px] flex items-center justify-center rounded-[18px] bg-pink-light mb-5 sm:mb-6 shrink-0 border border-pink-border/40">
                   <svg
-                    className="w-[28px] h-[28px] sm:w-[34px] sm:h-[34px] stroke-[#7654E9]"
+                    className="w-[28px] h-[28px] sm:w-[34px] sm:h-[34px] stroke-pink"
                     viewBox="0 0 24 24"
                     fill="none"
                     strokeWidth="1.7"
@@ -238,16 +239,16 @@ export const DocumentEcosystemV2: React.FC = () => {
                   </svg>
                 </div>
 
-                <h3 className="font-['Plus_Jakarta_Sans',sans-serif] text-[#0A2053] text-lg sm:text-xl lg:text-[23px] font-bold leading-[1.25] tracking-[-0.5px] mb-2.5 sm:mb-3">
+                <h3 className="font-['Plus_Jakarta_Sans',sans-serif] text-dark text-lg sm:text-xl lg:text-[23px] font-bold leading-[1.25] tracking-[-0.5px] mb-2.5 sm:mb-3">
                   Monthly Returns
                 </h3>
 
-                <p className="text-[#425985] text-sm sm:text-base lg:text-[18px] leading-[1.65]">
+                <p className="text-muted text-sm sm:text-base lg:text-[18px] leading-[1.65]">
                   Keep periodic filings organized and on time.
                 </p>
               </div>
 
-              <span className="w-[34px] h-[34px] rounded-full border-1.5 border-current text-[#7654E9] flex items-center justify-center relative sm:absolute sm:right-[36px] sm:bottom-[36px] mt-4 sm:mt-0 self-end transition-transform group-hover:translate-x-1">
+              <span className="w-[34px] h-[34px] rounded-full border-1.5 border-current text-pink flex items-center justify-center relative sm:absolute sm:right-[36px] sm:bottom-[36px] mt-4 sm:mt-0 self-end transition-transform group-hover:translate-x-1">
                 <svg
                   className="w-[18px] h-[18px]"
                   viewBox="0 0 24 24"
@@ -262,13 +263,13 @@ export const DocumentEcosystemV2: React.FC = () => {
 
             {/* Scheme Claims Outstanding */}
             <article 
-              onClick={handleScrollToCta}
-              className="relative min-h-[240px] sm:min-h-[270px] lg:min-h-[295px] p-6 sm:p-8 lg:p-[36px_38px] border border-[#E1E8F6] rounded-[22px] bg-white/95 shadow-[0_10px_35px_rgba(40,65,120,0.06)] hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(40,65,120,0.1)] transition-all flex flex-col justify-between group cursor-pointer"
+              onClick={() => handleOpenLeadModal("Scheme Claims Outstanding")}
+              className="relative min-h-[240px] sm:min-h-[270px] lg:min-h-[295px] p-6 sm:p-8 lg:p-[36px_38px] border border-border rounded-[22px] bg-card shadow-2xs hover:-translate-y-1 hover:shadow-xl transition-all flex flex-col justify-between group cursor-pointer"
             >
               <div>
-                <div className="w-[58px] h-[58px] sm:w-[70px] sm:h-[70px] flex items-center justify-center rounded-[18px] bg-[#FFF2DC] mb-5 sm:mb-6 shrink-0">
+                <div className="w-[58px] h-[58px] sm:w-[70px] sm:h-[70px] flex items-center justify-center rounded-[18px] bg-yellow-light mb-5 sm:mb-6 shrink-0 border border-yellow-border/40">
                   <svg
-                    className="w-[28px] h-[28px] sm:w-[34px] sm:h-[34px] stroke-[#F2A01B]"
+                    className="w-[28px] h-[28px] sm:w-[34px] sm:h-[34px] stroke-yellow"
                     viewBox="0 0 24 24"
                     fill="none"
                     strokeWidth="1.7"
@@ -278,16 +279,16 @@ export const DocumentEcosystemV2: React.FC = () => {
                   </svg>
                 </div>
 
-                <h3 className="font-['Plus_Jakarta_Sans',sans-serif] text-[#0A2053] text-lg sm:text-xl lg:text-[23px] font-bold leading-[1.25] tracking-[-0.5px] mb-2.5 sm:mb-3">
+                <h3 className="font-['Plus_Jakarta_Sans',sans-serif] text-dark text-lg sm:text-xl lg:text-[23px] font-bold leading-[1.25] tracking-[-0.5px] mb-2.5 sm:mb-3">
                   Scheme Claims Outstanding
                 </h3>
 
-                <p className="text-[#425985] text-sm sm:text-base lg:text-[18px] leading-[1.65]">
+                <p className="text-muted text-sm sm:text-base lg:text-[18px] leading-[1.65]">
                   Track export incentive claims in progress.
                 </p>
               </div>
 
-              <span className="w-[34px] h-[34px] rounded-full border-1.5 border-current text-[#F2A01B] flex items-center justify-center relative sm:absolute sm:right-[36px] sm:bottom-[36px] mt-4 sm:mt-0 self-end transition-transform group-hover:translate-x-1">
+              <span className="w-[34px] h-[34px] rounded-full border-1.5 border-current text-yellow flex items-center justify-center relative sm:absolute sm:right-[36px] sm:bottom-[36px] mt-4 sm:mt-0 self-end transition-transform group-hover:translate-x-1">
                 <svg
                   className="w-[18px] h-[18px]"
                   viewBox="0 0 24 24"

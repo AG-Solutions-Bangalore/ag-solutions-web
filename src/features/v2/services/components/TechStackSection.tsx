@@ -59,11 +59,11 @@ const technologies = [
 
 function TechStackSection() {
     return (
-        <section className="bg-slate-50/50 py-16">
+        <section className="bg-section-alt py-16 border-t border-border transition-colors duration-200">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center">
-                    <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-ag-teal">
+                    <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-teal">
                         <span>· · ·</span>
                         <span>TECHNOLOGIES WE USE</span>
                         <span>· · ·</span>

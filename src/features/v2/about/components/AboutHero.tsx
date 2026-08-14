@@ -6,7 +6,7 @@ function AboutHero() {
     const { openLeadModal } = useLeadModal();
 
     return (
-        <section className="relative overflow-hidden bg-white py-10 sm:py-14 md:py-20">
+        <section className="relative overflow-hidden bg-background py-10 sm:py-14 md:py-20 transition-colors duration-200">
             {/* Ambient Background Glow */}
             <div className="pointer-events-none absolute right-0 top-0 -z-10 h-[300px] sm:h-[450px] w-[300px] sm:w-[450px] rounded-full bg-pink-light/50 blur-3xl animate-pulse" />
 
@@ -56,15 +56,16 @@ function AboutHero() {
                                 <img
                                     src="/images/ag-sl-desk.png"
                                     alt="AG Solutions Reception Office"
+                                    title="AG Solutions Office and Reception"
                                     className="h-full w-full object-cover"
                                 />
                             </div>
 
                             {/* Repositioned Decorative Floating Dots */}
-                            <div className="absolute -left-2 -top-2 sm:-left-3 sm:-top-3 h-6 w-6 sm:h-10 sm:w-10 rounded-full bg-teal shadow-md transition-transform duration-300 hover:scale-125 z-20 border-2 border-white" />
-                            <div className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 h-7 w-7 sm:h-11 sm:w-11 rounded-full bg-pink shadow-md transition-transform duration-300 hover:scale-125 z-20 border-2 border-white" />
-                            <div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 h-6 w-6 sm:h-10 sm:w-10 rounded-full bg-yellow shadow-md transition-transform duration-300 hover:scale-125 z-20 border-2 border-white" />
-                            <div className="absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 h-7 w-7 sm:h-11 sm:w-11 rounded-full bg-green shadow-md transition-transform duration-300 hover:scale-125 z-20 border-2 border-white" />
+                            <div className="absolute -left-2 -top-2 sm:-left-3 sm:-top-3 h-6 w-6 sm:h-10 sm:w-10 rounded-full bg-teal shadow-md transition-transform duration-300 hover:scale-125 z-20 border-2 border-card" />
+                            <div className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 h-7 w-7 sm:h-11 sm:w-11 rounded-full bg-pink shadow-md transition-transform duration-300 hover:scale-125 z-20 border-2 border-card" />
+                            <div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 h-6 w-6 sm:h-10 sm:w-10 rounded-full bg-yellow shadow-md transition-transform duration-300 hover:scale-125 z-20 border-2 border-card" />
+                            <div className="absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 h-7 w-7 sm:h-11 sm:w-11 rounded-full bg-green shadow-md transition-transform duration-300 hover:scale-125 z-20 border-2 border-card" />
                         </div>
                     </motion.div>
                 </div>

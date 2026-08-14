@@ -82,7 +82,7 @@ export default function ContactPage() {
       <ContactSEO />
 
       {/* Main UI Layout Container */}
-      <div className="w-full bg-slate-50/50 py-12 lg:py-20 font-sans text-dark">
+      <div className="w-full bg-background py-12 lg:py-20 font-sans text-dark transition-colors duration-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
 
           {/* ==========================================
@@ -118,6 +118,7 @@ export default function ContactPage() {
                     <h3 className="text-xs font-semibold text-muted uppercase tracking-wide">Call Us</h3>
                     <a
                       href="tel:+918867171060"
+                      title="Call AG Solutions"
                       className="text-sm font-bold text-dark hover:text-teal transition-colors"
                     >
                       +91 8867171060
@@ -134,6 +135,7 @@ export default function ContactPage() {
                     <h3 className="text-xs font-semibold text-muted uppercase tracking-wide">Email Us</h3>
                     <a
                       href="mailto:info@ag-solutions.in"
+                      title="Email AG Solutions"
                       className="text-sm font-bold text-dark hover:text-pink transition-colors break-all"
                     >
                       info@ag-solutions.in
@@ -177,10 +179,11 @@ export default function ContactPage() {
                 <div className="absolute -inset-4 rounded-full bg-gradient-to-tr from-teal/15 via-pink/10 to-yellow/15 blur-2xl pointer-events-none z-0" />
 
                 {/* Asymmetric Image Frame */}
-                <div className="relative z-10 overflow-hidden rounded-tl-[60px] sm:rounded-tl-[100px] rounded-br-[50px] sm:rounded-br-[80px] rounded-tr-[24px] sm:rounded-tr-[30px] rounded-bl-[30px] sm:rounded-bl-[40px] shadow-2xl bg-white border border-slate-100">
+                <div className="relative z-10 overflow-hidden rounded-tl-[60px] sm:rounded-tl-[100px] rounded-br-[50px] sm:rounded-br-[80px] rounded-tr-[24px] sm:rounded-tr-[30px] rounded-bl-[30px] sm:rounded-bl-[40px] shadow-2xl bg-card border border-border">
                   <img
                     src="/images/ag-sl-desk.png"
-                    alt="AG Solutions Modern Office Reception"
+                    alt="AG Solutions Reception Office"
+                    title="AG Solutions Office and Reception"
                     className="h-[280px] sm:h-[380px] lg:h-[480px] w-full object-cover object-center transition-transform duration-700 hover:scale-[1.03]"
                   />
                 </div>
@@ -218,9 +221,9 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
 
             {/* Left: Contact Form (Connected to API) */}
-            <div className="lg:col-span-7 rounded-3xl bg-white p-5 sm:p-10 shadow-sm border border-slate-100 flex flex-col justify-between">
+            <div className="lg:col-span-7 rounded-3xl bg-card p-5 sm:p-10 shadow-sm border border-border flex flex-col justify-between">
               <div>
-                <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+                <div className="flex items-center justify-between border-b border-border pb-4 mb-6">
                   <div>
                     <h2 className="text-lg sm:text-2xl font-bold text-dark">Send Us a Message</h2>
                     <p className="mt-1 text-xs sm:text-sm text-muted">
@@ -231,7 +234,7 @@ export default function ContactPage() {
                 </div>
 
                 {isSubmitted ? (
-                  <div className="my-8 rounded-2xl bg-green-50 border border-green-200 p-6 sm:p-8 text-center animate-fadeIn">
+                  <div className="my-8 rounded-2xl bg-green-light/40 border border-green-border p-6 sm:p-8 text-center animate-fadeIn">
                     <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-green text-white mb-3 shadow-md">
                       ✓
                     </div>
@@ -255,7 +258,7 @@ export default function ContactPage() {
                           placeholder="Your Full Name"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-base sm:text-sm text-dark outline-none transition-all focus:border-teal focus:bg-white focus:ring-2 focus:ring-teal/20"
+                          className="w-full rounded-xl border border-border bg-light/50 px-4 py-3 text-base sm:text-sm text-foreground outline-none transition-all focus:border-teal focus:bg-card focus:ring-2 focus:ring-teal/20"
                         />
                       </div>
 
@@ -269,7 +272,7 @@ export default function ContactPage() {
                           placeholder="Email Address"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-base sm:text-sm text-dark outline-none transition-all focus:border-teal focus:bg-white focus:ring-2 focus:ring-teal/20"
+                          className="w-full rounded-xl border border-border bg-light/50 px-4 py-3 text-base sm:text-sm text-foreground outline-none transition-all focus:border-teal focus:bg-card focus:ring-2 focus:ring-teal/20"
                         />
                       </div>
                     </div>
@@ -285,7 +288,7 @@ export default function ContactPage() {
                           placeholder="Phone Number"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-base sm:text-sm text-dark outline-none transition-all focus:border-teal focus:bg-white focus:ring-2 focus:ring-teal/20"
+                          className="w-full rounded-xl border border-border bg-light/50 px-4 py-3 text-base sm:text-sm text-foreground outline-none transition-all focus:border-teal focus:bg-card focus:ring-2 focus:ring-teal/20"
                         />
                       </div>
 
@@ -299,7 +302,7 @@ export default function ContactPage() {
                           placeholder="Subject"
                           value={formData.subject}
                           onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                          className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-base sm:text-sm text-dark outline-none transition-all focus:border-teal focus:bg-white focus:ring-2 focus:ring-teal/20"
+                          className="w-full rounded-xl border border-border bg-light/50 px-4 py-3 text-base sm:text-sm text-foreground outline-none transition-all focus:border-teal focus:bg-card focus:ring-2 focus:ring-teal/20"
                         />
                       </div>
                     </div>
@@ -314,7 +317,7 @@ export default function ContactPage() {
                         placeholder="Details..."
                         value={formData.details}
                         onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-                        className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-base sm:text-sm text-dark outline-none resize-none transition-all focus:border-teal focus:bg-white focus:ring-2 focus:ring-teal/20"
+                        className="w-full rounded-xl border border-border bg-light/50 px-4 py-3 text-base sm:text-sm text-foreground outline-none resize-none transition-all focus:border-teal focus:bg-card focus:ring-2 focus:ring-teal/20"
                       />
                     </div>
 
@@ -347,7 +350,7 @@ export default function ContactPage() {
             </div>
 
             {/* Right: "We're Here to Help" Card */}
-            <div className="lg:col-span-5 rounded-3xl bg-pink-light/40 p-5 sm:p-10 border border-pink/10 flex flex-col justify-between">
+            <div className="lg:col-span-5 rounded-3xl bg-card dark:bg-slate-900/90 p-5 sm:p-10 border border-border flex flex-col justify-between">
               <div className="space-y-6">
                 <div>
                   <h2 className="text-lg sm:text-2xl font-bold text-dark">We’re Here to Help</h2>
@@ -390,7 +393,7 @@ export default function ContactPage() {
               </div>
 
               {/* Social Links */}
-              <div className="pt-6 sm:pt-8 border-t border-slate-200/60 mt-6 sm:mt-8">
+              <div className="pt-6 sm:pt-8 border-t border-border mt-6 sm:mt-8">
                 <span className="text-xs font-bold uppercase tracking-wider text-muted block mb-4">
                   Follow Us
                 </span>
@@ -400,7 +403,7 @@ export default function ContactPage() {
                     target="_blank"
                     rel="noreferrer"
                     className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0077B5] text-white shadow-sm transition-transform duration-300 hover:scale-110"
-                    title="LinkedIn"
+                    title="AG Solutions on LinkedIn"
                   >
                     <FaLinkedinIn className="h-5 w-5" />
                   </a>
@@ -410,7 +413,7 @@ export default function ContactPage() {
                     target="_blank"
                     rel="noreferrer"
                     className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1877F2] text-white shadow-sm transition-transform duration-300 hover:scale-110"
-                    title="Facebook"
+                    title="AG Solutions on Facebook"
                   >
                     <FaFacebookF className="h-5 w-5" />
                   </a>
@@ -420,7 +423,7 @@ export default function ContactPage() {
                     target="_blank"
                     rel="noreferrer"
                     className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-tr from-yellow via-pink to-purple-600 text-white shadow-sm transition-transform duration-300 hover:scale-110"
-                    title="Instagram"
+                    title="AG Solutions on Instagram"
                   >
                     <FaInstagram className="h-5 w-5" />
                   </a>
@@ -435,10 +438,10 @@ export default function ContactPage() {
           {/* ==========================================
               SECTION 3: GOOGLE MAPS LOCATION
           ========================================== */}
-          <div className="relative overflow-hidden rounded-3xl bg-white p-3 shadow-sm border border-slate-100 flex flex-col sm:block">
+          <div className="relative overflow-hidden rounded-3xl bg-card p-3 shadow-sm border border-border flex flex-col sm:block">
             <div className="relative h-[280px] sm:h-[380px] w-full overflow-hidden rounded-2xl">
               <iframe
-                title="AG Solutions Location - Jayanagara 9th Block, Bengaluru"
+                title="AG Solutions Location – Jayanagara, Bengaluru"
                 src={mapEmbedUrl}
                 className="h-full w-full border-0 grayscale-[20%] contrast-[105%]"
                 loading="lazy"
@@ -446,7 +449,7 @@ export default function ContactPage() {
               />
 
               {/* Desktop Float Card */}
-              <div className="hidden sm:block absolute left-4 top-4 z-10 max-w-xs rounded-2xl bg-white/95 backdrop-blur-md p-5 shadow-xl border border-slate-100">
+              <div className="hidden sm:block absolute left-4 top-4 z-10 max-w-xs rounded-2xl bg-card/95 backdrop-blur-md p-5 shadow-xl border border-border">
                 <h3 className="text-base font-extrabold text-dark">Our Location</h3>
                 <p className="mt-2 text-xs font-bold text-pink">AG Solutions</p>
                 <p className="text-xs text-muted font-medium leading-relaxed mt-1">
@@ -457,6 +460,7 @@ export default function ContactPage() {
                   href={googleMapsDirectionsUrl}
                   target="_blank"
                   rel="noreferrer"
+                  title="AG Solutions Location – Jayanagara, Bengaluru"
                   className="mt-4 inline-flex items-center gap-2 rounded-lg border border-teal px-4 py-2 text-xs font-bold text-teal transition-all duration-300 hover:bg-teal hover:text-white no-underline"
                 >
                   <span>Get Directions</span>
@@ -466,7 +470,7 @@ export default function ContactPage() {
             </div>
 
             {/* Mobile Location Details Card below map to avoid blocking map interaction */}
-            <div className="block sm:hidden mt-3 rounded-2xl bg-slate-50 p-4 border border-slate-100 text-left">
+            <div className="block sm:hidden mt-3 rounded-2xl bg-card p-4 border border-border text-left">
               <h3 className="text-sm font-extrabold text-dark">Our Location</h3>
               <p className="mt-1 text-xs font-bold text-pink">AG Solutions</p>
               <p className="text-xs text-muted font-medium leading-relaxed mt-1">
@@ -477,6 +481,7 @@ export default function ContactPage() {
                 href={googleMapsDirectionsUrl}
                 target="_blank"
                 rel="noreferrer"
+                title="AG Solutions Location – Jayanagara, Bengaluru"
                 className="mt-3 inline-flex items-center justify-center gap-2 rounded-lg bg-teal text-white px-4 py-2 text-xs font-bold transition-all duration-300 no-underline w-full"
               >
                 <span>Get Directions</span>
@@ -500,7 +505,7 @@ export default function ContactPage() {
             </div>
 
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="group rounded-2xl bg-white p-6 shadow-sm border border-slate-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div className="group rounded-2xl bg-card p-6 shadow-sm border border-border transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-light text-teal mb-4 border border-teal-border/30">
                   <HelpCircle className="h-6 w-6 stroke-[2]" />
                 </div>
@@ -512,7 +517,7 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              <div className="group rounded-2xl bg-white p-6 shadow-sm border border-slate-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div className="group rounded-2xl bg-card p-6 shadow-sm border border-border transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-pink-light text-pink mb-4 border border-pink-border/30">
                   <FileText className="h-6 w-6 stroke-[2]" />
                 </div>
@@ -524,7 +529,7 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              <div className="group rounded-2xl bg-white p-6 shadow-sm border border-slate-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div className="group rounded-2xl bg-card p-6 shadow-sm border border-border transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-light text-green mb-4 border border-green-border/30">
                   <Calendar className="h-6 w-6 stroke-[2]" />
                 </div>
@@ -536,7 +541,7 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              <div className="group rounded-2xl bg-white p-6 shadow-sm border border-slate-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div className="group rounded-2xl bg-card p-6 shadow-sm border border-border transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-yellow-light text-yellow mb-4 border border-yellow-border/30">
                   <Headphones className="h-6 w-6 stroke-[2]" />
                 </div>

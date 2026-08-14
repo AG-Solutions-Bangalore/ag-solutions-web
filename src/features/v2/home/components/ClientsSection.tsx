@@ -54,16 +54,16 @@ function ClientsSection() {
   const marqueeItems = [...clients, ...clients, ...clients, ...clients];
 
   return (
-    <section className="bg-white py-12 md:py-16 border-t border-slate-100 overflow-hidden">
+    <section className="bg-background py-12 md:py-16 border-t border-border overflow-hidden transition-colors duration-200">
       {/* Header */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-ag-yellow">
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-yellow">
             <span>· · ·</span>
             <span>OUR CLIENTS</span>
             <span>· · ·</span>
           </div>
-          <h2 className="mt-2 text-2xl font-extrabold text-ag-dark md:text-3xl">
+          <h2 className="mt-2 text-2xl font-extrabold text-dark md:text-3xl">
             Trusted by Businesses Worldwide
           </h2>
         </div>
@@ -72,8 +72,8 @@ function ClientsSection() {
       {/* Infinite Scrolling Marquee Track Container */}
       <div className="relative mt-10 overflow-hidden py-4">
         {/* Left & Right Fade Edge Gradients */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-24 sm:w-44 bg-gradient-to-r from-white via-white/80 to-transparent z-10" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-24 sm:w-44 bg-gradient-to-l from-white via-white/80 to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-24 sm:w-44 bg-gradient-to-r from-background via-background/80 to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-24 sm:w-44 bg-gradient-to-l from-background via-background/80 to-transparent z-10" />
 
         {/* Continuous Marquee Motion */}
         <div className="animate-marquee flex items-center gap-12 sm:gap-16">

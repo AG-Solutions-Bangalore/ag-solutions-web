@@ -7,8 +7,8 @@ const processSteps = [
         description:
             "We understand your business goals and gather all the necessary requirements.",
         icon: MessageSquare,
-        bgColor: "bg-ag-teal",
-        textColor: "text-ag-teal",
+        bgColor: "bg-teal",
+        textColor: "text-teal",
     },
     {
         step: "02",
@@ -16,8 +16,8 @@ const processSteps = [
         description:
             "We plan the structure and design a user-friendly and engaging interface.",
         icon: FileEdit,
-        bgColor: "bg-ag-pink",
-        textColor: "text-ag-pink",
+        bgColor: "bg-pink",
+        textColor: "text-pink",
     },
     {
         step: "03",
@@ -25,8 +25,8 @@ const processSteps = [
         description:
             "Our developers build clean, secure and high-performance web solutions.",
         icon: Code2,
-        bgColor: "bg-ag-yellow",
-        textColor: "text-ag-yellow",
+        bgColor: "bg-yellow",
+        textColor: "text-yellow",
     },
     {
         step: "04",
@@ -34,8 +34,8 @@ const processSteps = [
         description:
             "We test thoroughly to ensure functionality, responsiveness and cross-browser compatibility.",
         icon: ClipboardCheck,
-        bgColor: "bg-ag-green",
-        textColor: "text-ag-green",
+        bgColor: "bg-green",
+        textColor: "text-green",
     },
     {
         step: "05",
@@ -43,23 +43,23 @@ const processSteps = [
         description:
             "We deploy your website and provide ongoing support for smooth performance.",
         icon: Rocket,
-        bgColor: "bg-ag-teal",
-        textColor: "text-ag-teal",
+        bgColor: "bg-teal",
+        textColor: "text-teal",
     },
 ];
 
 function ServiceProcess() {
     return (
-        <section className="bg-white py-16 md:py-24 border-t border-slate-100">
+        <section className="bg-section-alt py-16 md:py-24 border-t border-border transition-colors duration-200">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center">
-                    <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-ag-pink">
+                    <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-pink">
                         <span>· · ·</span>
                         <span>OUR PROCESS</span>
                         <span>· · ·</span>
                     </div>
-                    <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ag-dark md:text-4xl">
+                    <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-dark md:text-4xl">
                         Our Web Development Process
                     </h2>
                 </div>
@@ -67,7 +67,7 @@ function ServiceProcess() {
                 {/* 5 Step Connected Timeline Container */}
                 <div className="relative mt-16">
                     {/* Horizontal Dotted Line Connector for Desktop */}
-                    <div className="hidden lg:block absolute top-10 left-[10%] right-[10%] h-0.5 border-t-2 border-dashed border-slate-200 z-0" />
+                    <div className="hidden lg:block absolute top-10 left-[10%] right-[10%] h-0.5 border-t-2 border-dashed border-border z-0" />
 
                     <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5 relative z-10">
                         {processSteps.map((item) => {
@@ -92,12 +92,12 @@ function ServiceProcess() {
                                     </span>
 
                                     {/* Step Title */}
-                                    <h3 className="mt-1 text-base font-bold text-ag-dark">
+                                    <h3 className="mt-1 text-base font-bold text-dark">
                                         {item.title}
                                     </h3>
 
                                     {/* Step Description */}
-                                    <p className="mt-2 text-xs leading-relaxed text-ag-muted">
+                                    <p className="mt-2 text-xs leading-relaxed text-muted">
                                         {item.description}
                                     </p>
                                 </div>

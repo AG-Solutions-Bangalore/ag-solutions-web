@@ -48,9 +48,9 @@ const features = [
 
 function WhyChooseUs() {
     return (
-        <section className="relative overflow-hidden bg-slate-50/50 py-12 sm:py-16 md:py-20">
+        <section className="relative overflow-hidden bg-section-alt py-12 sm:py-16 md:py-20 border-t border-border transition-colors duration-200">
             {/* Ambient Backdrop Aura */}
-            <div className="pointer-events-none absolute left-1/4 top-1/2 -z-10 h-[400px] w-[400px] -translate-y-1/2 rounded-full bg-ag-teal/10 blur-3xl animate-pulse" />
+            <div className="pointer-events-none absolute left-1/4 top-1/2 -z-10 h-[400px] w-[400px] -translate-y-1/2 rounded-full bg-teal/10 blur-3xl animate-pulse" />
 
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 {/* Header */}
@@ -61,20 +61,20 @@ function WhyChooseUs() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                 >
-                    <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-ag-teal">
+                    <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-teal">
                         <span>· · ·</span>
                         <span>WHY CHOOSE US</span>
                         <span>· · ·</span>
                     </div>
-                    <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-ag-dark md:text-4xl">
+                    <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-dark md:text-4xl">
                         Why Businesses Trust AG Solutions?
                     </h2>
                     {/* Decorative Underline */}
                     <div className="mt-3 flex items-center justify-center gap-1">
-                        <span className="h-1 w-6 rounded-full bg-ag-teal" />
-                        <span className="h-1 w-6 rounded-full bg-ag-pink" />
-                        <span className="h-1 w-6 rounded-full bg-ag-yellow" />
-                        <span className="h-1 w-6 rounded-full bg-ag-green" />
+                        <span className="h-1 w-6 rounded-full bg-teal" />
+                        <span className="h-1 w-6 rounded-full bg-pink" />
+                        <span className="h-1 w-6 rounded-full bg-yellow" />
+                        <span className="h-1 w-6 rounded-full bg-green" />
                     </div>
                 </motion.div>
 
@@ -89,7 +89,7 @@ function WhyChooseUs() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                className="group flex items-start gap-4 rounded-2xl border border-slate-100 bg-white p-5 sm:p-6 shadow-2xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-slate-200"
+                                className="group flex items-start gap-4 rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-2xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-teal/30"
                             >
                                 <div
                                     className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${feat.bgColor} text-white shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6`}
@@ -97,10 +97,10 @@ function WhyChooseUs() {
                                     <Icon className="h-6 w-6 stroke-[1.75]" />
                                 </div>
                                 <div>
-                                    <h3 className="text-base font-bold text-ag-dark transition-colors duration-200 group-hover:text-ag-teal">
+                                    <h3 className="text-base font-bold text-dark transition-colors duration-200 group-hover:text-teal">
                                         {feat.title}
                                     </h3>
-                                    <p className="mt-2 text-xs leading-relaxed text-ag-muted font-normal">
+                                    <p className="mt-2 text-xs leading-relaxed text-muted font-normal">
                                         {feat.description}
                                     </p>
                                 </div>

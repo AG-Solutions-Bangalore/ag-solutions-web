@@ -1,30 +1,31 @@
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Rocket } from "lucide-react";
 import { FaLinkedinIn, FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 import NewsletterSection from "@/components/common/NewsletterSection";
 import ThemeCustomizer from "@/components/ui/ThemeCustomizer";
 import { useLeadModal } from "@/context/LeadModalContext";
+import { FlipButton } from "@/components/ui/FlipButton";
 
 const quickLinks = [
-    { to: "/", label: "Home" },
-    { to: "/about", label: "About Us" },
-    { to: "/services/web-development", label: "Services" },
-    { to: "/blogs", label: "Blog" },
-    { to: "/contacts", label: "Contact Us" },
+    { to: "/", label: "Home", title: "AG Solutions – Web & Mobile App Development" },
+    { to: "/about", label: "About Us", title: "About AG Solutions" },
+    { to: "/services/web-development", label: "Services", title: "Web Development Services – AG Solutions" },
+    { to: "/blogs", label: "Blog", title: "AG Solutions Blogs – Technology & Digital Marketing" },
+    { to: "/contacts", label: "Contact Us", title: "Contact AG Solutions" },
 ];
 
 const serviceLinks = [
-    { to: "/services/web-development", label: "Web Development" },
-    { to: "/services/mobile-app", label: "Mobile App Development" },
-    { to: "/services/digital-marketing", label: "Digital Marketing" },
-    { to: "/products/export-biz", label: "Export Biz Software" },
-    { to: "/about", label: "IT Consulting" },
+    { to: "/services/web-development", label: "Web Development", title: "Web Development Services – AG Solutions" },
+    { to: "/services/mobile-app", label: "Mobile App Development", title: "Mobile App Development Services – AG Solutions" },
+    { to: "/services/digital-marketing", label: "Digital Marketing", title: "Digital Marketing Services – AG Solutions" },
+    { to: "/products/export-biz", label: "Export Biz Software", title: "Export Biz – Export Documentation Software" },
+    { to: "/about", label: "IT Consulting", title: "About AG Solutions" },
 ];
 
 const productLinks = [
-    { to: "/products/export-biz", label: "Export Biz" },
-    { to: "/products/ss-marketing", label: "SS Marketing" },
-    { to: "/products/grow-together", label: "Grow Together" },
+    { to: "/products/export-biz", label: "Export Biz", title: "Export Biz – Export Documentation Software" },
+    { to: "/products/ss-marketing", label: "SS Marketing", title: "SS Marketing – AG Solutions" },
+    { to: "/products/grow-together", label: "Grow Together", title: "Grow Together – AG Solutions" },
 ];
 
 const socialLinks = [
@@ -32,27 +33,89 @@ const socialLinks = [
         href: "https://www.linkedin.com/in/ag-solutions-104223427/",
         icon: FaLinkedinIn,
         label: "LinkedIn",
+        title: "AG Solutions on LinkedIn",
         className: "bg-[#0A66C2] text-white hover:bg-[#084e96]",
     },
     {
         href: "https://www.facebook.com/profile.php?id=61591878191618",
         icon: FaFacebookF,
         label: "Facebook",
+        title: "AG Solutions on Facebook",
         className: "bg-[#1877F2] text-white hover:bg-[#135ab7]",
     },
     {
         href: "https://twitter.com",
         icon: FaTwitter,
         label: "Twitter",
+        title: "AG Solutions on X",
         className: "bg-[#1DA1F2] text-white hover:bg-[#0c85d0]",
     },
     {
         href: "https://www.instagram.com/ag_solutions_official/",
         icon: FaInstagram,
         label: "Instagram",
+        title: "AG Solutions on Instagram",
         className: "bg-gradient-to-tr from-[#fdf497] via-[#fd5949] to-[#d6249f] text-white hover:opacity-90",
     },
 ];
+
+function FooterFlipLink({
+    to,
+    title,
+    hoverColor = "hover:text-pink",
+    children,
+}: {
+    to: string;
+    title: string;
+    hoverColor?: string;
+    children: string;
+}) {
+    return (
+        <Link
+            to={to}
+            title={title}
+            className={`group relative inline-flex items-center text-slate-400 ${hoverColor} transition-colors no-underline overflow-hidden py-0.5`}
+        >
+            <span className="relative inline-block overflow-hidden h-[1.35em] leading-[1.35em]">
+                <span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
+                    {children}
+                </span>
+                <span className="absolute inset-0 block transition-transform duration-300 ease-out translate-y-full group-hover:translate-y-0">
+                    {children}
+                </span>
+            </span>
+        </Link>
+    );
+}
+
+function FooterFlipAnchor({
+    href,
+    title,
+    hoverColor = "hover:text-white",
+    children,
+}: {
+    href: string;
+    title: string;
+    hoverColor?: string;
+    children: string;
+}) {
+    return (
+        <a
+            href={href}
+            title={title}
+            className={`group relative inline-flex items-center text-slate-400 ${hoverColor} transition-colors no-underline overflow-hidden py-0.5`}
+        >
+            <span className="relative inline-block overflow-hidden h-[1.35em] leading-[1.35em]">
+                <span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
+                    {children}
+                </span>
+                <span className="absolute inset-0 block transition-transform duration-300 ease-out translate-y-full group-hover:translate-y-0">
+                    {children}
+                </span>
+            </span>
+        </a>
+    );
+}
 
 export function FooterV2() {
     const { openLeadModal } = useLeadModal();
@@ -62,7 +125,7 @@ export function FooterV2() {
             {/* Newsletter Section */}
             <NewsletterSection />
 
-            {/* 10-20px Multi-Color Brand Strip (Full Width) */}
+            {/* Top Multi-Color Brand Accent Bar */}
             <div className="h-3.5 w-full grid grid-cols-4 shadow-xs">
                 <div className="bg-teal h-full w-full" />
                 <div className="bg-pink h-full w-full" />
@@ -74,34 +137,56 @@ export function FooterV2() {
             <footer className="bg-slate-950 text-white pt-12 sm:pt-14 pb-8">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 pb-12 border-b border-slate-800/80">
-                        {/* Col 1: Brand Info & CTA */}
+                        {/* Col 1: Brand CTA & Rocket Card */}
                         <div className="sm:col-span-2 lg:col-span-4">
-                            <Link to="/" className="inline-flex items-center gap-2 sm:gap-2.5 no-underline" aria-label="AG Solutions Home">
-                                <img
-                                    src="/images/logo.png"
-                                    alt="AG Solutions Logo"
-                                    className="h-9 sm:h-[46px] w-auto object-contain"
-                                />
-                                <span className="leading-none text-white">
-                                    <span className="block text-[20px] sm:text-[24px] font-normal tracking-tight">
-                                        <span className="font-black text-white">AG</span>Solutions
-                                    </span>
-                                    <span className="mt-0.5 block text-[8px] sm:text-[9px] font-semibold tracking-wider uppercase text-slate-400">
-                                        Single Click Solution
-                                    </span>
-                                </span>
-                            </Link>
-                            <p className="mt-4 text-sm text-slate-400 leading-relaxed max-w-sm">
-                                AG Solutions delivers scalable, high-performance IT, software, and digital marketing solutions that transform modern businesses.
+                            {/* Rocket Icon Badge */}
+                            <div className="w-13 h-13 rounded-full bg-teal/20 text-teal flex items-center justify-center mb-5 shadow-inner border border-teal/30">
+                                <Rocket className="w-6 h-6 text-teal" />
+                            </div>
+
+                            <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-snug mb-2">
+                                Ready to Start Your Project?
+                            </h3>
+
+                            <p className="text-sm sm:text-base text-slate-400 leading-relaxed max-w-sm mb-6">
+                                Let's work together to build something amazing.
                             </p>
-                            <div className="mt-6">
-                                <button
-                                    type="button"
+
+                            <div className="mb-8">
+                                <FlipButton
+                                    to="#"
                                     onClick={() => openLeadModal("Footer CTA")}
-                                    className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-pink to-pink-hover text-white font-bold text-sm px-6 py-2.5 shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95 cursor-pointer border-none w-full sm:w-auto"
+                                    variant="pink"
+                                    title="Get Free Consultation"
+                                    className="!rounded-full !px-6 !py-3 !text-sm font-bold shadow-md hover:shadow-xl"
                                 >
                                     Get Free Consultation
-                                </button>
+                                </FlipButton>
+                            </div>
+
+                            {/* Social Media Links (Elevated placement) */}
+                            <div className="mt-6">
+                                <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-3">
+                                    Follow Us
+                                </span>
+                                <div className="flex items-center gap-3">
+                                    {socialLinks.map((social) => {
+                                        const Icon = social.icon;
+                                        return (
+                                            <a
+                                                key={social.label}
+                                                href={social.href}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                title={social.title}
+                                                aria-label={social.label}
+                                                className={`flex h-9 w-9 items-center justify-center rounded-full transition-all duration-300 hover:scale-110 shadow-sm ${social.className}`}
+                                            >
+                                                <Icon className="h-4 w-4" />
+                                            </a>
+                                        );
+                                    })}
+                                </div>
                             </div>
                         </div>
 
@@ -113,12 +198,13 @@ export function FooterV2() {
                             <ul className="space-y-2.5 text-sm text-slate-400 list-none p-0 m-0">
                                 {quickLinks.map((link) => (
                                     <li key={link.label}>
-                                        <Link
+                                        <FooterFlipLink
                                             to={link.to}
-                                            className="hover:text-pink transition-colors text-slate-400 no-underline"
+                                            title={link.title}
+                                            hoverColor="hover:text-pink"
                                         >
                                             {link.label}
-                                        </Link>
+                                        </FooterFlipLink>
                                     </li>
                                 ))}
                             </ul>
@@ -132,12 +218,13 @@ export function FooterV2() {
                             <ul className="space-y-2.5 text-sm text-slate-400 list-none p-0 m-0">
                                 {serviceLinks.map((link) => (
                                     <li key={link.label}>
-                                        <Link
+                                        <FooterFlipLink
                                             to={link.to}
-                                            className="hover:text-teal transition-colors text-slate-400 no-underline"
+                                            title={link.title}
+                                            hoverColor="hover:text-teal"
                                         >
                                             {link.label}
-                                        </Link>
+                                        </FooterFlipLink>
                                     </li>
                                 ))}
                             </ul>
@@ -151,12 +238,13 @@ export function FooterV2() {
                             <ul className="space-y-2.5 text-sm text-slate-400 list-none p-0 m-0 mb-6">
                                 {productLinks.map((link) => (
                                     <li key={link.label}>
-                                        <Link
+                                        <FooterFlipLink
                                             to={link.to}
-                                            className="hover:text-yellow transition-colors text-slate-400 no-underline"
+                                            title={link.title}
+                                            hoverColor="hover:text-yellow"
                                         >
                                             {link.label}
-                                        </Link>
+                                        </FooterFlipLink>
                                     </li>
                                 ))}
                             </ul>
@@ -167,15 +255,19 @@ export function FooterV2() {
                             <ul className="space-y-2 text-xs text-slate-400 list-none p-0 m-0">
                                 <li className="flex items-center gap-2">
                                     <Phone className="h-3.5 w-3.5 text-green shrink-0" />
-                                    <span>+91 120 456 2073</span>
+                                    <FooterFlipAnchor href="tel:+918867171060" title="Call AG Solutions">
+                                        +91 8867171060
+                                    </FooterFlipAnchor>
                                 </li>
                                 <li className="flex items-center gap-2">
                                     <Mail className="h-3.5 w-3.5 text-pink shrink-0" />
-                                    <span>info@ag-solutions.in</span>
+                                    <FooterFlipAnchor href="mailto:info@ag-solutions.in" title="Email AG Solutions" hoverColor="hover:text-pink">
+                                        info@ag-solutions.in
+                                    </FooterFlipAnchor>
                                 </li>
                                 <li className="flex items-start gap-2">
                                     <MapPin className="h-3.5 w-3.5 text-teal shrink-0 mt-0.5" />
-                                    <span>B-109, Sector-63, Noida, UP - 201301</span>
+                                    <span>Jayanagara 9th Block, Bengaluru, 560069</span>
                                 </li>
                             </ul>
                         </div>
@@ -183,27 +275,17 @@ export function FooterV2() {
 
                     {/* Bottom Strip */}
                     <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-                        <div>
-                            © {new Date().getFullYear()} AG Solutions. All Rights Reserved.
+                        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-1">
+                            <span>© {new Date().getFullYear()} AG Solutions. All Rights Reserved.</span>
+                            <FooterFlipLink to="/about" title="AG Solutions Privacy Policy" hoverColor="hover:text-slate-300">
+                                Privacy Policy
+                            </FooterFlipLink>
+                            <FooterFlipLink to="/about" title="Terms and Conditions – AG Solutions" hoverColor="hover:text-slate-300">
+                                Terms &amp; Conditions
+                            </FooterFlipLink>
                         </div>
-
-                        {/* Social Links */}
-                        <div className="flex items-center gap-3">
-                            {socialLinks.map((social) => {
-                                const Icon = social.icon;
-                                return (
-                                    <a
-                                        key={social.label}
-                                        href={social.href}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        aria-label={social.label}
-                                        className={`flex h-8 w-8 items-center justify-center rounded-full transition-all duration-300 hover:scale-110 shadow-xs ${social.className}`}
-                                    >
-                                        <Icon className="h-3.5 w-3.5" />
-                                    </a>
-                                );
-                            })}
+                        <div className="text-slate-500">
+                            Single Click Solution for Modern Businesses
                         </div>
                     </div>
                 </div>

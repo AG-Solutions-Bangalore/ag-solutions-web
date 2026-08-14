@@ -1,11 +1,11 @@
 import React from "react";
+import { useLeadModal } from "@/context/LeadModalContext";
 
 export const DocumentEcosystem: React.FC = () => {
-  const handleScrollToCta = () => {
-    const elem = document.getElementById("cta-banner");
-    if (elem) {
-      elem.scrollIntoView({ behavior: "smooth" });
-    }
+  const { openLeadModal } = useLeadModal();
+
+  const handleOpenLeadModal = (context: string) => {
+    openLeadModal(`Export Biz - ${context}`);
   };
 
   return (
@@ -28,7 +28,7 @@ export const DocumentEcosystem: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 reveal">
           {/* Main Hero Doc Module */}
           <div 
-            onClick={handleScrollToCta}
+            onClick={() => handleOpenLeadModal("Export Invoices & Packing Lists")}
             className="sm:col-span-2 sm:row-span-2 bg-gradient-to-br from-[#071B49] via-[#0E2C6B] to-[#1557E8] text-white rounded-[24px] p-6.5 sm:p-9 flex flex-col justify-between shadow-[0_14px_34px_rgba(7,27,73,0.10)] min-h-[290px] cursor-pointer hover:scale-[1.01] transition-transform duration-200"
           >
             <div>
@@ -61,37 +61,9 @@ export const DocumentEcosystem: React.FC = () => {
             </div>
           </div>
 
+          {/* Card 2: PO & Stock Reports */}
           <div 
-            onClick={handleScrollToCta}
-            className="bg-white border border-[#E3E9F6] rounded-[24px] p-6 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(7,27,73,0.10)] hover:border-transparent transition-all duration-200 cursor-pointer"
-          >
-            <div>
-              <span className="w-11 h-11 rounded-xl bg-[#F5F8FC] text-[#1557E8] flex items-center justify-center shrink-0 mb-3">
-                <svg
-                  className="w-5 h-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M6 3h8l4 4v14H6V3z" />
-                  <path d="M14 3v4h4" />
-                  <path d="M16.5 13.5l2 2L13 21H11v-2l5.5-5.5z" />
-                </svg>
-              </span>
-              <h3 className="font-['Plus_Jakarta_Sans',sans-serif] text-[1.02rem] font-bold text-[#071B49] mb-1">
-                Sales Contracts &amp; Costing
-              </h3>
-              <p className="text-[0.87rem] text-[#54628A]">
-                Merge buyer contract terms &amp; cost calculation sheets.
-              </p>
-            </div>
-          </div>
-
-          <div 
-            onClick={handleScrollToCta}
+            onClick={() => handleOpenLeadModal("PO & Stock Reports")}
             className="bg-white border border-[#E3E9F6] rounded-[24px] p-6 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(7,27,73,0.10)] hover:border-transparent transition-all duration-200 cursor-pointer"
           >
             <div>
@@ -119,8 +91,9 @@ export const DocumentEcosystem: React.FC = () => {
             </div>
           </div>
 
+          {/* Card 3: Payments & Claims Outstanding */}
           <div 
-            onClick={handleScrollToCta}
+            onClick={() => handleOpenLeadModal("Payments & Claims Outstanding")}
             className="bg-white border border-[#E3E9F6] rounded-[24px] p-6 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(7,27,73,0.10)] hover:border-transparent transition-all duration-200 cursor-pointer"
           >
             <div>
@@ -150,8 +123,9 @@ export const DocumentEcosystem: React.FC = () => {
             </div>
           </div>
 
+          {/* Card 4: Monthly Tax Returns */}
           <div 
-            onClick={handleScrollToCta}
+            onClick={() => handleOpenLeadModal("Monthly Tax Returns")}
             className="bg-white border border-[#E3E9F6] rounded-[24px] p-6 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(7,27,73,0.10)] hover:border-transparent transition-all duration-200 cursor-pointer"
           >
             <div>
@@ -179,8 +153,9 @@ export const DocumentEcosystem: React.FC = () => {
             </div>
           </div>
 
+          {/* Card 5: Scheme Claims Tracking */}
           <div 
-            onClick={handleScrollToCta}
+            onClick={() => handleOpenLeadModal("Scheme Claims Tracking")}
             className="bg-white border border-[#E3E9F6] rounded-[24px] p-6 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(7,27,73,0.10)] hover:border-transparent transition-all duration-200 cursor-pointer"
           >
             <div>

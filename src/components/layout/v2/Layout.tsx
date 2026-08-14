@@ -14,7 +14,7 @@ interface LayoutV2Props {
 export function LayoutV2({ children, activeNav }: LayoutV2Props) {
     return (
         <LeadModalProvider>
-            <div className="min-h-screen bg-white font-sans text-dark antialiased">
+            <div className="min-h-screen bg-background font-sans text-foreground antialiased transition-colors duration-200">
                 <HeaderV2 activeNav={activeNav} />
                 <main>{children || <Outlet />}</main>
                 <FooterV2 />

@@ -35,6 +35,7 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-section-alt: var(--section-alt);
 
   /* Standard Brand Colors (Single Source of Truth) */
   --color-pink: var(--pink);
@@ -164,14 +165,14 @@
   --font-7xl: 4.5rem;       /* 72px -> controls all 'text-7xl' */
 
   --background: #ffffff;
-  --foreground: #1e293b;
+  --foreground: #0f172a;
 
   --card: #ffffff;
-  --card-foreground: #1e293b;
+  --card-foreground: #0f172a;
   --popover: #ffffff;
-  --popover-foreground: #1e293b;
+  --popover-foreground: #0f172a;
 
-  --primary: #e93568;
+  --primary: #E63164;
   --primary-foreground: #ffffff;
 
   --secondary: #00a8b5;
@@ -188,11 +189,11 @@
 
   --border: #e2e8f0;
   --input: #e2e8f0;
-  --ring: #e93568;
+  --ring: #E63164;
 
   /* Brand Palette */
-  --pink: #e93568;
-  --pink-hover: #d02555;
+  --pink: #E63164;
+  --pink-hover: #c92050;
   --pink-light: #fff0f4;
   --pink-border: #fbcfe8;
 
@@ -218,8 +219,9 @@
   --blue-border: #bae6fd;
 
   --navy: #0c192c;
-  --dark: #1e293b;
+  --dark: #0f172a;
   --light: #f8fafc;
+  --section-alt: #f8fafc;
 }
 
 /* 3. Dark Theme Design Tokens */
@@ -237,9 +239,16 @@
   --border: #1e293b;
   --input: #1e293b;
 
-  --pink-light: rgba(233, 53, 104, 0.15);
-  --pink-border: rgba(233, 53, 104, 0.35);
+  --primary: #E63164;
+  --ring: #E63164;
+  --pink: #E63164;
+  --pink-hover: #ff477e;
+  --pink-light: rgba(230, 49, 100, 0.15);
+  --pink-border: rgba(230, 49, 100, 0.35);
 
+  --teal: #00a8b5;
+  --teal-hover: #00c9db;
+  --teal-dark: #0d9488;
   --teal-light: rgba(0, 168, 181, 0.15);
   --teal-border: rgba(0, 168, 181, 0.35);
 
@@ -254,7 +263,8 @@
 
   --navy: #030712;
   --dark: #f8fafc;
-  --light: #1e293b;
+  --light: #111827;
+  --section-alt: #0c1220;
 }
 
 /* 4. Apply Base Styles */

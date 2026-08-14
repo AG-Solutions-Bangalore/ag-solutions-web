@@ -3,7 +3,7 @@
  * Keeps sensitive credentials out of code and configures message templates.
  */
 export const WHATSAPP_CONFIG = {
-  phoneNumber: "+919876543210", // Default official business phone or replace via VITE_WHATSAPP_NUMBER
+  phoneNumber: "+91 8867171060", // Official business phone
   defaultMessage: "Hello AG Solutions! I am interested in your digital and IT solutions. Can you please share more details?",
   generateUrl: (pageName?: string) => {
     const rawNumber = (import.meta.env.VITE_WHATSAPP_NUMBER || WHATSAPP_CONFIG.phoneNumber).replace(/[^0-9]/g, "");

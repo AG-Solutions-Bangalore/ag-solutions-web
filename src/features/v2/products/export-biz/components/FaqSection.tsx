@@ -36,13 +36,13 @@ export const FaqSection: React.FC = () => {
   };
 
   return (
-    <section className="bg-[#F5F8FC] py-16 md:py-24 lg:py-28" id="faq">
+    <section className="bg-section-alt py-16 md:py-24 lg:py-28 border-t border-border transition-colors duration-200" id="faq">
       <div className="max-w-[1180px] mx-auto px-5 sm:px-8 md:px-12">
         <div className="max-w-[640px] mx-auto text-center mb-13 reveal">
-          <span className="inline-flex items-center gap-2 text-[0.78rem] font-bold tracking-[0.09em] uppercase text-[#1557E8] bg-[#1557E8]/8 px-4 py-1.75 rounded-full mb-4.5">
+          <span className="inline-flex items-center gap-2 text-[0.78rem] font-bold tracking-[0.09em] uppercase text-teal bg-teal-light/50 px-4 py-1.75 rounded-full mb-4.5 border border-teal-border/40">
             FAQ
           </span>
-          <h2 className="font-['Plus_Jakarta_Sans',sans-serif] font-bold text-[#071B49] text-[1.9rem] sm:text-[2.3rem] lg:text-[2.7rem] leading-[1.08]">
+          <h2 className="font-['Plus_Jakarta_Sans',sans-serif] font-bold text-dark text-[1.9rem] sm:text-[2.3rem] lg:text-[2.7rem] leading-[1.08]">
             Common Questions.
           </h2>
         </div>
@@ -53,17 +53,17 @@ export const FaqSection: React.FC = () => {
             return (
               <div
                 key={index}
-                className="bg-white border border-[#E3E9F6] rounded-2xl mb-3.5 overflow-hidden transition-all"
+                className="bg-card border border-border rounded-2xl mb-3.5 overflow-hidden transition-all shadow-2xs"
               >
                 <h3>
                   <button
-                    className="w-full flex items-center justify-between gap-4 p-5 sm:px-6 font-['Plus_Jakarta_Sans',sans-serif] font-bold text-[1.02rem] text-[#071B49] text-left cursor-pointer"
+                    className="w-full flex items-center justify-between gap-4 p-5 sm:px-6 font-['Plus_Jakarta_Sans',sans-serif] font-bold text-[1.02rem] text-dark text-left cursor-pointer"
                     aria-expanded={isOpen}
                     onClick={() => toggleFaq(index)}
                   >
                     {item.question}
                     <svg
-                      className={`w-5 h-5 shrink-0 text-[#1557E8] transition-transform duration-250 ${
+                      className={`w-5 h-5 shrink-0 text-teal transition-transform duration-250 ${
                         isOpen ? "rotate-180" : ""
                       }`}
                       viewBox="0 0 24 24"
@@ -82,7 +82,7 @@ export const FaqSection: React.FC = () => {
                     isOpen ? "max-h-[300px]" : "max-h-0"
                   }`}
                 >
-                  <p className="px-5 sm:px-6 pb-5.5 text-[#54628A] text-[0.96rem] max-w-[640px] leading-relaxed">
+                  <p className="px-5 sm:px-6 pb-5.5 text-muted text-[0.96rem] max-w-[640px] leading-relaxed">
                     {item.answer}
                   </p>
                 </div>

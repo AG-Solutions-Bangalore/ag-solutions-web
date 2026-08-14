@@ -129,6 +129,7 @@ export default function ContactPage() {
                     <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Call Us</h3>
                     <a
                       href="tel:+918867171060"
+                      title="Call AG Solutions"
                       className="text-sm font-bold text-[#1A2035] hover:text-[#00A8B5] transition-colors"
                     >
                       +91 8867171060
@@ -145,6 +146,7 @@ export default function ContactPage() {
                     <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Email Us</h3>
                     <a
                       href="mailto:info@ag-solutions.in"
+                      title="Email AG Solutions"
                       className="text-sm font-bold text-[#1A2035] hover:text-[#E91E63] transition-colors"
                     >
                       info@ag-solutions.in
@@ -449,7 +451,7 @@ export default function ContactPage() {
           <div className="relative overflow-hidden rounded-3xl bg-white p-3 shadow-sm border border-gray-100">
             <div className="relative h-[380px] w-full overflow-hidden rounded-2xl">
               <iframe
-                title="AG Solutions Location - Jayanagara 9th Block, Bengaluru"
+                title="AG Solutions Location – Jayanagara, Bengaluru"
                 src={mapEmbedUrl}
                 className="h-full w-full border-0 grayscale-[20%] contrast-[105%]"
                 loading="lazy"
@@ -467,6 +469,7 @@ export default function ContactPage() {
                   href={googleMapsDirectionsUrl}
                   target="_blank"
                   rel="noreferrer"
+                  title="AG Solutions Location – Jayanagara, Bengaluru"
                   className="mt-4 inline-flex items-center gap-2 rounded-lg border border-[#00A8B5] px-4 py-2 text-xs font-bold text-[#00A8B5] transition-all duration-300 hover:bg-[#00A8B5] hover:text-white"
                 >
                   <span>Get Directions</span>

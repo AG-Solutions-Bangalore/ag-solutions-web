@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function WhatsAppWidget() {
   const [open, setOpen] = useState(true);
 
-  const phone = "8867171060";
+  const phone = "918867171060";
   const message = encodeURIComponent(
     "Hi AG Solutions! I'm interested in your services."
   );

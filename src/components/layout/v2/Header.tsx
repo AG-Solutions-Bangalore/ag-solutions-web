@@ -2,6 +2,9 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useLeadModal } from "@/context/LeadModalContext";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { AGSLogo } from "@/components/brand/AGSLogo";
+import { FlipButton } from "@/components/ui/FlipButton";
 
 interface HeaderV2Props {
     activeNav?: "home" | "about" | "services" | "products" | "blog" | "contact";
@@ -66,33 +69,27 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                             : "home");
 
     return (
-        <header className="sticky top-0 z-50 bg-white/95 border-b border-slate-100 shadow-2xs">
+        <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-2xs transition-colors duration-200">
             <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
                 <div className="flex h-16 sm:h-20 items-center justify-between">
                     {/* Brand Logo */}
-                    <Link to="/" className="flex items-center gap-2 sm:gap-2.5 no-underline shrink-0" aria-label="AG Solutions Home">
-                        <img
-                            src="/images/logo.png"
-                            alt="AG Solutions Logo"
-                            className="h-9 sm:h-[46px] w-auto object-contain transition-transform duration-300 hover:scale-105"
-                        />
-                        <span className="leading-none text-dark">
-                            <span className="block text-[20px] sm:text-[24px] font-normal tracking-tight">
-                                <span className="font-black text-dark">AG</span>Solutions
-                            </span>
-                            <span className="mt-0.5 block text-[8px] sm:text-[9px] font-semibold tracking-wider uppercase text-muted">
-                                Single Click Solution
-                            </span>
-                        </span>
+                    <Link
+                        to="/"
+                        title="AG Solutions – Web & Mobile App Development"
+                        className="flex items-center no-underline shrink-0 transition-transform duration-300 hover:scale-105"
+                        aria-label="AG Solutions Home"
+                    >
+                        <AGSLogo className="h-8 sm:h-10 md:h-11 w-auto" />
                     </Link>
 
                     {/* Desktop Navigation */}
                     <nav className="hidden md:flex items-center gap-6 lg:gap-8">
                         <Link
                             to="/"
+                            title="AG Solutions – Web & Mobile App Development"
                             className={`relative text-sm font-semibold transition-colors no-underline py-1 ${currentTab === "home"
                                 ? "text-pink"
-                                : "text-dark hover:text-pink"
+                                : "text-foreground hover:text-pink"
                                 }`}
                         >
                             Home
@@ -103,9 +100,10 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
 
                         <Link
                             to="/about"
+                            title="About AG Solutions"
                             className={`relative text-sm font-semibold transition-colors no-underline py-1 ${currentTab === "about"
                                 ? "text-pink"
-                                : "text-dark hover:text-pink"
+                                : "text-foreground hover:text-pink"
                                 }`}
                         >
                             About Us
@@ -118,11 +116,12 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                         <div className="relative group">
                             <button
                                 type="button"
+                                title="AG Solutions Services"
                                 onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
                                 onMouseEnter={() => setServicesDropdownOpen(true)}
                                 className={`flex items-center gap-1 text-sm font-semibold transition-colors bg-transparent border-none cursor-pointer py-1 ${currentTab === "services"
                                     ? "text-pink"
-                                    : "text-dark hover:text-pink"
+                                    : "text-foreground hover:text-pink"
                                     }`}
                             >
                                 <span>Services</span>
@@ -133,25 +132,28 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                                 onMouseLeave={() => setServicesDropdownOpen(false)}
                                 className={`absolute left-0 top-full ${servicesDropdownOpen ? "block" : "hidden group-hover:block"} w-60 pt-2 z-50`}
                             >
-                                <div className="rounded-2xl bg-white p-2 shadow-xl border border-slate-100">
+                                <div className="rounded-2xl bg-card p-2 shadow-xl border border-border">
                                     <Link
                                         to="/services/web-development"
+                                        title="Web Development Services – AG Solutions"
                                         onClick={() => setServicesDropdownOpen(false)}
-                                        className="block px-4 py-2.5 text-sm font-medium text-dark hover:bg-pink-light hover:text-pink rounded-xl transition-colors no-underline"
+                                        className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-pink-light hover:text-pink rounded-xl transition-colors no-underline"
                                     >
                                         Web Development
                                     </Link>
                                     <Link
                                         to="/services/mobile-app"
+                                        title="Mobile App Development Services – AG Solutions"
                                         onClick={() => setServicesDropdownOpen(false)}
-                                        className="block px-4 py-2.5 text-sm font-medium text-dark hover:bg-teal-light hover:text-teal rounded-xl transition-colors no-underline"
+                                        className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-teal-light hover:text-teal rounded-xl transition-colors no-underline"
                                     >
                                         Mobile App Development
                                     </Link>
                                     <Link
                                         to="/services/digital-marketing"
+                                        title="Digital Marketing Services – AG Solutions"
                                         onClick={() => setServicesDropdownOpen(false)}
-                                        className="block px-4 py-2.5 text-sm font-medium text-dark hover:bg-green-light hover:text-green rounded-xl transition-colors no-underline"
+                                        className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-green-light hover:text-green rounded-xl transition-colors no-underline"
                                     >
                                         Digital Marketing
                                     </Link>
@@ -163,11 +165,12 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                         <div className="relative group">
                             <button
                                 type="button"
+                                title="AG Solutions Products"
                                 onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
                                 onMouseEnter={() => setProductsDropdownOpen(true)}
                                 className={`flex items-center gap-1 text-sm font-semibold transition-colors bg-transparent border-none cursor-pointer py-1 ${currentTab === "products"
                                     ? "text-pink"
-                                    : "text-dark hover:text-pink"
+                                    : "text-foreground hover:text-pink"
                                     }`}
                             >
                                 <span>Products</span>
@@ -176,27 +179,30 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
 
                             <div 
                                 onMouseLeave={() => setProductsDropdownOpen(false)}
-                                className={`absolute left-0 top-full ${productsDropdownOpen ? "block" : "hidden group-hover:block"} w-60 pt-2 z-50`}
+                                className={`absolute left-0 top-full ${productsDropdownOpen ? "block" : "hidden group-hover:block"} w-64 pt-2 z-50`}
                             >
-                                <div className="rounded-2xl bg-white p-2 shadow-xl border border-slate-100">
+                                <div className="rounded-2xl bg-card p-2 shadow-xl border border-border">
                                     <Link
                                         to="/products/export-biz"
+                                        title="Export Biz – Export Documentation Software"
                                         onClick={() => setProductsDropdownOpen(false)}
-                                        className="block px-4 py-2.5 text-sm font-medium text-dark hover:bg-pink-light hover:text-pink rounded-xl transition-colors no-underline"
+                                        className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-pink-light hover:text-pink rounded-xl transition-colors no-underline"
                                     >
-                                        Export Biz
+                                        Export Biz Software
                                     </Link>
                                     <Link
                                         to="/products/ss-marketing"
+                                        title="SS Marketing – AG Solutions"
                                         onClick={() => setProductsDropdownOpen(false)}
-                                        className="block px-4 py-2.5 text-sm font-medium text-dark hover:bg-teal-light hover:text-teal rounded-xl transition-colors no-underline"
+                                        className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-teal-light hover:text-teal rounded-xl transition-colors no-underline"
                                     >
                                         SS Marketing
                                     </Link>
                                     <Link
                                         to="/products/grow-together"
+                                        title="Grow Together – AG Solutions"
                                         onClick={() => setProductsDropdownOpen(false)}
-                                        className="block px-4 py-2.5 text-sm font-medium text-dark hover:bg-yellow-light hover:text-yellow rounded-xl transition-colors no-underline"
+                                        className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-yellow-light hover:text-yellow rounded-xl transition-colors no-underline"
                                     >
                                         Grow Together
                                     </Link>
@@ -207,9 +213,10 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                         {/* Blog Navigation Link */}
                         <Link
                             to="/blogs"
+                            title="AG Solutions Blogs – Technology & Digital Marketing"
                             className={`relative text-sm font-semibold transition-colors no-underline py-1 ${currentTab === "blog"
                                 ? "text-pink"
-                                : "text-dark hover:text-pink"
+                                : "text-foreground hover:text-pink"
                                 }`}
                         >
                             Blog
@@ -220,9 +227,10 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
 
                         <Link
                             to="/contacts"
+                            title="Contact AG Solutions"
                             className={`relative text-sm font-semibold transition-colors no-underline py-1 ${currentTab === "contact"
                                 ? "text-pink"
-                                : "text-dark hover:text-pink"
+                                : "text-foreground hover:text-pink"
                                 }`}
                         >
                             Contact Us
@@ -232,26 +240,32 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                         </Link>
                     </nav>
 
-                    {/* Right CTA Button */}
-                    <div className="hidden md:flex items-center">
-                        <button
-                            type="button"
+                    {/* Right CTA Button & Theme Toggle */}
+                    <div className="hidden md:flex items-center gap-3">
+                        <ThemeToggle />
+                        <FlipButton
+                            to="#"
                             onClick={() => openLeadModal()}
-                            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-pink to-pink-hover text-white font-bold text-sm px-6 py-2.5 shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95 cursor-pointer border-none"
+                            variant="pink"
+                            title="Get a Quote"
+                            className="!rounded-full !px-5 !py-2.5 !text-sm font-bold shadow-md hover:shadow-lg"
                         >
                             Get a Quote
-                        </button>
+                        </FlipButton>
                     </div>
 
-                    {/* Mobile Menu Toggle */}
-                    <button
-                        type="button"
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        className="md:hidden p-2.5 -mr-1 text-dark hover:text-pink bg-transparent border-none cursor-pointer rounded-lg active:bg-slate-100 transition-colors"
-                        aria-label="Toggle Navigation"
-                    >
-                        {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-                    </button>
+                    {/* Mobile Controls (Theme Toggle + Menu Button) */}
+                    <div className="md:hidden flex items-center gap-2">
+                        <ThemeToggle />
+                        <button
+                            type="button"
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            className="p-2 text-foreground hover:text-pink bg-transparent border-none cursor-pointer rounded-lg active:bg-muted/10 transition-colors"
+                            aria-label="Toggle Navigation"
+                        >
+                            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -260,19 +274,20 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                 <>
                     {/* Semi-transparent Backdrop */}
                     <div
-                        className="md:hidden fixed inset-0 top-16 sm:top-20 bg-slate-950/40 z-40 backdrop-blur-xs"
+                        className="md:hidden fixed inset-0 top-16 sm:top-20 bg-slate-950/50 z-40 backdrop-blur-xs"
                         onClick={() => setMobileMenuOpen(false)}
                         aria-hidden="true"
                     />
 
                     {/* Drawer Content */}
-                    <div className="md:hidden absolute left-0 top-full w-full bg-white z-50 border-t border-slate-100 shadow-2xl max-h-[calc(100dvh-4rem)] sm:max-h-[calc(100dvh-5rem)] overflow-y-auto px-4 pt-3 pb-8 space-y-2">
+                    <div className="md:hidden absolute left-0 top-full w-full bg-card z-50 border-t border-border shadow-2xl max-h-[calc(100dvh-4rem)] sm:max-h-[calc(100dvh-5rem)] overflow-y-auto px-4 pt-3 pb-8 space-y-2">
                         <Link
                             to="/"
+                            title="AG Solutions – Web & Mobile App Development"
                             onClick={() => setMobileMenuOpen(false)}
                             className={`block px-4 py-3 text-base font-bold rounded-xl no-underline transition-colors ${currentTab === "home"
                                 ? "text-pink bg-pink-light"
-                                : "text-dark hover:text-pink hover:bg-slate-50"
+                                : "text-foreground hover:text-pink hover:bg-muted/10"
                                 }`}
                         >
                             Home
@@ -280,21 +295,23 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
 
                         <Link
                             to="/about"
+                            title="About AG Solutions"
                             onClick={() => setMobileMenuOpen(false)}
                             className={`block px-4 py-3 text-base font-semibold rounded-xl no-underline transition-colors ${currentTab === "about"
                                 ? "text-pink bg-pink-light"
-                                : "text-dark hover:text-pink hover:bg-slate-50"
+                                : "text-foreground hover:text-pink hover:bg-muted/10"
                                 }`}
                         >
                             About Us
                         </Link>
 
                         {/* Services Accordion on Mobile */}
-                        <div className="rounded-xl border border-slate-100 overflow-hidden bg-white">
+                        <div className="rounded-xl border border-border overflow-hidden bg-card">
                             <button
                                 type="button"
+                                title="AG Solutions Services"
                                 onClick={() => setMobileServicesOpen((prev) => !prev)}
-                                className={`w-full flex items-center justify-between px-4 py-3 text-base font-semibold transition-colors bg-transparent border-none cursor-pointer ${isServicesPath ? "text-pink bg-pink-light/40" : "text-dark hover:bg-slate-50"
+                                className={`w-full flex items-center justify-between px-4 py-3 text-base font-semibold transition-colors bg-transparent border-none cursor-pointer ${isServicesPath ? "text-pink bg-pink-light/40" : "text-foreground hover:bg-muted/10"
                                     }`}
                             >
                                 <span>Services</span>
@@ -304,25 +321,28 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                                 />
                             </button>
                             {mobileServicesOpen && (
-                                <div className="bg-slate-50/80 px-3 py-2 space-y-1 border-t border-slate-100">
+                                <div className="bg-muted/5 px-3 py-2 space-y-1 border-t border-border">
                                     <Link
                                         to="/services/web-development"
+                                        title="Web Development Services – AG Solutions"
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className="block px-3 py-2.5 text-sm font-medium text-dark hover:text-pink hover:bg-white rounded-lg no-underline transition-colors"
+                                        className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-pink hover:bg-card rounded-lg no-underline transition-colors"
                                     >
                                         Web Development
                                     </Link>
                                     <Link
                                         to="/services/mobile-app"
+                                        title="Mobile App Development Services – AG Solutions"
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className="block px-3 py-2.5 text-sm font-medium text-dark hover:text-teal hover:bg-white rounded-lg no-underline transition-colors"
+                                        className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-teal hover:bg-card rounded-lg no-underline transition-colors"
                                     >
                                         Mobile App Development
                                     </Link>
                                     <Link
                                         to="/services/digital-marketing"
+                                        title="Digital Marketing Services – AG Solutions"
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className="block px-3 py-2.5 text-sm font-medium text-dark hover:text-green hover:bg-white rounded-lg no-underline transition-colors"
+                                        className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-green hover:bg-card rounded-lg no-underline transition-colors"
                                     >
                                         Digital Marketing
                                     </Link>
@@ -331,11 +351,12 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                         </div>
 
                         {/* Products Accordion on Mobile */}
-                        <div className="rounded-xl border border-slate-100 overflow-hidden bg-white">
+                        <div className="rounded-xl border border-border overflow-hidden bg-card">
                             <button
                                 type="button"
+                                title="AG Solutions Products"
                                 onClick={() => setMobileProductsOpen((prev) => !prev)}
-                                className={`w-full flex items-center justify-between px-4 py-3 text-base font-semibold transition-colors bg-transparent border-none cursor-pointer ${isProductsPath ? "text-pink bg-pink-light/40" : "text-dark hover:bg-slate-50"
+                                className={`w-full flex items-center justify-between px-4 py-3 text-base font-semibold transition-colors bg-transparent border-none cursor-pointer ${isProductsPath ? "text-pink bg-pink-light/40" : "text-foreground hover:bg-muted/10"
                                     }`}
                             >
                                 <span>Products</span>
@@ -345,25 +366,28 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                                 />
                             </button>
                             {mobileProductsOpen && (
-                                <div className="bg-slate-50/80 px-3 py-2 space-y-1 border-t border-slate-100">
+                                <div className="bg-muted/5 px-3 py-2 space-y-1 border-t border-border">
                                     <Link
                                         to="/products/export-biz"
+                                        title="Export Biz – Export Documentation Software"
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className="block px-3 py-2.5 text-sm font-medium text-dark hover:text-pink hover:bg-white rounded-lg no-underline transition-colors"
+                                        className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-pink hover:bg-card rounded-lg no-underline transition-colors"
                                     >
                                         Export Biz
                                     </Link>
                                     <Link
                                         to="/products/ss-marketing"
+                                        title="SS Marketing – AG Solutions"
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className="block px-3 py-2.5 text-sm font-medium text-dark hover:text-teal hover:bg-white rounded-lg no-underline transition-colors"
+                                        className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-teal hover:bg-card rounded-lg no-underline transition-colors"
                                     >
                                         SS Marketing
                                     </Link>
                                     <Link
                                         to="/products/grow-together"
+                                        title="Grow Together – AG Solutions"
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className="block px-3 py-2.5 text-sm font-medium text-dark hover:text-yellow hover:bg-white rounded-lg no-underline transition-colors"
+                                        className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-yellow hover:bg-card rounded-lg no-underline transition-colors"
                                     >
                                         Grow Together
                                     </Link>
@@ -373,10 +397,11 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
 
                         <Link
                             to="/blogs"
+                            title="AG Solutions Blogs – Technology & Digital Marketing"
                             onClick={() => setMobileMenuOpen(false)}
                             className={`block px-4 py-3 text-base font-semibold rounded-xl no-underline transition-colors ${currentTab === "blog"
                                 ? "text-pink bg-pink-light"
-                                : "text-dark hover:text-pink hover:bg-slate-50"
+                                : "text-foreground hover:text-pink hover:bg-muted/10"
                                 }`}
                         >
                             Blog
@@ -384,26 +409,29 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
 
                         <Link
                             to="/contacts"
+                            title="Contact AG Solutions"
                             onClick={() => setMobileMenuOpen(false)}
                             className={`block px-4 py-3 text-base font-semibold rounded-xl no-underline transition-colors ${currentTab === "contact"
                                 ? "text-pink bg-pink-light"
-                                : "text-dark hover:text-pink hover:bg-slate-50"
+                                : "text-foreground hover:text-pink hover:bg-muted/10"
                                 }`}
                         >
                             Contact Us
                         </Link>
 
                         <div className="pt-3 px-1">
-                            <button
-                                type="button"
+                            <FlipButton
+                                to="#"
                                 onClick={() => {
                                     setMobileMenuOpen(false);
                                     openLeadModal();
                                 }}
-                                className="w-full inline-flex items-center justify-center rounded-full bg-gradient-to-r from-pink to-pink-hover text-white font-bold text-base py-3.5 shadow-md active:scale-98 transition-all cursor-pointer border-none"
+                                variant="pink"
+                                title="Get a Quote"
+                                className="w-full !rounded-full !py-3.5 !text-base font-bold shadow-md justify-center"
                             >
                                 Get a Quote
-                            </button>
+                            </FlipButton>
                         </div>
                     </div>
                 </>

@@ -15,7 +15,7 @@ function Header({ activeNav = "home" }: HeaderProps) {
         <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-2xs">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-20 items-center justify-between">
-                    <Link to="/" className="flex items-center gap-3 no-underline">
+                    <Link to="/" title="AG Solutions – Web & Mobile App Development" className="flex items-center gap-3 no-underline">
                         <div className="flex items-center text-3xl font-black tracking-tighter leading-none">
                             <span className="text-ag-teal">A</span>
                             <span className="text-ag-pink">G</span>
@@ -33,6 +33,7 @@ function Header({ activeNav = "home" }: HeaderProps) {
                     <nav className="hidden md:flex items-center gap-8">
                         <Link
                             to="/"
+                            title="AG Solutions – Web & Mobile App Development"
                             className={`relative text-sm font-bold transition-colors no-underline py-1 ${
                                 activeNav === "home"
                                     ? "text-ag-pink"
@@ -47,6 +48,7 @@ function Header({ activeNav = "home" }: HeaderProps) {
 
                         <Link
                             to="/about"
+                            title="About AG Solutions"
                             className={`relative text-sm font-bold transition-colors no-underline py-1 ${
                                 activeNav === "about"
                                     ? "text-ag-pink"
@@ -61,6 +63,8 @@ function Header({ activeNav = "home" }: HeaderProps) {
 
                         <div className="relative group">
                             <button
+                                type="button"
+                                title="AG Solutions Services"
                                 onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
                                 onMouseEnter={() => setServicesDropdownOpen(true)}
                                 className="flex items-center gap-1 text-sm font-semibold text-ag-dark hover:text-ag-pink transition-colors bg-transparent border-none cursor-pointer py-1"
@@ -73,24 +77,28 @@ function Header({ activeNav = "home" }: HeaderProps) {
                                 <div className="rounded-2xl bg-white p-2 shadow-xl border border-slate-100">
                                     <Link
                                         to="/services/web-development"
+                                        title="Web Development Services – AG Solutions"
                                         className="block px-4 py-2.5 text-sm font-medium text-ag-dark hover:bg-ag-pink-light hover:text-ag-pink rounded-xl transition-colors no-underline"
                                     >
                                         Web Development
                                     </Link>
                                     <Link
-                                        to="/services/mobile-app-development"
+                                        to="/services/mobile-app"
+                                        title="Mobile App Development Services – AG Solutions"
                                         className="block px-4 py-2.5 text-sm font-medium text-ag-dark hover:bg-ag-teal-light hover:text-ag-teal rounded-xl transition-colors no-underline"
                                     >
                                         Mobile App Development
                                     </Link>
                                     <Link
                                         to="/desktop-applications"
+                                        title="Desktop Application Development"
                                         className="block px-4 py-2.5 text-sm font-medium text-ag-dark hover:bg-ag-yellow-light hover:text-ag-yellow rounded-xl transition-colors no-underline"
                                     >
                                         Desktop Applications
                                     </Link>
                                     <Link
                                         to="/services/digital-marketing"
+                                        title="Digital Marketing Services – AG Solutions"
                                         className="block px-4 py-2.5 text-sm font-medium text-ag-dark hover:bg-ag-green-light hover:text-ag-green rounded-xl transition-colors no-underline"
                                     >
                                         Digital Marketing
@@ -101,6 +109,7 @@ function Header({ activeNav = "home" }: HeaderProps) {
 
                         <Link
                             to="/about"
+                            title="About AG Solutions"
                             className="text-sm font-semibold text-ag-dark hover:text-ag-pink transition-colors no-underline"
                         >
                             Career
@@ -108,6 +117,7 @@ function Header({ activeNav = "home" }: HeaderProps) {
 
                         <Link
                             to="/contacts"
+                            title="Contact AG Solutions"
                             className="text-sm font-semibold text-ag-dark hover:text-ag-pink transition-colors no-underline"
                         >
                             Contact Us
@@ -115,12 +125,13 @@ function Header({ activeNav = "home" }: HeaderProps) {
                     </nav>
 
                     <div className="hidden md:flex items-center">
-                        <FlipButton to="/contacts" variant="pink">
+                        <FlipButton to="/contacts" title="Contact AG Solutions" variant="pink">
                             Get a Quote
                         </FlipButton>
                     </div>
 
                     <button
+                        type="button"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         className="md:hidden p-2 text-ag-dark hover:text-ag-pink bg-transparent border-none cursor-pointer"
                         aria-label="Toggle Navigation"
@@ -134,6 +145,7 @@ function Header({ activeNav = "home" }: HeaderProps) {
                 <div className="md:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-6 space-y-3">
                     <Link
                         to="/"
+                        title="AG Solutions – Web & Mobile App Development"
                         onClick={() => setMobileMenuOpen(false)}
                         className="block px-3 py-2 text-base font-bold text-ag-pink bg-ag-pink-light rounded-lg no-underline"
                     >
@@ -141,6 +153,7 @@ function Header({ activeNav = "home" }: HeaderProps) {
                     </Link>
                     <Link
                         to="/about"
+                        title="About AG Solutions"
                         onClick={() => setMobileMenuOpen(false)}
                         className="block px-3 py-2 text-base font-semibold text-ag-dark hover:text-ag-pink no-underline"
                     >
@@ -148,6 +161,7 @@ function Header({ activeNav = "home" }: HeaderProps) {
                     </Link>
                     <Link
                         to="/services/web-development"
+                        title="Web Development Services – AG Solutions"
                         onClick={() => setMobileMenuOpen(false)}
                         className="block px-3 py-2 text-base font-semibold text-ag-dark hover:text-ag-pink no-underline"
                     >
@@ -155,6 +169,7 @@ function Header({ activeNav = "home" }: HeaderProps) {
                     </Link>
                     <Link
                         to="/about"
+                        title="About AG Solutions"
                         onClick={() => setMobileMenuOpen(false)}
                         className="block px-3 py-2 text-base font-semibold text-ag-dark hover:text-ag-pink no-underline"
                     >
@@ -162,6 +177,7 @@ function Header({ activeNav = "home" }: HeaderProps) {
                     </Link>
                     <Link
                         to="/contacts"
+                        title="Contact AG Solutions"
                         onClick={() => setMobileMenuOpen(false)}
                         className="block px-3 py-2 text-base font-semibold text-ag-dark hover:text-ag-pink no-underline"
                     >
@@ -170,6 +186,7 @@ function Header({ activeNav = "home" }: HeaderProps) {
                     <div className="pt-2">
                         <FlipButton
                             to="/contacts"
+                            title="Contact AG Solutions"
                             variant="pink"
                             onClick={() => setMobileMenuOpen(false)}
                             className="w-full justify-center py-3 text-base"

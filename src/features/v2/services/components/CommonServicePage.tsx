@@ -60,6 +60,8 @@ export interface CommonServicePageProps {
     onHeroCtaClick?: () => void;
     heroFeatures?: HeroFeature[];
     heroImage?: string;
+    heroImageAlt?: string;
+    heroImageTitle?: string;
 
     // Offerings Props
     offerTag?: string;
@@ -102,6 +104,8 @@ export function CommonServicePage({
     onHeroCtaClick,
     heroFeatures = [],
     heroImage = "/images/laptop.png",
+    heroImageAlt,
+    heroImageTitle,
 
     // Offerings
     offerTag = "OUR SERVICES",
@@ -142,12 +146,12 @@ export function CommonServicePage({
                 />
             )}
 
-            <div className="bg-white font-sans text-accent-dark antialiased">
+            <div className="bg-background font-sans text-foreground antialiased transition-colors duration-200">
 
                 {/* ==========================================
                     1. HERO SECTION
                 ========================================== */}
-                <section className="relative overflow-hidden bg-gradient-to-b from-slate-50/60 via-white to-white py-10 sm:py-12 md:py-18">
+                <section className="relative overflow-hidden bg-background py-10 sm:py-12 md:py-18">
                     {/* Ambient Background Glows */}
                     <div className="pointer-events-none absolute right-0 top-0 -z-10 h-[300px] sm:h-[500px] w-[300px] sm:w-[500px] rounded-full bg-pink-light/60 blur-3xl animate-pulse" />
                     <div className="pointer-events-none absolute left-1/3 top-20 -z-10 h-[250px] sm:h-[400px] w-[250px] sm:w-[400px] rounded-full bg-teal-light/70 blur-3xl" />
@@ -160,7 +164,7 @@ export function CommonServicePage({
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.6, ease: "easeOut" }}
                             >
-                                <div className="inline-flex items-center gap-2 rounded-full bg-slate-100/90 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-teal shadow-2xs backdrop-blur-xs">
+                                <div className="inline-flex items-center gap-2 rounded-full bg-card border border-border px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-teal shadow-2xs backdrop-blur-xs">
                                     <span className="h-2 w-2 rounded-full bg-teal shrink-0" />
                                     <span className="truncate">{heroBadge}</span>
                                 </div>
@@ -228,7 +232,8 @@ export function CommonServicePage({
                                     {/* Main Hero Image */}
                                     <img
                                         src={heroImage}
-                                        alt={heroTitle}
+                                        alt={heroImageAlt || heroTitle}
+                                        title={heroImageTitle || heroTitle}
                                         className="relative z-10 w-full object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-[1.02]"
                                     />
                                 </div>
@@ -241,7 +246,7 @@ export function CommonServicePage({
                     2. WHAT WE OFFER (SERVICES GRID WITH EXPORTBIZ CARD HOVER & ACCENT LINE)
                 ========================================== */}
                 {offerItems.length > 0 && (
-                    <section className="bg-white py-12 sm:py-16 md:py-24 border-t border-slate-100">
+                    <section className="bg-section-alt py-12 sm:py-16 md:py-24 border-t border-border">
                         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                             {/* Section Header */}
                             <motion.div
@@ -251,18 +256,18 @@ export function CommonServicePage({
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5 }}
                             >
-                                <div className="text-xs font-bold uppercase tracking-widest text-accent-pink">
+                                <div className="text-xs font-bold uppercase tracking-widest text-pink">
                                     {offerTag}
                                 </div>
-                                <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-accent-dark sm:text-3xl md:text-4xl">
+                                <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-dark sm:text-3xl md:text-4xl">
                                     {offerTitle}
                                 </h2>
                                 {/* 4-Color Pill Underline */}
                                 <div className="mt-3 flex items-center justify-center gap-1">
-                                    <span className="h-1 w-6 rounded-full bg-accent-teal" />
-                                    <span className="h-1 w-6 rounded-full bg-accent-pink" />
-                                    <span className="h-1 w-6 rounded-full bg-accent-yellow" />
-                                    <span className="h-1 w-6 rounded-full bg-accent-green" />
+                                    <span className="h-1 w-6 rounded-full bg-teal" />
+                                    <span className="h-1 w-6 rounded-full bg-pink" />
+                                    <span className="h-1 w-6 rounded-full bg-yellow" />
+                                    <span className="h-1 w-6 rounded-full bg-green" />
                                 </div>
                             </motion.div>
 
@@ -277,7 +282,7 @@ export function CommonServicePage({
                                             whileInView={{ opacity: 1, y: 0 }}
                                             viewport={{ once: true }}
                                             transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                            className="group relative overflow-hidden flex flex-col items-center justify-between rounded-2xl border border-slate-100 bg-white p-6 sm:p-7 pb-8 sm:pb-9 text-center shadow-2xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-slate-200"
+                                            className="group relative overflow-hidden flex flex-col items-center justify-between rounded-2xl border border-border bg-card p-6 sm:p-7 pb-8 sm:pb-9 text-center shadow-2xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-pink/30"
                                         >
                                             <div className="flex flex-col items-center w-full">
                                                 {/* Icon Plate with Rotate & Scale on Hover */}
@@ -287,11 +292,11 @@ export function CommonServicePage({
                                                     <Icon className="h-7 w-7 sm:h-8 sm:w-8 stroke-[1.75]" />
                                                 </div>
 
-                                                <h3 className="text-base font-bold text-accent-dark transition-colors duration-200 group-hover:text-accent-pink">
+                                                <h3 className="text-base font-bold text-dark transition-colors duration-200 group-hover:text-pink">
                                                     {item.title}
                                                 </h3>
 
-                                                <p className="mt-2.5 text-xs leading-relaxed text-accent-muted font-normal">
+                                                <p className="mt-2.5 text-xs leading-relaxed text-muted font-normal">
                                                     {item.description}
                                                 </p>
                                             </div>
@@ -314,37 +319,37 @@ export function CommonServicePage({
                     3. WHY CHOOSE US SECTION (CONTAINER CARD WITH FLOATING DECORATIONS & DOT GRID)
                 ========================================== */}
                 {whyFeatures.length > 0 && (
-                    <section className="bg-white py-10 sm:py-12 md:py-16">
+                    <section className="bg-background py-10 sm:py-12 md:py-16">
                         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                             <motion.div
-                                className="relative rounded-3xl bg-sky-50/50 border border-sky-100/80 p-6 sm:p-8 md:p-12 shadow-2xs"
+                                className="relative rounded-3xl bg-card dark:bg-slate-900/90 border border-border p-6 sm:p-8 md:p-12 shadow-2xs"
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6 }}
                             >
                                 {/* Ambient Animated Light Aura */}
-                                <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-accent-teal/20 via-accent-green/15 to-accent-pink/20 blur-2xl opacity-75 animate-pulse pointer-events-none z-0" />
+                                <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-teal/20 via-green/15 to-pink/20 blur-2xl opacity-75 animate-pulse pointer-events-none z-0" />
 
                                 {/* Floating Spin Shapes */}
                                 <div className="absolute -left-3 top-8 z-10 hidden sm:block animate-bounce [animation-duration:4s]">
-                                    <div className="h-10 w-10 rounded-xl bg-accent-green shadow-md animate-spin [animation-duration:14s]" />
+                                    <div className="h-10 w-10 rounded-xl bg-green shadow-md animate-spin [animation-duration:14s]" />
                                 </div>
                                 <div className="absolute right-4 bottom-4 z-10 hidden sm:block animate-bounce [animation-duration:5s]">
-                                    <div className="h-9 w-9 rounded-lg bg-accent-pink shadow-md animate-[spin_10s_linear_infinite_reverse]" />
+                                    <div className="h-9 w-9 rounded-lg bg-pink shadow-md animate-[spin_10s_linear_infinite_reverse]" />
                                 </div>
 
                                 <div className="relative z-10 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
                                     {/* Left Side: Sub-tag, Big Title, Subtitle & Button */}
-                                    <div className="lg:col-span-4 lg:border-r lg:border-slate-200/80 lg:pr-8">
-                                        <div className="text-xs font-bold uppercase tracking-widest text-accent-teal">
+                                    <div className="lg:col-span-4 lg:border-r lg:border-border lg:pr-8">
+                                        <div className="text-xs font-bold uppercase tracking-widest text-teal">
                                             {whyTag}
                                         </div>
-                                        <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-accent-dark md:text-4xl leading-tight">
+                                        <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-dark md:text-4xl leading-tight">
                                             {whyTitleMain}{" "}
-                                            <span className="block text-accent-pink mt-1">{whyTitleHighlight}</span>
+                                            <span className="block text-pink mt-1">{whyTitleHighlight}</span>
                                         </h2>
-                                        <p className="mt-3 sm:mt-4 text-xs sm:text-sm leading-relaxed text-accent-muted">
+                                        <p className="mt-3 sm:mt-4 text-xs sm:text-sm leading-relaxed text-muted">
                                             {whyDescription}
                                         </p>
                                         <div className="mt-6">
@@ -368,7 +373,7 @@ export function CommonServicePage({
                                                     <div
                                                         key={feat.title}
                                                         className={`group flex flex-col items-center text-center px-4 transition-transform duration-200 hover:translate-y-[-2px] ${idx < whyFeatures.length - 1
-                                                            ? "lg:border-r lg:border-slate-200/70"
+                                                            ? "lg:border-r lg:border-border"
                                                             : ""
                                                             }`}
                                                     >
@@ -398,7 +403,7 @@ export function CommonServicePage({
                     4. OUR PROCESS SECTION (ENLARGED ORBITAL CARDS & SPACED ACCENTS)
                 ========================================== */}
                 {processSteps.length > 0 && (
-                    <section className="bg-white py-12 sm:py-16 md:py-24 border-t border-slate-100">
+                    <section className="bg-section-alt py-12 sm:py-16 md:py-24 border-t border-border">
                         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                             <motion.div
                                 className="text-center"
@@ -424,7 +429,7 @@ export function CommonServicePage({
 
                             <div className="relative mt-12 sm:mt-18">
                                 {/* Dotted Line Connector */}
-                                <div className="hidden lg:block absolute top-12 left-[10%] right-[10%] h-0.5 border-t-2 border-dashed border-slate-200 z-0" />
+                                <div className="hidden lg:block absolute top-12 left-[10%] right-[10%] h-0.5 border-t-2 border-dashed border-border z-0" />
 
                                 <div className={`grid grid-cols-1 gap-8 sm:grid-cols-2 relative z-10 ${processSteps.length === 4 ? "lg:grid-cols-4" : "lg:grid-cols-5"}`}>
                                     {processSteps.map((stepItem, idx) => {
@@ -441,7 +446,7 @@ export function CommonServicePage({
                                                 {/* Enlarged Orbital Icon Plate with Step Badge */}
                                                 <div className="relative flex items-center justify-center mb-2">
                                                     <div
-                                                        className={`absolute -top-2.5 z-20 flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full ${stepItem.bgColor} text-xs sm:text-sm font-black text-white shadow-md transition-transform duration-300 group-hover:scale-110 border-2 border-white`}
+                                                        className={`absolute -top-2.5 z-20 flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full ${stepItem.bgColor} text-xs sm:text-sm font-black text-white shadow-md transition-transform duration-300 group-hover:scale-110 border-2 border-card`}
                                                     >
                                                         {stepItem.step}
                                                     </div>
@@ -480,24 +485,24 @@ export function CommonServicePage({
                     5. STATS BANNER SECTION (WITH FLOATING ACCENTS & GLOW)
                 ========================================== */}
                 {stats.length > 0 && (
-                    <section className="bg-white py-10 sm:py-12 md:py-16">
+                    <section className="bg-background py-10 sm:py-12 md:py-16">
                         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                             <motion.div
-                                className="relative overflow-hidden rounded-3xl bg-pink-50/60 p-6 sm:p-8 md:p-12 border border-pink-100 shadow-2xs"
+                                className="relative overflow-hidden rounded-3xl bg-card dark:bg-slate-900/90 p-6 sm:p-8 md:p-12 border border-border shadow-2xs"
                                 initial={{ opacity: 0, scale: 0.98 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5 }}
                             >
                                 {/* Background Ambient Glow */}
-                                <div className="absolute -inset-4 rounded-full bg-accent-pink/10 blur-2xl pointer-events-none z-0" />
+                                <div className="absolute -inset-4 rounded-full bg-pink/10 blur-2xl pointer-events-none z-0" />
 
                                 <div className="relative z-10 grid grid-cols-1 items-center gap-6 sm:gap-8 lg:grid-cols-12">
                                     {/* Left Title */}
-                                    <div className="lg:col-span-4 lg:border-r lg:border-pink-200/80 lg:pr-8 text-center sm:text-left">
-                                        <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-accent-dark md:text-3xl leading-tight">
+                                    <div className="lg:col-span-4 lg:border-r lg:border-border lg:pr-8 text-center sm:text-left">
+                                        <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-dark md:text-3xl leading-tight">
                                             {statsTitleMain}{" "}
-                                            <span className="block text-accent-pink mt-1">
+                                            <span className="block text-pink mt-1">
                                                 {statsTitleHighlight}
                                             </span>
                                         </h2>
@@ -512,19 +517,19 @@ export function CommonServicePage({
                                                     <div
                                                         key={statItem.label}
                                                         className={`group flex flex-col items-center justify-center p-3 sm:p-4 transition-transform duration-300 hover:scale-105 ${idx < stats.length - 1
-                                                            ? "sm:border-r sm:border-pink-200/70"
+                                                            ? "sm:border-r sm:border-border"
                                                             : ""
                                                             }`}
                                                     >
                                                         {Icon && (
-                                                            <div className="mb-2 sm:mb-3 text-accent-dark transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
-                                                                <Icon className={`h-8 w-8 sm:h-10 sm:w-10 ${statItem.textColor || "text-accent-teal"}`} />
+                                                            <div className="mb-2 sm:mb-3 text-dark transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                                                                <Icon className={`h-8 w-8 sm:h-10 sm:w-10 ${statItem.textColor || "text-teal"}`} />
                                                             </div>
                                                         )}
-                                                        <div className={`text-3xl sm:text-4xl font-black ${statItem.textColor || "text-accent-teal"}`}>
+                                                        <div className={`text-3xl sm:text-4xl font-black ${statItem.textColor || "text-teal"}`}>
                                                             {statItem.number}
                                                         </div>
-                                                        <div className="mt-1 text-xs font-bold text-accent-dark">
+                                                        <div className="mt-1 text-xs font-bold text-dark">
                                                             {statItem.label}
                                                         </div>
                                                     </div>

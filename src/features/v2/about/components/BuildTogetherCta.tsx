@@ -5,10 +5,10 @@ import FlipButton from "@/components/ui/FlipButton";
 
 function BuildTogetherCta() {
     return (
-        <section className="bg-white py-12 sm:py-16">
+        <section className="bg-background py-12 sm:py-16 transition-colors duration-200">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <motion.div
-                    className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-sky-50/90 via-teal-50/60 to-emerald-50/80 p-6 sm:p-10 md:p-14 border border-sky-100 shadow-sm"
+                    className="relative overflow-hidden rounded-3xl bg-card dark:bg-slate-900/90 p-6 sm:p-10 md:p-14 border border-border shadow-sm"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -20,17 +20,18 @@ function BuildTogetherCta() {
                     <div className="relative z-10 grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
                         {/* Left Column: Text & CTA Button */}
                         <div className="lg:col-span-6 z-10">
-                            <h2 className="text-2xl sm:text-3xl md:text-[42px] font-extrabold tracking-tight text-ag-dark leading-tight">
+                            <h2 className="text-2xl sm:text-3xl md:text-[42px] font-extrabold tracking-tight text-dark leading-tight">
                                 Let's Build Something{" "}
-                                <span className="block text-ag-pink mt-1">Amazing Together</span>
+                                <span className="block text-pink mt-1">Amazing Together</span>
                             </h2>
-                            <p className="mt-4 max-w-lg text-sm text-ag-muted md:text-base leading-relaxed">
+                            <p className="mt-4 max-w-lg text-sm text-muted md:text-base leading-relaxed">
                                 Partner with AG Solutions and take your business to the next level
                                 with our expert IT solutions.
                             </p>
                             <div className="mt-6 sm:mt-8">
                                 <FlipButton
                                     to="/contacts"
+                                    title="Contact AG Solutions"
                                     variant="pink"
                                     className="px-6 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base apple-border-shine"
                                 >
@@ -44,13 +45,14 @@ function BuildTogetherCta() {
                             <img
                                 src="/images/group-image-03.png"
                                 alt="Let's Build Something Amazing Together Team"
+                                title="AG Solutions Team"
                                 className="w-full max-w-lg object-contain drop-shadow-md transition-transform duration-500 hover:scale-[1.02]"
                             />
 
                             {/* ExportBiz Animated Floating Pink Map Pin Marker */}
                             <div className="absolute right-0 top-0 z-20 hidden sm:block animate-bounce [animation-duration:3s]">
-                                <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-ag-pink text-white shadow-xl ring-4 ring-white">
-                                    <MapPin className="h-5 w-5 sm:h-6 sm:w-6 fill-white stroke-ag-pink" />
+                                <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-pink text-white shadow-xl ring-4 ring-card">
+                                    <MapPin className="h-5 w-5 sm:h-6 sm:w-6 fill-white stroke-pink" />
                                 </div>
                             </div>
                         </div>

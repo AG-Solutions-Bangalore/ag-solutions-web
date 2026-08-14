@@ -23,105 +23,105 @@ const industries = [
     title: "Plastic Industries & Manufacturers",
     icon: Factory,
     iconBg: "bg-gradient-to-br from-teal to-teal-hover text-white",
-    cardGradient: "bg-gradient-to-br from-teal-light/40 via-white to-white hover:border-teal/40",
+    cardGradient: "bg-gradient-to-br from-teal-light/40 via-card to-card hover:border-teal/40",
     glowColor: "group-hover:shadow-teal/10",
   },
   {
     title: "Garment Manufacturers",
     icon: Shirt,
     iconBg: "bg-gradient-to-br from-green to-green-hover text-white",
-    cardGradient: "bg-gradient-to-br from-green-light/40 via-white to-white hover:border-green/40",
+    cardGradient: "bg-gradient-to-br from-green-light/40 via-card to-card hover:border-green/40",
     glowColor: "group-hover:shadow-green/10",
   },
   {
     title: "Transport & Fleet Management",
     icon: Truck,
     iconBg: "bg-gradient-to-br from-pink to-pink-hover text-white",
-    cardGradient: "bg-gradient-to-br from-pink-light/40 via-white to-white hover:border-pink/40",
+    cardGradient: "bg-gradient-to-br from-pink-light/40 via-card to-card hover:border-pink/40",
     glowColor: "group-hover:shadow-pink/10",
   },
   {
     title: "Granite & Tiles Wholesalers",
     icon: Gem,
     iconBg: "bg-gradient-to-br from-yellow to-yellow-hover text-white",
-    cardGradient: "bg-gradient-to-br from-yellow-light/40 via-white to-white hover:border-yellow/40",
+    cardGradient: "bg-gradient-to-br from-yellow-light/40 via-card to-card hover:border-yellow/40",
     glowColor: "group-hover:shadow-yellow/10",
   },
   {
     title: "Large Hardware Retailers",
     icon: ShoppingCart,
     iconBg: "bg-gradient-to-br from-teal to-teal-hover text-white",
-    cardGradient: "bg-gradient-to-br from-teal-light/40 via-white to-white hover:border-teal/40",
+    cardGradient: "bg-gradient-to-br from-teal-light/40 via-card to-card hover:border-teal/40",
     glowColor: "group-hover:shadow-teal/10",
   },
   {
     title: "Exporters & Trading Businesses",
     icon: Package,
     iconBg: "bg-gradient-to-br from-green to-green-hover text-white",
-    cardGradient: "bg-gradient-to-br from-green-light/40 via-white to-white hover:border-green/40",
+    cardGradient: "bg-gradient-to-br from-green-light/40 via-card to-card hover:border-green/40",
     glowColor: "group-hover:shadow-green/10",
   },
   {
     title: "Manufacturing Companies",
     icon: Cog,
     iconBg: "bg-gradient-to-br from-pink to-pink-hover text-white",
-    cardGradient: "bg-gradient-to-br from-pink-light/40 via-white to-white hover:border-pink/40",
+    cardGradient: "bg-gradient-to-br from-pink-light/40 via-card to-card hover:border-pink/40",
     glowColor: "group-hover:shadow-pink/10",
   },
   {
     title: "Home Services & Automation",
     icon: Home,
     iconBg: "bg-gradient-to-br from-yellow to-yellow-hover text-white",
-    cardGradient: "bg-gradient-to-br from-yellow-light/40 via-white to-white hover:border-yellow/40",
+    cardGradient: "bg-gradient-to-br from-yellow-light/40 via-card to-card hover:border-yellow/40",
     glowColor: "group-hover:shadow-yellow/10",
   },
   {
     title: "NGOs & Foundations",
     icon: HeartHandshake,
     iconBg: "bg-gradient-to-br from-teal to-teal-hover text-white",
-    cardGradient: "bg-gradient-to-br from-teal-light/40 via-white to-white hover:border-teal/40",
+    cardGradient: "bg-gradient-to-br from-teal-light/40 via-card to-card hover:border-teal/40",
     glowColor: "group-hover:shadow-teal/10",
   },
   {
     title: "Communities & Associations",
     icon: Users,
     iconBg: "bg-gradient-to-br from-green to-green-hover text-white",
-    cardGradient: "bg-gradient-to-br from-green-light/40 via-white to-white hover:border-green/40",
+    cardGradient: "bg-gradient-to-br from-green-light/40 via-card to-card hover:border-green/40",
     glowColor: "group-hover:shadow-green/10",
   },
   {
     title: "Education & Training",
     icon: GraduationCap,
     iconBg: "bg-gradient-to-br from-pink to-pink-hover text-white",
-    cardGradient: "bg-gradient-to-br from-pink-light/40 via-white to-white hover:border-pink/40",
+    cardGradient: "bg-gradient-to-br from-pink-light/40 via-card to-card hover:border-pink/40",
     glowColor: "group-hover:shadow-pink/10",
   },
   {
     title: "Business Networking",
     icon: Briefcase,
     iconBg: "bg-gradient-to-br from-yellow to-yellow-hover text-white",
-    cardGradient: "bg-gradient-to-br from-yellow-light/40 via-white to-white hover:border-yellow/40",
+    cardGradient: "bg-gradient-to-br from-yellow-light/40 via-card to-card hover:border-yellow/40",
     glowColor: "group-hover:shadow-yellow/10",
   },
   {
     title: "Matrimonial Platforms",
     icon: Heart,
     iconBg: "bg-gradient-to-br from-pink to-pink-hover text-white",
-    cardGradient: "bg-gradient-to-br from-pink-light/40 via-white to-white hover:border-pink/40",
+    cardGradient: "bg-gradient-to-br from-pink-light/40 via-card to-card hover:border-pink/40",
     glowColor: "group-hover:shadow-pink/10",
   },
   {
     title: "Financial Platforms",
     icon: TrendingUp,
     iconBg: "bg-gradient-to-br from-teal to-teal-hover text-white",
-    cardGradient: "bg-gradient-to-br from-teal-light/40 via-white to-white hover:border-teal/40",
+    cardGradient: "bg-gradient-to-br from-teal-light/40 via-card to-card hover:border-teal/40",
     glowColor: "group-hover:shadow-teal/10",
   },
   {
     title: "Custom Business Solutions",
     icon: Ellipsis,
     iconBg: "bg-gradient-to-br from-green to-green-hover text-white",
-    cardGradient: "bg-gradient-to-br from-green-light/40 via-white to-white hover:border-green/40",
+    cardGradient: "bg-gradient-to-br from-green-light/40 via-card to-card hover:border-green/40",
     glowColor: "group-hover:shadow-green/10",
   },
 ] as const;
@@ -129,7 +129,7 @@ const industries = [
 export default function Industries() {
   return (
     <AnimatedSection
-      className="py-16 text-foreground max-[760px]:py-12 bg-slate-50/50 border-t border-slate-100"
+      className="py-16 text-foreground max-[760px]:py-12 bg-section-alt border-t border-border transition-colors duration-200"
       ariaLabel="Industries we serve"
     >
       {(isVisible) => (
@@ -148,7 +148,7 @@ export default function Industries() {
             </div>
 
             {/* Main Heading */}
-            <h2 className="mt-4 text-center font-heading text-2xl font-extrabold text-foreground sm:text-4xl lg:text-5xl">
+            <h2 className="mt-4 text-center font-heading text-2xl font-extrabold text-dark sm:text-4xl lg:text-5xl">
               Industries We Empower
             </h2>
 
@@ -165,7 +165,7 @@ export default function Industries() {
                 return (
                   <div
                     key={item.title}
-                    className={`group relative flex items-center gap-3.5 rounded-2xl border border-slate-200/80 p-4 shadow-xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg ${item.cardGradient} ${item.glowColor}`}
+                    className={`group relative flex items-center gap-3.5 rounded-2xl border border-border p-4 shadow-xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg ${item.cardGradient} ${item.glowColor}`}
                     style={{ transitionDelay: `${index * 20}ms` }}
                   >
                     <div

@@ -80,15 +80,19 @@ function Footer() {
                         <ul className="space-y-3 text-sm text-lime-50 list-none p-0 m-0">
                             <li className="flex items-center gap-2.5">
                                 <Phone className="h-4 w-4 shrink-0 text-white" />
-                                <span>+91 120 456 2073</span>
+                                <a href="tel:+918867171060" title="Call AG Solutions" className="text-lime-50 hover:text-white transition-colors no-underline">
+                                    +91 8867171060
+                                </a>
                             </li>
                             <li className="flex items-center gap-2.5">
                                 <Mail className="h-4 w-4 shrink-0 text-white" />
-                                <span>info@ag-solutions.in</span>
+                                <a href="mailto:info@ag-solutions.in" title="Email AG Solutions" className="text-lime-50 hover:text-white transition-colors no-underline">
+                                    info@ag-solutions.in
+                                </a>
                             </li>
                             <li className="flex items-start gap-2.5">
                                 <MapPin className="h-4 w-4 shrink-0 text-white mt-0.5" />
-                                <span>B-109, Sector-63, Noida, UP - 201301</span>
+                                <span>Jayanagara 9th Block, Bengaluru, 560069</span>
                             </li>
                         </ul>
                     </div>

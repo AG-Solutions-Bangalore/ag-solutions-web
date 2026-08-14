@@ -20,18 +20,30 @@ export const renderV2Routes = () => (
     {/* Home */}
     <Route index element={<HomePageV2 />} />
     <Route path="home" element={<HomePageV2 />} />
+    <Route path="home-v2" element={<HomePageV2 />} />
 
     {/* About Us */}
     <Route path="about" element={<AboutPageV2 />} />
     <Route path="about-us" element={<AboutPageV2 />} />
+    <Route path="about-v2" element={<AboutPageV2 />} />
+    <Route path="privacy-policy" element={<AboutPageV2 />} />
+    <Route path="terms-and-conditions" element={<AboutPageV2 />} />
 
     {/* Services */}
     <Route path="services" element={<WebDevelopmentPageV2 />} />
+    <Route path="service-v2" element={<WebDevelopmentPageV2 />} />
+    <Route path="web-development" element={<WebDevelopmentPageV2 />} />
+    <Route path="web-development-v2" element={<WebDevelopmentPageV2 />} />
     <Route path="services/web-development" element={<WebDevelopmentPageV2 />} />
     <Route path="services/mobile-app" element={<MobileAppPageV2 />} />
     <Route path="services/mobile-app-development" element={<MobileAppPageV2 />} />
+    <Route path="mobile-app-development" element={<MobileAppPageV2 />} />
+    <Route path="mobile-app-v2" element={<MobileAppPageV2 />} />
+    <Route path="mobile-app-development-v2" element={<MobileAppPageV2 />} />
     <Route path="services/digital-marketing" element={<DigitalMarketingPageV2 />} />
     <Route path="services/ease-marketing" element={<DigitalMarketingPageV2 />} />
+    <Route path="digital-marketing-v2" element={<DigitalMarketingPageV2 />} />
+    <Route path="ease-marketing" element={<DigitalMarketingPageV2 />} />
 
     {/* Products */}
     <Route path="products" element={<ProductsPage />} />

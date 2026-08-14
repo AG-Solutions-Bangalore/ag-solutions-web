@@ -6,71 +6,71 @@ const servicesList = [
         description:
             "Custom websites that reflect your brand and help you achieve your business goals.",
         icon: Globe,
-        bgColor: "bg-ag-teal",
-        hoverBorder: "hover:border-ag-teal-border",
+        bgColor: "bg-teal",
+        hoverBorder: "hover:border-teal/30",
     },
     {
         title: "E-Commerce Development",
         description:
             "Secure, scalable and feature-rich e-commerce solutions that drive more sales.",
         icon: ShoppingCart,
-        bgColor: "bg-ag-pink",
-        hoverBorder: "hover:border-ag-pink-border",
+        bgColor: "bg-pink",
+        hoverBorder: "hover:border-pink/30",
     },
     {
         title: "Responsive Web Design",
         description:
             "Mobile-first designs that work perfectly on all devices and screen sizes.",
         icon: Smartphone,
-        bgColor: "bg-ag-yellow",
-        hoverBorder: "hover:border-ag-yellow-border",
+        bgColor: "bg-yellow",
+        hoverBorder: "hover:border-yellow/30",
     },
     {
         title: "CMS Development",
         description:
             "Easy to manage websites using WordPress, Joomla, Shopify and more.",
         icon: Settings,
-        bgColor: "bg-ag-green",
-        hoverBorder: "hover:border-ag-green-border",
+        bgColor: "bg-green",
+        hoverBorder: "hover:border-green/30",
     },
     {
         title: "Website Maintenance & Support",
         description:
             "Reliable maintenance and support to keep your website running smoothly.",
         icon: Headphones,
-        bgColor: "bg-ag-teal",
-        hoverBorder: "hover:border-ag-teal-border",
+        bgColor: "bg-teal",
+        hoverBorder: "hover:border-teal/30",
     },
     {
         title: "Website Speed Optimization",
         description:
             "We optimize your website for speed to improve performance and user experience.",
         icon: Rocket,
-        bgColor: "bg-ag-pink",
-        hoverBorder: "hover:border-ag-pink-border",
+        bgColor: "bg-pink",
+        hoverBorder: "hover:border-pink/30",
     },
 ];
 
 function ServiceOfferings() {
     return (
-        <section className="bg-white py-16 md:py-24 border-t border-slate-100">
+        <section className="bg-background py-16 md:py-24 border-t border-border transition-colors duration-200">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center">
-                    <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-ag-pink">
+                    <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-pink">
                         <span>· · ·</span>
                         <span>WHAT WE OFFER</span>
                         <span>· · ·</span>
                     </div>
-                    <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ag-dark md:text-4xl">
+                    <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-dark md:text-4xl">
                         Our Web Development Services
                     </h2>
                     {/* Decorative 4-Color Underline */}
                     <div className="mt-3 flex items-center justify-center gap-1">
-                        <span className="h-1 w-6 rounded-full bg-ag-teal" />
-                        <span className="h-1 w-6 rounded-full bg-ag-pink" />
-                        <span className="h-1 w-6 rounded-full bg-ag-yellow" />
-                        <span className="h-1 w-6 rounded-full bg-ag-green" />
+                        <span className="h-1 w-6 rounded-full bg-teal" />
+                        <span className="h-1 w-6 rounded-full bg-pink" />
+                        <span className="h-1 w-6 rounded-full bg-yellow" />
+                        <span className="h-1 w-6 rounded-full bg-green" />
                     </div>
                 </div>
 
@@ -81,17 +81,17 @@ function ServiceOfferings() {
                         return (
                             <div
                                 key={item.title}
-                                className={`group flex flex-col items-center rounded-2xl border border-slate-100 bg-white p-8 text-center shadow-2xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${item.hoverBorder}`}
+                                className={`group flex flex-col items-center rounded-2xl border border-border bg-card p-8 text-center shadow-2xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${item.hoverBorder}`}
                             >
                                 <div
                                     className={`mb-6 flex h-16 w-16 items-center justify-center rounded-full ${item.bgColor} text-white shadow-md transition-transform duration-300 group-hover:scale-110`}
                                 >
                                     <Icon className="h-8 w-8" />
                                 </div>
-                                <h3 className="text-lg font-bold text-ag-dark">
+                                <h3 className="text-lg font-bold text-dark">
                                     {item.title}
                                 </h3>
-                                <p className="mt-3 text-sm leading-relaxed text-ag-muted">
+                                <p className="mt-3 text-sm leading-relaxed text-muted">
                                     {item.description}
                                 </p>
                             </div>

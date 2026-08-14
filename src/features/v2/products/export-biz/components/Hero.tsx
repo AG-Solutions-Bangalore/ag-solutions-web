@@ -47,6 +47,7 @@ export const Hero: React.FC<HeroProps> = ({ onScrollTo }) => {
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-7">
               <a
+                title="Start Free Demo of Export Biz"
                 onClick={(e) => handleClick(e, "demo")}
                 className="inline-flex items-center justify-center gap-2 font-['Inter',sans-serif] font-bold text-sm sm:text-[1.05rem] px-6 py-3.5 sm:px-7.5 sm:py-4 rounded-2xl bg-[#E91E63] text-white shadow-[0_10px_26px_rgba(233,30,99,0.35)] hover:-translate-y-0.5 hover:shadow-[0_14px_32px_rgba(233,30,99,0.45)] hover:bg-[#D81B60] transition-all duration-180 ease-in-out whitespace-nowrap min-h-[48px] sm:min-h-[50px] cursor-pointer w-full sm:w-auto"
               >
@@ -100,8 +101,8 @@ export const Hero: React.FC<HeroProps> = ({ onScrollTo }) => {
               <div className="relative w-full aspect-[4/3.8] sm:aspect-square rounded-[24px] sm:rounded-[28px] overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.4)] bg-gradient-to-br from-[#287BFF] to-[#071B49] transition-transform duration-500 hover:scale-[1.02]">
                 <img
                   src={getImageUrl("/images/biz-header.webp")}
-                  alt="Export Biz Software Interface"
-                  title="Export Biz Documentation Software"
+                  alt="Export Documentation Software – Export Biz by AG Solutions"
+                  title="Export Biz – Export Documentation Software"
                   className="w-full h-full object-contain p-4 block"
                   loading="eager"
                   fetchPriority="high"

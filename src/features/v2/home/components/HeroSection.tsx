@@ -6,7 +6,7 @@ function HeroSection() {
     const { openLeadModal } = useLeadModal();
 
     return (
-        <section className="relative overflow-hidden bg-gradient-to-b from-slate-50/60 via-white to-white py-10 sm:py-12 md:pt-16 md:pb-20">
+        <section className="relative overflow-hidden bg-background py-10 sm:py-12 md:pt-16 md:pb-20 transition-colors duration-200">
             {/* Soft Ambient Background Glows */}
             <div className="pointer-events-none absolute right-0 top-0 -z-10 h-[300px] sm:h-[500px] w-[300px] sm:w-[500px] rounded-full bg-pink-light/60 blur-3xl animate-pulse" />
             <div className="pointer-events-none absolute left-1/3 top-20 -z-10 h-[250px] sm:h-[400px] w-[250px] sm:w-[400px] rounded-full bg-teal-light/70 blur-3xl" />
@@ -19,7 +19,7 @@ function HeroSection() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
                     >
-                        <div className="inline-flex items-center gap-2 rounded-full bg-slate-100/90 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-dark shadow-2xs backdrop-blur-xs">
+                        <div className="inline-flex items-center gap-2 rounded-full bg-card border border-border px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-dark shadow-2xs backdrop-blur-xs">
                             <span className="h-2 w-2 rounded-full bg-pink shrink-0" />
                             <span className="truncate">Digital Solutions That Drive Growth</span>
                         </div>
@@ -55,11 +55,11 @@ function HeroSection() {
                         transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                     >
                         <div className="relative w-full max-w-xl flex items-center justify-center py-4 sm:py-6">
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] h-[260px] sm:w-[460px] sm:h-[460px] lg:w-[580px] lg:h-[580px] rounded-full bg-[#F4F9FC] border border-none z-0 pointer-events-none" />
 
                             <img
                                 src="/images/laptop.png"
                                 alt="AG Solutions Digital Dashboard Laptop"
+                                title="AG Solutions Digital Dashboard"
                                 className="relative z-10 w-full object-contain drop-shadow-xl transition-transform duration-500 hover:scale-[1.02]"
                             />
                         </div>

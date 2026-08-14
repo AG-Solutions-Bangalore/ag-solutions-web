@@ -5,6 +5,8 @@ export interface EnquiryPayload {
   enquiryMobile: string;
   enquiryEmail: string;
   enquiryMessage: string;
+  enquiryService?: string[] | string;
+  enquiryRoute?: string;
   utm_medium?: string;
   utm_source?: string;
   utm_campaign?: string;
@@ -25,10 +27,22 @@ export const createEnquiry = async (
   formData.append("enquiryMobile", payload.enquiryMobile);
   formData.append("enquiryEmail", payload.enquiryEmail);
   formData.append("enquiryMessage", payload.enquiryMessage);
+
+  if (payload.enquiryService) {
+    const formattedServices = Array.isArray(payload.enquiryService)
+      ? payload.enquiryService.join(", ")
+      : payload.enquiryService;
+    formData.append("enquiryService", formattedServices);
+  }
+
+  if (payload.enquiryRoute) {
+    formData.append("enquiryRoute", payload.enquiryRoute);
+  }
+
   formData.append("utm_medium", payload.utm_medium || "");
   formData.append("utm_source", payload.utm_source || "");
   formData.append("utm_campaign", payload.utm_campaign || "");
-  formData.append("enquiryFrom", payload.enquiryFrom || "");
+  formData.append("enquiryFrom", payload.enquiryFrom || payload.enquiryRoute || "");
 
   const response = await apiClient.post<EnquiryResponse>(
     "/createEnquiry",

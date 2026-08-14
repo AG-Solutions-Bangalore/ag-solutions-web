@@ -15,7 +15,7 @@ const stats = [
         bgColor: "bg-ag-pink",
     },
     {
-        number: "10+",
+        number: "15+",
         label: "Years of Experience",
         icon: Award,
         bgColor: "bg-ag-yellow",
@@ -30,10 +30,10 @@ const stats = [
 
 function AboutStats() {
     return (
-        <section className="bg-white py-8">
+        <section className="bg-background py-8 transition-colors duration-200">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <motion.div
-                    className="relative overflow-hidden rounded-2xl border border-slate-100 bg-white p-6 md:p-8 shadow-sm"
+                    className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 md:p-8 shadow-sm"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -60,10 +60,10 @@ function AboutStats() {
                                         <Icon className="h-6 w-6 sm:h-7 sm:w-7" />
                                     </div>
                                     <div>
-                                        <div className="text-xl sm:text-2xl font-black text-ag-dark md:text-3xl transition-colors duration-200 group-hover:text-ag-pink">
+                                        <div className="text-xl sm:text-2xl font-black text-dark md:text-3xl transition-colors duration-200 group-hover:text-pink">
                                             {stat.number}
                                         </div>
-                                        <div className="text-[11px] sm:text-xs font-semibold text-ag-muted mt-0.5">
+                                        <div className="text-[11px] sm:text-xs font-semibold text-muted mt-0.5">
                                             {stat.label}
                                         </div>
                                     </div>

@@ -141,7 +141,7 @@ export default function NotFoundPageV2() {
         robots="noindex, follow"
       />
 
-      <div className="relative min-h-[85vh] overflow-hidden bg-gradient-to-b from-slate-50/70 via-white to-slate-50/40 px-4 py-16 sm:px-6 lg:px-8">
+      <div className="relative min-h-[85vh] overflow-hidden bg-background px-4 py-16 sm:px-6 lg:px-8 transition-colors duration-200">
         {/* Background Ambient Glows */}
         <div className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-teal-light/60 blur-3xl" />
         <div className="pointer-events-none absolute top-1/3 right-10 -z-10 h-[400px] w-[400px] rounded-full bg-pink-light/50 blur-3xl animate-pulse" />
