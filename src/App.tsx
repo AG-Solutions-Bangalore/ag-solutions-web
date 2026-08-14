@@ -89,13 +89,13 @@ function App() {
       <SkipToContent />
       <ScrollToTop />
       <Routes>
-        {/* Version 2 Routes (e.g. /home-v2, /about-v2, /service-v2, /export-biz-new) */}
+        {/* Primary Routes (V2) — /, /about, /services, /web-development, etc. */}
         {renderV2Routes()}
 
         {/* Future Version 3 Routes */}
         {renderV3Routes()}
 
-        {/* Version 1 Routes wrapped in AppLayout */}
+        {/* Legacy V1 Routes — /home-v1, /portfolio, /blogs, etc. */}
         {renderV1Routes()}
       </Routes>
     </>

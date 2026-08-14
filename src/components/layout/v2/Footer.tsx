@@ -5,18 +5,18 @@ import ThemeCustomizer from "@/components/ui/ThemeCustomizer";
 import FlipButton from "@/components/ui/FlipButton";
 
 const quickLinks = [
-    { to: "/home-v2", label: "Home" },
-    { to: "/about-v2", label: "About Us" },
-    { to: "/service-v2", label: "Services" },
+    { to: "/", label: "Home" },
+    { to: "/about", label: "About Us" },
+    { to: "/services", label: "Services" },
     { to: "/contacts", label: "Contact Us" },
 ];
 
 const serviceLinks = [
-    { to: "/web-development", label: "Web Development" },
-    { to: "/mobile-app-development", label: "Mobile App Development" },
-    { to: "/web-development", label: "E-Commerce Solutions" },
+    { to: "/services/web-development", label: "Web Development" },
+    { to: "/services/mobile-app-development", label: "Mobile App Development" },
+    { to: "/services/web-development", label: "E-Commerce Solutions" },
     { to: "/desktop-applications", label: "Cloud Solutions" },
-    { to: "/about-v2", label: "IT Consulting" },
+    { to: "/about", label: "IT Consulting" },
 ];
 
 const socialLinks = [

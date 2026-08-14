@@ -1,8 +1,6 @@
 import type { ReactNode, ComponentType } from "react";
 import { motion } from "framer-motion";
 import SEO from "@/components/seo/SEO";
-import HeaderV2 from "@/components/layout/v2/Header";
-import FooterV2 from "@/components/layout/v2/Footer";
 import FlipButton from "@/components/ui/FlipButton";
 import Industries from "@/features/v1/home/pages/New/Industries";
 
@@ -50,7 +48,6 @@ export interface StatItem {
 export interface CommonServicePageProps {
     seoTitle?: string;
     seoDescription?: string;
-    activeNav?: "home" | "about" | "services" | "products" | "contact";
 
     // Hero Props
     heroBadge: string;
@@ -93,7 +90,6 @@ export interface CommonServicePageProps {
 export function CommonServicePage({
     seoTitle,
     seoDescription,
-    activeNav = "services",
 
     // Hero
     heroBadge,
@@ -143,9 +139,7 @@ export function CommonServicePage({
                 />
             )}
 
-            <div className="min-h-screen bg-white font-sans text-accent-dark antialiased">
-                {/* Shared Header V2 */}
-                <HeaderV2 activeNav={activeNav} />
+            <div className="bg-white font-sans text-accent-dark antialiased">
 
                 {/* ==========================================
                     1. HERO SECTION (With ExportBiz Animations & Decorative Shapes)
@@ -543,9 +537,6 @@ export function CommonServicePage({
 
                 {/* Additional Children / Industries */}
                 {children || <Industries />}
-
-                {/* Shared Footer V2 */}
-                <FooterV2 />
             </div>
         </>
     );

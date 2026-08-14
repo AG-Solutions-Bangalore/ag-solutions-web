@@ -111,7 +111,7 @@ export default function Industries() {
           >
             {/* Pill Badge */}
             <div className="flex justify-center">
-              <span className="inline-flex items-center rounded-full border border-teal-border bg-teal-light px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-teal shadow-xs">
+              <span className="inline-flex items-center rounded-full border border-teal-border  px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-teal shadow-xs">
                 WHO WE SERVE
               </span>
             </div>

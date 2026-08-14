@@ -36,7 +36,11 @@ export const v2Loaders = {
   webDevelopment: () => import("@/features/v2/services/pages/WebDevelopmentPageV2"),
   mobileApp: () => import("@/features/v2/services/pages/MobileAppPageV2"),
   digitalMarketing: () => import("@/features/v2/services/pages/DigitalMarketingPageV2"),
-  exportBizNew: () => import("@/features/v2/export-biz/pages/ExportBizNewPage"),
+  exportBiz: () => import("@/features/v2/products/export-biz/pages/ExportBizNewPage"),
+  products: () => import("@/features/v2/products/pages/ProductsPage"),
+  easeMarketing: () => import("@/features/v2/products/pages/EaseMarketingPage"),
+  growTogether: () => import("@/features/v2/products/pages/GrowTogetherPage"),
+  notFound: () => import("@/features/v2/not-found/pages/NotFoundPageV2"),
 };
 
 /* ==========================================================================
@@ -70,7 +74,7 @@ export const loadWebDevelopmentPageV2 = v2Loaders.webDevelopment;
 export const loadServicePageV2 = v2Loaders.webDevelopment;
 export const loadMobileAppPageV2 = v2Loaders.mobileApp;
 export const loadDigitalMarketingPageV2 = v2Loaders.digitalMarketing;
-export const loadExportBizNewPage = v2Loaders.exportBizNew;
+export const loadExportBizNewPage = v2Loaders.exportBiz;
 
 /* ==========================================================================
    ROUTE PRELOADING MAP

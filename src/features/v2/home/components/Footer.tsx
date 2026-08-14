@@ -3,17 +3,17 @@ import { Rocket, Phone, Mail, MapPin } from "lucide-react";
 import FlipButton from "@/components/ui/FlipButton";
 
 const quickLinks = [
-    { to: "/home-v2", label: "Home" },
+    { to: "/", label: "Home" },
     { to: "/about", label: "About Us" },
-    { to: "/web-development", label: "Services" },
+    { to: "/services", label: "Services" },
     { to: "/about", label: "Career" },
     { to: "/contacts", label: "Contact Us" },
 ];
 
 const serviceLinks = [
-    { to: "/web-development", label: "Web Development" },
-    { to: "/mobile-app-development", label: "Mobile App Development" },
-    { to: "/web-development", label: "E-Commerce Solutions" },
+    { to: "/services/web-development", label: "Web Development" },
+    { to: "/services/mobile-app-development", label: "Mobile App Development" },
+    { to: "/services/web-development", label: "E-Commerce Solutions" },
     { to: "/desktop-applications", label: "Cloud Solutions" },
     { to: "/about", label: "IT Consulting" },
 ];
