@@ -4,7 +4,7 @@ import HeroSection from "../components/HeroSection";
 import FeatureCards from "../components/FeatureCards";
 import ServicesSection from "../components/ServicesSection";
 import AboutSection from "../components/AboutSection";
-import Industries from "@/features/v1/home/pages/New/Industries";
+import Industries from "@/features/v2/home/components/Industries";
 import FooterV2 from "@/components/layout/v2/Footer";
 
 function HomePage() {

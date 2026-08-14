@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Rocket, Phone, Mail, MapPin } from "lucide-react";
 import { FaLinkedinIn, FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
+import ThemeCustomizer from "@/components/ui/ThemeCustomizer";
 import FlipButton from "@/components/ui/FlipButton";
 
 const quickLinks = [
@@ -153,6 +154,9 @@ export function FooterV2() {
                     </div>
                 </div>
             </div>
+
+            {/* Theme Customizer */}
+            <ThemeCustomizer />
         </footer>
     );
 }

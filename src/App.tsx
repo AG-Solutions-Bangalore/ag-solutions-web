@@ -4,6 +4,7 @@ import Lenis from "lenis";
 import SkipToContent from "./components/accessibility/SkipToContent";
 import { getUtmParams, storeUtmParams } from "./utils/utmUtils";
 import { renderV1Routes, renderV2Routes, renderV3Routes } from "./routes";
+import { loadConfig, applyConfig } from "./hooks/useThemeCustomizer";
 
 function UtmTracker() {
   const location = useLocation();
@@ -32,6 +33,12 @@ function ScrollToTop() {
 }
 
 function App() {
+  // Apply saved theme immediately on mount
+  useEffect(() => {
+    const saved = loadConfig();
+    if (saved) applyConfig(saved);
+  }, []);
+
   useEffect(() => {
     // Prevent browser auto-restoration from clamping scroll to unrendered document height on refresh
     if ("scrollRestoration" in window.history) {

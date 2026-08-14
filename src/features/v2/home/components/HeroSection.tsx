@@ -53,20 +53,6 @@ function HeroSection() {
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] sm:w-[460px] sm:h-[460px] lg:w-[600px] lg:h-[600px] rounded-full bg-[#F4F9FC] border border-none z-0 pointer-events-none" />
 
                             <div className="absolute -top-10 -right-6 sm:-top-16 sm:-right-10 lg:-top-14 lg:-right-16 w-[260px] h-[260px] sm:w-[360px] sm:h-[360px] lg:w-[400px] lg:h-[400px] rounded-full bg-accent-pink/5 border border-none z-0 pointer-events-none" />
-
-                            {/* ExportBiz Rotating Accent Tiles */}
-                            <div className="absolute -left-4 top-8 z-20 hidden sm:block">
-                                <div className="h-10 w-10 rounded-xl bg-accent-teal shadow-lg animate-spin [animation-duration:12s] transition-transform duration-300 hover:scale-110" />
-                            </div>
-
-                            <div className="absolute -left-4 top-1/2 -translate-y-1/2 z-20 hidden sm:block">
-                                <div className="h-11 w-11 rounded-xl bg-accent-pink shadow-lg animate-[spin_10s_linear_infinite_reverse] transition-transform duration-300 hover:scale-110" />
-                            </div>
-
-                            <div className="absolute right-2 -bottom-2 z-20 hidden sm:block animate-bounce [animation-duration:4s]">
-                                <div className="h-12 w-12 rounded-2xl bg-accent-yellow shadow-lg animate-spin [animation-duration:15s] transition-transform duration-300 hover:scale-110" />
-                            </div>
-
                             <img
                                 src="/images/laptop.png"
                                 alt="AG Solutions Digital Dashboard Laptop"
