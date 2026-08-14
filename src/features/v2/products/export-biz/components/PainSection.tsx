@@ -18,10 +18,10 @@ export const PainSection: React.FC = () => {
         <span className="inline-block bg-white/10 text-[#D3E2FF] text-[0.72rem] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full mb-4">
           EFFORTLESS EXPORT OPERATIONS
         </span>
-        <h2 className="font-['Plus_Jakarta_Sans',sans-serif] font-bold text-white text-[1.9rem] sm:text-[2.2rem] lg:text-[2.6rem] leading-[1.1] mb-4">
+        <h2 className="font-['Plus_Jakarta_Sans',sans-serif] font-bold text-white text-[1.6rem] sm:text-[2.2rem] lg:text-[2.6rem] leading-[1.15] mb-4">
           Exporting Is Hard. Paperwork Shouldn't Be.
         </h2>
-        <p className="text-[#C4D3F4] text-base sm:text-[1.1rem] leading-relaxed">
+        <p className="text-[#C4D3F4] text-sm sm:text-[1.1rem] leading-relaxed">
           Stop wasting hours on manual spreadsheets and repetitive customs errors. Export Biz organizes your invoices, returns, and claims automatically.
         </p>
       </div>

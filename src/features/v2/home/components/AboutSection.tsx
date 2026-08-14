@@ -3,57 +3,55 @@ import FlipButton from "@/components/ui/FlipButton";
 
 function AboutSection() {
     return (
-        <section className="bg-white py-16">
+        <section className="bg-white py-16 sm:py-20">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <motion.div
-                    className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-accent-teal-light/60 via-accent-teal-light/20 to-white p-8 md:p-14 border border-accent-teal-border/40 shadow-2xs"
+                    className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-teal-light/60 via-teal-light/20 to-white p-6 sm:p-10 md:p-14 border border-teal-border/40 shadow-2xs"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
                     {/* Background Ambient Pulsing Aura */}
-                    <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-accent-teal/15 via-accent-green/10 to-accent-pink/15 blur-2xl opacity-70 animate-pulse pointer-events-none z-0" />
+                    <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-teal/15 via-green/10 to-pink/15 blur-2xl opacity-70 animate-pulse pointer-events-none z-0" />
 
-                    <div className="relative z-10 grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
+                    <div className="relative z-10 grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-10">
                         <div className="lg:col-span-6">
-                            <span className="text-xs font-bold uppercase tracking-wider text-accent-teal">
+                            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-teal bg-white/80 px-3.5 py-1 rounded-full border border-teal-border/50">
                                 ABOUT US
                             </span>
-                            <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-accent-dark md:text-4xl">
-                                We Are <span className="text-accent-pink">AG Solutions</span>
+                            <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-dark sm:text-4xl md:text-5xl">
+                                We Are <span className="text-pink">AG Solutions</span>
                             </h2>
-                            <p className="mt-5 text-base leading-relaxed text-accent-muted">
-                                AG Solutions is a leading IT solutions company dedicated to
+                            <p className="mt-4 text-sm sm:text-base md:text-lg leading-relaxed text-muted">
+                                AG Solutions is a leading IT and digital transformation company dedicated to
                                 helping businesses navigate the digital landscape. With a focus
                                 on innovation, quality and customer satisfaction, we deliver
-                                solutions that drive growth and success.
+                                scalable solutions that drive measurable growth.
                             </p>
-                            <div className="mt-8">
-                                <FlipButton to="/about" variant="teal" className="px-6 py-3.5">
+                            <div className="mt-6 sm:mt-8">
+                                <FlipButton to="/about" variant="teal" className="px-6 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base">
                                     Know More About Us
                                 </FlipButton>
                             </div>
                         </div>
 
-                        <div className="relative lg:col-span-6">
-                            <div className="relative mx-auto max-w-md lg:max-w-none">
-                                <div className="relative overflow-hidden rounded-2xl shadow-2xl transition-transform duration-500 hover:scale-[1.02]">
+                        {/* Right Taller Vertically-Balanced Composition with Repositioned Corner Dots */}
+                        <div className="relative lg:col-span-6 flex justify-center">
+                            <div className="relative w-full max-w-md">
+                                <div className="relative overflow-hidden rounded-3xl shadow-2xl transition-transform duration-500 hover:scale-[1.02] aspect-[4/3] sm:aspect-[4/3.5] bg-slate-100">
                                     <img
                                         src="/images/ag-sl-desk.png"
                                         alt="AG Solutions Reception Office"
-                                        className="h-auto w-full object-cover"
+                                        className="h-full w-full object-cover"
                                     />
                                 </div>
 
-                                {/* ExportBiz Animated Floating & Spinning Corner Accent Boxes */}
-                                <div className="absolute -left-3 -top-3 h-10 w-10 rounded-xl bg-accent-teal shadow-md animate-spin [animation-duration:12s] transition-transform duration-300 hover:scale-110 md:-left-4 md:-top-4 md:h-12 md:w-12 z-20" />
-
-                                <div className="absolute -bottom-4 -left-3 h-11 w-11 rounded-xl bg-accent-pink shadow-md animate-[spin_10s_linear_infinite_reverse] transition-transform duration-300 hover:scale-110 md:-bottom-5 md:-left-4 md:h-14 md:w-14 z-20" />
-
-                                <div className="absolute -bottom-3 -right-3 h-10 w-10 rounded-2xl bg-accent-yellow shadow-md animate-spin [animation-duration:15s] transition-transform duration-300 hover:scale-110 md:-bottom-4 md:-right-4 md:h-12 md:w-12 z-20" />
-
-                                <div className="absolute -right-3 -top-3 h-10 w-10 rounded-xl bg-accent-green shadow-md animate-bounce [animation-duration:4s] transition-transform duration-300 hover:scale-110 md:-right-4 md:h-12 md:w-12 z-20" />
+                                {/* Repositioned Decorative Corner Dots */}
+                                <div className="absolute -left-2 -top-2 sm:-left-3 sm:-top-3 h-6 w-6 sm:h-10 sm:w-10 rounded-full bg-teal shadow-md transition-transform duration-300 hover:scale-125 z-20 border-2 border-white" />
+                                <div className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 h-7 w-7 sm:h-11 sm:w-11 rounded-full bg-pink shadow-md transition-transform duration-300 hover:scale-125 z-20 border-2 border-white" />
+                                <div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 h-6 w-6 sm:h-10 sm:w-10 rounded-full bg-yellow shadow-md transition-transform duration-300 hover:scale-125 z-20 border-2 border-white" />
+                                <div className="absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 h-7 w-7 sm:h-11 sm:w-11 rounded-full bg-green shadow-md transition-transform duration-300 hover:scale-125 z-20 border-2 border-white" />
                             </div>
                         </div>
                     </div>
@@ -64,4 +62,3 @@ function AboutSection() {
 }
 
 export default AboutSection;
-

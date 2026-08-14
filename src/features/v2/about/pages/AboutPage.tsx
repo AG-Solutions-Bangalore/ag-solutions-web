@@ -5,7 +5,7 @@ import AboutStats from "../components/AboutStats";
 import AboutValues from "../components/AboutValues";
 import WhyChooseUs from "../components/WhyChooseUs";
 import BuildTogetherCta from "../components/BuildTogetherCta";
-import Industries from "@/features/v1/home/pages/New/Industries";
+import Industries from "@/features/v2/home/components/Industries";
 
 
 function AboutPageV2() {

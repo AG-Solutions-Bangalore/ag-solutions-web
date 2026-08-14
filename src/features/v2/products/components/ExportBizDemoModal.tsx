@@ -87,13 +87,13 @@ export const ExportBizDemoModal: React.FC<ExportBizDemoModalProps> = ({ isOpen, 
       onClick={onClose}
     >
       <div 
-        className="bg-[#12141a] text-white rounded-[24px] w-full max-w-[600px] p-5 sm:p-10 relative box-border shadow-2xl border border-white/10 my-4 sm:my-0 animate-scaleUp"
+        className="bg-[#12141a] text-white rounded-[24px] w-full max-w-[600px] max-h-[90vh] overflow-y-auto p-5 sm:p-10 relative box-border shadow-2xl border border-white/10 my-4 sm:my-0 animate-scaleUp"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button 
           onClick={onClose}
-          className="absolute right-6 top-6 text-white/50 hover:text-white text-2xl transition-colors cursor-pointer focus:outline-none"
+          className="absolute right-5 sm:right-6 top-5 sm:top-6 text-white/50 hover:text-white text-2xl transition-colors cursor-pointer focus:outline-none"
           aria-label="Close modal"
         >
           ✕
@@ -102,78 +102,78 @@ export const ExportBizDemoModal: React.FC<ExportBizDemoModalProps> = ({ isOpen, 
         {!isSubmitted ? (
           <form onSubmit={handleSubmit} className="box-border">
             <input type="hidden" name="enquiryFrom" value="export-biz" />
-            <h2 className="text-[28px] sm:text-[32px] font-bold font-space-grotesk tracking-[-0.64px] m-0 mb-[10px] pr-8 text-white box-border">
+            <h2 className="text-2xl sm:text-[32px] font-bold font-space-grotesk tracking-[-0.64px] m-0 mb-[8px] sm:mb-[10px] pr-8 text-white box-border">
               Request a Free Demo
             </h2>
-            <p className="text-[#9fc1db] text-[15px] leading-relaxed mb-8 font-space-grotesk box-border">
+            <p className="text-[#9fc1db] text-xs sm:text-[15px] leading-relaxed mb-6 sm:mb-8 font-space-grotesk box-border">
               Discover how EXPORT BIZ can streamline your export team's performance.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left box-border">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 text-left box-border">
               <div className="sm:col-span-2 box-border">
-                <label className="block text-[12.5px] font-mono text-[#9fc1db] uppercase mb-1.5">Full Name</label>
+                <label className="block text-[12px] sm:text-[12.5px] font-mono text-[#9fc1db] uppercase mb-1.5">Full Name</label>
                 <input
                   type="text"
                   required
                   placeholder="Your Full Name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full rounded-[8px] border border-white/15 bg-white/8 py-[12px] px-4 text-[14.5px] text-white outline-none focus:border-[#e39a3b] transition-all box-border placeholder:text-white/30"
+                  className="w-full rounded-[8px] border border-white/15 bg-white/8 py-[12px] px-4 text-base sm:text-[14.5px] text-white outline-none focus:border-[#e39a3b] transition-all box-border placeholder:text-white/30"
                 />
               </div>
               <div className="box-border">
-                <label className="block text-[12.5px] font-mono text-[#9fc1db] uppercase mb-1.5">Phone Number</label>
+                <label className="block text-[12px] sm:text-[12.5px] font-mono text-[#9fc1db] uppercase mb-1.5">Phone Number</label>
                 <input
                   type="tel"
                   required
                   placeholder="Phone Number"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full rounded-[8px] border border-white/15 bg-white/8 py-[12px] px-4 text-[14.5px] text-white outline-none focus:border-[#e39a3b] transition-all box-border placeholder:text-white/30"
+                  className="w-full rounded-[8px] border border-white/15 bg-white/8 py-[12px] px-4 text-base sm:text-[14.5px] text-white outline-none focus:border-[#e39a3b] transition-all box-border placeholder:text-white/30"
                 />
               </div>
               <div className="box-border">
-                <label className="block text-[12.5px] font-mono text-[#9fc1db] uppercase mb-1.5">Email Address</label>
+                <label className="block text-[12px] sm:text-[12.5px] font-mono text-[#9fc1db] uppercase mb-1.5">Email Address</label>
                 <input
                   type="email"
                   required
                   placeholder="Email Address"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full rounded-[8px] border border-white/15 bg-white/8 py-[12px] px-4 text-[14.5px] text-white outline-none focus:border-[#e39a3b] transition-all box-border placeholder:text-white/30"
+                  className="w-full rounded-[8px] border border-white/15 bg-white/8 py-[12px] px-4 text-base sm:text-[14.5px] text-white outline-none focus:border-[#e39a3b] transition-all box-border placeholder:text-white/30"
                 />
               </div>
               <div className="box-border">
-                <label className="block text-[12.5px] font-mono text-[#9fc1db] uppercase mb-1.5">Company</label>
+                <label className="block text-[12px] sm:text-[12.5px] font-mono text-[#9fc1db] uppercase mb-1.5">Company</label>
                 <input
                   type="text"
                   required
                   placeholder="Your Company Name"
                   value={formData.company}
                   onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  className="w-full rounded-[8px] border border-white/15 bg-white/8 py-[12px] px-4 text-[14.5px] text-white outline-none focus:border-[#e39a3b] transition-all box-border placeholder:text-white/30"
+                  className="w-full rounded-[8px] border border-white/15 bg-white/8 py-[12px] px-4 text-base sm:text-[14.5px] text-white outline-none focus:border-[#e39a3b] transition-all box-border placeholder:text-white/30"
                 />
               </div>
               <div className="box-border">
-                <label className="block text-[12.5px] font-mono text-[#9fc1db] uppercase mb-1.5">Country</label>
+                <label className="block text-[12px] sm:text-[12.5px] font-mono text-[#9fc1db] uppercase mb-1.5">Country</label>
                 <input
                   type="text"
                   required
                   placeholder="Your Country"
                   value={formData.country}
                   onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                  className="w-full rounded-[8px] border border-white/15 bg-white/8 py-[12px] px-4 text-[14.5px] text-white outline-none focus:border-[#e39a3b] transition-all box-border placeholder:text-white/30"
+                  className="w-full rounded-[8px] border border-white/15 bg-white/8 py-[12px] px-4 text-base sm:text-[14.5px] text-white outline-none focus:border-[#e39a3b] transition-all box-border placeholder:text-white/30"
                 />
               </div>
               <div className="sm:col-span-2 box-border">
-                <label className="block text-[12.5px] font-mono text-[#9fc1db] uppercase mb-1.5">Requirements / Details</label>
+                <label className="block text-[12px] sm:text-[12.5px] font-mono text-[#9fc1db] uppercase mb-1.5">Requirements / Details</label>
                 <textarea
                   required
                   rows={3}
                   placeholder="Describe your requirements..."
                   value={formData.details}
                   onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-                  className="w-full rounded-[8px] border border-white/15 bg-white/8 py-[12px] px-4 text-[14.5px] text-white outline-none resize-none focus:border-[#e39a3b] transition-all box-border placeholder:text-white/30 min-h-[90px]"
+                  className="w-full rounded-[8px] border border-white/15 bg-white/8 py-[12px] px-4 text-base sm:text-[14.5px] text-white outline-none resize-none focus:border-[#e39a3b] transition-all box-border placeholder:text-white/30 min-h-[90px]"
                 />
               </div>
             </div>

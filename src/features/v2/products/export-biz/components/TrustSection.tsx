@@ -8,17 +8,17 @@ export const TrustSection: React.FC = () => {
           <span className="inline-flex items-center gap-2 text-[0.78rem] font-bold tracking-[0.09em] uppercase text-[#1557E8] bg-[#1557E8]/8 px-4 py-1.75 rounded-full mb-4.5">
             Why Businesses Trust Export Biz
           </span>
-          <h2 className="font-['Plus_Jakarta_Sans',sans-serif] font-bold text-[#071B49] text-[1.9rem] sm:text-[2.3rem] lg:text-[2.7rem] leading-[1.08]">
+          <h2 className="font-['Plus_Jakarta_Sans',sans-serif] font-bold text-[#071B49] text-[1.6rem] sm:text-[2.3rem] lg:text-[2.7rem] leading-[1.15]">
             Built on a Decade of Business Software.
           </h2>
         </div>
 
-        <div className="flex flex-col md:flex-row flex-wrap gap-5 reveal">
-          <div className="flex-1 min-w-[200px] bg-[#f2f5f9] text-[#1b2c38] rounded-[24px] p-8 sm:p-7 flex flex-col justify-center">
-            <span className="font-['Plus_Jakarta_Sans',sans-serif] font-extrabold text-[2.8rem] bg-gradient-to-r from-[#09c7ca] to-[#0e236a] bg-clip-text text-transparent leading-none">
+        <div className="flex flex-col md:flex-row flex-wrap gap-4 sm:gap-5 reveal">
+          <div className="flex-1 min-w-[200px] bg-[#f2f5f9] text-[#1b2c38] rounded-[24px] p-6 sm:p-7 flex flex-col justify-center">
+            <span className="font-['Plus_Jakarta_Sans',sans-serif] font-extrabold text-[2.4rem] sm:text-[2.8rem] bg-gradient-to-r from-[#09c7ca] to-[#0e236a] bg-clip-text text-transparent leading-none">
               15+
             </span>
-            <span className="text-[#1b2c38] text-[0.92rem] mt-2">
+            <span className="text-[#1b2c38] text-xs sm:text-[0.92rem] mt-2">
               Years building web, mobile &amp; business software
             </span>
           </div>

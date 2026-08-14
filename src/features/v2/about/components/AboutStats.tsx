@@ -42,7 +42,7 @@ function AboutStats() {
                     {/* Background Ambient Glow */}
                     <div className="absolute -inset-4 rounded-full bg-ag-teal/5 blur-2xl pointer-events-none" />
 
-                    <div className="relative z-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                    <div className="relative z-10 grid grid-cols-2 gap-4 sm:gap-8 lg:grid-cols-4">
                         {stats.map((stat, idx) => {
                             const Icon = stat.icon;
                             return (
@@ -52,18 +52,18 @@ function AboutStats() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.4, delay: idx * 0.1 }}
-                                    className="group flex items-center gap-4 cursor-pointer transition-transform duration-300 hover:scale-105"
+                                    className="group flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left gap-3 sm:gap-4 cursor-pointer transition-transform duration-300 hover:scale-105"
                                 >
                                     <div
-                                        className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl ${stat.bgColor} text-white shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6`}
+                                        className={`flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-2xl ${stat.bgColor} text-white shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6`}
                                     >
-                                        <Icon className="h-7 w-7" />
+                                        <Icon className="h-6 w-6 sm:h-7 sm:w-7" />
                                     </div>
                                     <div>
-                                        <div className="text-2xl font-black text-ag-dark md:text-3xl transition-colors duration-200 group-hover:text-ag-pink">
+                                        <div className="text-xl sm:text-2xl font-black text-ag-dark md:text-3xl transition-colors duration-200 group-hover:text-ag-pink">
                                             {stat.number}
                                         </div>
-                                        <div className="text-xs font-semibold text-ag-muted mt-0.5">
+                                        <div className="text-[11px] sm:text-xs font-semibold text-ag-muted mt-0.5">
                                             {stat.label}
                                         </div>
                                     </div>

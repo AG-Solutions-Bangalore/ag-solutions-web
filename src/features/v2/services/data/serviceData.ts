@@ -24,7 +24,18 @@ import {
     FaLayerGroup,
     FaLaptopCode,
     FaWrench,
+    FaFileLines,
+    FaFilePen,
+    FaFolderOpen,
+    FaDiagramProject,
+    FaFileImport,
+    FaFolderTree,
+    FaSquareCheck,
+    FaFileShield,
+    FaDownload,
+    FaBolt,
 } from "react-icons/fa6";
+import { getImageUrl } from "@/utils/imageUrl";
 import type { CommonServicePageProps } from "../components/CommonServicePage";
 
 // 1. Web & Website Development Service Data Constant (Solid Exact Icons)
@@ -41,7 +52,7 @@ export const webDevelopmentServiceData: CommonServicePageProps = {
         { label: "Clean & Scalable Code", icon: FaCode, bgColor: "bg-yellow" },
         { label: "Secure & Reliable", icon: FaShieldHalved, bgColor: "bg-green" },
     ],
-    heroImage: "/images/laptop.png",
+    heroImage: getImageUrl("/images/web-header.webp"),
     offerTag: "OUR SERVICES",
     offerTitle: "Web & Website Development Services",
     offerItems: [
@@ -191,7 +202,7 @@ export const mobileAppServiceData: CommonServicePageProps = {
         { label: "Secure & Scalable", icon: FaShieldHalved, bgColor: "bg-yellow" },
         { label: "User-Centric Design", icon: FaUser, bgColor: "bg-green" },
     ],
-    heroImage: "/images/laptop.png",
+    heroImage: getImageUrl("/images/mob-header-1.webp"),
     offerTag: "OUR SERVICES",
     offerTitle: "Mobile App Development Services",
     offerItems: [
@@ -341,7 +352,7 @@ export const digitalMarketingServiceData: CommonServicePageProps = {
         { label: "Better Conversions", icon: FaChartColumn, bgColor: "bg-yellow" },
         { label: "Business Growth", icon: FaRocket, bgColor: "bg-green" },
     ],
-    heroImage: "/images/laptop.png",
+    heroImage: getImageUrl("/images/digi-header.webp"),
     offerTag: "OUR SERVICES",
     offerTitle: "Digital Marketing Solutions",
     offerItems: [
@@ -462,3 +473,162 @@ export const digitalMarketingServiceData: CommonServicePageProps = {
         },
     ],
 };
+
+// 4. Export Biz Product / Service Data Constant (Exact User Spec & Palette)
+export const exportBizServiceData: CommonServicePageProps = {
+    seoTitle: "Export Biz - Export Documentation Software | AG Solutions",
+    seoDescription: "Export Biz helps Exporters in creating manual export documentations into structured digital documentation, reducing repetitive data entry and making document preparation faster and easier.",
+    heroBadge: "EXPORT DOCUMENTATION SOFTWARE",
+    heroTitle: "From Manual Paperwork to",
+    heroTitleHighlight: "Digital Documentation — In Minutes.",
+    heroDescription: "Export Biz helps Exporters in creating manual export documentations into structured digital documentation, reducing repetitive data entry and making document preparation faster and easier.",
+    heroCtaText: "Start Free Demo",
+    heroFeatures: [
+        { label: "3-Click Generation", icon: FaBolt, bgColor: "bg-teal" },
+        { label: "100% Error-Free", icon: FaShieldHalved, bgColor: "bg-pink" },
+        { label: "Scheme Tracking", icon: FaChartColumn, bgColor: "bg-yellow" },
+        { label: "Digital Filing", icon: FaFolderOpen, bgColor: "bg-green" },
+    ],
+    heroImage: getImageUrl("/images/biz-header.webp"),
+    offerTag: "WHAT WE OFFER",
+    offerTitle: "Comprehensive Export Solutions",
+    offerItems: [
+        {
+            title: "Paper-to-Digital Conversion",
+            description: "Convert information from paper-based export documents into digital formats.",
+            icon: FaFileLines,
+            bgColor: "bg-teal",
+        },
+        {
+            title: "Document Preparation",
+            description: "Organize the required information and prepare it in the appropriate document format.",
+            icon: FaFilePen,
+            bgColor: "bg-pink",
+        },
+        {
+            title: "Faster Documentation",
+            description: "Reduce repetitive typing and speed up the process of preparing export documents.",
+            icon: FaGaugeHigh,
+            bgColor: "bg-yellow",
+        },
+        {
+            title: "Digital Document Management",
+            description: "Keep your documentation organized digitally instead of relying on physical paperwork.",
+            icon: FaFolderOpen,
+            bgColor: "bg-green",
+        },
+        {
+            title: "Structured & Consistent",
+            description: "Maintain consistent information and standardized document formats.",
+            icon: FaShieldHalved,
+            bgColor: "bg-teal",
+        },
+        {
+            title: "Simplified Workflow",
+            description: "A simple workflow that makes documentation preparation easier for your team.",
+            icon: FaDiagramProject,
+            bgColor: "bg-pink",
+        },
+    ],
+    whyTag: "WHY CHOOSE US",
+    whyTitleMain: "Built for Exporters.",
+    whyTitleHighlight: "Zero Paperwork Stress.",
+    whyDescription: "We combine specialized export domain knowledge with intelligent workflow automation so your team can file and ship with complete accuracy.",
+    whyCtaText: "Get Started",
+    whyFeatures: [
+        {
+            title: "Pre-Configured Templates",
+            description: "Invoices, packing lists & shipping bills ready in clicks.",
+            icon: FaFileLines,
+            bgColor: "bg-teal",
+        },
+        {
+            title: "Zero Redundant Typing",
+            description: "Enter data once and auto-populate all required forms.",
+            icon: FaBolt,
+            bgColor: "bg-pink",
+        },
+        {
+            title: "Full Audit Trail",
+            description: "Track version history, claims and filings accurately.",
+            icon: FaClipboardCheck,
+            bgColor: "bg-yellow",
+        },
+        {
+            title: "Secure Cloud Storage",
+            description: "Access historical shipment paperwork anytime, anywhere.",
+            icon: FaFolderOpen,
+            bgColor: "bg-green",
+        },
+    ],
+    processTag: "OUR PROCESS",
+    processTitle: "How We Make Export Easy for You",
+    processSteps: [
+        {
+            step: "01",
+            title: "Enter Information",
+            description: "Add details from your paper or manual export documents.",
+            icon: FaFileImport,
+            bgColor: "bg-teal",
+            textColor: "text-teal",
+        },
+        {
+            step: "02",
+            title: "Organize Data",
+            description: "Export Biz organizes the information in a structured way.",
+            icon: FaFolderTree,
+            bgColor: "bg-pink",
+            textColor: "text-pink",
+        },
+        {
+            step: "03",
+            title: "Select Document",
+            description: "Choose the type of documentation you need to generate.",
+            icon: FaSquareCheck,
+            bgColor: "bg-yellow",
+            textColor: "text-yellow",
+        },
+        {
+            step: "04",
+            title: "Generate Document",
+            description: "Export Biz prepares your document in the required digital format instantly.",
+            icon: FaFileShield,
+            bgColor: "bg-green",
+            textColor: "text-green",
+        },
+        {
+            step: "05",
+            title: "Download & Use",
+            description: "Review, download and use your digital export document.",
+            icon: FaDownload,
+            bgColor: "bg-teal",
+            textColor: "text-teal",
+        },
+    ],
+    statsTitleMain: "Export Operations.",
+    statsTitleHighlight: "Accelerated 5x.",
+    stats: [
+        {
+            number: "10,000+",
+            label: "Export Docs Generated",
+            icon: FaFileLines,
+            bgColor: "bg-teal",
+            textColor: "text-teal",
+        },
+        {
+            number: "80%",
+            label: "Time Saved on Entry",
+            icon: FaGaugeHigh,
+            bgColor: "bg-pink",
+            textColor: "text-pink",
+        },
+        {
+            number: "100%",
+            label: "Compliance Accuracy",
+            icon: FaShieldHalved,
+            bgColor: "bg-green",
+            textColor: "text-green",
+        },
+    ],
+};
+

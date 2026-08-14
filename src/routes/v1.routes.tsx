@@ -22,22 +22,23 @@ const ExportBizLegacy = lazy(() => import("@/features/v1/export-biz/pages/Export
 
 export const renderV1Routes = () => (
   <Route element={<AppLayout />}>
-    {/* V1 legacy routes — accessible at /home-v1, /about-v1 etc. */}
+    {/* V1 legacy routes */}
     <Route path="home-v1" element={<HomePage />} />
     <Route path="about-v1" element={<AboutPage />} />
     <Route path="web-development-v1" element={<WebDevelopmentPage />} />
     <Route path="mobile-app-development-v1" element={<MobileAppDevelopmentPage />} />
+    <Route path="desktop-applications-v1" element={<DesktopApplicationsPage />} />
     <Route path="ease-marketing-v1" element={<EaseMarketingPage />} />
+    <Route path="grow-together-v1" element={<GrowTogetherPage />} />
+    <Route path="export-biz-v1" element={<ExportBizPage />} />
+    <Route path="products-v1" element={<ProductsPage />} />
+    <Route path="contact-v1" element={<ContactPage />} />
+    <Route path="portfolio-v1" element={<PortfolioPage />} />
     <Route path="portfolio" element={<PortfolioPage />} />
     <Route path="desktop-applications" element={<DesktopApplicationsPage />} />
-    <Route path="blogs" element={<BlogListPage />} />
-    <Route path="blogs/:slug" element={<BlogDetailPage />} />
-    <Route path="products" element={<ProductsPage />} />
+    <Route path="blogs-v1" element={<BlogListPage />} />
+    <Route path="blogs-v1/:slug" element={<BlogDetailPage />} />
     <Route path="new" element={<NewPage />} />
     <Route path="exportbiz" element={<ExportBizLegacy />} />
-    <Route path="contactus" element={<ContactPage />} />
-    <Route path="contacts" element={<ContactPage />} />
-    <Route path="export-biz" element={<ExportBizPage />} />
-    <Route path="grow-together" element={<GrowTogetherPage />} />
   </Route>
 );

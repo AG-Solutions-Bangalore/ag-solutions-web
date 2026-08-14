@@ -1,4 +1,4 @@
-export const SERVER_IMAGE_BASE = "http://ag-solutions.in/webapi/public/assets/images/web_images";
+export const SERVER_IMAGE_BASE = "https://ag-solutions.in/webapi/public/assets/images/web_images_new";
 
 /**
  * Helper to get the correct URL for an image asset.
@@ -27,7 +27,10 @@ export function getImageUrl(path: string | undefined | null): string {
   // Remove leading /images prefix to align with remote server path structure
   const relativePath = cleanPath.startsWith("/images/")
     ? cleanPath.substring(7)
+    : cleanPath.startsWith("/")
+    ? cleanPath.substring(1)
     : cleanPath;
 
-  return `${SERVER_IMAGE_BASE}${relativePath.startsWith("/") ? relativePath : "/" + relativePath}`;
+  return `${SERVER_IMAGE_BASE}/${relativePath}`;
 }
+

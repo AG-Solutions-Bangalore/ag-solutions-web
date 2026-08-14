@@ -48,7 +48,7 @@ const features = [
 
 function WhyChooseUs() {
     return (
-        <section className="relative overflow-hidden bg-slate-50/50 py-16 md:py-20">
+        <section className="relative overflow-hidden bg-slate-50/50 py-12 sm:py-16 md:py-20">
             {/* Ambient Backdrop Aura */}
             <div className="pointer-events-none absolute left-1/4 top-1/2 -z-10 h-[400px] w-[400px] -translate-y-1/2 rounded-full bg-ag-teal/10 blur-3xl animate-pulse" />
 
@@ -66,7 +66,7 @@ function WhyChooseUs() {
                         <span>WHY CHOOSE US</span>
                         <span>· · ·</span>
                     </div>
-                    <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ag-dark md:text-4xl">
+                    <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-ag-dark md:text-4xl">
                         Why Businesses Trust AG Solutions?
                     </h2>
                     {/* Decorative Underline */}
@@ -79,7 +79,7 @@ function WhyChooseUs() {
                 </motion.div>
 
                 {/* 6 Feature Cards Grid */}
-                <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-8 sm:mt-12 grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {features.map((feat, idx) => {
                         const Icon = feat.icon;
                         return (
@@ -89,7 +89,7 @@ function WhyChooseUs() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                className="group flex items-start gap-4 rounded-2xl border border-slate-100 bg-white p-6 shadow-2xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-slate-200"
+                                className="group flex items-start gap-4 rounded-2xl border border-slate-100 bg-white p-5 sm:p-6 shadow-2xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-slate-200"
                             >
                                 <div
                                     className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${feat.bgColor} text-white shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6`}

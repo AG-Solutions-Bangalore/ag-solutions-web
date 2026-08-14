@@ -48,7 +48,7 @@ function FeatureCards() {
     return (
         <section className="bg-white">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
                     {features.map((feature, idx) => {
                         const Icon = feature.icon;
                         return (
@@ -58,7 +58,7 @@ function FeatureCards() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                className="group relative overflow-hidden flex flex-col items-center justify-between rounded-2xl border border-slate-100 bg-white p-8 text-center shadow-2xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-slate-200"
+                                className="group relative overflow-hidden flex flex-col items-center justify-between rounded-2xl border border-slate-100 bg-white p-6 sm:p-8 text-center shadow-2xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-slate-200"
                             >
                                 <div className="flex flex-col items-center w-full">
                                     <div className={`apple-border-shine mb-5 flex h-16 w-16 items-center justify-center rounded-2xl text-white shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${feature.classes.icon}`}>

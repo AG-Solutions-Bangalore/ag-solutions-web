@@ -41,6 +41,8 @@ export const v2Loaders = {
   easeMarketing: () => import("@/features/v2/products/pages/EaseMarketingPage"),
   growTogether: () => import("@/features/v2/products/pages/GrowTogetherPage"),
   notFound: () => import("@/features/v2/not-found/pages/NotFoundPageV2"),
+  comingSoon: () => import("@/features/v2/coming-soon/pages/ComingSoonPage"),
+  contact: () => import("@/features/v2/contact-us/pages/ContactPage"),
 };
 
 /* ==========================================================================

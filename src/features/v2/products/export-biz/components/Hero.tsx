@@ -1,4 +1,5 @@
 import React from "react";
+import { getImageUrl } from "@/utils/imageUrl";
 
 interface HeroProps {
   onScrollTo?: (targetId: string) => void;
@@ -30,24 +31,24 @@ export const Hero: React.FC<HeroProps> = ({ onScrollTo }) => {
           {/* Left Content */}
           <div className="lg:col-span-7 pb-4 lg:pb-8">
             <span className="inline-flex items-center gap-2 text-[0.75rem] font-bold tracking-[0.1em] uppercase text-[#CFE0FF] bg-white/10 px-3.5 py-1.5 rounded-full mb-4">
-              Export Biz · by AG Solutions
+              EXPORT DOCUMENTATION SOFTWARE
             </span>
 
-            <h1 className="font-['Plus_Jakarta_Sans',sans-serif] font-extrabold text-white text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] xl:text-[4rem] leading-[1.1] tracking-tight mb-4.5 break-words">
-              Export Documentation.
-              <span className="block bg-gradient-to-r from-[#4A8FFF] via-[#60A5FA] to-[#FF5A00] bg-clip-text text-transparent mt-1">
-                Done in Minutes.
+            <h1 className="font-['Plus_Jakarta_Sans',sans-serif] font-extrabold text-white text-2xl sm:text-4xl md:text-5xl lg:text-[3.4rem] xl:text-[4rem] leading-[1.15] tracking-tight mb-4.5 break-words">
+              From Manual Paperwork to
+              <span className="block bg-gradient-to-r from-[#4A8FFF] via-[#60A5FA] to-[#E91E63] bg-clip-text text-transparent mt-1">
+                Digital Documentation — In Minutes.
               </span>
             </h1>
 
-            <p className="text-[#C9D7F5] text-base sm:text-lg lg:text-[1.15rem] leading-relaxed max-w-[540px] mb-7">
-              Turn order details into export invoices, packing lists &amp; scheme claims — in 3 simple clicks.
+            <p className="text-[#C9D7F5] text-sm sm:text-lg lg:text-[1.15rem] leading-relaxed max-w-[540px] mb-7">
+              Export Biz helps Exporters in creating manual export documentations into structured digital documentation, reducing repetitive data entry and making document preparation faster and easier.
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 mb-7">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-7">
               <a
                 onClick={(e) => handleClick(e, "demo")}
-                className="inline-flex items-center justify-center gap-2 font-['Inter',sans-serif] font-bold text-base sm:text-[1.05rem] px-7 py-3.5 sm:px-7.5 sm:py-4 rounded-2xl bg-[#FF5A00] text-white shadow-[0_10px_26px_rgba(255,90,0,0.35)] hover:-translate-y-0.5 hover:shadow-[0_14px_32px_rgba(255,90,0,0.45)] hover:bg-[#E64F00] transition-all duration-180 ease-in-out whitespace-nowrap min-h-[50px] cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 font-['Inter',sans-serif] font-bold text-sm sm:text-[1.05rem] px-6 py-3.5 sm:px-7.5 sm:py-4 rounded-2xl bg-[#E91E63] text-white shadow-[0_10px_26px_rgba(233,30,99,0.35)] hover:-translate-y-0.5 hover:shadow-[0_14px_32px_rgba(233,30,99,0.45)] hover:bg-[#D81B60] transition-all duration-180 ease-in-out whitespace-nowrap min-h-[48px] sm:min-h-[50px] cursor-pointer w-full sm:w-auto"
               >
                 Start Free Demo →
               </a>
@@ -55,7 +56,7 @@ export const Hero: React.FC<HeroProps> = ({ onScrollTo }) => {
                 href="#how-it-works"
                 title="How AG Solutions Works"
                 onClick={(e) => handleClick(e, "how-it-works")}
-                className="inline-flex items-center justify-center gap-2 font-['Inter',sans-serif] font-bold text-base sm:text-[1.05rem] px-7 py-3.5 sm:px-7.5 sm:py-4 rounded-2xl bg-transparent text-white border-1.5 border-white/40 hover:border-white hover:bg-white/10 transition-all duration-180 ease-in-out whitespace-nowrap min-h-[50px] cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 font-['Inter',sans-serif] font-bold text-sm sm:text-[1.05rem] px-6 py-3.5 sm:px-7.5 sm:py-4 rounded-2xl bg-transparent text-white border-1.5 border-white/40 hover:border-white hover:bg-white/10 transition-all duration-180 ease-in-out whitespace-nowrap min-h-[48px] sm:min-h-[50px] cursor-pointer w-full sm:w-auto"
               >
                 See How It Works
               </a>
@@ -79,7 +80,7 @@ export const Hero: React.FC<HeroProps> = ({ onScrollTo }) => {
           <div className="lg:col-span-5 relative">
             <div className="relative w-full max-w-[460px] lg:max-w-none mx-auto">
               <div
-                className="absolute -inset-4 bg-gradient-to-tr from-[#287BFF]/30 to-[#FF5A00]/20 blur-2xl rounded-[32px] -z-10 pointer-events-none animate-pulse"
+                className="absolute -inset-4 bg-gradient-to-tr from-[#287BFF]/30 to-[#E91E63]/20 blur-2xl rounded-[32px] -z-10 pointer-events-none animate-pulse"
                 aria-hidden="true"
               />
 
@@ -98,20 +99,13 @@ export const Hero: React.FC<HeroProps> = ({ onScrollTo }) => {
 
               <div className="relative w-full aspect-[4/3.8] sm:aspect-square rounded-[24px] sm:rounded-[28px] overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.4)] bg-gradient-to-br from-[#287BFF] to-[#071B49] transition-transform duration-500 hover:scale-[1.02]">
                 <img
-                  src="https://images.unsplash.com/photo-1741792191212-60d22002bd1b?fm=jpg&q=75&w=900&auto=format&fit=crop"
-                  srcSet="https://images.unsplash.com/photo-1741792191212-60d22002bd1b?fm=jpg&q=75&w=600&auto=format&fit=crop 600w,
-                          https://images.unsplash.com/photo-1741792191212-60d22002bd1b?fm=jpg&q=75&w=900&auto=format&fit=crop 900w,
-                          https://images.unsplash.com/photo-1741792191212-60d22002bd1b?fm=jpg&q=80&w=1400&auto=format&fit=crop 1400w"
-                  sizes="(max-width: 680px) 90vw, (max-width: 1024px) 45vw, 460px"
-                  width="900"
-                  height="900"
-                  alt="Cargo ship loaded with shipping containers at port"
-                  title="Cargo Ship with Shipping Containers at Port"
-                  className="w-full h-full object-cover block"
+                  src={getImageUrl("/images/biz-header.webp")}
+                  alt="Export Biz Software Interface"
+                  title="Export Biz Documentation Software"
+                  className="w-full h-full object-contain p-4 block"
                   loading="eager"
                   fetchPriority="high"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#071B49]/30 to-[#071B49]/70" />
               </div>
 
               {/* Price Tag Badge */}

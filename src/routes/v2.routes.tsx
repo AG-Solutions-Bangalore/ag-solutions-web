@@ -11,29 +11,92 @@ const MobileAppPageV2 = lazy(v2Loaders.mobileApp);
 const DigitalMarketingPageV2 = lazy(v2Loaders.digitalMarketing);
 const ExportBizPage = lazy(v2Loaders.exportBiz);
 const ProductsPage = lazy(v2Loaders.products);
-
-// V2 Product Pages
-const EaseMarketingPage = lazy(v2Loaders.easeMarketing);
-const GrowTogetherPage = lazy(v2Loaders.growTogether);
-
-// V2 Common Pages
+const ComingSoonPage = lazy(v2Loaders.comingSoon);
+const ContactPage = lazy(v2Loaders.contact);
 const NotFoundPage = lazy(v2Loaders.notFound);
 
 export const renderV2Routes = () => (
   <Route element={<LayoutV2 />}>
+    {/* Home */}
     <Route index element={<HomePageV2 />} />
+    <Route path="home" element={<HomePageV2 />} />
+
+    {/* About Us */}
     <Route path="about" element={<AboutPageV2 />} />
+    <Route path="about-us" element={<AboutPageV2 />} />
+
+    {/* Services */}
     <Route path="services" element={<WebDevelopmentPageV2 />} />
     <Route path="services/web-development" element={<WebDevelopmentPageV2 />} />
     <Route path="services/mobile-app" element={<MobileAppPageV2 />} />
     <Route path="services/mobile-app-development" element={<MobileAppPageV2 />} />
     <Route path="services/digital-marketing" element={<DigitalMarketingPageV2 />} />
     <Route path="services/ease-marketing" element={<DigitalMarketingPageV2 />} />
+
+    {/* Products */}
     <Route path="products" element={<ProductsPage />} />
     <Route path="products/export-biz" element={<ExportBizPage />} />
-    <Route path="products/ease-marketing" element={<EaseMarketingPage />} />
-    <Route path="products/grow-together" element={<GrowTogetherPage />} />
+    <Route path="export-biz" element={<ExportBizPage />} />
     <Route path="export-biz-new" element={<ExportBizPage />} />
+    
+    {/* Coming Soon Products */}
+    <Route
+      path="products/ss-marketing"
+      element={
+        <ComingSoonPage
+          title="SS Marketing"
+          subtitle="Intelligent Marketing & Campaign Workflow Platform"
+          description="We are crafting a comprehensive digital marketing operations and workflow builder to simplify multi-channel campaign coordination."
+        />
+      }
+    />
+    <Route
+      path="products/ease-marketing"
+      element={
+        <ComingSoonPage
+          title="SS Marketing"
+          subtitle="Intelligent Marketing & Campaign Workflow Platform"
+          description="We are crafting a comprehensive digital marketing operations and workflow builder to simplify multi-channel campaign coordination."
+        />
+      }
+    />
+    <Route
+      path="products/grow-together"
+      element={
+        <ComingSoonPage
+          title="Grow Together"
+          subtitle="Collaborative Business Networking & Growth Platform"
+          description="A centralized collaborative platform for cross-industry networking, lead exchange, and scalable community growth."
+        />
+      }
+    />
+
+    {/* Blog (Coming Soon) */}
+    <Route
+      path="blogs"
+      element={
+        <ComingSoonPage
+          title="AG Solutions Blog"
+          subtitle="Tech Trends, Case Studies & Digital Growth"
+          description="Our engineering and strategy teams are preparing in-depth articles, case studies, and modern technology guides."
+        />
+      }
+    />
+    <Route
+      path="blog"
+      element={
+        <ComingSoonPage
+          title="AG Solutions Blog"
+          subtitle="Tech Trends, Case Studies & Digital Growth"
+          description="Our engineering and strategy teams are preparing in-depth articles, case studies, and modern technology guides."
+        />
+      }
+    />
+
+    {/* Contact Us */}
+    <Route path="contacts" element={<ContactPage />} />
+    <Route path="contactus" element={<ContactPage />} />
+    <Route path="contact" element={<ContactPage />} />
     
     {/* Catch-all route for V2 */}
     <Route path="*" element={<NotFoundPage />} />

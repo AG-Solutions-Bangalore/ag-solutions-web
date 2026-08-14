@@ -96,11 +96,11 @@ export const GrowTogetherPage: React.FC = () => {
 
       {/* 2. Intro Section */}
       <AnimatedSection
-        className="bg-white py-20 text-[#1b2c38] max-[760px]:py-14"
+        className="bg-white py-12 md:py-20 text-[#1b2c38]"
         ariaLabel="Grow Together introduction"
       >
         {(isVisible) => (
-          <div className={`${layoutContainerClass} grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr] gap-12 items-center`}>
+          <div className={`${layoutContainerClass} grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr] gap-8 md:gap-12 items-center`}>
             {/* Left Image */}
             <div className={`home-animated-item flex justify-center ${isVisible ? "home-animated-item-visible" : ""}`}>
               <img
@@ -116,12 +116,12 @@ export const GrowTogetherPage: React.FC = () => {
               <SectionTitle
                 title="Align Your Teams and Clients"
                 align="left"
-                titleClassName="text-[36px] font-black leading-tight text-[#1a2b3c] max-[560px]:text-2xl"
+                titleClassName="text-2xl sm:text-3xl md:text-[36px] font-black leading-tight text-[#1a2b3c]"
               />
-              <p className="mt-8 text-base leading-relaxed text-[#4f5a62]">
+              <p className="mt-5 sm:mt-8 text-sm sm:text-base leading-relaxed text-[#4f5a62]">
                 Grow Together is a secure team productivity and client relations workspace. Combining goal alignment tracking, flexible task boards, real-time message feeds, and custom client portals, it helps modern organizations streamline productivity, align resources, and drive corporate success.
               </p>
-              <div className="mt-8 space-y-3">
+              <div className="mt-6 sm:mt-8 space-y-3">
                 <div className="flex items-start gap-3">
                   <span className="text-[#13875f] text-xl font-bold">✓</span>
                   <p className="m-0 text-sm text-[#4f5a62]">Centralized communication that replaces endless daily status meetings.</p>
@@ -142,7 +142,7 @@ export const GrowTogetherPage: React.FC = () => {
 
       {/* 3. Features Section */}
       <AnimatedSection
-        className="bg-[#fafafa] py-20 border-t border-slate-100 text-[#1b2c38] max-[760px]:py-14"
+        className="bg-[#fafafa] py-12 md:py-20 border-t border-slate-100 text-[#1b2c38]"
         ariaLabel="Grow Together features"
       >
         {(isVisible) => (
@@ -150,12 +150,12 @@ export const GrowTogetherPage: React.FC = () => {
             <SectionTitle
               title="Product Features"
               align="center"
-              titleClassName="text-[38px] leading-tight font-black text-[#1a2b3c]"
+              titleClassName="text-2xl sm:text-3xl md:text-[38px] leading-tight font-black text-[#1a2b3c]"
               className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`}
             />
 
             <div
-              className={`mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 home-animated-item ${
+              className={`mt-10 sm:mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 home-animated-item ${
                 isVisible ? "home-animated-item-visible" : ""
               }`}
               style={{ transitionDelay: "100ms" }}
@@ -163,11 +163,11 @@ export const GrowTogetherPage: React.FC = () => {
               {features.map((feat) => (
                 <div
                   key={feat.title}
-                  className="bg-white border border-slate-100 p-8 rounded-none flex flex-col items-center text-center shadow-xs hover:shadow-md transition-all duration-300"
+                  className="bg-white border border-slate-100 p-6 sm:p-8 rounded-2xl flex flex-col items-center text-center shadow-xs hover:shadow-md transition-all duration-300"
                 >
                   <div className="text-4xl mb-4">{feat.icon}</div>
-                  <h4 className="m-0 text-lg font-bold text-[#1a2b3c]">{feat.title}</h4>
-                  <p className="mt-4 text-[14.5px] leading-relaxed text-[#5c6873] font-normal flex-1">
+                  <h4 className="m-0 text-base sm:text-lg font-bold text-[#1a2b3c]">{feat.title}</h4>
+                  <p className="mt-3 sm:mt-4 text-xs sm:text-[14.5px] leading-relaxed text-[#5c6873] font-normal flex-1">
                     {feat.description}
                   </p>
                 </div>
@@ -179,21 +179,21 @@ export const GrowTogetherPage: React.FC = () => {
 
       {/* 4. Inquiry Form */}
       <AnimatedSection
-        className="bg-white py-20 border-t border-slate-100 text-[#1b2c38] max-[760px]:py-14"
+        className="bg-white py-12 md:py-20 border-t border-slate-100 text-[#1b2c38]"
         ariaLabel="Grow Together inquiry form"
       >
         {(isVisible) => (
-          <div className={`${layoutContainerClass} grid grid-cols-1 md:grid-cols-2 gap-12`}>
+          <div className={`${layoutContainerClass} grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12`}>
             <div className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`}>
               <SectionTitle
                 title="Get Started With Grow Together"
                 align="left"
-                titleClassName="text-[38px] leading-[1.16] font-black tracking-normal max-[760px]:text-[30px] text-[#1a2b3c]"
+                titleClassName="text-2xl sm:text-3xl md:text-[38px] leading-[1.16] font-black tracking-normal text-[#1a2b3c]"
               />
-              <p className="mt-7 text-[17px] font-semibold leading-[1.55] text-[#1a2b3c]">
+              <p className="mt-5 sm:mt-7 text-base sm:text-[17px] font-semibold leading-[1.55] text-[#1a2b3c]">
                 Unlock next-level collaboration for your organization.
               </p>
-              <p className="mt-4 text-[14.5px] leading-relaxed text-[#5c6873] font-normal">
+              <p className="mt-3 sm:mt-4 text-xs sm:text-[14.5px] leading-relaxed text-[#5c6873] font-normal">
                 Align task workflows, objectives, and client communications in one centralized dashboard. Request a live product demo to see Grow Together in action today.
               </p>
             </div>
@@ -212,7 +212,7 @@ export const GrowTogetherPage: React.FC = () => {
                       placeholder="Your Full Name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full rounded-full border-none bg-[#f1f1eb] px-7 py-4 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all"
+                      className="w-full rounded-full border-none bg-[#f1f1eb] px-6 sm:px-7 py-3.5 sm:py-4 text-base sm:text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all"
                     />
                   </div>
                   <div>
@@ -222,7 +222,7 @@ export const GrowTogetherPage: React.FC = () => {
                       placeholder="Phone Number"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full rounded-full border-none bg-[#f1f1eb] px-7 py-4 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all"
+                      className="w-full rounded-full border-none bg-[#f1f1eb] px-6 sm:px-7 py-3.5 sm:py-4 text-base sm:text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all"
                     />
                   </div>
                   <div>
@@ -232,7 +232,7 @@ export const GrowTogetherPage: React.FC = () => {
                       placeholder="Email Address"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full rounded-full border-none bg-[#f1f1eb] px-7 py-4 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all"
+                      className="w-full rounded-full border-none bg-[#f1f1eb] px-6 sm:px-7 py-3.5 sm:py-4 text-base sm:text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all"
                     />
                   </div>
                   <div>
@@ -242,20 +242,20 @@ export const GrowTogetherPage: React.FC = () => {
                       placeholder="Details"
                       value={formData.details}
                       onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-                      className="w-full rounded-[2rem] border-none bg-[#f1f1eb] px-7 py-5 text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all resize-none min-h-[130px]"
+                      className="w-full rounded-[1.5rem] sm:rounded-[2rem] border-none bg-[#f1f1eb] px-6 sm:px-7 py-4 sm:py-5 text-base sm:text-[15px] text-[#1d2d3b] outline-none placeholder:text-[#34414c]/50 focus:bg-[#eaeae3] transition-all resize-none min-h-[120px]"
                     />
                   </div>
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-2">
-                    <div className="flex items-center gap-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6 pt-2">
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                       <button
                         type="submit"
                         disabled={createEnquiry.isPending}
-                        className="cursor-pointer rounded-full bg-[#93d034] text-white hover:bg-[#82c024] px-10 py-4 font-bold text-[15px] tracking-wider transition-all active:scale-[0.98] shrink-0 disabled:opacity-50"
+                        className="cursor-pointer rounded-full bg-[#93d034] text-white hover:bg-[#82c024] px-8 sm:px-10 py-3.5 sm:py-4 font-bold text-sm sm:text-[15px] tracking-wider transition-all active:scale-[0.98] shrink-0 disabled:opacity-50 w-full sm:w-auto"
                       >
                         {createEnquiry.isPending ? "SENDING..." : "SEND INQUIRY"}
                       </button>
                       {createEnquiry.isError && (
-                        <p className="text-red-500 text-sm">
+                        <p className="text-red-500 text-sm text-center sm:text-left">
                           Error: Please try again.
                         </p>
                       )}

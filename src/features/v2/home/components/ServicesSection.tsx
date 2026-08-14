@@ -67,7 +67,7 @@ const services = [
 
 function ServicesSection() {
     return (
-        <section className="bg-slate-50/40 py-16 md:py-24">
+        <section className="bg-slate-50/40 py-12 sm:py-16 md:py-24">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <motion.div
                     className="text-center"
@@ -81,7 +81,7 @@ function ServicesSection() {
                         <span>OUR SERVICES</span>
                         <span>· · ·</span>
                     </div>
-                    <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-accent-dark md:text-4xl">
+                    <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-accent-dark sm:text-3xl md:text-4xl">
                         Services We Offer
                     </h2>
                     {/* 4-Color Underline Accent */}
@@ -93,7 +93,7 @@ function ServicesSection() {
                     </div>
                 </motion.div>
 
-                <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-10 sm:mt-12 grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {services.map((service, idx) => {
                         const Icon = service.icon;
                         return (
@@ -103,7 +103,7 @@ function ServicesSection() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                className="group relative overflow-hidden flex flex-col justify-between rounded-2xl border border-slate-100 bg-white p-7 shadow-2xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-slate-200"
+                                className="group relative overflow-hidden flex flex-col justify-between rounded-2xl border border-slate-100 bg-white p-6 sm:p-7 shadow-2xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-slate-200"
                             >
                                 <div>
                                     <div className={`apple-border-shine mb-5 inline-flex rounded-2xl p-3.5 text-white shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${service.iconClass}`}>
