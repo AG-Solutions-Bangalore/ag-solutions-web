@@ -1,57 +1,9 @@
-import { lazy, useEffect } from "react";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { Routes, useLocation } from "react-router-dom";
 import Lenis from "lenis";
-import AppLayout from "./components/layout/AppLayout";
 import SkipToContent from "./components/accessibility/SkipToContent";
 import { getUtmParams, storeUtmParams } from "./utils/utmUtils";
-import {
-  loadAboutPage,
-  loadAboutPageV2,
-  loadServicePageV2,
-  loadMobileAppPageV2,
-  loadDigitalMarketingPageV2,
-  loadBlogDetailPage,
-  loadBlogListPage,
-  loadContactPage,
-  loadDesktopApplicationsPage,
-  loadHomePage,
-  loadHomePageV2,
-  loadMobileAppDevelopmentPage,
-  loadNotFoundPage,
-  loadPortfolioPage,
-  loadWebDevelopmentPage,
-  loadProductsPage,
-  loadExportBizPage,
-  loadEaseMarketingPage,
-  loadGrowTogetherPage,
-  loadExportBizNewPage,
-} from "./routes/lazyRoutes";
-import New from "../src/features/home/pages/New/New";
-import ExportBiz from "./features/export-biz/pages/ExportBiz";
-// import ContactUs from "./features/contact-us-new/pages/ContactUs";
-
-
-
-const HomePage = lazy(loadHomePage);
-const HomePageV2 = lazy(loadHomePageV2);
-const AboutPage = lazy(loadAboutPage);
-const AboutPageV2 = lazy(loadAboutPageV2);
-const ServicePageV2 = lazy(loadServicePageV2);
-const MobileAppPageV2 = lazy(loadMobileAppPageV2);
-const DigitalMarketingPageV2 = lazy(loadDigitalMarketingPageV2);
-const ContactPage = lazy(loadContactPage);
-const PortfolioPage = lazy(loadPortfolioPage);
-const WebDevelopmentPage = lazy(loadWebDevelopmentPage);
-const MobileAppDevelopmentPage = lazy(loadMobileAppDevelopmentPage);
-const DesktopApplicationsPage = lazy(loadDesktopApplicationsPage);
-const BlogListPage = lazy(loadBlogListPage);
-const BlogDetailPage = lazy(loadBlogDetailPage);
-const ProductsPage = lazy(loadProductsPage);
-const ExportBizPage = lazy(loadExportBizPage);
-const ExportBizNewPage = lazy(loadExportBizNewPage);
-const EaseMarketingPage = lazy(loadEaseMarketingPage);
-const GrowTogetherPage = lazy(loadGrowTogetherPage);
-const NotFoundPage = lazy(loadNotFoundPage);
+import { renderV1Routes, renderV2Routes, renderV3Routes } from "./routes";
 
 function UtmTracker() {
   const location = useLocation();
@@ -80,6 +32,31 @@ function ScrollToTop() {
 }
 
 function App() {
+  // Clean up any stale inline theme style overrides on mount so CSS tokens and next-themes drive theme cleanly
+  useEffect(() => {
+    const root = document.documentElement;
+    const staleProps = [
+      "--background",
+      "--foreground",
+      "--card",
+      "--card-foreground",
+      "--popover",
+      "--popover-foreground",
+      "--border",
+      "--input",
+      "--dark",
+      "--light",
+      "--muted",
+      "--navy",
+    ];
+    staleProps.forEach((prop) => root.style.removeProperty(prop));
+    try {
+      localStorage.removeItem("ag-theme-config");
+    } catch {
+      // ignore
+    }
+  }, []);
+
   useEffect(() => {
     // Prevent browser auto-restoration from clamping scroll to unrendered document height on refresh
     if ("scrollRestoration" in window.history) {
@@ -130,55 +107,17 @@ function App() {
       <SkipToContent />
       <ScrollToTop />
       <Routes>
-        <Route path="home-v2" element={<HomePageV2 />} />
-        <Route path="about-v2" element={<AboutPageV2 />} />
-        <Route path="service-v2" element={<ServicePageV2 />} />
-        <Route path="web-development-v2" element={<ServicePageV2 />} />
-        <Route path="mobile-app-v2" element={<MobileAppPageV2 />} />
-        <Route path="mobile-app-development-v2" element={<MobileAppPageV2 />} />
-        <Route path="digital-marketing-v2" element={<DigitalMarketingPageV2 />} />
-        <Route path="ease-marketing-v2" element={<DigitalMarketingPageV2 />} />
-        <Route element={<AppLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="projects" element={<Navigate to="/portfolio" replace />} />
-          <Route path="about" element={<AboutPage />} />
-          <Route path="services" element={<Navigate to="/web-development" replace />} />
-          <Route path="web-development" element={<WebDevelopmentPage />} />
-          <Route
-            path="mobile-app-development"
-            element={<MobileAppDevelopmentPage />}
-          />
-          <Route
-            path="desktop-applications"
-            element={<DesktopApplicationsPage />}
-          />
-          <Route path="portfolio" element={<PortfolioPage />} />
-          <Route path="blogs" element={<BlogListPage />} />
-          <Route path="blogs/:slug" element={<BlogDetailPage />} />
-          <Route path="products" element={<ProductsPage />} />
-          <Route path="/new" element={<New />} />
-          <Route path="/exportbiz" element={<ExportBiz />} />
-          <Route path="/contactus" element={<ContactPage />} />
-          <Route
-            path="export-biz"
-            element={<ExportBizPage />}
-          />
-          <Route
-            path="ease-marketing"
-            element={<EaseMarketingPage />}
-          />
-          <Route
-            path="grow-together"
-            element={<GrowTogetherPage />}
-          />
-          <Route path="export-biz-new" element={<ExportBizNewPage />} />
-          <Route path="contacts" element={<ContactPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Route>
+        {/* Primary Routes (V2) — /, /about, /services, /web-development, etc. */}
+        {renderV2Routes()}
+
+        {/* Future Version 3 Routes */}
+        {renderV3Routes()}
+
+        {/* Legacy V1 Routes — /home-v1, /portfolio, /blogs, etc. */}
+        {renderV1Routes()}
       </Routes>
     </>
   );
 }
-
 
 export default App;

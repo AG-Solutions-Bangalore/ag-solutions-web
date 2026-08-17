@@ -2,137 +2,269 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* 1. Light Mode CSS Variables */
-:root {
-  --color-background: #ffffff;
-  --color-foreground: #1e293b;
-
-  --color-card: #ffffff;
-  --color-card-foreground: #1e293b;
-
-  --color-muted: #64748b;
-  --color-muted-bg: #f8fafc;
-  --color-border: #e2e8f0;
-
-  /* AG Solutions Brand Colors - Light Mode Tints & Borders */
-  --color-ag-pink-light: #fff0f4;
-  --color-ag-pink-border: #fbcfe8;
-
-  --color-ag-teal-light: #e6f7f8;
-  --color-ag-teal-border: #a5f3fc;
-
-  --color-ag-yellow-light: #fff8ec;
-  --color-ag-yellow-border: #fde68a;
-
-  --color-ag-green-light: #f1f8e9;
-  --color-ag-green-border: #d9f99d;
-
-  --color-ag-blue-light: #e0f2fe;
-  --color-ag-blue-border: #bae6fd;
-
-  --ag-navy: #0c192c;
-  --ag-dark: #1e293b;
-  --ag-muted: #64748b;
-  --ag-light: #f8fafc;
-}
-
-/* 2. Dark Mode CSS Variables */
-.dark {
-  --color-background: #090d16;
-  --color-foreground: #f8fafc;
-
-  --color-card: #0f172a;
-  --color-card-foreground: #f8fafc;
-
-  --color-muted: #94a3b8;
-  --color-muted-bg: #1e293b;
-  --color-border: #1e293b;
-
-  /* AG Solutions Brand Colors - Dark Mode Tints & Borders */
-  --color-ag-pink-light: rgba(233, 53, 104, 0.15);
-  --color-ag-pink-border: rgba(233, 53, 104, 0.35);
-
-  --color-ag-teal-light: rgba(0, 168, 181, 0.15);
-  --color-ag-teal-border: rgba(0, 168, 181, 0.35);
-
-  --color-ag-yellow-light: rgba(245, 166, 35, 0.15);
-  --color-ag-yellow-border: rgba(245, 166, 35, 0.35);
-
-  --color-ag-green-light: rgba(124, 179, 66, 0.15);
-  --color-ag-green-border: rgba(124, 179, 66, 0.35);
-
-  --color-ag-blue-light: rgba(2, 132, 199, 0.15);
-  --color-ag-blue-border: rgba(2, 132, 199, 0.35);
-
-  --ag-navy: #030712;
-  --ag-dark: #f8fafc;
-  --ag-muted: #94a3b8;
-  --ag-light: #1e293b;
-}
-
-/* 3. Register Variables in Tailwind CSS v4 @theme */
-@theme {
+/* 1. Tailwind CSS v4 Theme Token Registration */
+@theme inline {
   --font-sans: "Roboto", system-ui, -apple-system, sans-serif;
   --font-heading: "Space Grotesk", sans-serif;
   --font-space-grotesk: "Space Grotesk", sans-serif;
 
-  /* AG Solutions Brand Colors */
-  --color-ag-pink: #e93568;
-  --color-ag-pink-hover: #d02555;
-  --color-ag-pink-light: var(--color-ag-pink-light);
-  --color-ag-pink-border: var(--color-ag-pink-border);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
 
-  --color-ag-teal: #00a8b5;
-  --color-ag-teal-hover: #008f9b;
-  --color-ag-teal-dark: #0d9488;
-  --color-ag-teal-light: var(--color-ag-teal-light);
-  --color-ag-teal-border: var(--color-ag-teal-border);
+  /* Semantic UI Tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-section-alt: var(--section-alt);
 
-  --color-ag-yellow: #f5a623;
-  --color-ag-yellow-hover: #e09216;
-  --color-ag-yellow-light: var(--color-ag-yellow-light);
-  --color-ag-yellow-border: var(--color-ag-yellow-border);
+  /* Standard Brand Colors (Single Source of Truth) */
+  --color-pink: var(--pink);
+  --color-pink-hover: var(--pink-hover);
+  --color-pink-light: var(--pink-light);
+  --color-pink-border: var(--pink-border);
 
-  --color-ag-green: #7cb342;
-  --color-ag-green-hover: #689f38;
-  --color-ag-green-light: var(--color-ag-green-light);
-  --color-ag-green-border: var(--color-ag-green-border);
+  --color-teal: var(--teal);
+  --color-teal-hover: var(--teal-hover);
+  --color-teal-dark: var(--teal-dark);
+  --color-teal-light: var(--teal-light);
+  --color-teal-border: var(--teal-border);
 
-  --color-ag-blue: #0284c7;
-  --color-ag-blue-hover: #0369a1;
-  --color-ag-blue-light: var(--color-ag-blue-light);
-  --color-ag-blue-border: var(--color-ag-blue-border);
+  --color-yellow: var(--yellow);
+  --color-yellow-hover: var(--yellow-hover);
+  --color-yellow-light: var(--yellow-light);
+  --color-yellow-border: var(--yellow-border);
 
-  /* Dark & Neutral Tones */
-  --color-ag-navy: var(--ag-navy);
-  --color-ag-dark: var(--ag-dark);
-  --color-ag-muted: var(--ag-muted);
-  --color-ag-light: var(--ag-light);
+  --color-green: var(--green);
+  --color-green-hover: var(--green-hover);
+  --color-green-light: var(--green-light);
+  --color-green-border: var(--green-border);
 
-  /* Standard Semantic UI Tokens */
-  --color-primary: #e93568;
-  --color-primary-hover: #d02555;
-  --color-primary-light: var(--color-ag-pink-light);
-  --color-primary-foreground: #ffffff;
+  --color-blue: var(--blue);
+  --color-blue-hover: var(--blue-hover);
+  --color-blue-light: var(--blue-light);
+  --color-blue-border: var(--blue-border);
 
-  --color-secondary: #00a8b5;
-  --color-secondary-hover: #008f9b;
-  --color-secondary-light: var(--color-ag-teal-light);
-  --color-secondary-foreground: #ffffff;
+  --color-navy: var(--navy);
+  --color-dark: var(--dark);
+  --color-light: var(--light);
 
-  --color-accent-pink: #e93568;
-  --color-accent-teal: #00a8b5;
-  --color-accent-yellow: #f5a623;
-  --color-accent-green: #7cb342;
-  --color-accent-blue: #0284c7;
+  /* Backwards Compatibility Aliases (ag-* and accent-*) */
+  --color-ag-pink: var(--pink);
+  --color-ag-pink-hover: var(--pink-hover);
+  --color-ag-pink-light: var(--pink-light);
+  --color-ag-pink-border: var(--pink-border);
 
-  --color-background: var(--color-background);
-  --color-foreground: var(--color-foreground);
-  --color-card: var(--color-card);
-  --color-card-foreground: var(--color-card-foreground);
-  --color-muted: var(--color-muted);
-  --color-muted-bg: var(--color-muted-bg);
-  --color-border: var(--color-border);
+  --color-ag-teal: var(--teal);
+  --color-ag-teal-hover: var(--teal-hover);
+  --color-ag-teal-dark: var(--teal-dark);
+  --color-ag-teal-light: var(--teal-light);
+  --color-ag-teal-border: var(--teal-border);
+
+  --color-ag-yellow: var(--yellow);
+  --color-ag-yellow-hover: var(--yellow-hover);
+  --color-ag-yellow-light: var(--yellow-light);
+  --color-ag-yellow-border: var(--yellow-border);
+
+  --color-ag-green: var(--green);
+  --color-ag-green-hover: var(--green-hover);
+  --color-ag-green-light: var(--green-light);
+  --color-ag-green-border: var(--green-border);
+
+  --color-ag-blue: var(--blue);
+  --color-ag-blue-hover: var(--blue-hover);
+  --color-ag-blue-light: var(--blue-light);
+  --color-ag-blue-border: var(--blue-border);
+
+  --color-ag-navy: var(--navy);
+  --color-ag-dark: var(--dark);
+  --color-ag-muted: var(--muted);
+  --color-ag-light: var(--light);
+
+  --color-accent-pink: var(--pink);
+  --color-accent-pink-hover: var(--pink-hover);
+  --color-accent-pink-light: var(--pink-light);
+  --color-accent-pink-border: var(--pink-border);
+
+  --color-accent-teal: var(--teal);
+  --color-accent-teal-hover: var(--teal-hover);
+  --color-accent-teal-dark: var(--teal-dark);
+  --color-accent-teal-light: var(--teal-light);
+  --color-accent-teal-border: var(--teal-border);
+
+  --color-accent-yellow: var(--yellow);
+  --color-accent-yellow-hover: var(--yellow-hover);
+  --color-accent-yellow-light: var(--yellow-light);
+  --color-accent-yellow-border: var(--yellow-border);
+
+  --color-accent-green: var(--green);
+  --color-accent-green-hover: var(--green-hover);
+  --color-accent-green-light: var(--green-light);
+  --color-accent-green-border: var(--green-border);
+
+  --color-accent-blue: var(--blue);
+  --color-accent-blue-hover: var(--blue-hover);
+  --color-accent-blue-light: var(--blue-light);
+  --color-accent-blue-border: var(--blue-border);
+
+  --color-accent-navy: var(--navy);
+  --color-accent-dark: var(--dark);
+  --color-accent-muted: var(--muted);
+  --color-accent-light: var(--light);
+
+  /* Standard Tailwind Font Sizes Override */
+  --text-xs: var(--font-xs);
+  --text-sm: var(--font-sm);
+  --text-base: var(--font-base);
+  --text-lg: var(--font-lg);
+  --text-xl: var(--font-xl);
+  --text-2xl: var(--font-2xl);
+  --text-3xl: var(--font-3xl);
+  --text-4xl: var(--font-4xl);
+  --text-5xl: var(--font-5xl);
+  --text-6xl: var(--font-6xl);
+  --text-7xl: var(--font-7xl);
+}
+
+/* 2. Light Theme Design Tokens */
+:root {
+  --radius: 0.875rem;
+
+  /* ==========================================================================
+     TAILWIND FONT SIZES (Yahan se change karte hi poori website me change hoga)
+     ========================================================================== */
+  --font-xs: 0.75rem;       /* 12px -> controls all 'text-xs' */
+  --font-sm: 0.875rem;      /* 14px -> controls all 'text-sm' */
+  --font-base: 1rem;        /* 16px -> controls all 'text-base' */
+  --font-lg: 1.125rem;      /* 18px -> controls all 'text-lg' */
+  --font-xl: 1.25rem;       /* 20px -> controls all 'text-xl' */
+  --font-2xl: 1.5rem;       /* 24px -> controls all 'text-2xl' */
+  --font-3xl: 1.875rem;     /* 30px -> controls all 'text-3xl' */
+  --font-4xl: 2.25rem;      /* 36px -> controls all 'text-4xl' */
+  --font-5xl: 3rem;         /* 48px -> controls all 'text-5xl' */
+  --font-6xl: 3.75rem;      /* 60px -> controls all 'text-6xl' */
+  --font-7xl: 4.5rem;       /* 72px -> controls all 'text-7xl' */
+
+  --background: #ffffff;
+  --foreground: #0f172a;
+
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+
+  --primary: #E63164;
+  --primary-foreground: #ffffff;
+
+  --secondary: #00a8b5;
+  --secondary-foreground: #ffffff;
+
+  --accent: #00a8b5;
+  --accent-foreground: #ffffff;
+
+  --muted: #64748b;
+  --muted-foreground: #64748b;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #E63164;
+
+  /* Brand Palette */
+  --pink: #E63164;
+  --pink-hover: #c92050;
+  --pink-light: #fff0f4;
+  --pink-border: #fbcfe8;
+
+  --teal: #00a8b5;
+  --teal-hover: #008f9b;
+  --teal-dark: #0d9488;
+  --teal-light: #e6f7f8;
+  --teal-border: #a5f3fc;
+
+  --yellow: #f5a623;
+  --yellow-hover: #e09216;
+  --yellow-light: #fff8ec;
+  --yellow-border: #fde68a;
+
+  --green: #7cb342;
+  --green-hover: #689f38;
+  --green-light: #f1f8e9;
+  --green-border: #d9f99d;
+
+  --blue: #0284c7;
+  --blue-hover: #0369a1;
+  --blue-light: #e0f2fe;
+  --blue-border: #bae6fd;
+
+  --navy: #0c192c;
+  --dark: #0f172a;
+  --light: #f8fafc;
+  --section-alt: #f8fafc;
+}
+
+/* 3. Dark Theme Design Tokens */
+.dark {
+  --background: #090d16;
+  --foreground: #f8fafc;
+
+  --card: #0f172a;
+  --card-foreground: #f8fafc;
+  --popover: #0f172a;
+  --popover-foreground: #f8fafc;
+
+  --muted: #94a3b8;
+  --muted-foreground: #94a3b8;
+  --border: #1e293b;
+  --input: #1e293b;
+
+  --primary: #E63164;
+  --ring: #E63164;
+  --pink: #E63164;
+  --pink-hover: #ff477e;
+  --pink-light: rgba(230, 49, 100, 0.15);
+  --pink-border: rgba(230, 49, 100, 0.35);
+
+  --teal: #00a8b5;
+  --teal-hover: #00c9db;
+  --teal-dark: #0d9488;
+  --teal-light: rgba(0, 168, 181, 0.15);
+  --teal-border: rgba(0, 168, 181, 0.35);
+
+  --yellow-light: rgba(245, 166, 35, 0.15);
+  --yellow-border: rgba(245, 166, 35, 0.35);
+
+  --green-light: rgba(124, 179, 66, 0.15);
+  --green-border: rgba(124, 179, 66, 0.35);
+
+  --blue-light: rgba(2, 132, 199, 0.15);
+  --blue-border: rgba(2, 132, 199, 0.35);
+
+  --navy: #030712;
+  --dark: #f8fafc;
+  --light: #111827;
+  --section-alt: #0c1220;
 }
 
 /* 4. Apply Base Styles */
