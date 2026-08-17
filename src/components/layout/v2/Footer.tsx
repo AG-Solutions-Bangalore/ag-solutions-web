@@ -259,7 +259,7 @@ export function FooterV2() {
                                 </li>
                                 <li>
                                     <a
-                                        href="https://www.google.com/maps/place/AG+Solutions/@12.9207136,77.5897955,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae150995555555:0x440eaf1d21e4db01!8m2!3d12.9207136!4d77.5923704!16s%2Fg%2F11p67397gv?entry=ttu&g_ep=EgoyMDI2MDgxMS4wIKXMDSoASAFQAw%3D%3D"
+                                        href="https://www.google.com/maps/place/AG+Solutions/@12.9207136,77.5923704,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae150995555555:0x440eaf1d21e4db01!8m2!3d12.9207136!4d77.5923704!16s%2Fg%2F11p67397gv?entry=ttu&g_ep=EgoyMDI2MDgxMi4wIKXMDSoASAFQAw%3D%3D&utm_source=chatgpt.com"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         title="View AG Solutions on Google Maps"

@@ -1,11 +1,12 @@
 import SEO from "@/components/seo/SEO";
-
 import HeroSection from "../components/HeroSection";
+import HomeStatsStrip from "../components/HomeStatsStrip";
 import FeatureCards from "../components/FeatureCards";
 import ServicesSection from "../components/ServicesSection";
+import FeaturedBlogsSection from "../components/FeaturedBlogsSection";
 import AboutSection from "../components/AboutSection";
 import Industries from "@/features/v2/home/components/Industries";
-
+import HomeBlogSection from "../components/HomeBlogSection";
 
 function HomePage() {
     return (
@@ -15,12 +16,15 @@ function HomePage() {
                 description="We help businesses transform ideas into scalable, secure and future-ready digital solutions."
             />
 
-            <div className="bg-white font-sans text-accent-dark antialiased">
+            <div className="bg-background font-sans text-foreground antialiased transition-colors duration-200">
                 <HeroSection />
+                <HomeStatsStrip />
                 <FeatureCards />
                 <ServicesSection />
+                <FeaturedBlogsSection />
                 <AboutSection />
                 <Industries />
+                <HomeBlogSection />
             </div>
         </>
     );

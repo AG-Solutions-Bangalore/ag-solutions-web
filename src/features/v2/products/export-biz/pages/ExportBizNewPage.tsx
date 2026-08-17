@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import CommonServicePage from "@/features/v2/services/components/CommonServicePage";
 import { exportBizServiceData } from "@/features/v2/services/data/serviceData";
+import { GlobalTradePartnerSection } from "../components/GlobalTradePartnerSection";
 import { DocumentEcosystemV2 } from "../components/DocumentEcosystemV2";
 import { CompareSection } from "../components/CompareSection";
 import { TrustSection } from "../components/TrustSection";
@@ -28,6 +29,7 @@ export const ExportBizNewPage: React.FC = () => {
       {...exportBizServiceData}
       onHeroCtaClick={() => openLeadModal("Export Biz Software")}
     >
+      <GlobalTradePartnerSection />
       <DocumentEcosystemV2 />
       <CompareSection />
       <TrustSection />
@@ -38,4 +40,3 @@ export const ExportBizNewPage: React.FC = () => {
 };
 
 export default ExportBizNewPage;
-

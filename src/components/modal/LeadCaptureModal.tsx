@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, CheckCircle2, Check, Send, Sparkles } from "lucide-react";
 import { useLeadModal } from "@/context/LeadModalContext";
 import { useCreateEnquiry } from "@/features/v1/contact-us/hooks/useCreateEnquiry";
 import { getUtmParams } from "@/utils/utmUtils";
 
-// 5 Dedicated Services organized in 2 lines
+// 5 Dedicated Services organized in 2 lines matching PDF
 const SERVICE_ROWS = [
   [
     {
@@ -58,16 +59,74 @@ const SERVICE_ROWS = [
   ],
 ];
 
+const ALL_SERVICES = SERVICE_ROWS.flat();
+
+export function getMatchedServiceForRoute(path: string, context: string): string | null {
+  const lowerPath = path.toLowerCase();
+  const lowerCtx = (context || "").toLowerCase();
+
+  if (
+    lowerPath.includes("web-development") ||
+    lowerCtx.includes("web-development") ||
+    lowerCtx.includes("web development") ||
+    lowerCtx.includes("web & website")
+  ) {
+    return "Web Development";
+  }
+  if (
+    lowerPath.includes("mobile-app") ||
+    lowerCtx.includes("mobile-app") ||
+    lowerCtx.includes("mobile app")
+  ) {
+    return "Mobile App Development";
+  }
+  if (
+    lowerPath.includes("digital-marketing") ||
+    lowerCtx.includes("digital-marketing") ||
+    lowerCtx.includes("digital marketing") ||
+    lowerCtx.includes("ease-marketing")
+  ) {
+    return "Digital Marketing";
+  }
+  if (
+    lowerPath.includes("export-biz") ||
+    lowerCtx.includes("export-biz") ||
+    lowerCtx.includes("export biz")
+  ) {
+    return "Custom Software";
+  }
+  if (lowerCtx.includes("it consulting")) {
+    return "IT Consulting";
+  }
+  return null;
+}
+
 export function LeadCaptureModal() {
-  const { isOpen, closeLeadModal } = useLeadModal();
+  const { isOpen, closeLeadModal, pageContext } = useLeadModal();
+  const location = useLocation();
   const createEnquiry = useCreateEnquiry();
 
   const [name, setName] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
+  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+  const matchedService = getMatchedServiceForRoute(location.pathname, pageContext);
+
+  // Auto pre-select service on specific service page (PDF Page 1 & 2)
+  useEffect(() => {
+    if (isOpen) {
+      const service = getMatchedServiceForRoute(location.pathname, pageContext);
+      if (service) {
+        setSelectedServices([service]);
+      } else {
+        setSelectedServices([]);
+      }
+    }
+  }, [isOpen, location.pathname, pageContext]);
 
   const toggleService = (serviceName: string) => {
     setSelectedServices((prev) =>
@@ -101,7 +160,7 @@ export function LeadCaptureModal() {
       cleanMobile = cleanMobile.slice(1);
     }
 
-    // Must be exactly 10 digits starting with 6, 7, 8, or 9 (rejects dummy 0000000000 etc)
+    // Must be exactly 10 digits starting with 6, 7, 8, or 9
     const mobileRegex = /^[6-9]\d{9}$/;
     if (!cleanMobile) {
       setErrorMessage("Please enter your mobile number.");
@@ -111,6 +170,7 @@ export function LeadCaptureModal() {
       setErrorMessage("Please enter a valid 10-digit mobile number (e.g. 9876543210).");
       return;
     }
+
     if (selectedServices.length === 0) {
       setErrorMessage("Please select at least one service.");
       return;
@@ -119,12 +179,12 @@ export function LeadCaptureModal() {
     const pageRoute = window.location.pathname || "/";
     const utmParams = getUtmParams();
 
-    // Send clean payload with dedicated fields
+    // Send payload with user-typed email
     createEnquiry.mutate(
       {
         enquiryFullName: name.trim(),
         enquiryMobile: cleanMobile,
-        enquiryEmail: "info@ag-solutions.in",
+        enquiryEmail: email.trim() || "info@ag-solutions.in",
         enquiryMessage: message.trim(),
         enquiryService: selectedServices,
         enquiryRoute: pageRoute,
@@ -151,6 +211,7 @@ export function LeadCaptureModal() {
   const handleReset = () => {
     setName("");
     setMobileNumber("");
+    setEmail("");
     setMessage("");
     setSelectedServices([]);
     setIsSuccess(false);
@@ -211,7 +272,7 @@ export function LeadCaptureModal() {
                 </p>
               </div>
             ) : (
-              <div className="p-5">
+              <div className="p-5 sm:p-7">
                 {/* Header */}
                 <div className="text-left pr-8 mb-5">
                   <div className="inline-flex items-center gap-1.5 rounded-full bg-pink-light/80 px-3 py-1 text-xs font-bold text-pink uppercase tracking-wider">
@@ -231,7 +292,7 @@ export function LeadCaptureModal() {
                   {/* Name Input */}
                   <div>
                     <label htmlFor="modal-name" className="block text-xs font-bold uppercase tracking-wider text-dark mb-1.5">
-                      Your Name <span className="text-pink">*</span>
+                      YOUR NAME <span className="text-pink">*</span>
                     </label>
                     <input
                       id="modal-name"
@@ -244,70 +305,121 @@ export function LeadCaptureModal() {
                     />
                   </div>
 
-                  {/* Mobile Number Input */}
-                  <div>
-                    <label htmlFor="modal-mobile" className="block text-xs font-bold uppercase tracking-wider text-dark mb-1.5">
-                      Mobile Number <span className="text-pink">*</span>
-                    </label>
-                    <input
-                      id="modal-mobile"
-                      type="tel"
-                      required
-                      maxLength={10}
-                      inputMode="numeric"
-                      placeholder="e.g. 9876543210"
-                      value={mobileNumber}
-                      onChange={(e) => setMobileNumber(e.target.value.replace(/\D/g, "").slice(0, 10))}
-                      className="w-full rounded-xl border border-border bg-light/50 px-4 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-teal focus:bg-card focus:outline-none focus:ring-2 focus:ring-teal/20 transition-all"
-                    />
+                  {/* 2-Column Grid for Mobile Number and Email Address */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Mobile Number Input */}
+                    <div>
+                      <label htmlFor="modal-mobile" className="block text-xs font-bold uppercase tracking-wider text-dark mb-1.5">
+                        MOBILE NUMBER <span className="text-pink">*</span>
+                      </label>
+                      <input
+                        id="modal-mobile"
+                        type="tel"
+                        required
+                        maxLength={10}
+                        inputMode="numeric"
+                        placeholder="e.g. 9876543210"
+                        value={mobileNumber}
+                        onChange={(e) => setMobileNumber(e.target.value.replace(/\D/g, "").slice(0, 10))}
+                        className="w-full rounded-xl border border-border bg-light/50 px-4 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-teal focus:bg-card focus:outline-none focus:ring-2 focus:ring-teal/20 transition-all"
+                      />
+                    </div>
+
+                    {/* Email ID Input */}
+                    <div>
+                      <label htmlFor="modal-email" className="block text-xs font-bold uppercase tracking-wider text-dark mb-1.5">
+                        EMAIL ID
+                      </label>
+                      <input
+                        id="modal-email"
+                        type="email"
+                        placeholder="e.g. john@example.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full rounded-xl border border-border bg-light/50 px-4 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-teal focus:bg-card focus:outline-none focus:ring-2 focus:ring-teal/20 transition-all"
+                      />
+                    </div>
                   </div>
 
-                  {/* Service Selection Grid (2 lines) */}
+                  {/* Service Selection: Single pill for dedicated service page (PDF Page 1 & 2) or Full grid for General pages */}
                   <div>
-                    <span className="block text-xs font-bold uppercase tracking-wider text-dark mb-2.5">
+                    <span className="block text-xs font-bold uppercase tracking-wider text-dark mb-2">
                       SELECT SERVICE(S) YOU NEED <span className="text-pink">*</span>
                     </span>
 
-                    <div className="flex flex-col gap-2" role="group" aria-label="Select Service(s) You Need">
-                      {SERVICE_ROWS.map((row, rowIndex) => (
-                        <div key={rowIndex} className="flex gap-4 flex-wrap items-center">
-                          {row.map((service) => {
-                            const isSelected = selectedServices.includes(service.name);
-                            return (
-                              <button
-                                type="button"
-                                key={service.id}
-                                onClick={() => toggleService(service.name)}
-                                aria-pressed={isSelected}
-                                className={`inline-flex items-center justify-between gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full text-xs sm:text-[13px] font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer select-none ${
+                    {matchedService ? (
+                      <div className="flex gap-3 flex-wrap items-center">
+                        {ALL_SERVICES.filter((s) => s.name === matchedService).map((service) => {
+                          const isSelected = selectedServices.includes(service.name);
+                          return (
+                            <button
+                              type="button"
+                              key={service.id}
+                              onClick={() => toggleService(service.name)}
+                              aria-pressed={isSelected}
+                              className={`inline-flex items-center justify-between gap-2 px-4 py-2 rounded-full text-xs sm:text-[13px] font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer select-none ${
+                                isSelected
+                                  ? service.selectedClass
+                                  : service.unselectedClass
+                              }`}
+                            >
+                              <span>{service.name}</span>
+                              <span
+                                className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center shrink-0 transition-colors ${
                                   isSelected
-                                    ? service.selectedClass
-                                    : service.unselectedClass
+                                    ? service.circleSelected
+                                    : service.circleUnselected
                                 }`}
+                                aria-hidden="true"
                               >
-                                <span>{service.name}</span>
-                                <span
-                                  className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center shrink-0 transition-colors ${
+                                {isSelected && <Check className={`w-2.5 h-2.5 stroke-[3.5] ${service.checkColor}`} />}
+                              </span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <div className="flex flex-col gap-2.5" role="group" aria-label="Select Service(s) You Need">
+                        {SERVICE_ROWS.map((row, rowIndex) => (
+                          <div key={rowIndex} className="flex gap-3 flex-wrap items-center">
+                            {row.map((service) => {
+                              const isSelected = selectedServices.includes(service.name);
+                              return (
+                                <button
+                                  type="button"
+                                  key={service.id}
+                                  onClick={() => toggleService(service.name)}
+                                  aria-pressed={isSelected}
+                                  className={`inline-flex items-center justify-between gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-[13px] font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer select-none ${
                                     isSelected
-                                      ? service.circleSelected
-                                      : service.circleUnselected
+                                      ? service.selectedClass
+                                      : service.unselectedClass
                                   }`}
-                                  aria-hidden="true"
                                 >
-                                  {isSelected && <Check className={`w-2.5 h-2.5 stroke-[3.5] ${service.checkColor}`} />}
-                                </span>
-                              </button>
-                            );
-                          })}
-                        </div>
-                      ))}
-                    </div>
+                                  <span>{service.name}</span>
+                                  <span
+                                    className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center shrink-0 transition-colors ${
+                                      isSelected
+                                        ? service.circleSelected
+                                        : service.circleUnselected
+                                    }`}
+                                    aria-hidden="true"
+                                  >
+                                    {isSelected && <Check className={`w-2.5 h-2.5 stroke-[3.5] ${service.checkColor}`} />}
+                                  </span>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   {/* Message Textarea */}
                   <div>
                     <label htmlFor="modal-message" className="block text-xs font-bold uppercase tracking-wider text-dark mb-1.5">
-                      Message
+                      MESSAGE
                     </label>
                     <textarea
                       id="modal-message"
@@ -315,7 +427,7 @@ export function LeadCaptureModal() {
                       placeholder="Write a small message"
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      className="w-full rounded-xl border border-border bg-light/50 px-4 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-teal focus:bg-card focus:outline-none focus:ring-2 focus:ring-teal/20 transition-all resize-y min-h-[75px]"
+                      className="w-full rounded-xl border border-border bg-light/50 px-4 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-teal focus:bg-card focus:outline-none focus:ring-2 focus:ring-teal/20 transition-all resize-y min-h-[70px]"
                     />
                   </div>
 
@@ -354,4 +466,3 @@ export function LeadCaptureModal() {
 }
 
 export default LeadCaptureModal;
-

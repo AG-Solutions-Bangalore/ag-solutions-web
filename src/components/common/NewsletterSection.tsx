@@ -2,15 +2,12 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import { useCreateNewsletter } from "@/features/v1/newsletter/hooks/useCreateNewsletter";
-import { getImageUrl } from "@/utils/imageUrl";
 
 export function NewsletterSection() {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [responseMessage, setResponseMessage] = useState("");
   const createNewsletter = useCreateNewsletter();
-
-  const bgUrl = getImageUrl("/images/pattern-bg-breez.jpg");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,7 +24,7 @@ export function NewsletterSection() {
         },
         onError: () => {
           setIsSubmitted(true);
-          setResponseMessage("Thank you for subscribing to our industry insights!");
+          setResponseMessage("Thank you for subscribing to our newsletter!");
           setEmail("");
           setTimeout(() => setIsSubmitted(false), 5000);
         },
@@ -36,84 +33,76 @@ export function NewsletterSection() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-[#00c5cd] py-10 sm:py-12 md:py-14 text-white">
-      {/* Background pattern texture */}
-      <div
-        className="pointer-events-none absolute inset-0 bg-top bg-repeat opacity-90"
-        style={{
-          backgroundImage: `url('${bgUrl}')`,
-          backgroundSize: "450px 330px",
-        }}
-      />
+    <section className="relative w-full dark:bg-[#0C1220] bg-[#F8FAFC]  py-3 sm:py-4 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
+      <div className="mx-auto max-w-7xl">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-r from-[#07134b] via-[#0e2c8d] to-[#1c4ee0] p-4 sm:p-6 lg:px-8 lg:py-5 text-white shadow-2xl"
+        >
+          {/* Subtle Ambient Glow */}
+          <div className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full bg-blue-400/20 blur-2xl" />
+          <div className="pointer-events-none absolute -left-10 -bottom-10 h-36 w-36 rounded-full bg-indigo-500/15 blur-2xl" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
-          {/* Left Content & Form */}
-          <motion.div
-            className="lg:col-span-7 xl:col-span-8 space-y-4"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-[34px] font-black tracking-tight text-[#132d3e] leading-[1.2] m-0">
-              Subscribe to Our Industry Insights
-            </h2>
-            <p className="text-sm sm:text-base text-white font-medium leading-relaxed max-w-2xl mt-1">
-              Get the latest updates on digital transformation, enterprise software, and innovative IT solutions delivered right to your inbox.
-            </p>
+          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6 lg:gap-8">
+            {/* Left Title & Supporting Text */}
+            <div className="text-center lg:text-left shrink-0 max-w-md">
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-extrabold tracking-tight text-white leading-snug">
+                Subscribe to our Newsletter
+              </h2>
+              <p className="mt-0.5 text-xs sm:text-[13px] text-blue-100/85 font-normal leading-relaxed">
+                Join our newsletter &amp; nurturing communication. We'll send you news and offers.
+              </p>
+            </div>
 
-            <div className="pt-2">
+            {/* Middle: Email Input & Subscribe Button */}
+            <div className="w-full lg:w-auto flex-1 flex items-center justify-center lg:justify-center">
               {isSubmitted ? (
-                <div className="inline-flex items-center gap-3 rounded-full bg-white/95 px-6 py-3.5 text-[#132d3e] font-bold shadow-lg animate-in fade-in">
-                  <CheckCircle2 className="h-5 w-5 shrink-0 text-[#00c5cd]" />
-                  <span className="text-sm sm:text-base">
+                <div className="inline-flex items-center gap-2 rounded-full bg-white/95 px-5 py-2 text-[#07134b] font-bold shadow-md animate-in fade-in">
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-[#1c4ee0]" />
+                  <span className="text-xs sm:text-sm">
                     {responseMessage || "Thank you for subscribing!"}
                   </span>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 max-w-xl">
+                <form
+                  onSubmit={handleSubmit}
+                  className="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3 w-full max-w-md lg:max-w-lg"
+                >
                   <input
                     type="email"
                     required
-                    aria-label="Newsletter email address"
+                    aria-label="Your email address"
                     placeholder="Your email address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={createNewsletter.isPending}
-                    className="w-full sm:flex-1 h-14 sm:h-[58px] rounded-full bg-white px-6 text-base sm:text-base text-slate-800 placeholder:text-slate-500 font-normal outline-none shadow-md border-0 focus:ring-3 focus:ring-white/60 transition-all"
+                    className="w-full rounded-full bg-white px-4 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 font-medium shadow-md outline-none border border-white/80 focus:ring-2 focus:ring-blue-300 transition-all"
                   />
                   <button
                     type="submit"
                     disabled={createNewsletter.isPending}
-                    className="h-14 sm:h-[58px] px-8 sm:px-10 rounded-full bg-[#132d3e] hover:bg-[#0c202e] text-white font-extrabold text-sm uppercase tracking-wider shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer border-0 shrink-0 disabled:opacity-50"
+                    className="w-full sm:w-auto shrink-0 rounded-full bg-gradient-to-r from-[#2f55eb] via-[#484beb] to-[#7c3aed] px-6 sm:px-7 py-2.5 sm:py-3 text-xs sm:text-sm font-bold text-white shadow-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all cursor-pointer disabled:opacity-50 border-none whitespace-nowrap"
                   >
-                    {createNewsletter.isPending ? "Subscribing..." : "SUBSCRIBE"}
+                    {createNewsletter.isPending ? "Subscribing..." : "Subscribe"}
                   </button>
                 </form>
               )}
             </div>
-          </motion.div>
 
-          {/* Right Illustration */}
-          <motion.div
-            className="lg:col-span-5 xl:col-span-4 flex justify-center lg:justify-end"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <img
-              src="/images/08-subscribe.svg"
-              alt="Subscribe to Our Industry Insights"
-              title="Subscribe to AG Solutions Industry Insights"
-              className="w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[390px] h-auto object-contain drop-shadow-md pointer-events-none"
-              loading="lazy"
-              width="399"
-              height="244"
-            />
-          </motion.div>
-        </div>
+            {/* Right: Graphic Illustration (newslatterImage1.webp) */}
+            <div className="hidden md:flex items-center justify-center shrink-0">
+              <img
+                src="/images/newslatterImage1.webp"
+                alt="Subscribe to newsletter graphic"
+                title="Subscribe to AG Solutions Newsletter"
+                className="h-14 sm:h-16 lg:h-20 w-auto object-contain drop-shadow-lg transition-transform duration-300 hover:scale-105"
+              />
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

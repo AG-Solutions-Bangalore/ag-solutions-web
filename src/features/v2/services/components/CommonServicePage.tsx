@@ -4,6 +4,7 @@ import SEO from "@/components/seo/SEO";
 import Industries from "@/features/v2/home/components/Industries";
 import { useLeadModal } from "@/context/LeadModalContext";
 import { ArrowRight } from "lucide-react";
+import AnimatedCounter from "@/components/animation/AnimatedCounter";
 
 // Generic Icon type compatible with both react-icons and lucide-react
 export type ServiceIcon = ComponentType<{ className?: string; size?: number }>;
@@ -149,17 +150,17 @@ export function CommonServicePage({
             <div className="bg-background font-sans text-foreground antialiased transition-colors duration-200">
 
                 {/* ==========================================
-                    1. HERO SECTION
+                    1. HERO SECTION (TIGHTENED SPACING)
                 ========================================== */}
-                <section className="relative overflow-hidden bg-background py-10 sm:py-12 md:py-18">
+                <section className="relative overflow-hidden bg-background pt-6 pb-6 sm:pt-10 sm:pb-8 md:pt-12 md:pb-10">
                     {/* Ambient Background Glows */}
-                    <div className="pointer-events-none absolute right-0 top-0 -z-10 h-[300px] sm:h-[500px] w-[300px] sm:w-[500px] rounded-full bg-pink-light/60 blur-3xl animate-pulse" />
-                    <div className="pointer-events-none absolute left-1/3 top-20 -z-10 h-[250px] sm:h-[400px] w-[250px] sm:w-[400px] rounded-full bg-teal-light/70 blur-3xl" />
+                    <div className="pointer-events-none absolute right-0 top-0 -z-10 h-[300px] sm:h-[450px] w-[300px] sm:w-[450px] rounded-full bg-pink-light/60 blur-3xl animate-pulse" />
+                    <div className="pointer-events-none absolute left-1/3 top-10 -z-10 h-[250px] sm:h-[350px] w-[250px] sm:w-[350px] rounded-full bg-teal-light/70 blur-3xl" />
 
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-8">
+                        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-8">
                             <motion.div
-                                className="lg:col-span-6 z-10"
+                                className="lg:col-span-6 z-10 text-center lg:text-left"
                                 initial={{ opacity: 0, x: -30 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.6, ease: "easeOut" }}
@@ -169,26 +170,26 @@ export function CommonServicePage({
                                     <span className="truncate">{heroBadge}</span>
                                 </div>
 
-                                <h1 className="mt-4 sm:mt-5 text-3xl font-extrabold tracking-tight text-dark sm:text-4xl lg:text-[50px] lg:leading-[1.15]">
+                                <h1 className="mt-3.5 sm:mt-4 text-3xl font-extrabold tracking-tight text-dark sm:text-4xl lg:text-[46px] lg:leading-[1.15]">
                                     {heroTitle}{" "}
                                     <span className="block text-pink mt-1">{heroTitleHighlight}</span>
                                 </h1>
 
-                                <p className="mt-3 sm:mt-4 max-w-xl text-sm sm:text-base md:text-lg text-muted leading-relaxed">
+                                <p className="mt-3 max-w-xl mx-auto lg:mx-0 text-xs sm:text-sm md:text-base text-muted leading-relaxed">
                                     {heroDescription}
                                 </p>
 
                                 {/* 4 Feature Pills Row */}
                                 {heroFeatures.length > 0 && (
-                                    <div className="mt-6 sm:mt-8 grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-4">
+                                    <div className="mt-5 sm:mt-6 grid grid-cols-2 gap-2.5 sm:gap-3 sm:grid-cols-4">
                                         {heroFeatures.map((item) => {
                                             const Icon = item.icon;
                                             return (
-                                                <div key={item.label} className="flex flex-col items-center text-center group cursor-pointer">
+                                                <div key={item.label} className="flex flex-col items-center text-center group cursor-pointer p-1.5">
                                                     <div
-                                                        className={`mb-2 sm:mb-3 flex h-13 w-13 sm:h-16 sm:w-16 p-3 sm:p-4 items-center justify-center rounded-2xl ${item.bgColor} text-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-lg`}
+                                                        className={`mb-2 flex h-11 w-11 sm:h-13 sm:w-13 items-center justify-center rounded-2xl ${item.bgColor} text-white shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-md`}
                                                     >
-                                                        <Icon size={24} />
+                                                        <Icon size={20} />
                                                     </div>
                                                     <span className="text-[11px] sm:text-xs font-bold text-dark leading-tight transition-colors duration-200 group-hover:text-pink">
                                                         {item.label}
@@ -199,8 +200,8 @@ export function CommonServicePage({
                                     </div>
                                 )}
 
-                                {/* CTA Button connected to Lead popup or custom handler */}
-                                <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                                {/* CTA Button connected to Lead popup */}
+                                <div className="mt-6 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                                     <button
                                         type="button"
                                         onClick={() => {
@@ -210,7 +211,7 @@ export function CommonServicePage({
                                                 openLeadModal(heroBadge || heroTitle);
                                             }
                                         }}
-                                        className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-pink to-pink-hover text-white font-bold text-base px-8 py-3.5 shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95 cursor-pointer border-none w-full sm:w-auto"
+                                        className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-pink to-pink-hover text-white font-bold text-sm sm:text-base px-7 py-3 sm:px-8 sm:py-3.5 shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95 cursor-pointer border-none w-full sm:w-auto"
                                     >
                                         <span>{heroCtaText}</span>
                                         <ArrowRight className="h-4 w-4" />
@@ -218,23 +219,33 @@ export function CommonServicePage({
                                 </div>
                             </motion.div>
 
-                            {/* Right Image Visual with Rotating Decorative Color Boxes (ExportBiz Style) */}
+                            {/* Right Image Visual with Floating Square Dots (PDF Page 11) */}
                             <motion.div
                                 className="relative flex justify-center lg:col-span-6"
                                 initial={{ opacity: 0, x: 30 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                             >
-                                <div className="relative w-full max-w-xl flex items-center justify-center py-4 sm:py-6">
-                                    {/* Ambient Glow Aura */}
-                                    <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-accent-teal/20 via-accent-yellow/20 to-accent-pink/20 blur-2xl opacity-80 animate-pulse pointer-events-none" />
+                                <div className="relative w-full max-w-lg lg:max-w-xl flex items-center justify-center py-2 sm:py-4">
+                                    <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-teal/20 via-yellow/20 to-pink/20 blur-2xl opacity-80 animate-pulse pointer-events-none" />
+
+
+
+                                    {/* Floating Teal Square (Top-Left) */}
+                                    <div className="absolute left-8 top-8 sm:top-10 z-20 h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-teal shadow-xl transition-transform duration-300 hover:scale-110" />
+
+                                    {/* Floating Pink Square (Middle-Left) */}
+                                    <div className="absolute left-10 top-1/2 -translate-y-1/2 z-20 h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-pink shadow-xl transition-transform duration-300 hover:scale-110" />
+
+                                    {/* Floating Yellow Square (Bottom-Left) */}
+                                    <div className="absolute left-18 bottom-4 z-20 h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-yellow shadow-xl transition-transform duration-300 hover:scale-110" />
 
                                     {/* Main Hero Image */}
                                     <img
                                         src={heroImage}
                                         alt={heroImageAlt || heroTitle}
                                         title={heroImageTitle || heroTitle}
-                                        className="relative z-10 w-full object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-[1.02]"
+                                        className="relative z-10 w-full object-contain drop-shadow-xl transition-transform duration-500 hover:scale-[1.02]"
                                     />
                                 </div>
                             </motion.div>
@@ -243,15 +254,15 @@ export function CommonServicePage({
                 </section>
 
                 {/* ==========================================
-                    2. WHAT WE OFFER (SERVICES GRID WITH EXPORTBIZ CARD HOVER & ACCENT LINE)
+                    2. WHAT WE OFFER (5-CARD HORIZONTAL / BALANCED GRID)
                 ========================================== */}
                 {offerItems.length > 0 && (
-                    <section className="bg-section-alt py-12 sm:py-16 md:py-24 border-t border-border">
+                    <section className="bg-section-alt py-8 sm:py-12 border-t border-border">
                         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                             {/* Section Header */}
                             <motion.div
                                 className="text-center"
-                                initial={{ opacity: 0, y: 20 }}
+                                initial={{ opacity: 0, y: 15 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5 }}
@@ -259,11 +270,11 @@ export function CommonServicePage({
                                 <div className="text-xs font-bold uppercase tracking-widest text-pink">
                                     {offerTag}
                                 </div>
-                                <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-dark sm:text-3xl md:text-4xl">
+                                <h2 className="mt-1.5 text-2xl font-extrabold tracking-tight text-dark sm:text-3xl md:text-4xl">
                                     {offerTitle}
                                 </h2>
                                 {/* 4-Color Pill Underline */}
-                                <div className="mt-3 flex items-center justify-center gap-1">
+                                <div className="mt-2.5 flex items-center justify-center gap-1">
                                     <span className="h-1 w-6 rounded-full bg-teal" />
                                     <span className="h-1 w-6 rounded-full bg-pink" />
                                     <span className="h-1 w-6 rounded-full bg-yellow" />
@@ -271,40 +282,48 @@ export function CommonServicePage({
                                 </div>
                             </motion.div>
 
-                            {/* Service Cards with ExportBiz Lift, Icon Scale/Rotate, & Bottom Expanding Accent Line (Centered Rows) */}
-                            <div className="mt-10 sm:mt-12 flex flex-wrap justify-center gap-5 sm:gap-6">
+                            {/* Service Cards: Adaptive grid (3 & 3 for 6 cards, 5 in a row for 5 cards) */}
+                            <div className={`mt-8 sm:mt-10 grid grid-cols-1 sm:grid-cols-2 ${
+                                offerItems.length === 6
+                                    ? "lg:grid-cols-3 gap-5 sm:gap-6"
+                                    : offerItems.length === 5
+                                        ? "md:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4 lg:gap-4.5"
+                                        : offerItems.length === 4
+                                            ? "lg:grid-cols-4 gap-4"
+                                            : "lg:grid-cols-3 gap-5"
+                            }`}>
                                 {offerItems.map((item, idx) => {
                                     const Icon = item.icon;
                                     return (
                                         <motion.div
                                             key={item.title}
-                                            initial={{ opacity: 0, y: 30 }}
+                                            initial={{ opacity: 0, y: 20 }}
                                             whileInView={{ opacity: 1, y: 0 }}
                                             viewport={{ once: true }}
-                                            transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                            className="group relative overflow-hidden flex flex-col items-center justify-between rounded-2xl border border-border bg-card p-6 sm:p-7 pb-8 sm:pb-9 text-center shadow-2xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-pink/30 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-[390px]"
+                                            transition={{ duration: 0.4, delay: idx * 0.08 }}
+                                            className="group relative overflow-hidden flex flex-col items-center justify-between rounded-2xl border border-border bg-card p-4 sm:p-5 pb-5 text-center shadow-2xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-pink/30 w-full"
                                         >
                                             <div className="flex flex-col items-center w-full">
-                                                {/* Icon Plate with Rotate & Scale on Hover */}
+                                                {/* Icon Plate */}
                                                 <div
-                                                    className={`mb-5 sm:mb-6 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl ${item.bgColor} text-white shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}
+                                                    className={`mb-4 flex h-13 w-13 sm:h-14 sm:w-14 items-center justify-center rounded-2xl ${item.bgColor} text-white shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}
                                                 >
-                                                    <Icon className="h-7 w-7 sm:h-8 sm:w-8 stroke-[1.75]" />
+                                                    <Icon className="h-6 w-6 sm:h-7 sm:w-7 stroke-[1.75]" />
                                                 </div>
 
-                                                <h3 className="text-base font-bold text-dark transition-colors duration-200 group-hover:text-pink">
+                                                <h3 className="text-sm sm:text-base font-bold text-dark transition-colors duration-200 group-hover:text-pink">
                                                     {item.title}
                                                 </h3>
 
-                                                <p className="mt-2.5 text-xs leading-relaxed text-muted font-normal">
+                                                <p className="mt-2 text-xs leading-relaxed text-muted font-normal">
                                                     {item.description}
                                                 </p>
                                             </div>
 
-                                            {/* Bottom Dynamic Expanding Theme Accent Bar */}
-                                            <div className="mt-6 flex justify-center w-full">
+                                            {/* Bottom Dynamic Accent Bar */}
+                                            <div className="mt-4 flex justify-center w-full">
                                                 <div
-                                                    className={`h-1 w-8 rounded-full ${item.bgColor} transition-all duration-300 group-hover:w-16`}
+                                                    className={`h-1 w-6 rounded-full ${item.bgColor} transition-all duration-300 group-hover:w-12`}
                                                 />
                                             </div>
                                         </motion.div>
@@ -316,47 +335,39 @@ export function CommonServicePage({
                 )}
 
                 {/* ==========================================
-                    3. WHY CHOOSE US SECTION (CONTAINER CARD WITH FLOATING DECORATIONS & DOT GRID)
+                    3. WHY CHOOSE US SECTION (CONTAINER CARD)
                 ========================================== */}
                 {whyFeatures.length > 0 && (
-                    <section className="bg-background py-10 sm:py-12 md:py-16">
+                    <section className="bg-background py-8 sm:py-12">
                         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                             <motion.div
-                                className="relative rounded-3xl bg-card dark:bg-slate-900/90 border border-border p-6 sm:p-8 md:p-12 shadow-2xs"
-                                initial={{ opacity: 0, y: 30 }}
+                                className="relative rounded-3xl bg-card dark:bg-slate-900/90 border border-border p-5 sm:p-7 md:p-10 shadow-2xs"
+                                initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.6 }}
+                                transition={{ duration: 0.5 }}
                             >
                                 {/* Ambient Animated Light Aura */}
                                 <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-teal/20 via-green/15 to-pink/20 blur-2xl opacity-75 animate-pulse pointer-events-none z-0" />
 
-                                {/* Floating Spin Shapes */}
-                                <div className="absolute -left-3 top-8 z-10 hidden sm:block animate-bounce [animation-duration:4s]">
-                                    <div className="h-10 w-10 rounded-xl bg-green shadow-md animate-spin [animation-duration:14s]" />
-                                </div>
-                                <div className="absolute right-4 bottom-4 z-10 hidden sm:block animate-bounce [animation-duration:5s]">
-                                    <div className="h-9 w-9 rounded-lg bg-pink shadow-md animate-[spin_10s_linear_infinite_reverse]" />
-                                </div>
-
-                                <div className="relative z-10 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
-                                    {/* Left Side: Sub-tag, Big Title, Subtitle & Button */}
-                                    <div className="lg:col-span-4 lg:border-r lg:border-border lg:pr-8">
+                                <div className="relative z-10 grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-center">
+                                    {/* Left Side */}
+                                    <div className="lg:col-span-4 lg:border-r lg:border-border lg:pr-6 text-center lg:text-left">
                                         <div className="text-xs font-bold uppercase tracking-widest text-teal">
                                             {whyTag}
                                         </div>
-                                        <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-dark md:text-4xl leading-tight">
+                                        <h2 className="mt-1.5 text-2xl sm:text-3xl font-extrabold tracking-tight text-dark leading-tight">
                                             {whyTitleMain}{" "}
                                             <span className="block text-pink mt-1">{whyTitleHighlight}</span>
                                         </h2>
-                                        <p className="mt-3 sm:mt-4 text-xs sm:text-sm leading-relaxed text-muted">
+                                        <p className="mt-2.5 text-xs sm:text-sm leading-relaxed text-muted max-w-md mx-auto lg:mx-0">
                                             {whyDescription}
                                         </p>
-                                        <div className="mt-6">
+                                        <div className="mt-5">
                                             <button
                                                 type="button"
                                                 onClick={() => openLeadModal(whyTitleMain)}
-                                                className="inline-flex items-center justify-center gap-2 rounded-full bg-pink text-white font-bold text-xs sm:text-sm px-6 py-3 shadow-md hover:bg-pink-hover transition-all hover:scale-105 active:scale-95 cursor-pointer border-none w-full sm:w-auto"
+                                                className="inline-flex items-center justify-center gap-2 rounded-full bg-pink text-white font-bold text-xs sm:text-sm px-6 py-2.5 shadow-md hover:bg-pink-hover transition-all hover:scale-105 active:scale-95 cursor-pointer border-none w-full sm:w-auto"
                                             >
                                                 <span>{whyCtaText}</span>
                                                 <ArrowRight className="h-3.5 w-3.5" />
@@ -364,36 +375,35 @@ export function CommonServicePage({
                                         </div>
                                     </div>
 
-                                    {/* Right Side: Vertical Feature Columns with Vertical Dividers (Dynamically adapted to item count) */}
+                                    {/* Right Side Feature Columns */}
                                     <div className="lg:col-span-8">
-                                        <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 ${
-                                            whyFeatures.length === 3
-                                                ? "lg:grid-cols-3"
-                                                : whyFeatures.length === 2
-                                                    ? "lg:grid-cols-2"
-                                                    : whyFeatures.length === 1
-                                                        ? "lg:grid-cols-1"
-                                                        : "lg:grid-cols-4"
-                                        }`}>
+                                        <div className={`grid grid-cols-1 gap-4 sm:grid-cols-2 ${whyFeatures.length === 5
+                                                ? "lg:grid-cols-5"
+                                                : whyFeatures.length === 4
+                                                    ? "lg:grid-cols-4"
+                                                    : whyFeatures.length === 3
+                                                        ? "lg:grid-cols-3"
+                                                        : "lg:grid-cols-2"
+                                            }`}>
                                             {whyFeatures.map((feat, idx) => {
                                                 const Icon = feat.icon;
                                                 return (
                                                     <div
                                                         key={feat.title}
-                                                        className={`group flex flex-col items-center text-center px-4 transition-transform duration-200 hover:translate-y-[-2px] ${idx < whyFeatures.length - 1
-                                                            ? "lg:border-r lg:border-border"
-                                                            : ""
+                                                        className={`group flex flex-col items-center text-center p-3 rounded-xl transition-all duration-200 hover:bg-muted/5 ${idx < whyFeatures.length - 1 && whyFeatures.length <= 4
+                                                                ? "lg:border-r lg:border-border/60"
+                                                                : ""
                                                             }`}
                                                     >
                                                         <div
-                                                            className={`mb-4 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full ${feat.bgColor} text-white shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6`}
+                                                            className={`mb-3 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl ${feat.bgColor} text-white shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6`}
                                                         >
-                                                            <Icon className="h-7 w-7 sm:h-8 sm:w-8" />
+                                                            <Icon className="h-6 w-6 sm:h-7 sm:w-7" />
                                                         </div>
-                                                        <h3 className="text-sm font-bold text-dark transition-colors duration-200 group-hover:text-teal">
+                                                        <h3 className="text-xs sm:text-sm font-bold text-dark transition-colors duration-200 group-hover:text-teal">
                                                             {feat.title}
                                                         </h3>
-                                                        <p className="mt-2 text-xs leading-relaxed text-muted">
+                                                        <p className="mt-1.5 text-[11px] sm:text-xs leading-relaxed text-muted">
                                                             {feat.description}
                                                         </p>
                                                     </div>
@@ -408,14 +418,14 @@ export function CommonServicePage({
                 )}
 
                 {/* ==========================================
-                    4. OUR PROCESS SECTION (ENLARGED ORBITAL CARDS & SPACED ACCENTS)
+                    4. OUR PROCESS SECTION (COMPACT & CLEAN)
                 ========================================== */}
                 {processSteps.length > 0 && (
-                    <section className="bg-section-alt py-12 sm:py-16 md:py-24 border-t border-border">
+                    <section className="bg-section-alt py-8 sm:py-12 border-t border-border">
                         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                             <motion.div
                                 className="text-center"
-                                initial={{ opacity: 0, y: 20 }}
+                                initial={{ opacity: 0, y: 15 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5 }}
@@ -423,69 +433,61 @@ export function CommonServicePage({
                                 <div className="text-xs font-bold uppercase tracking-widest text-pink">
                                     {processTag}
                                 </div>
-                                <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-dark sm:text-3xl md:text-4xl">
+                                <h2 className="mt-1.5 text-2xl font-extrabold tracking-tight text-dark sm:text-3xl md:text-4xl">
                                     {processTitle}
                                 </h2>
                                 {/* 4-Color Pill Underline */}
-                                <div className="mt-3 flex items-center justify-center gap-1.5">
-                                    <span className="h-1 w-8 rounded-full bg-teal" />
-                                    <span className="h-1 w-8 rounded-full bg-pink" />
-                                    <span className="h-1 w-8 rounded-full bg-yellow" />
-                                    <span className="h-1 w-8 rounded-full bg-green" />
+                                <div className="mt-2.5 flex items-center justify-center gap-1">
+                                    <span className="h-1 w-6 rounded-full bg-teal" />
+                                    <span className="h-1 w-6 rounded-full bg-pink" />
+                                    <span className="h-1 w-6 rounded-full bg-yellow" />
+                                    <span className="h-1 w-6 rounded-full bg-green" />
                                 </div>
                             </motion.div>
 
-                            <div className="relative mt-12 sm:mt-18">
+                            <div className="relative mt-8 sm:mt-10">
                                 {/* Dotted Line Connector */}
-                                <div className="hidden lg:block absolute top-12 left-[10%] right-[10%] h-0.5 border-t-2 border-dashed border-border z-0" />
+                                <div className="hidden lg:block absolute top-10 left-[10%] right-[10%] h-0.5 border-t-2 border-dashed border-border z-0" />
 
-                                <div className={`grid grid-cols-1 gap-8 sm:grid-cols-2 relative z-10 ${
-                                    processSteps.length === 3
-                                        ? "lg:grid-cols-3"
+                                <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 relative z-10 ${processSteps.length === 5
+                                        ? "lg:grid-cols-5"
                                         : processSteps.length === 4
                                             ? "lg:grid-cols-4"
-                                            : "lg:grid-cols-5"
-                                }`}>
+                                            : "lg:grid-cols-3"
+                                    }`}>
                                     {processSteps.map((stepItem, idx) => {
                                         const Icon = stepItem.icon;
                                         return (
                                             <motion.div
                                                 key={stepItem.step}
-                                                initial={{ opacity: 0, y: 30 }}
+                                                initial={{ opacity: 0, y: 20 }}
                                                 whileInView={{ opacity: 1, y: 0 }}
                                                 viewport={{ once: true }}
-                                                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                                className="flex flex-col items-center text-center group cursor-pointer px-3"
+                                                transition={{ duration: 0.4, delay: idx * 0.08 }}
+                                                className="flex flex-col items-center text-center group cursor-pointer px-2"
                                             >
-                                                {/* Enlarged Orbital Icon Plate with Step Badge */}
+                                                {/* Orbital Icon Plate with Step Badge */}
                                                 <div className="relative flex items-center justify-center mb-2">
                                                     <div
-                                                        className={`absolute -top-2.5 z-20 flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full ${stepItem.bgColor} text-xs sm:text-sm font-black text-white shadow-md transition-transform duration-300 group-hover:scale-110 border-2 border-card`}
+                                                        className={`absolute -top-2 z-20 flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full ${stepItem.bgColor} text-xs font-black text-white shadow-md transition-transform duration-300 group-hover:scale-110 border-2 border-card`}
                                                     >
                                                         {stepItem.step}
                                                     </div>
 
                                                     <div
-                                                        className={`flex h-20 w-20 sm:h-24 sm:w-24 items-center justify-center rounded-full ${stepItem.bgColor} text-white shadow-xl transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:scale-105`}
+                                                        className={`flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full ${stepItem.bgColor} text-white shadow-md transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-lg group-hover:scale-105`}
                                                     >
-                                                        <Icon className="h-9 w-9 sm:h-11 sm:w-11 transition-transform duration-300 group-hover:rotate-6" />
+                                                        <Icon className="h-7 w-7 sm:h-9 sm:w-9 transition-transform duration-300 group-hover:rotate-6" />
                                                     </div>
                                                 </div>
 
-                                                <h3 className="mt-4 text-base sm:text-lg font-bold text-dark transition-colors duration-200 group-hover:text-pink">
+                                                <h3 className="mt-3 text-sm sm:text-base font-bold text-dark transition-colors duration-200 group-hover:text-pink">
                                                     {stepItem.title}
                                                 </h3>
 
-                                                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-muted max-w-[220px]">
+                                                <p className="mt-1.5 text-xs leading-relaxed text-muted max-w-[200px]">
                                                     {stepItem.description}
                                                 </p>
-
-                                                {/* Bottom Expanding Line */}
-                                                <div className="mt-4 flex justify-center w-full">
-                                                    <div
-                                                        className={`h-1 w-8 rounded-full ${stepItem.bgColor} transition-all duration-300 group-hover:w-16`}
-                                                    />
-                                                </div>
                                             </motion.div>
                                         );
                                     })}
@@ -496,13 +498,13 @@ export function CommonServicePage({
                 )}
 
                 {/* ==========================================
-                    5. STATS BANNER SECTION (WITH FLOATING ACCENTS & GLOW)
+                    5. STATS BANNER SECTION (WITH ANIMATED COUNTERS)
                 ========================================== */}
                 {stats.length > 0 && (
-                    <section className="bg-background py-10 sm:py-12 md:py-16">
+                    <section className="bg-background py-8 sm:py-10">
                         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                             <motion.div
-                                className="relative overflow-hidden rounded-3xl bg-card dark:bg-slate-900/90 p-6 sm:p-8 md:p-12 border border-border shadow-2xs"
+                                className="relative overflow-hidden rounded-3xl bg-card dark:bg-slate-900/90 p-5 sm:p-7 md:p-9 border border-border shadow-xs"
                                 initial={{ opacity: 0, scale: 0.98 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
@@ -513,7 +515,7 @@ export function CommonServicePage({
 
                                 <div className="relative z-10 grid grid-cols-1 items-center gap-6 sm:gap-8 lg:grid-cols-12">
                                     {/* Left Title */}
-                                    <div className="lg:col-span-4 lg:border-r lg:border-border lg:pr-8 text-center sm:text-left">
+                                    <div className="lg:col-span-4 lg:border-r lg:border-border lg:pr-6 text-center lg:text-left">
                                         <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-dark md:text-3xl leading-tight">
                                             {statsTitleMain}{" "}
                                             <span className="block text-pink mt-1">
@@ -522,7 +524,7 @@ export function CommonServicePage({
                                         </h2>
                                     </div>
 
-                                    {/* Right Stats Columns */}
+                                    {/* Right Stats Columns with Animated Counters */}
                                     <div className="lg:col-span-8">
                                         <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-3 text-center items-center">
                                             {stats.map((statItem, idx) => {
@@ -530,18 +532,18 @@ export function CommonServicePage({
                                                 return (
                                                     <div
                                                         key={statItem.label}
-                                                        className={`group flex flex-col items-center justify-center p-3 sm:p-4 transition-transform duration-300 hover:scale-105 ${idx < stats.length - 1
-                                                            ? "sm:border-r sm:border-border"
-                                                            : ""
+                                                        className={`group flex flex-col items-center justify-center p-3 transition-transform duration-300 hover:scale-105 ${idx < stats.length - 1
+                                                                ? "sm:border-r sm:border-border/60"
+                                                                : ""
                                                             }`}
                                                     >
                                                         {Icon && (
-                                                            <div className="mb-2 sm:mb-3 text-dark transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
-                                                                <Icon className={`h-8 w-8 sm:h-10 sm:w-10 ${statItem.textColor || "text-teal"}`} />
+                                                            <div className="mb-2 text-dark transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                                                                <Icon className={`h-7 w-7 sm:h-8 sm:w-8 ${statItem.textColor || "text-teal"}`} />
                                                             </div>
                                                         )}
-                                                        <div className={`text-3xl sm:text-4xl font-black ${statItem.textColor || "text-teal"}`}>
-                                                            {statItem.number}
+                                                        <div className={`text-2xl sm:text-3xl font-black ${statItem.textColor || "text-teal"}`}>
+                                                            <AnimatedCounter value={statItem.number} />
                                                         </div>
                                                         <div className="mt-1 text-xs font-bold text-dark">
                                                             {statItem.label}
@@ -565,4 +567,3 @@ export function CommonServicePage({
 }
 
 export default CommonServicePage;
-
