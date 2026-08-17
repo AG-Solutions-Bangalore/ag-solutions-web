@@ -53,23 +53,23 @@ export const renderV2Routes = () => (
     <Route path="export-biz" element={<ExportBizPage />} />
     <Route path="export-biz-new" element={<ExportBizPage />} />
     <Route path="products/export-biz" element={<ExportBizPage />} />
-    
+
     {/* Coming Soon Products */}
     <Route
-      path="ss-marketing"
+      path="EASE-Marketing"
       element={
         <ComingSoonPage
-          title="SS Marketing"
+          title="EASE Marketing"
           subtitle="Intelligent Marketing & Campaign Workflow Platform"
           description="We are crafting a comprehensive digital marketing operations and workflow builder to simplify multi-channel campaign coordination."
         />
       }
     />
     <Route
-      path="products/ss-marketing"
+      path="products/EASE-Marketing"
       element={
         <ComingSoonPage
-          title="SS Marketing"
+          title="EASE Marketing"
           subtitle="Intelligent Marketing & Campaign Workflow Platform"
           description="We are crafting a comprehensive digital marketing operations and workflow builder to simplify multi-channel campaign coordination."
         />
@@ -122,7 +122,7 @@ export const renderV2Routes = () => (
     <Route path="contacts" element={<ContactPage />} />
     <Route path="contactus" element={<ContactPage />} />
     <Route path="contact" element={<ContactPage />} />
-    
+
     {/* Catch-all route for V2 */}
     <Route path="*" element={<NotFoundPage />} />
   </Route>

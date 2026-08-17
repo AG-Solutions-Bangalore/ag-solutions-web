@@ -23,7 +23,7 @@ const serviceLinks = [
 
 const productLinks = [
     { to: "/export-biz", label: "Export Biz", title: "Export Biz – Export Documentation Software" },
-    { to: "/ss-marketing", label: "SS Marketing", title: "SS Marketing – AG Solutions" },
+    { to: "/EASE-Marketing", label: "EASE Marketing", title: "EASE Marketing – AG Solutions" },
     { to: "/grow-together", label: "Grow Together", title: "Grow Together – AG Solutions" },
 ];
 

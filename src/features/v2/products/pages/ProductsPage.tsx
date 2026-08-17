@@ -35,12 +35,12 @@ const products: readonly ProductCard[] = [
     iconColorClass: "text-teal",
   },
   {
-    title: "SS Marketing",
+    title: "EASE Marketing",
     subtitle: "Campaign & Workflow Management",
     description:
       "Run, track, and optimize all marketing workflows in one place. Design marketing campaigns, track conversion rates, orchestrate team operations, and measure multi-channel campaign performance effortlessly.",
     iconName: "marketing",
-    path: "/ss-marketing",
+    path: "/EASE-Marketing",
     badgeText: "EASE",
     badgeClass: "bg-pink-light text-pink border border-pink-border/40",
     btnHoverClass: "hover:bg-pink-hover focus-visible:ring-pink",
@@ -67,8 +67,8 @@ export const ProductsPage: React.FC = () => {
     <>
       <SEO
         title="Products - AG Solutions"
-        description="Explore AG Solutions products: EXPORT BIZ, SS Marketing, and Grow Together collaboration tool."
-        keywords={["EDMS", "Export Biz", "SS Marketing", "Grow Together", "AG Solutions products"]}
+        description="Explore AG Solutions products: EXPORT BIZ, EASE Marketing, and Grow Together collaboration tool."
+        keywords={["EDMS", "Export Biz", "EASE Marketing", "Grow Together", "AG Solutions products"]}
       />
 
       <PageHero
@@ -95,9 +95,8 @@ export const ProductsPage: React.FC = () => {
               className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`}
             />
             <p
-              className={`mt-4 text-center text-sm sm:text-base text-muted font-normal leading-relaxed max-w-[700px] mx-auto home-animated-item ${
-                isVisible ? "home-animated-item-visible" : ""
-              }`}
+              className={`mt-4 text-center text-sm sm:text-base text-muted font-normal leading-relaxed max-w-[700px] mx-auto home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+                }`}
               style={{ transitionDelay: "100ms" }}
             >
               We design and develop premium software tools aimed at optimizing business workflows, compliance operations, and team collaboration.
@@ -105,9 +104,8 @@ export const ProductsPage: React.FC = () => {
 
             {/* Products grid */}
             <div
-              className={`mt-10 sm:mt-16 flex flex-wrap justify-center gap-6 sm:gap-8 home-animated-item ${
-                isVisible ? "home-animated-item-visible" : ""
-              }`}
+              className={`mt-10 sm:mt-16 flex flex-wrap justify-center gap-6 sm:gap-8 home-animated-item ${isVisible ? "home-animated-item-visible" : ""
+                }`}
               style={{ transitionDelay: "200ms" }}
             >
               {products.map((product) => (

@@ -68,8 +68,8 @@ export const ROUTE_REGISTRY: RouteRegistryItem[] = [
     apiRequirements: ["LeadCapture API", "CampaignTracking API"],
   },
   {
-    path: "/ss-marketing",
-    name: "SS Marketing",
+    path: "/EASE-Marketing",
+    name: "EASE Marketing",
     category: "Products",
     status: "Coming Soon",
     owner: "Developer D",

@@ -5,82 +5,55 @@ import { useLeadModal } from "@/context/LeadModalContext";
 import { useCreateEnquiry } from "@/features/v1/contact-us/hooks/useCreateEnquiry";
 import { getUtmParams } from "@/utils/utmUtils";
 
-// 5 Dedicated Services across exactly 3 Rows
+// 5 Dedicated Services organized in 2 lines
 const SERVICE_ROWS = [
   [
     {
       id: "web",
       name: "Web Development",
-      colorStyle: {
-        borderColor: "var(--teal)",
-        color: "var(--foreground)",
-      },
-      activeStyle: {
-        backgroundColor: "var(--teal)",
-        borderColor: "var(--teal)",
-        color: "#ffffff",
-      },
-      iconColor: "var(--teal)",
+      unselectedClass: "border-teal border-2 text-foreground bg-card hover:bg-teal-light/20",
+      selectedClass: "bg-teal text-white border-teal border-2 shadow-xs scale-[1.02]",
+      circleUnselected: "border-teal border-2 text-transparent",
+      circleSelected: "bg-white border-2 border-white text-teal",
+      checkColor: "text-teal",
     },
     {
       id: "mobile",
       name: "Mobile App Development",
-      colorStyle: {
-        borderColor: "var(--blue)",
-        color: "var(--foreground)",
-      },
-      activeStyle: {
-        backgroundColor: "var(--blue)",
-        borderColor: "var(--blue)",
-        color: "#ffffff",
-      },
-      iconColor: "var(--blue)",
+      unselectedClass: "border-blue border-2 text-foreground bg-card hover:bg-blue-light/20",
+      selectedClass: "bg-blue text-white border-blue border-2 shadow-xs scale-[1.02]",
+      circleUnselected: "border-blue border-2 text-transparent",
+      circleSelected: "bg-white border-2 border-white text-blue",
+      checkColor: "text-blue",
     },
   ],
   [
     {
       id: "marketing",
       name: "Digital Marketing",
-      colorStyle: {
-        borderColor: "var(--pink)",
-        color: "var(--foreground)",
-      },
-      activeStyle: {
-        backgroundColor: "var(--pink)",
-        borderColor: "var(--pink)",
-        color: "#ffffff",
-      },
-      iconColor: "var(--pink)",
+      unselectedClass: "border-pink border-2 text-foreground bg-card hover:bg-pink-light/20",
+      selectedClass: "bg-pink text-white border-pink border-2 shadow-xs scale-[1.02]",
+      circleUnselected: "border-pink border-2 text-transparent",
+      circleSelected: "bg-white border-2 border-white text-pink",
+      checkColor: "text-pink",
     },
     {
       id: "software",
       name: "Custom Software",
-      colorStyle: {
-        borderColor: "var(--green)",
-        color: "var(--foreground)",
-      },
-      activeStyle: {
-        backgroundColor: "var(--green)",
-        borderColor: "var(--green)",
-        color: "#ffffff",
-      },
-      iconColor: "var(--green)",
+      unselectedClass: "border-green border-2 text-foreground bg-card hover:bg-green-light/20",
+      selectedClass: "bg-green text-white border-green border-2 shadow-xs scale-[1.02]",
+      circleUnselected: "border-green border-2 text-transparent",
+      circleSelected: "bg-white border-2 border-white text-green",
+      checkColor: "text-green",
     },
-  ],
-  [
     {
       id: "consulting",
       name: "IT Consulting",
-      colorStyle: {
-        borderColor: "var(--yellow)",
-        color: "var(--foreground)",
-      },
-      activeStyle: {
-        backgroundColor: "var(--yellow)",
-        borderColor: "var(--yellow)",
-        color: "#ffffff",
-      },
-      iconColor: "var(--yellow)",
+      unselectedClass: "border-yellow border-2 text-foreground bg-card hover:bg-yellow-light/20",
+      selectedClass: "bg-yellow text-white border-yellow border-2 shadow-xs scale-[1.02]",
+      circleUnselected: "border-yellow border-2 text-transparent",
+      circleSelected: "bg-white border-2 border-white text-yellow",
+      checkColor: "text-yellow",
     },
   ],
 ];
@@ -207,7 +180,7 @@ export function LeadCaptureModal() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="lead-modal-title"
-            className="relative w-full max-w-lg overflow-y-auto max-h-[90vh] rounded-3xl bg-card shadow-2xl border border-border z-10 my-4 sm:my-8"
+            className="relative w-full max-w-xl overflow-y-auto max-h-[90vh] rounded-3xl bg-card shadow-2xl border border-border z-10 my-4 sm:my-8"
             initial={{ opacity: 0, scale: 0.94, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 20 }}
@@ -238,7 +211,7 @@ export function LeadCaptureModal() {
                 </p>
               </div>
             ) : (
-              <div className="p-5 sm:p-8">
+              <div className="p-5">
                 {/* Header */}
                 <div className="text-left pr-8 mb-5">
                   <div className="inline-flex items-center gap-1.5 rounded-full bg-pink-light/80 px-3 py-1 text-xs font-bold text-pink uppercase tracking-wider">
@@ -289,7 +262,7 @@ export function LeadCaptureModal() {
                     />
                   </div>
 
-                  {/* Service Selection Grid */}
+                  {/* Service Selection Grid (2 lines) */}
                   <div>
                     <span className="block text-xs font-bold uppercase tracking-wider text-dark mb-2.5">
                       SELECT SERVICE(S) YOU NEED <span className="text-pink">*</span>
@@ -297,7 +270,7 @@ export function LeadCaptureModal() {
 
                     <div className="flex flex-col gap-2" role="group" aria-label="Select Service(s) You Need">
                       {SERVICE_ROWS.map((row, rowIndex) => (
-                        <div key={rowIndex} className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+                        <div key={rowIndex} className="flex gap-4 flex-wrap items-center">
                           {row.map((service) => {
                             const isSelected = selectedServices.includes(service.name);
                             return (
@@ -306,20 +279,22 @@ export function LeadCaptureModal() {
                                 key={service.id}
                                 onClick={() => toggleService(service.name)}
                                 aria-pressed={isSelected}
-                                style={isSelected ? service.activeStyle : service.colorStyle}
-                                className={`w-max inline-flex items-center justify-between gap-2.5 px-3.5 py-1.75 rounded-full text-xs sm:text-[13px] font-semibold border-1.5 transition-all duration-200 cursor-pointer select-none ${isSelected ? "shadow-xs" : "bg-transparent hover:opacity-90"
-                                  }`}
+                                className={`inline-flex items-center justify-between gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full text-xs sm:text-[13px] font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer select-none ${
+                                  isSelected
+                                    ? service.selectedClass
+                                    : service.unselectedClass
+                                }`}
                               >
                                 <span>{service.name}</span>
                                 <span
-                                  className="w-4 h-4 rounded-full flex items-center justify-center border-1.5 shrink-0 transition-colors"
-                                  style={{
-                                    borderColor: isSelected ? "#ffffff" : service.iconColor,
-                                    backgroundColor: isSelected ? "rgba(255,255,255,0.25)" : "transparent",
-                                  }}
+                                  className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center shrink-0 transition-colors ${
+                                    isSelected
+                                      ? service.circleSelected
+                                      : service.circleUnselected
+                                  }`}
                                   aria-hidden="true"
                                 >
-                                  {isSelected && <Check className="w-2.5 h-2.5 text-white stroke-[3]" />}
+                                  {isSelected && <Check className={`w-2.5 h-2.5 stroke-[3.5] ${service.checkColor}`} />}
                                 </span>
                               </button>
                             );

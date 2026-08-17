@@ -57,7 +57,7 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
         location.pathname.startsWith("/products") ||
         location.pathname === "/export-biz" ||
         location.pathname === "/export-biz-new" ||
-        location.pathname === "/ss-marketing" ||
+        location.pathname === "/EASE-Marketing" ||
         location.pathname === "/grow-together" ||
         location.pathname === "/ease-marketing";
 
@@ -137,7 +137,7 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                         </Link>
 
                         {/* Services Dropdown */}
-                        <div 
+                        <div
                             className="relative"
                             onMouseEnter={() => setActiveDropdown("services")}
                             onMouseLeave={() => setActiveDropdown(null)}
@@ -188,7 +188,7 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                         </div>
 
                         {/* Products Dropdown */}
-                        <div 
+                        <div
                             className="relative"
                             onMouseEnter={() => setActiveDropdown("products")}
                             onMouseLeave={() => setActiveDropdown(null)}
@@ -218,12 +218,12 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                                             Export Biz Software
                                         </Link>
                                         <Link
-                                            to="/ss-marketing"
-                                            title="SS Marketing – AG Solutions"
+                                            to="/EASE-Marketing"
+                                            title="EASE Marketing – AG Solutions"
                                             onClick={() => setActiveDropdown(null)}
                                             className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-teal-light hover:text-teal rounded-xl transition-colors no-underline"
                                         >
-                                            SS Marketing
+                                            EASE Marketing
                                         </Link>
                                         <Link
                                             to="/grow-together"
@@ -410,12 +410,12 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                                         Export Biz
                                     </Link>
                                     <Link
-                                        to="/ss-marketing"
-                                        title="SS Marketing – AG Solutions"
+                                        to="/EASE-Marketing"
+                                        title="EASE Marketing – AG Solutions"
                                         onClick={() => setMobileMenuOpen(false)}
                                         className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-teal hover:bg-card rounded-lg no-underline transition-colors"
                                     >
-                                        SS Marketing
+                                        EASE Marketing
                                     </Link>
                                     <Link
                                         to="/grow-together"
