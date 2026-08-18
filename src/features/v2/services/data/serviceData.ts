@@ -167,14 +167,14 @@ export const webDevelopmentServiceData: CommonServicePageProps = {
     statsTitleHighlight: "Results That Matter.",
     stats: [
         {
-            number: "120+",
+            number: "100+",
             label: "Happy Clients",
             icon: FaUsers,
             bgColor: "bg-teal",
             textColor: "text-teal",
         },
         {
-            number: "250+",
+            number: "150+",
             label: "Websites Delivered",
             icon: FaGlobe,
             bgColor: "bg-pink",
@@ -325,14 +325,14 @@ export const mobileAppServiceData: CommonServicePageProps = {
     statsTitleHighlight: "Results That Grow.",
     stats: [
         {
-            number: "120+",
+            number: "100+",
             label: "Happy Clients",
             icon: FaUsers,
             bgColor: "bg-teal",
             textColor: "text-teal",
         },
         {
-            number: "250+",
+            number: "150+",
             label: "Apps Delivered",
             icon: FaMobileScreenButton,
             bgColor: "bg-pink",
@@ -465,14 +465,14 @@ export const digitalMarketingServiceData: CommonServicePageProps = {
     statsTitleHighlight: "Growth That Lasts.",
     stats: [
         {
-            number: "120+",
+            number: "100+",
             label: "Happy Clients",
             icon: FaUsers,
             bgColor: "bg-teal",
             textColor: "text-teal",
         },
         {
-            number: "250+",
+            number: "150+",
             label: "Campaigns Delivered",
             icon: FaBullhorn,
             bgColor: "bg-pink",

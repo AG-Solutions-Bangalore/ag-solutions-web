@@ -1,9 +1,9 @@
-export const SERVER_IMAGE_BASE = "https://ag-solutions.in/webapi/public/assets/images/web_images_new";
+export const SERVER_IMAGE_BASE = "http://ag-solutions.in/webapi/public/assets/images/web_images_new";
 
 /**
  * Helper to get the correct URL for an image asset.
- * Keeps performance-critical local assets (logo, SVGs, favicons) serving locally,
- * while loading content images from remote server host.
+ * Keeps performance-critical hero assets & local vector icons serving locally,
+ * while routing all content images to the remote server base URL.
  */
 export function getImageUrl(path: string | undefined | null): string {
   if (!path) return "";
@@ -15,9 +15,14 @@ export function getImageUrl(path: string | undefined | null): string {
 
   const cleanPath = path.startsWith("/") ? path : `/${path}`;
 
-  // Keep critical performance assets local
+  // Keep critical performance hero & core UI assets local
   if (
     cleanPath === "/images/logo.png" ||
+    cleanPath === "/images/home/logo.png" ||
+    cleanPath === "/images/laptop.png" ||
+    cleanPath === "/images/ag-sl-desk.png" ||
+    cleanPath === "/images/ag-sl-desk1.png" ||
+    cleanPath === "/images/home/mobile_dev.webp" ||
     cleanPath.endsWith(".svg") ||
     cleanPath.startsWith("/icons/")
   ) {
@@ -34,3 +39,4 @@ export function getImageUrl(path: string | undefined | null): string {
   return `${SERVER_IMAGE_BASE}/${relativePath}`;
 }
 
+export default getImageUrl;

@@ -38,11 +38,13 @@ export const v2Loaders = {
   digitalMarketing: () => import("@/features/v2/services/pages/DigitalMarketingPageV2"),
   exportBiz: () => import("@/features/v2/products/export-biz/pages/ExportBizNewPage"),
   products: () => import("@/features/v2/products/pages/ProductsPage"),
-  easeMarketing: () => import("@/features/v2/products/pages/EaseMarketingPage"),
-  growTogether: () => import("@/features/v2/products/pages/GrowTogetherPage"),
+  easeMarketing: () => import("@/features/v2/coming-soon/pages/ComingSoonPage"),
+  growTogether: () => import("@/features/v2/coming-soon/pages/ComingSoonPage"),
   notFound: () => import("@/features/v2/not-found/pages/NotFoundPageV2"),
   comingSoon: () => import("@/features/v2/coming-soon/pages/ComingSoonPage"),
   contact: () => import("@/features/v2/contact-us/pages/ContactPage"),
+  blogList: () => import("@/features/v2/blog/pages/BlogListPage"),
+  blogDetail: () => import("@/features/v2/blog/pages/BlogDetailPage"),
 };
 
 /* ==========================================================================
@@ -77,6 +79,8 @@ export const loadServicePageV2 = v2Loaders.webDevelopment;
 export const loadMobileAppPageV2 = v2Loaders.mobileApp;
 export const loadDigitalMarketingPageV2 = v2Loaders.digitalMarketing;
 export const loadExportBizNewPage = v2Loaders.exportBiz;
+export const loadBlogListPageV2 = v2Loaders.blogList;
+export const loadBlogDetailPageV2 = v2Loaders.blogDetail;
 
 /* ==========================================================================
    ROUTE PRELOADING MAP
@@ -107,7 +111,8 @@ const routeLoaders: Record<string, () => Promise<unknown>> = {
   "/export-biz-new": loadExportBizNewPage,
   "/grow-together": loadGrowTogetherPage,
   "/desktop-applications": loadDesktopApplicationsPage,
-  "/blogs": loadBlogListPage,
+  "/blogs": loadBlogListPageV2,
+  "/blog": loadBlogListPageV2,
 };
 
 export const preloadRoute = (path: string) => {
