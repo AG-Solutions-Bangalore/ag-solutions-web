@@ -14,6 +14,8 @@ const ProductsPage = lazy(v2Loaders.products);
 const ComingSoonPage = lazy(v2Loaders.comingSoon);
 const ContactPage = lazy(v2Loaders.contact);
 const NotFoundPage = lazy(v2Loaders.notFound);
+const BlogListPageV2 = lazy(v2Loaders.blogList);
+const BlogDetailPageV2 = lazy(v2Loaders.blogDetail);
 
 export const renderV2Routes = () => (
   <Route element={<LayoutV2 />}>
@@ -44,9 +46,7 @@ export const renderV2Routes = () => (
 
     <Route path="digital-marketing" element={<DigitalMarketingPageV2 />} />
     <Route path="digital-marketing-v2" element={<DigitalMarketingPageV2 />} />
-    <Route path="ease-marketing" element={<DigitalMarketingPageV2 />} />
     <Route path="services/digital-marketing" element={<DigitalMarketingPageV2 />} />
-    <Route path="services/ease-marketing" element={<DigitalMarketingPageV2 />} />
 
     {/* Products (Direct top-level & aliases) */}
     <Route path="products" element={<ProductsPage />} />
@@ -66,7 +66,47 @@ export const renderV2Routes = () => (
       }
     />
     <Route
+      path="ease-marketing"
+      element={
+        <ComingSoonPage
+          title="EASE Marketing"
+          subtitle="Intelligent Marketing & Campaign Workflow Platform"
+          description="We are crafting a comprehensive digital marketing operations and workflow builder to simplify multi-channel campaign coordination."
+        />
+      }
+    />
+    <Route
+      path="ease-marketing-v2"
+      element={
+        <ComingSoonPage
+          title="EASE Marketing"
+          subtitle="Intelligent Marketing & Campaign Workflow Platform"
+          description="We are crafting a comprehensive digital marketing operations and workflow builder to simplify multi-channel campaign coordination."
+        />
+      }
+    />
+    <Route
       path="products/EASE-Marketing"
+      element={
+        <ComingSoonPage
+          title="EASE Marketing"
+          subtitle="Intelligent Marketing & Campaign Workflow Platform"
+          description="We are crafting a comprehensive digital marketing operations and workflow builder to simplify multi-channel campaign coordination."
+        />
+      }
+    />
+    <Route
+      path="products/ease-marketing"
+      element={
+        <ComingSoonPage
+          title="EASE Marketing"
+          subtitle="Intelligent Marketing & Campaign Workflow Platform"
+          description="We are crafting a comprehensive digital marketing operations and workflow builder to simplify multi-channel campaign coordination."
+        />
+      }
+    />
+    <Route
+      path="services/ease-marketing"
       element={
         <ComingSoonPage
           title="EASE Marketing"
@@ -96,27 +136,11 @@ export const renderV2Routes = () => (
       }
     />
 
-    {/* Blog (Coming Soon) */}
-    <Route
-      path="blogs"
-      element={
-        <ComingSoonPage
-          title="AG Solutions Blog"
-          subtitle="Tech Trends, Case Studies & Digital Growth"
-          description="Our engineering and strategy teams are preparing in-depth articles, case studies, and modern technology guides."
-        />
-      }
-    />
-    <Route
-      path="blog"
-      element={
-        <ComingSoonPage
-          title="AG Solutions Blog"
-          subtitle="Tech Trends, Case Studies & Digital Growth"
-          description="Our engineering and strategy teams are preparing in-depth articles, case studies, and modern technology guides."
-        />
-      }
-    />
+    {/* Blog Routes */}
+    <Route path="blogs" element={<BlogListPageV2 />} />
+    <Route path="blog" element={<BlogListPageV2 />} />
+    <Route path="blogs/:slug" element={<BlogDetailPageV2 />} />
+    <Route path="blog/:slug" element={<BlogDetailPageV2 />} />
 
     {/* Contact Us */}
     <Route path="contacts" element={<ContactPage />} />

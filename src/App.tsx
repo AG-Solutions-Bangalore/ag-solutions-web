@@ -1,17 +1,38 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Routes, useLocation } from "react-router-dom";
 import Lenis from "lenis";
 import SkipToContent from "./components/accessibility/SkipToContent";
-import { getUtmParams, storeUtmParams } from "./utils/utmUtils";
+import { extractUtmParams, storeUtmParams } from "./utils/utmUtils";
+import { createCampaignVisit } from "./features/v2/products/api/campaignApi";
 import { renderV1Routes, renderV2Routes, renderV3Routes } from "./routes";
 
 function UtmTracker() {
   const location = useLocation();
+  const trackedKeysRef = useRef<Set<string>>(new Set());
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const params = getUtmParams(searchParams);
+    const params = extractUtmParams(searchParams);
     storeUtmParams(params);
+
+    if (params.utm_source || params.utm_campaign) {
+      const trackingKey = `${location.pathname}?utm_source=${params.utm_source}&utm_campaign=${params.utm_campaign}&utm_medium=${params.utm_medium}`;
+
+      if (!trackedKeysRef.current.has(trackingKey)) {
+        trackedKeysRef.current.add(trackingKey);
+
+        createCampaignVisit({
+          utm_source: params.utm_source,
+          utm_campaign: params.utm_campaign,
+          page: location.pathname || window.location.pathname || "/",
+          fullUrl: window.location.href,
+          referrer: document.referrer || "",
+          timestamp: new Date().toISOString(),
+        }).catch((err) => {
+          console.error("Failed to log campaign visit:", err);
+        });
+      }
+    }
   }, [location]);
 
   return null;

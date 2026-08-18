@@ -231,15 +231,6 @@ export function CommonServicePage({
 
 
 
-                                    {/* Floating Teal Square (Top-Left) */}
-                                    <div className="absolute left-8 top-8 sm:top-10 z-20 h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-teal shadow-xl transition-transform duration-300 hover:scale-110" />
-
-                                    {/* Floating Pink Square (Middle-Left) */}
-                                    <div className="absolute left-10 top-1/2 -translate-y-1/2 z-20 h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-pink shadow-xl transition-transform duration-300 hover:scale-110" />
-
-                                    {/* Floating Yellow Square (Bottom-Left) */}
-                                    <div className="absolute left-18 bottom-4 z-20 h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-yellow shadow-xl transition-transform duration-300 hover:scale-110" />
-
                                     {/* Main Hero Image */}
                                     <img
                                         src={heroImage}
@@ -283,15 +274,14 @@ export function CommonServicePage({
                             </motion.div>
 
                             {/* Service Cards: Adaptive grid (3 & 3 for 6 cards, 5 in a row for 5 cards) */}
-                            <div className={`mt-8 sm:mt-10 grid grid-cols-1 sm:grid-cols-2 ${
-                                offerItems.length === 6
+                            <div className={`mt-8 sm:mt-10 grid grid-cols-1 sm:grid-cols-2 ${offerItems.length === 6
                                     ? "lg:grid-cols-3 gap-5 sm:gap-6"
                                     : offerItems.length === 5
                                         ? "md:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4 lg:gap-4.5"
                                         : offerItems.length === 4
                                             ? "lg:grid-cols-4 gap-4"
                                             : "lg:grid-cols-3 gap-5"
-                            }`}>
+                                }`}>
                                 {offerItems.map((item, idx) => {
                                     const Icon = item.icon;
                                     return (
@@ -378,12 +368,12 @@ export function CommonServicePage({
                                     {/* Right Side Feature Columns */}
                                     <div className="lg:col-span-8">
                                         <div className={`grid grid-cols-1 gap-4 sm:grid-cols-2 ${whyFeatures.length === 5
-                                                ? "lg:grid-cols-5"
-                                                : whyFeatures.length === 4
-                                                    ? "lg:grid-cols-4"
-                                                    : whyFeatures.length === 3
-                                                        ? "lg:grid-cols-3"
-                                                        : "lg:grid-cols-2"
+                                            ? "lg:grid-cols-5"
+                                            : whyFeatures.length === 4
+                                                ? "lg:grid-cols-4"
+                                                : whyFeatures.length === 3
+                                                    ? "lg:grid-cols-3"
+                                                    : "lg:grid-cols-2"
                                             }`}>
                                             {whyFeatures.map((feat, idx) => {
                                                 const Icon = feat.icon;
@@ -391,8 +381,8 @@ export function CommonServicePage({
                                                     <div
                                                         key={feat.title}
                                                         className={`group flex flex-col items-center text-center p-3 rounded-xl transition-all duration-200 hover:bg-muted/5 ${idx < whyFeatures.length - 1 && whyFeatures.length <= 4
-                                                                ? "lg:border-r lg:border-border/60"
-                                                                : ""
+                                                            ? "lg:border-r lg:border-border/60"
+                                                            : ""
                                                             }`}
                                                     >
                                                         <div
@@ -450,10 +440,10 @@ export function CommonServicePage({
                                 <div className="hidden lg:block absolute top-10 left-[10%] right-[10%] h-0.5 border-t-2 border-dashed border-border z-0" />
 
                                 <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 relative z-10 ${processSteps.length === 5
-                                        ? "lg:grid-cols-5"
-                                        : processSteps.length === 4
-                                            ? "lg:grid-cols-4"
-                                            : "lg:grid-cols-3"
+                                    ? "lg:grid-cols-5"
+                                    : processSteps.length === 4
+                                        ? "lg:grid-cols-4"
+                                        : "lg:grid-cols-3"
                                     }`}>
                                     {processSteps.map((stepItem, idx) => {
                                         const Icon = stepItem.icon;
@@ -533,8 +523,8 @@ export function CommonServicePage({
                                                     <div
                                                         key={statItem.label}
                                                         className={`group flex flex-col items-center justify-center p-3 transition-transform duration-300 hover:scale-105 ${idx < stats.length - 1
-                                                                ? "sm:border-r sm:border-border/60"
-                                                                : ""
+                                                            ? "sm:border-r sm:border-border/60"
+                                                            : ""
                                                             }`}
                                                     >
                                                         {Icon && (

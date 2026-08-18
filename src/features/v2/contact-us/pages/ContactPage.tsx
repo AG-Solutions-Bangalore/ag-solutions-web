@@ -274,33 +274,37 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Right Column: Hero Image with Colored Dots */}
+            {/* Right Column: Reception Photo with Exact Floating Square Accents (Matching About Us Section) */}
             <div className="relative lg:col-span-7 flex justify-center lg:justify-end mt-4 lg:mt-0">
-              <div className="relative w-full max-w-lg lg:max-w-none">
-                <div className="absolute -inset-4 rounded-full bg-gradient-to-tr from-teal/15 via-pink/10 to-yellow/15 blur-2xl pointer-events-none z-0" />
+              <div className="relative w-full max-w-lg">
+                {/* Dot Matrix Pattern */}
+                <div className="absolute -left-6 -bottom-4 hidden sm:grid grid-cols-4 gap-1.5 opacity-30 z-10 pointer-events-none">
+                  {Array.from({ length: 16 }).map((_, i) => (
+                    <span key={i} className="h-1.5 w-1.5 rounded-full bg-teal" />
+                  ))}
+                </div>
 
-                <div className="relative z-10 overflow-hidden rounded-tl-[60px] sm:rounded-tl-[80px] rounded-br-[50px] sm:rounded-br-[70px] rounded-tr-[24px] rounded-bl-[24px] shadow-xl bg-card border border-border">
+                {/* Soft Pill Accent (Top-Left) */}
+                <div className="absolute -left-4 top-8 z-10 hidden sm:block h-6 w-14 rounded-full bg-teal/20 backdrop-blur-xs" />
+
+                {/* Floating Teal Square (Left Middle) */}
+                <div className="absolute -left-4 sm:-left-6 top-1/3 z-20 h-12 w-12 sm:h-14 sm:w-14 rounded-md bg-teal shadow-xl transition-transform duration-300 hover:scale-110" />
+
+                {/* Main Reception Photo with Cut-out Geometry */}
+                <div className="relative z-10 overflow-hidden rounded-tl-[50px] sm:rounded-tl-[70px] rounded-br-[50px] sm:rounded-br-[70px] rounded-tr-[24px] rounded-bl-[24px] shadow-2xl transition-transform duration-500 hover:scale-[1.01] aspect-[16/11] sm:aspect-[4/3] bg-slate-100 dark:bg-slate-800 border border-border">
                   <img
                     src="/images/ag-sl-desk.png"
                     alt="AG Solutions Reception Office"
                     title="AG Solutions Office and Reception"
-                    className="h-[260px] sm:h-[340px] lg:h-[420px] w-full object-cover object-center transition-transform duration-700 hover:scale-[1.02]"
+                    className="h-full w-full object-cover"
                   />
                 </div>
 
-                {/* Rotating Accent Squares */}
-                <div className="absolute -left-2 sm:-left-3 top-8 z-20 hidden sm:block">
-                  <div className="h-9 w-9 rounded-xl bg-teal shadow-md" />
-                </div>
-                <div className="absolute -left-2 top-2/3 z-20 hidden sm:block">
-                  <div className="h-9 w-9 rounded-xl bg-pink shadow-md" />
-                </div>
-                <div className="absolute -right-2 top-1/3 z-20 hidden sm:block">
-                  <div className="h-9 w-9 rounded-xl bg-yellow shadow-md" />
-                </div>
-                <div className="absolute -right-2 bottom-6 z-20 hidden sm:block">
-                  <div className="h-9 w-9 rounded-xl bg-green shadow-md" />
-                </div>
+                {/* Floating Pink Square (Top Right) */}
+                <div className="absolute -right-4 sm:-right-6 top-6 sm:top-10 z-20 h-12 w-12 sm:h-14 sm:w-14 rounded-md bg-pink shadow-xl transition-transform duration-300 hover:scale-110" />
+
+                {/* Floating Yellow Square (Bottom Right) */}
+                <div className="absolute -right-4 sm:-right-6 bottom-6 sm:bottom-10 z-20 h-12 w-12 sm:h-14 sm:w-14 rounded-md bg-yellow shadow-xl transition-transform duration-300 hover:scale-110" />
               </div>
             </div>
 

@@ -167,10 +167,16 @@ export function HomeBlogSection({ source = "front", maxPosts = 3 }: HomeBlogSect
               >
                 <div>
                   {/* Image Cover */}
-                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
+                  <Link
+                    to={post.link}
+                    title={post.title}
+                    aria-label={post.title}
+                    className="relative block aspect-[16/9] w-full overflow-hidden bg-slate-100 dark:bg-slate-800"
+                  >
                     <img
                       src={post.image}
                       alt={post.title}
+                      title={post.title}
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                       onError={(e) => {
@@ -184,7 +190,7 @@ export function HomeBlogSection({ source = "front", maxPosts = 3 }: HomeBlogSect
                         {post.category}
                       </span>
                     </div>
-                  </div>
+                  </Link>
 
                   {/* Article Content */}
                   <div className="p-5 sm:p-6">
@@ -201,7 +207,9 @@ export function HomeBlogSection({ source = "front", maxPosts = 3 }: HomeBlogSect
                     </div>
 
                     <h3 className="text-base sm:text-lg font-bold text-dark group-hover:text-pink transition-colors duration-200 line-clamp-2 leading-snug">
-                      {post.title}
+                      <Link to={post.link} title={post.title} className="text-inherit no-underline">
+                        {post.title}
+                      </Link>
                     </h3>
 
                     <p className="mt-2 text-xs sm:text-sm text-muted font-normal line-clamp-3 leading-relaxed">
@@ -214,6 +222,7 @@ export function HomeBlogSection({ source = "front", maxPosts = 3 }: HomeBlogSect
                 <div className="px-5 sm:px-6 pb-5 pt-2 border-t border-border/60 flex items-center justify-between">
                   <Link
                     to={post.link}
+                    title={post.title}
                     className="inline-flex items-center gap-1.5 text-xs font-bold text-teal group-hover:text-pink transition-colors no-underline"
                   >
                     <span>Read Full Article</span>

@@ -89,10 +89,10 @@ export const ROUTE_REGISTRY: RouteRegistryItem[] = [
     path: "/blogs",
     name: "Blog",
     category: "Blog",
-    status: "Coming Soon",
+    status: "Production Ready",
     owner: "Developer F",
-    dependencies: ["ComingSoonPage"],
-    apiRequirements: [],
+    dependencies: ["BlogListPage", "BlogDetailPage", "BlogHero", "BlogCard", "BlogSidebar"],
+    apiRequirements: ["Blog API"],
   },
   {
     path: "/contacts",

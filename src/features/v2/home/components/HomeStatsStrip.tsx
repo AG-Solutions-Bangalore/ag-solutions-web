@@ -4,14 +4,14 @@ import AnimatedCounter from "@/components/animation/AnimatedCounter";
 
 const stats = [
   {
-    number: "100+",
+    number: "400+",
     label: "Happy Clients",
     icon: Users,
     bgColor: "bg-teal",
     iconBg: "bg-teal/15 text-teal border border-teal/30",
   },
   {
-    number: "150+",
+    number: "450+",
     label: "Projects Completed",
     icon: Briefcase,
     bgColor: "bg-pink",

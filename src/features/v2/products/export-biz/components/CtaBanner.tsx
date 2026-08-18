@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Headphones } from "lucide-react";
+import { getImageUrl } from "@/utils/imageUrl";
 
 interface CtaBannerProps {
   onStartDemo?: () => void;
@@ -64,12 +65,12 @@ export const CtaBanner: React.FC<CtaBannerProps> = ({ onStartDemo }) => {
             <div className="relative w-full max-w-sm">
               <div className="relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-xs p-4 border border-white/20 shadow-2xl">
                 <img
-                  src="/images/exportbiz/ship.png"
+                  src={getImageUrl("/images/exportbiz/ship.png")}
                   alt="Export Documentation Automation"
                   title="Export Documentation Shipping"
                   className="w-full h-auto object-contain rounded-xl drop-shadow-lg"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = "/images/exportbiz/Shipping Yard.png";
+                    (e.target as HTMLImageElement).src = getImageUrl("/images/exportbiz/Shipping Yard.png");
                   }}
                 />
               </div>

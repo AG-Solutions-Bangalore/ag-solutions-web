@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
+import { getImageUrl } from "@/utils/imageUrl";
 
 const tradePoints = [
   "Expert team with in-depth export knowledge",
@@ -26,7 +27,7 @@ export const GlobalTradePartnerSection: React.FC = () => {
               WHY CHOOSE AG SOLUTIONS
             </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-dark leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground leading-tight">
               Your Trusted Partner <br />
               <span className="text-pink">in Global Trade</span>
             </h2>
@@ -42,7 +43,7 @@ export const GlobalTradePartnerSection: React.FC = () => {
                   <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal/15 text-teal">
                     <CheckCircle2 className="h-4 w-4" />
                   </div>
-                  <span className="text-xs sm:text-sm font-semibold text-dark">
+                  <span className="text-xs sm:text-sm font-semibold text-foreground">
                     {point}
                   </span>
                 </div>
@@ -50,7 +51,7 @@ export const GlobalTradePartnerSection: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Right Column: Cargo / Logistics Image with Exact Floating Squares & Outline (Matching PDF & Reference) */}
+          {/* Right Column: Cargo / Logistics Image with Exact Floating Squares & Outline */}
           <motion.div
             className="relative lg:col-span-6 flex justify-center"
             initial={{ opacity: 0, x: 20 }}
@@ -68,13 +69,13 @@ export const GlobalTradePartnerSection: React.FC = () => {
               {/* Main Cargo / Shipping Yard Photo with Organic Cut */}
               <div className="relative z-10 overflow-hidden rounded-tl-[50px] sm:rounded-tl-[70px] rounded-br-[50px] sm:rounded-br-[70px] rounded-tr-[24px] rounded-bl-[24px] shadow-2xl transition-transform duration-500 hover:scale-[1.01] aspect-[16/10] bg-slate-900 border border-border">
                 <img
-                  src="/images/exportbiz/Shipping Yard.png"
+                  src={getImageUrl("/images/exportbiz/Shipping Yard.png")}
                   alt="Global Trade & Export Logistics"
                   title="Global Trade Logistics by AG Solutions"
                   className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                   onError={(e) => {
                     // Fallback to ship image if Shipping Yard not found
-                    (e.target as HTMLImageElement).src = "/images/exportbiz/ship.png";
+                    (e.target as HTMLImageElement).src = getImageUrl("/images/exportbiz/ship.png");
                   }}
                 />
               </div>
