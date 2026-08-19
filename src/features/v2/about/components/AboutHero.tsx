@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useLeadModal } from "@/context/LeadModalContext";
 import { ArrowRight } from "lucide-react";
+import { getImageUrl } from "@/utils/imageUrl";
 
 function AboutHero() {
     const { openLeadModal } = useLeadModal();
@@ -67,7 +68,7 @@ function AboutHero() {
                             {/* Main Reception Photo with Cut-out Geometry */}
                             <div className="relative z-10 overflow-hidden rounded-tl-[50px] sm:rounded-tl-[70px] rounded-br-[50px] sm:rounded-br-[70px] rounded-tr-[24px] rounded-bl-[24px] shadow-2xl transition-transform duration-500 hover:scale-[1.01] aspect-[16/11] sm:aspect-[4/3] bg-slate-100 border border-border">
                                 <img
-                                    src="/images/ag-sl-desk.png"
+                                    src={getImageUrl("/images/ag-sl-desk.png")}
                                     alt="AG Solutions Reception Office"
                                     title="AG Solutions Office and Reception"
                                     className="h-full w-full object-cover"

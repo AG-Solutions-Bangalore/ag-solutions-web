@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 import FlipButton from "@/components/ui/FlipButton";
+import { getImageUrl } from "@/utils/imageUrl";
 
 function BuildTogetherCta() {
     return (
@@ -43,7 +44,7 @@ function BuildTogetherCta() {
                         <div className="relative lg:col-span-7 flex justify-center items-center z-10">
                             <div className="relative w-full max-w-xl flex justify-center items-center">
                                 <img
-                                    src="/images/group-image-03.png"
+                                    src={getImageUrl("/images/group-image-03.png")}
                                     alt="Let's Build Something Amazing Together Team"
                                     title="AG Solutions Team"
                                     className="w-full h-auto max-h-[300px] sm:max-h-[360px] lg:max-h-[400px] object-contain drop-shadow-xl transition-transform duration-500 hover:scale-[1.03]"
