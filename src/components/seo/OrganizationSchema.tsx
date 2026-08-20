@@ -4,7 +4,7 @@ import JsonLd from "./JsonLd";
 export const OrganizationSchema: React.FC = () => {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
     "@id": "https://ag-solutions.in/#organization",
     name: "AG Solutions",
     url: "https://ag-solutions.in/",
@@ -14,6 +14,7 @@ export const OrganizationSchema: React.FC = () => {
       "AG Solutions builds web applications, mobile apps, desktop software, digital marketing systems, and export documentation products.",
     telephone: "+91-8867171060",
     email: "info@ag-solutions.in",
+    priceRange: "$$",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Jayanagara 9th Block",
@@ -29,7 +30,7 @@ export const OrganizationSchema: React.FC = () => {
     ],
   };
 
-  return <JsonLd schema={schema} />;
+  return <JsonLd id="schema-organization" schema={schema} />;
 };
 
 export default OrganizationSchema;

@@ -54,12 +54,12 @@ export const EaseMarketingCtaBanner: React.FC = () => {
 
             {/* Right Column: CTA Graphic using base URL image */}
             <div className="lg:col-span-5 flex justify-center items-center">
-              <div className="relative w-full max-w-md lg:max-w-lg flex justify-center items-center py-2">
+              <div className="relative w-full max-w-md lg:max-w-xl flex justify-center items-center py-2">
                 <img
                   src={getImageUrl("/images/ease_market_bottom.png")}
                   alt="Ready to Grow Your Business with WhatsApp"
                   title="Ready to Grow Your Business with WhatsApp"
-                  className="w-full h-auto max-h-72 sm:max-h-80 lg:max-h-96 object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-105"
+                  className="w-full h-auto max-h-80 sm:max-h-96 lg:max-h-[420px] object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-105"
                   loading="lazy"
                 />
               </div>

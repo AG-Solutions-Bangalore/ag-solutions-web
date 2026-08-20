@@ -37,17 +37,17 @@ export const TrustSection: React.FC = () => {
         {/* 4 Feature & Stat Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
           {/* Card 1: Vibrant Hero Stat Card */}
-          <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0a1647] via-[#12318b] to-[#1c4ee0] p-6 sm:p-7 text-white shadow-xl flex flex-col justify-between border border-white/15 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl">
-            <div className="absolute -right-6 -bottom-6 h-28 w-28 rounded-full bg-white/10 blur-xl pointer-events-none" />
+          <div className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#008f8c] via-[#007d7a] to-[#006361] p-6 sm:p-7 text-white shadow-xl flex flex-col justify-between border border-white/20 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl">
+            <div className="absolute -right-6 -bottom-6 h-28 w-28 rounded-full bg-white/15 blur-xl pointer-events-none" />
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-cyan-300">
+              <span className="text-xs font-extrabold uppercase tracking-wider text-teal-100">
                 PROVEN EXPERIENCE
               </span>
               <div className="mt-2 font-['Plus_Jakarta_Sans',sans-serif] font-black text-4xl sm:text-5xl text-white leading-none tracking-tight">
                 <AnimatedCounter value="15+" />
               </div>
             </div>
-            <p className="mt-4 text-xs sm:text-sm text-cyan-100 font-medium leading-relaxed">
+            <p className="mt-4 text-xs sm:text-sm text-white/90 font-medium leading-relaxed">
               Years building enterprise web, mobile &amp; mission-critical business software.
             </p>
           </div>
