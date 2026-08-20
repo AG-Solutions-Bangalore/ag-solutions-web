@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import PageContainer from "./PageContainer";
+import { OrganizationSchema, WebSiteSchema } from "@/components/seo";
 
 function AppLayout() {
   const location = useLocation();
@@ -22,6 +23,8 @@ function AppLayout() {
 
   return (
     <div className="min-h-screen bg-white">
+      <OrganizationSchema />
+      <WebSiteSchema />
       <Navbar />
       <PageContainer>
         <Suspense fallback={null}>

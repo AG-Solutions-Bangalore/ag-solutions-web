@@ -57,9 +57,11 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
         location.pathname.startsWith("/products") ||
         location.pathname === "/export-biz" ||
         location.pathname === "/export-biz-new" ||
+        location.pathname === "/bizstock" ||
+        location.pathname === "/biz-stock" ||
+        location.pathname === "/ease-marketing" ||
         location.pathname === "/EASE-Marketing" ||
-        location.pathname === "/grow-together" ||
-        location.pathname === "/ease-marketing";
+        location.pathname === "/grow-together";
 
     const isServicesPath =
         location.pathname === "/services" ||
@@ -217,14 +219,22 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                                         >
                                             Export Biz Software
                                         </Link>
-                                        <Link
-                                            to="/EASE-Marketing"
+                                        {/* <Link
+                                            to="/bizstock"
+                                            title="BizStock – Inventory Management Software"
+                                            onClick={() => setActiveDropdown(null)}
+                                            className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-blue-500/10 hover:text-blue-600 dark:hover:text-blue-400 rounded-xl transition-colors no-underline"
+                                        >
+                                            BizStock
+                                        </Link> */}
+                                        {/* <Link
+                                            to="/ease-marketing"
                                             title="EASE Marketing – AG Solutions"
                                             onClick={() => setActiveDropdown(null)}
                                             className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-teal-light hover:text-teal rounded-xl transition-colors no-underline"
                                         >
                                             EASE Marketing
-                                        </Link>
+                                        </Link> */}
                                         <Link
                                             to="/grow-together"
                                             title="Grow Together – AG Solutions"
@@ -409,14 +419,22 @@ export function HeaderV2({ activeNav }: HeaderV2Props) {
                                     >
                                         Export Biz
                                     </Link>
-                                    <Link
-                                        to="/EASE-Marketing"
+                                    {/* <Link
+                                        to="/bizstock"
+                                        title="BizStock – Inventory Management Software"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-blue-600 dark:hover:text-blue-400 hover:bg-card rounded-lg no-underline transition-colors"
+                                    >
+                                        BizStock
+                                    </Link> */}
+                                    {/* <Link
+                                        to="/ease-marketing"
                                         title="EASE Marketing – AG Solutions"
                                         onClick={() => setMobileMenuOpen(false)}
                                         className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-teal hover:bg-card rounded-lg no-underline transition-colors"
                                     >
                                         EASE Marketing
-                                    </Link>
+                                    </Link> */}
                                     <Link
                                         to="/grow-together"
                                         title="Grow Together – AG Solutions"

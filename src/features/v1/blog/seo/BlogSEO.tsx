@@ -1,5 +1,4 @@
 import React from "react";
-import { JsonLd } from "@/components/seo/JsonLd";
 import { SEO } from "@/components/seo/SEO";
 
 interface BlogSEOProps {
@@ -23,34 +22,16 @@ export const BlogSEO: React.FC<BlogSEOProps> = ({
   image = "https://ag-solutions.in/images/08-subscribe.svg",
   slug = "blogs",
 }) => {
-  const blogSchema = {
-    "@type": "BlogPosting",
-    headline: title,
-    description: description,
-    image: image,
-    url: `https://ag-solutions.in/blogs/${slug}`,
-    publisher: {
-      "@type": "Organization",
-      name: "AG Solutions",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://ag-solutions.in/images/logo.png",
-      },
-    },
-  };
-
   return (
-    <>
-      <SEO
-        title={title}
-        description={description}
-        keywords={keywords}
-        ogType="article"
-        ogImage={image}
-        ogImageAlt={title}
-      />
-      <JsonLd schema={blogSchema} />
-    </>
+    <SEO
+      title={title}
+      description={description}
+      keywords={keywords}
+      canonical={`https://ag-solutions.in/blogs/${slug}`}
+      ogType="article"
+      ogImage={image}
+      ogImageAlt={title}
+    />
   );
 };
 

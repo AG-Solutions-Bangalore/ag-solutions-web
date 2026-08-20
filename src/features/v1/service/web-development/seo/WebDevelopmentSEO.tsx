@@ -7,8 +7,10 @@ export const WebDevelopmentSEO: React.FC = () => {
     "@type": "Service",
     name: "Web Development Services",
     provider: {
-      "@type": "LocalBusiness",
+      "@type": "Organization",
+      "@id": "https://ag-solutions.in/#organization",
       name: "AG Solutions",
+      url: "https://ag-solutions.in/",
     },
     areaServed: "Bangalore",
     description:

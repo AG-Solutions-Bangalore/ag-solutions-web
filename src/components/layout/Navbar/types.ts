@@ -1,5 +1,5 @@
 export type ServiceIconName = "web" | "mobile" | "desktop";
-export type ProductIconName = "export" | "marketing" | "grow";
+export type ProductIconName = "export" | "marketing" | "grow" | "bizstock";
 
 export type NavSubItem = {
   label: string;

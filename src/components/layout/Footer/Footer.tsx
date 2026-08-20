@@ -144,22 +144,6 @@ function Footer({
     };
   }, []);
 
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: copyrightName,
-    image: "/images/08-subscribe.svg",
-    telephone: phone,
-    email,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Jayanagara 9th Block",
-      addressLocality: "Bengaluru",
-      postalCode: "560069",
-    },
-    url: "https://www.ag-solutions.in/",
-  };
-
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!emailValue) return;
@@ -339,10 +323,6 @@ function Footer({
               </div>
             </div>
           </div>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-          />
           <div className="border-t border-white/10">
   <div
     className={`${layoutContainerClass} flex flex-col items-center justify-between gap-6 py-8 md:flex-row`}

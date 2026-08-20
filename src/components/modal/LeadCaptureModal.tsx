@@ -83,15 +83,27 @@ export function getMatchedServiceForRoute(path: string, context: string): string
   if (
     lowerPath.includes("digital-marketing") ||
     lowerCtx.includes("digital-marketing") ||
-    lowerCtx.includes("digital marketing") ||
-    lowerCtx.includes("ease-marketing")
+    lowerCtx.includes("digital marketing")
   ) {
     return "Digital Marketing";
   }
   if (
     lowerPath.includes("export-biz") ||
+    lowerPath.includes("ease-marketing") ||
+    lowerPath.includes("ease") ||
+    lowerPath.includes("bizstock") ||
+    lowerPath.includes("biz-stock") ||
+    lowerPath.includes("biz") ||
     lowerCtx.includes("export-biz") ||
-    lowerCtx.includes("export biz")
+    lowerCtx.includes("export biz") ||
+    lowerCtx.includes("ease-marketing") ||
+    lowerCtx.includes("ease marketing") ||
+    lowerCtx.includes("bizstock") ||
+    lowerCtx.includes("biz-stock") ||
+    lowerCtx.includes("biz stock") ||
+    lowerCtx.includes("inventory") ||
+    lowerCtx.includes("growth partner") ||
+    lowerCtx.includes("whatsapp")
   ) {
     return "Custom Software";
   }

@@ -13,17 +13,19 @@ export const ServiceSchema: React.FC<ServiceSchemaProps> = ({
   providerName = "AG Solutions",
 }) => {
   const schema = {
+    "@context": "https://schema.org",
     "@type": "Service",
     name,
     description,
     provider: {
-      "@type": "LocalBusiness",
+      "@type": "Organization",
+      "@id": "https://ag-solutions.in/#organization",
       name: providerName,
-      url: "https://ag-solutions.in",
+      url: "https://ag-solutions.in/",
     },
   };
 
-  return <JsonLd schema={schema} />;
+  return <JsonLd id="schema-service" schema={schema} />;
 };
 
 export default ServiceSchema;

@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import BlogSEO from "../seo/BlogSEO";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
 import { useBlogBySlug } from "../hooks/useBlogs";
 import { PageHero, SectionTitle } from "@/components/layout";
-import { FAQSchema } from "@/components/seo";
+import { FAQSchema, BlogPostingSchema } from "@/components/seo";
 import { formatDate } from "@/utils/formatDate";
 
 export default function BlogDetailPage() {
@@ -79,10 +79,20 @@ export default function BlogDetailPage() {
     ? `${blogBaseUrl}${blog.blog_banner_image}`
     : "/images/portfolio/web1.png";
 
-  const faqSchemaList = blogData.faq?.map(faqItem => ({
-    question: faqItem.question || faqItem.faq_que || "",
-    answer: faqItem.answer || faqItem.faq_ans || "",
-  })).filter(f => f.question && f.answer) || [];
+  const faqSchemaList = useMemo(() => {
+    const rawFaqs =
+      blogData?.faq ||
+      (blogData as unknown as { data?: { faq?: Array<{ question?: string; faq_que?: string; answer?: string; faq_ans?: string }> } })?.data?.faq ||
+      (blog as unknown as { faq?: Array<{ question?: string; faq_que?: string; answer?: string; faq_ans?: string }> })?.faq;
+
+    if (!rawFaqs || !Array.isArray(rawFaqs)) return [];
+    return rawFaqs
+      .map((item) => ({
+        question: (item.question || item.faq_que || "").trim(),
+        answer: (item.answer || item.faq_ans || "").trim(),
+      }))
+      .filter((f) => f.question && f.answer);
+  }, [blogData, blog]);
 
   return (
     <>
@@ -92,7 +102,18 @@ export default function BlogDetailPage() {
         slug={blog.blog_slug}
         image={imageUrl}
       />
-      <FAQSchema faqs={faqSchemaList} />
+      <BlogPostingSchema
+        headline={blog.blog_title}
+        description={blog.blog_meta_description || blog.blog_short_description}
+        image={imageUrl}
+        url={`https://ag-solutions.in/blogs/${blog.blog_slug}`}
+        datePublished={blog.blog_created_date}
+        dateModified={blog.blog_updated_date || blog.blog_created_date}
+        authorName={blog.created_by || "AG Solutions"}
+      />
+      {faqSchemaList.length > 0 && (
+        <FAQSchema faqs={faqSchemaList} />
+      )}
 
       <PageHero
         title={blog.blog_title}

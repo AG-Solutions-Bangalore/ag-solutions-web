@@ -16,6 +16,7 @@ export function getPageContextFromPath(pathname: string): string {
   if (pathname.includes("mobile-app")) return "Mobile App Page";
   if (pathname.includes("digital-marketing")) return "Digital Marketing Page";
   if (pathname.includes("export-biz")) return "Export Biz";
+  if (pathname.includes("biz-stock") || pathname.includes("bizstock")) return "BizStock";
   if (pathname.includes("ease-marketing") || pathname.includes("EASE-Marketing")) return "EASE Marketing";
   if (pathname.includes("grow-together")) return "Grow Together";
   if (pathname.includes("about")) return "About Us";

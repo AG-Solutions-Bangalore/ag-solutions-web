@@ -37,8 +37,9 @@ export const v2Loaders = {
   mobileApp: () => import("@/features/v2/services/pages/MobileAppPageV2"),
   digitalMarketing: () => import("@/features/v2/services/pages/DigitalMarketingPageV2"),
   exportBiz: () => import("@/features/v2/products/export-biz/pages/ExportBizNewPage"),
+  bizstock: () => import("@/features/v2/products/bizstock/pages/BizStockPage"),
   products: () => import("@/features/v2/products/pages/ProductsPage"),
-  easeMarketing: () => import("@/features/v2/coming-soon/pages/ComingSoonPage"),
+  easeMarketing: () => import("@/features/v2/products/ease-marketing/pages/EaseMarketingPage"),
   growTogether: () => import("@/features/v2/coming-soon/pages/ComingSoonPage"),
   notFound: () => import("@/features/v2/not-found/pages/NotFoundPageV2"),
   comingSoon: () => import("@/features/v2/coming-soon/pages/ComingSoonPage"),
@@ -79,6 +80,8 @@ export const loadServicePageV2 = v2Loaders.webDevelopment;
 export const loadMobileAppPageV2 = v2Loaders.mobileApp;
 export const loadDigitalMarketingPageV2 = v2Loaders.digitalMarketing;
 export const loadExportBizNewPage = v2Loaders.exportBiz;
+export const loadBizStockPage = v2Loaders.bizstock;
+export const loadEaseMarketingPageV2 = v2Loaders.easeMarketing;
 export const loadBlogListPageV2 = v2Loaders.blogList;
 export const loadBlogDetailPageV2 = v2Loaders.blogDetail;
 
@@ -104,11 +107,15 @@ const routeLoaders: Record<string, () => Promise<unknown>> = {
   "/mobile-app-development-v2": loadMobileAppPageV2,
   "/digital-marketing": loadDigitalMarketingPageV2,
   "/digital-marketing-v2": loadDigitalMarketingPageV2,
-  "/ease-marketing": loadDigitalMarketingPageV2,
-  "/ease-marketing-v2": loadDigitalMarketingPageV2,
+  "/ease-marketing": loadEaseMarketingPageV2,
+  "/EASE-Marketing": loadEaseMarketingPageV2,
+  "/ease-marketing-v2": loadEaseMarketingPageV2,
   "/products": loadProductsPage,
   "/export-biz": loadExportBizNewPage,
   "/export-biz-new": loadExportBizNewPage,
+  "/bizstock": loadBizStockPage,
+  "/biz-stock": loadBizStockPage,
+  "/bizstock-v2": loadBizStockPage,
   "/grow-together": loadGrowTogetherPage,
   "/desktop-applications": loadDesktopApplicationsPage,
   "/blogs": loadBlogListPageV2,

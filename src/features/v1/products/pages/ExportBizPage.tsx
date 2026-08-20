@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { SEO } from "@/components/seo/SEO";
+import { FAQSchema, TestimonialSchema, ServiceSchema } from "@/components/seo";
 import { ExportBizHero } from "../components/ExportBizHero";
 import { ExportBizStats } from "../components/ExportBizStats";
 import { ExportBizProblemSolution } from "../components/ExportBizProblemSolution";
@@ -48,6 +49,13 @@ export const ExportBizPage: React.FC<ExportBizPageProps> = ({ defaultOpenModal =
           "shipping bills",
           "customs compliance",
         ]}
+      />
+      <FAQSchema />
+      <TestimonialSchema />
+      <ServiceSchema
+        name="Export Biz - Export Management Software"
+        description="Optimize your compliance, reporting, claims, and customs processes with AG Solutions' EXPORT BIZ."
+        providerName="AG Solutions"
       />
 
       <div className="bg-[#f7f6f1] text-[#12141a] font-space-grotesk min-h-screen antialiased box-border pt-5">
