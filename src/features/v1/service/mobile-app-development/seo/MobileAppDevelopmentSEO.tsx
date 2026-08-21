@@ -7,8 +7,10 @@ export const MobileAppDevelopmentSEO: React.FC = () => {
     "@type": "Service",
     name: "Mobile App Development Services",
     provider: {
-      "@type": "LocalBusiness",
+      "@type": "Organization",
+      "@id": "https://ag-solutions.in/#organization",
       name: "AG Solutions",
+      url: "https://ag-solutions.in/",
     },
     areaServed: "Bangalore",
     description:

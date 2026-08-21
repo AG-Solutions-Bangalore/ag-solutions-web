@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import SEO from "@/components/seo/SEO";
-import { FAQSchema } from "@/components/seo";
+import { FAQSchema, BlogPostingSchema } from "@/components/seo";
 import { useBlogBySlug, useBlogs } from "../hooks/useBlogs";
 import BlogDetailHeader from "../components/BlogDetailHeader";
 import BlogFaqAccordion from "../components/BlogFaqAccordion";
@@ -48,16 +48,21 @@ export function BlogDetailPage() {
     return Array.from(map.entries()).map(([name, count]) => ({ name, count }));
   }, [allBlogsData?.data]);
 
-  // FAQ schema for SEO
+  // FAQ schema for SEO (checks blogData.faq, nested blogData.data.faq, or blog.faq)
   const faqSchemaList = useMemo(() => {
-    if (!blogData?.faq) return [];
-    return blogData.faq
+    const rawFaqs =
+      blogData?.faq ||
+      (blogData as unknown as { data?: { faq?: Array<{ question?: string; faq_que?: string; answer?: string; faq_ans?: string }> } })?.data?.faq ||
+      (blog as unknown as { faq?: Array<{ question?: string; faq_que?: string; answer?: string; faq_ans?: string }> })?.faq;
+
+    if (!rawFaqs || !Array.isArray(rawFaqs)) return [];
+    return rawFaqs
       .map((item) => ({
-        question: item.question || item.faq_que || "",
-        answer: item.answer || item.faq_ans || "",
+        question: (item.question || item.faq_que || "").trim(),
+        answer: (item.answer || item.faq_ans || "").trim(),
       }))
       .filter((f) => f.question && f.answer);
-  }, [blogData?.faq]);
+  }, [blogData, blog]);
 
   // Error State
   if (error) {
@@ -125,7 +130,18 @@ export function BlogDetailPage() {
         twitterDescription={blog.blog_meta_description || blog.blog_short_description}
         twitterImage={headerImageUrl}
       />
-      {faqSchemaList.length > 0 && <FAQSchema faqs={faqSchemaList} />}
+      <BlogPostingSchema
+        headline={blog.blog_title}
+        description={blog.blog_meta_description || blog.blog_short_description}
+        image={headerImageUrl}
+        url={`https://ag-solutions.in/blogs/${blog.blog_slug}`}
+        datePublished={blog.blog_created_date || "2026-08-20"}
+        dateModified={blog.blog_updated_date || blog.blog_created_date || "2026-08-20"}
+        authorName={blog.created_by || "AG Solutions"}
+      />
+      {faqSchemaList.length > 0 && (
+        <FAQSchema faqs={faqSchemaList} />
+      )}
 
       <div className="bg-background min-h-screen text-foreground antialiased transition-colors duration-200">
         {/* Main Article Container */}

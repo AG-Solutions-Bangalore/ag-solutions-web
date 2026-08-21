@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import { useCreateNewsletter } from "@/features/v1/newsletter/hooks/useCreateNewsletter";
+import { getImageUrl } from "@/utils/imageUrl";
 
 export function NewsletterSection() {
   const [email, setEmail] = useState("");
@@ -95,8 +96,8 @@ export function NewsletterSection() {
             {/* Right: Graphic Illustration (newslatterImage1.webp) */}
             <div className="hidden md:flex items-center justify-center shrink-0">
               <img
-                src="/images/newslatterImage1.webp"
-                alt="Subscribe to newsletter graphic"
+                src={getImageUrl("/images/newslatterImage1.webp")}
+                alt="Subscribe to AG Solutions Newsletter"
                 title="Subscribe to AG Solutions Newsletter"
                 className="h-14 sm:h-16 lg:h-20 w-auto object-contain drop-shadow-lg transition-transform duration-300 hover:scale-105"
               />

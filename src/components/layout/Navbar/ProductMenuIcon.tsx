@@ -49,6 +49,17 @@ function ProductMenuIcon({
     );
   }
 
+  if (name === "bizstock") {
+    return (
+      <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+        <path d="m3.3 7 8.7 5 8.7-5" />
+        <path d="M12 22V12" />
+        <path d="m7.5 4.5 9 5.2" />
+      </svg>
+    );
+  }
+
   return (
     <svg viewBox="0 0 512 512" className={className} aria-hidden="true">
       <path d="m184 224h-64c-4.418457 0-8 3.581543-8 8v48c0 4.418457 3.581543 8 8 8h64c4.418457 0 8-3.581543 8-8v-48c0-4.418457-3.581543-8-8-8zm-8 48h-48v-32h48z" />

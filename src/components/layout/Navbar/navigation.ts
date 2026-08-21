@@ -62,6 +62,15 @@ export const navItems: readonly NavItem[] = [
         productIcon: "marketing",
       },
       {
+        label: "BizStock",
+        path: "/bizstock",
+        title: "BizStock - Intelligent Inventory & Warehouse ERP",
+        description: "Real-time stock tracking, multi-warehouse control & smart reorder.",
+        badge: "BS",
+        accentClass: "bg-[#e0f2fe] text-[#0284c7]",
+        productIcon: "bizstock",
+      },
+      {
         label: "Grow Together",
         path: "/grow-together",
         title: "Grow Together - Collaborative Business Space",

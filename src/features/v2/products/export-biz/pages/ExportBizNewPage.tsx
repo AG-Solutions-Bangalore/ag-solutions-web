@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import CommonServicePage from "@/features/v2/services/components/CommonServicePage";
 import { exportBizServiceData } from "@/features/v2/services/data/serviceData";
+import { FAQSchema } from "@/components/seo";
 import { GlobalTradePartnerSection } from "../components/GlobalTradePartnerSection";
 import { DocumentEcosystemV2 } from "../components/DocumentEcosystemV2";
 import { CompareSection } from "../components/CompareSection";
@@ -8,6 +9,29 @@ import { TrustSection } from "../components/TrustSection";
 import { FaqSection } from "../components/FaqSection";
 import { CtaBanner } from "../components/CtaBanner";
 import { useLeadModal } from "@/context/LeadModalContext";
+
+const exportBizFaqs = [
+  {
+    question: "What is Export Biz?",
+    answer:
+      "Export Biz is AG Solutions' specialized export documentation software. It helps Indian exporters, manufacturers and global traders turn shipment details into accurate, 100% compliant paperwork, while automating reporting, returns, and scheme tracking.",
+  },
+  {
+    question: "Who is Export Biz for?",
+    answer:
+      "Exporters, manufacturers, trading houses, freight coordinators, and SMEs who handle international shipments and want to eliminate repetitive data entry, minimize human errors, and accelerate dispatch times.",
+  },
+  {
+    question: "Do I need to install complicated software?",
+    answer:
+      "No complicated installation or hardware requirements. Export Biz is cloud-ready and accessible from any modern web browser. Start with a free guided demo and our specialists will configure your workflow seamlessly.",
+  },
+  {
+    question: "What happens in the free guided demo?",
+    answer:
+      "Our trade technology experts will walk you through live document generation from purchase order to shipping bill, demonstrate compliance validation, answer your specific trade questions, and show custom reporting modules.",
+  },
+];
 
 export const ExportBizNewPage: React.FC = () => {
   const { openLeadModal } = useLeadModal();
@@ -25,17 +49,20 @@ export const ExportBizNewPage: React.FC = () => {
   }, [openLeadModal]);
 
   return (
-    <CommonServicePage
-      {...exportBizServiceData}
-      onHeroCtaClick={() => openLeadModal("Export Biz Software")}
-    >
-      <GlobalTradePartnerSection />
-      <DocumentEcosystemV2 />
-      <CompareSection />
-      <TrustSection />
-      <FaqSection />
-      <CtaBanner onStartDemo={() => openLeadModal("Export Biz Software")} />
-    </CommonServicePage>
+    <>
+      <FAQSchema faqs={exportBizFaqs} />
+      <CommonServicePage
+        {...exportBizServiceData}
+        onHeroCtaClick={() => openLeadModal("Export Biz Software")}
+      >
+        <GlobalTradePartnerSection />
+        <DocumentEcosystemV2 />
+        <CompareSection />
+        <TrustSection />
+        <FaqSection />
+        <CtaBanner onStartDemo={() => openLeadModal("Export Biz Software")} />
+      </CommonServicePage>
+    </>
   );
 };
 

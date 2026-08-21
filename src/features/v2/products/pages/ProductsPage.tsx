@@ -11,7 +11,7 @@ interface ProductCard {
   title: string;
   subtitle: string;
   description: string;
-  iconName: "export" | "marketing" | "grow";
+  iconName: "export" | "marketing" | "grow" | "bizstock";
   path: string;
   badgeText: string;
   badgeClass: string;
@@ -35,12 +35,25 @@ const products: readonly ProductCard[] = [
     iconColorClass: "text-teal",
   },
   {
+    title: "BizStock",
+    subtitle: "Inventory & Warehouse ERP",
+    description:
+      "Intelligent stock control, multi-warehouse synchronization, automated purchase reorders, and mobile barcode/QR workflows for high-accuracy inventory operations.",
+    iconName: "bizstock",
+    path: "/bizstock",
+    badgeText: "STOCK",
+    badgeClass: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/30",
+    btnHoverClass: "hover:bg-blue-600 focus-visible:ring-blue-500",
+    iconBgClass: "bg-blue-500/10",
+    iconColorClass: "text-blue-600 dark:text-blue-400",
+  },
+  {
     title: "EASE Marketing",
     subtitle: "Campaign & Workflow Management",
     description:
       "Run, track, and optimize all marketing workflows in one place. Design marketing campaigns, track conversion rates, orchestrate team operations, and measure multi-channel campaign performance effortlessly.",
     iconName: "marketing",
-    path: "/EASE-Marketing",
+    path: "/ease-marketing",
     badgeText: "EASE",
     badgeClass: "bg-pink-light text-pink border border-pink-border/40",
     btnHoverClass: "hover:bg-pink-hover focus-visible:ring-pink",
