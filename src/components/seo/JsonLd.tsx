@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
 
 interface JsonLdProps {
   id?: string;
@@ -13,36 +12,46 @@ export const JsonLd: React.FC<JsonLdProps> = React.memo(({ id, schema }) => {
   };
 
   const jsonString = JSON.stringify(schemaWithContext);
-  const type = (schema["@type"] as string) || "schema";
-  const scriptId = id || `schema-${type.toLowerCase()}`;
+  
+  // Resolve unique script ID
+  const rawType = schema["@type"];
+  const typeStr = Array.isArray(rawType)
+    ? rawType.join("-").toLowerCase()
+    : typeof rawType === "string"
+    ? rawType.toLowerCase()
+    : "custom";
+  const scriptId = id || `schema-${typeStr}`;
 
-  // Dynamic Client-side DOM Injection guarantee on every page transition
   useEffect(() => {
     if (typeof document === "undefined") return;
 
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.setAttribute("data-schema-type", type);
-    script.id = scriptId;
-    script.text = jsonString;
-    document.head.appendChild(script);
+    let script = document.getElementById(scriptId) as HTMLScriptElement | null;
+
+    if (script) {
+      // Update in place to avoid duplicate script tags across re-renders
+      script.textContent = jsonString;
+    } else {
+      script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.id = scriptId;
+      script.setAttribute("data-schema-type", typeStr);
+      script.textContent = jsonString;
+      document.head.appendChild(script);
+    }
 
     return () => {
-      if (document.head.contains(script)) {
-        document.head.removeChild(script);
+      // Clean up script on component unmount
+      const existing = document.getElementById(scriptId);
+      if (existing && existing.parentNode) {
+        existing.parentNode.removeChild(existing);
       }
     };
-  }, [scriptId, type, jsonString]);
+  }, [scriptId, typeStr, jsonString]);
 
-  return (
-    <Helmet>
-      <script type="application/ld+json">
-        {jsonString}
-      </script>
-    </Helmet>
-  );
+  return null;
 });
 
 JsonLd.displayName = "JsonLd";
 
 export default JsonLd;
+

@@ -7,5 +7,7 @@ export { default as ServiceSchema } from "./ServiceSchema";
 export { default as FAQSchema } from "./FAQSchema";
 export { default as TestimonialSchema } from "./TestimonialSchema";
 export { default as BlogPostingSchema } from "./BlogPostingSchema";
+export { default as SoftwareAppSchema } from "./SoftwareAppSchema";
+
 
 

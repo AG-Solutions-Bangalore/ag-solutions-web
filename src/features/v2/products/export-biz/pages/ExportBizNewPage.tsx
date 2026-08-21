@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import CommonServicePage from "@/features/v2/services/components/CommonServicePage";
 import { exportBizServiceData } from "@/features/v2/services/data/serviceData";
-import { FAQSchema } from "@/components/seo";
+import { FAQSchema, SoftwareAppSchema } from "@/components/seo";
 import { GlobalTradePartnerSection } from "../components/GlobalTradePartnerSection";
 import { DocumentEcosystemV2 } from "../components/DocumentEcosystemV2";
 import { CompareSection } from "../components/CompareSection";
@@ -50,6 +50,21 @@ export const ExportBizNewPage: React.FC = () => {
 
   return (
     <>
+      <SoftwareAppSchema
+        name="Export Biz - Export Documentation Software"
+        description="Specialized export documentation and compliance software for exporters, manufacturers, and global trade houses by AG Solutions."
+        applicationCategory="BusinessApplication"
+        operatingSystem="Web Browser, Cloud-based"
+        url="https://ag-solutions.in/export-biz"
+        ratingValue={4.9}
+        reviewCount={150}
+        features={[
+          "3-Click Document Generation",
+          "Automated Shipping Bills & Invoices",
+          "DGFT & Customs Scheme Tracking",
+          "Digital Document Filing & Audit Trail",
+        ]}
+      />
       <FAQSchema faqs={exportBizFaqs} />
       <CommonServicePage
         {...exportBizServiceData}
@@ -67,3 +82,4 @@ export const ExportBizNewPage: React.FC = () => {
 };
 
 export default ExportBizNewPage;
+

@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, HelpCircle } from "lucide-react";
 
-interface FaqItem {
+export interface FaqItem {
   question: string;
   answer: string;
 }
 
-const faqs: FaqItem[] = [
+export const bizStockFaqs: FaqItem[] = [
+
   {
     question: "What barcode and QR hardware does BizStock support?",
     answer:
@@ -66,8 +67,9 @@ export const BizStockFaq: React.FC = () => {
 
         {/* Accordion List */}
         <div className="space-y-4">
-          {faqs.map((faq, index) => {
+          {bizStockFaqs.map((faq, index) => {
             const isOpen = openIndex === index;
+
             return (
               <motion.div
                 key={faq.question}

@@ -7,20 +7,22 @@ export interface ReviewItem {
   ratingValue?: string | number;
   bestRating?: string | number;
   itemReviewedName?: string;
-  itemType?: "SoftwareApplication" | "Organization" | "Product";
+  itemType?: "SoftwareApplication" | "Organization" | "Product" | "Service";
 }
 
 export interface TestimonialSchemaProps {
+  id?: string;
   reviews?: ReviewItem[];
   authorName?: string;
   reviewBody?: string;
   ratingValue?: string | number;
   bestRating?: string | number;
   itemReviewedName?: string;
-  itemType?: "SoftwareApplication" | "Organization" | "Product";
+  itemType?: "SoftwareApplication" | "Organization" | "Product" | "Service";
 }
 
 export const TestimonialSchema: React.FC<TestimonialSchemaProps> = ({
+  id,
   reviews,
   authorName = "Ravi Sharma",
   reviewBody = "AG Solutions delivered an outstanding digital solution on time. Highly recommended for any business.",
@@ -35,10 +37,15 @@ export const TestimonialSchema: React.FC<TestimonialSchemaProps> = ({
       <>
         {reviews.map((r, i) => {
           const currentItemType = r.itemType || itemType;
+          const reviewSlug = (r.authorName || `reviewer-${i}`)
+            .toLowerCase()
+            .replace(/[^a-z0-9]/g, "-");
+          const targetName = r.itemReviewedName || itemReviewedName;
 
           const schema = {
+            "@context": "https://schema.org",
             "@type": "Review",
-            name: `${r.authorName} Review`,
+            name: `${r.authorName} Review for ${targetName}`,
             author: {
               "@type": "Person",
               name: r.authorName,
@@ -52,17 +59,16 @@ export const TestimonialSchema: React.FC<TestimonialSchemaProps> = ({
             itemReviewed: {
               "@type": currentItemType,
               "@id": "https://ag-solutions.in/#organization",
-              name: r.authorName,
-              legalName: r.itemReviewedName || itemReviewedName,
+              name: `${r.authorName} - Client Review (${targetName})`,
+              legalName: targetName,
               url: "https://ag-solutions.in/",
-              image: "https://ag-solutions.in/webapi/public/assets/images/web_images_new/logo.png",
             },
           };
 
           return (
             <JsonLd
-              key={`${r.authorName}-${i}`}
-              id={`schema-review-${r.authorName.toLowerCase().replace(/\s+/g, "-")}`}
+              key={`${reviewSlug}-${i}`}
+              id={`schema-review-${reviewSlug}-${i}`}
               schema={schema}
             />
           );
@@ -73,8 +79,9 @@ export const TestimonialSchema: React.FC<TestimonialSchemaProps> = ({
 
   // Single review fallback
   const schema = {
+    "@context": "https://schema.org",
     "@type": "Review",
-    name: `${authorName} Review`,
+    name: `${authorName} Review for ${itemReviewedName}`,
     author: {
       "@type": "Person",
       name: authorName,
@@ -88,14 +95,17 @@ export const TestimonialSchema: React.FC<TestimonialSchemaProps> = ({
     itemReviewed: {
       "@type": itemType,
       "@id": "https://ag-solutions.in/#organization",
-      name: authorName,
+      name: `${authorName} - Client Review (${itemReviewedName})`,
       legalName: itemReviewedName,
       url: "https://ag-solutions.in/",
-      image: "https://ag-solutions.in/webapi/public/assets/images/web_images_new/logo.png",
     },
   };
 
-  return <JsonLd id="schema-review-single" schema={schema} />;
+  return <JsonLd id={id || "schema-review-single"} schema={schema} />;
 };
 
+
+
 export default TestimonialSchema;
+
+
