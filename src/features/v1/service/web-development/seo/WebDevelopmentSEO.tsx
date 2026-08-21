@@ -31,7 +31,7 @@ export const WebDevelopmentSEO: React.FC = () => {
         ]}
         ogType="website"
       />
-      <JsonLd schema={serviceSchema} />
+      <JsonLd id="schema-service-webdev-v1" schema={serviceSchema} />
     </>
   );
 };

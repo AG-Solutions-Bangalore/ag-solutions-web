@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { SEO } from "@/components/seo/SEO";
-import { TestimonialSchema, FAQSchema, SoftwareAppSchema } from "@/components/seo";
+import { FAQSchema, SoftwareAppSchema, TestimonialSchema } from "@/components/seo";
+
+
 import { BizStockFaq, bizStockFaqs } from "../components/BizStockFaq";
 import { BizStockHero } from "../components/BizStockHero";
 import { BizStockFeatures } from "../components/BizStockFeatures";
@@ -83,6 +85,8 @@ export const BizStockPage: React.FC = () => {
       />
       <TestimonialSchema reviews={bizStockReviews} />
       <FAQSchema faqs={bizStockFaqs} />
+
+
 
       <div className="bg-background font-sans text-dark antialiased">
         {/* Hero Section */}

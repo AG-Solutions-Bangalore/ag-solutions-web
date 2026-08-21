@@ -27,7 +27,7 @@ export const AboutSEO: React.FC = () => {
         ogImage="https://ag-solutions.in/images/about/09-story-company.svg"
         ogImageAlt="AG Solutions Company Story Illustration"
       />
-      <JsonLd schema={aboutSchema} />
+      <JsonLd id="schema-aboutpage-v1" schema={aboutSchema} />
     </>
   );
 };

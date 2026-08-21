@@ -31,7 +31,7 @@ export const DesktopApplicationsSEO: React.FC = () => {
         ]}
         ogType="website"
       />
-      <JsonLd schema={serviceSchema} />
+      <JsonLd id="schema-service-desktopapp-v1" schema={serviceSchema} />
     </>
   );
 };

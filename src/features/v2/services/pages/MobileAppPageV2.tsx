@@ -1,9 +1,12 @@
+import { useMemo } from "react";
+
 import CommonServicePage from "../components/CommonServicePage";
 import { mobileAppServiceData } from "../data/serviceData";
 import MobileAppIdeaCta from "../components/MobileAppIdeaCta";
 import { ServiceSchema, FAQSchema, TestimonialSchema } from "@/components/seo";
+import { useFAQs } from "@/features/v1/service/hooks/useFAQs";
 
-const mobileAppFaqs = [
+const fallbackMobileAppFaqs = [
   {
     question: "Do you develop both native iOS and Android apps?",
     answer:
@@ -27,12 +30,22 @@ const mobileAppReviews = [
     reviewBody:
       "AG Solutions built our enterprise iOS and Android mobile app with an intuitive UI and zero crashes. Truly impressed by their development standards.",
     ratingValue: 5,
-    itemReviewedName: "Mobile App Development Services - AG Solutions",
-    itemType: "Service" as const,
   },
 ];
 
 function MobileAppPageV2() {
+    const { data: faqResponse } = useFAQs("mobile-app-development");
+
+    const dynamicFaqs = useMemo(() => {
+        if (faqResponse?.data && Array.isArray(faqResponse.data) && faqResponse.data.length > 0) {
+            return faqResponse.data.map((item) => ({
+                question: item.faq_que,
+                answer: item.faq_ans,
+            }));
+        }
+        return fallbackMobileAppFaqs;
+    }, [faqResponse]);
+
     return (
         <>
             <ServiceSchema
@@ -42,7 +55,7 @@ function MobileAppPageV2() {
                 url="https://ag-solutions.in/mobile-app-development"
             />
             <TestimonialSchema reviews={mobileAppReviews} />
-            <FAQSchema faqs={mobileAppFaqs} />
+            <FAQSchema faqs={dynamicFaqs} />
             <CommonServicePage {...mobileAppServiceData}>
                 <MobileAppIdeaCta />
             </CommonServicePage>
@@ -51,5 +64,7 @@ function MobileAppPageV2() {
 }
 
 export default MobileAppPageV2;
+
+
 
 

@@ -1,8 +1,11 @@
+import { useMemo } from "react";
+
 import CommonServicePage from "../components/CommonServicePage";
 import { digitalMarketingServiceData } from "../data/serviceData";
 import { ServiceSchema, FAQSchema, TestimonialSchema } from "@/components/seo";
+import { useFAQs } from "@/features/v1/service/hooks/useFAQs";
 
-const digitalMarketingFaqs = [
+const fallbackDigitalMarketingFaqs = [
   {
     question: "What digital marketing channels do you manage?",
     answer:
@@ -26,12 +29,22 @@ const digitalMarketingReviews = [
     reviewBody:
       "Their data-driven digital marketing campaigns lowered our cost per acquisition by 35% while dramatically increasing high-intent inbound leads.",
     ratingValue: 5,
-    itemReviewedName: "Digital Marketing Services - AG Solutions",
-    itemType: "Service" as const,
   },
 ];
 
 function DigitalMarketingPageV2() {
+    const { data: faqResponse } = useFAQs("digital-marketing");
+
+    const dynamicFaqs = useMemo(() => {
+        if (faqResponse?.data && Array.isArray(faqResponse.data) && faqResponse.data.length > 0) {
+            return faqResponse.data.map((item) => ({
+                question: item.faq_que,
+                answer: item.faq_ans,
+            }));
+        }
+        return fallbackDigitalMarketingFaqs;
+    }, [faqResponse]);
+
     return (
         <>
             <ServiceSchema
@@ -41,12 +54,14 @@ function DigitalMarketingPageV2() {
                 url="https://ag-solutions.in/digital-marketing"
             />
             <TestimonialSchema reviews={digitalMarketingReviews} />
-            <FAQSchema faqs={digitalMarketingFaqs} />
+            <FAQSchema faqs={dynamicFaqs} />
             <CommonServicePage {...digitalMarketingServiceData} />
         </>
     );
 }
 
 export default DigitalMarketingPageV2;
+
+
 
 

@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { SEO } from "@/components/seo/SEO";
-import { TestimonialSchema, FAQSchema, SoftwareAppSchema } from "@/components/seo";
+import { FAQSchema, SoftwareAppSchema, TestimonialSchema } from "@/components/seo";
+
+
 import { EaseMarketingHero } from "../components/EaseMarketingHero";
 import { EaseMarketingFeatures } from "../components/EaseMarketingFeatures";
 import { EaseMarketingPipeline } from "../components/EaseMarketingPipeline";
@@ -104,6 +106,8 @@ export const EaseMarketingPage: React.FC = () => {
       />
       <TestimonialSchema reviews={easeMarketingReviews} />
       <FAQSchema faqs={easeMarketingFaqs} />
+
+
 
 
 

@@ -206,7 +206,7 @@ const testSchemas: Array<{ route: string; id: string; schema: Record<string, unk
     schema: {
       "@context": "https://schema.org",
       "@type": "Review",
-      name: "Vikram Singhania Review for AG Solutions",
+      name: "Vikram Singhania Review",
       author: {
         "@type": "Person",
         name: "Vikram Singhania",
@@ -219,14 +219,13 @@ const testSchemas: Array<{ route: string; id: string; schema: Record<string, unk
       },
       itemReviewed: {
         "@type": "Organization",
-        "@id": "https://ag-solutions.in/#organization",
-        name: "Vikram Singhania - Client Review (AG Solutions)",
-        legalName: "AG Solutions",
+        name: "Vikram Singhania",
+        description: "Client review for AG Solutions",
         url: "https://ag-solutions.in/",
       },
     },
-
   },
+
   // About Page (/about)
   {
     route: "/about",
@@ -307,8 +306,25 @@ const testSchemas: Array<{ route: string; id: string; schema: Record<string, unk
         bestRating: "5",
         worstRating: "1",
       },
+      review: [
+        {
+          "@type": "Review",
+          name: "Rajesh Singhal Review",
+          author: {
+            "@type": "Person",
+            name: "Rajesh Singhal",
+          },
+          reviewBody: "Export Biz reduced our shipping bill preparation time by over 70%. Zero customs filing errors since we onboarded.",
+          reviewRating: {
+            "@type": "Rating",
+            ratingValue: "5",
+            bestRating: "5",
+          },
+        },
+      ],
     },
   },
+
   {
     route: "/export-biz",
     id: "schema-faqpage",

@@ -31,7 +31,7 @@ export const MobileAppDevelopmentSEO: React.FC = () => {
         ]}
         ogType="website"
       />
-      <JsonLd schema={serviceSchema} />
+      <JsonLd id="schema-service-mobileapp-v1" schema={serviceSchema} />
     </>
   );
 };

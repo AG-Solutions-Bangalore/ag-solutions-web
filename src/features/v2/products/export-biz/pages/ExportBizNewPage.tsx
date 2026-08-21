@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import CommonServicePage from "@/features/v2/services/components/CommonServicePage";
 import { exportBizServiceData } from "@/features/v2/services/data/serviceData";
-import { FAQSchema, SoftwareAppSchema } from "@/components/seo";
+import { FAQSchema, SoftwareAppSchema, TestimonialSchema } from "@/components/seo";
+
+
 import { GlobalTradePartnerSection } from "../components/GlobalTradePartnerSection";
 import { DocumentEcosystemV2 } from "../components/DocumentEcosystemV2";
 import { CompareSection } from "../components/CompareSection";
@@ -30,6 +32,25 @@ const exportBizFaqs = [
     question: "What happens in the free guided demo?",
     answer:
       "Our trade technology experts will walk you through live document generation from purchase order to shipping bill, demonstrate compliance validation, answer your specific trade questions, and show custom reporting modules.",
+  },
+];
+
+const exportBizReviews = [
+  {
+    authorName: "Rajesh Singhal",
+    reviewBody:
+      "Export Biz reduced our shipping bill preparation time by over 70%. Zero customs filing errors since we onboarded.",
+    ratingValue: 5,
+    itemReviewedName: "Export Biz",
+    itemType: "SoftwareApplication" as const,
+  },
+  {
+    authorName: "Meera Nair",
+    reviewBody:
+      "Essential software for any Indian export house. DGFT scheme tracking and automated invoice generation work flawlessly.",
+    ratingValue: 5,
+    itemReviewedName: "Export Biz",
+    itemType: "SoftwareApplication" as const,
   },
 ];
 
@@ -65,7 +86,11 @@ export const ExportBizNewPage: React.FC = () => {
           "Digital Document Filing & Audit Trail",
         ]}
       />
+      <TestimonialSchema reviews={exportBizReviews} />
       <FAQSchema faqs={exportBizFaqs} />
+
+
+
       <CommonServicePage
         {...exportBizServiceData}
         onHeroCtaClick={() => openLeadModal("Export Biz Software")}

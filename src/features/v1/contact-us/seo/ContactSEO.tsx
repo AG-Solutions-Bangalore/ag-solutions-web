@@ -25,7 +25,7 @@ export const ContactSEO: React.FC = () => {
         ]}
         ogType="website"
       />
-      <JsonLd schema={contactSchema} />
+      <JsonLd id="schema-contactpage-v1" schema={contactSchema} />
     </>
   );
 };
