@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react";
-import { Routes, useLocation } from "react-router-dom";
 import Lenis from "lenis";
+import { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import SkipToContent from "./components/accessibility/SkipToContent";
+import { createCampaignVisit } from "./features/products/api/campaignApi";
+import AppRoutes from "./routes";
 import { extractUtmParams, storeUtmParams } from "./utils/utmUtils";
-import { createCampaignVisit } from "./features/v2/products/api/campaignApi";
-import { renderV1Routes, renderV2Routes, renderV3Routes } from "./routes";
+
 
 function UtmTracker() {
   const location = useLocation();
@@ -53,30 +54,6 @@ function ScrollToTop() {
 }
 
 function App() {
-  // Clean up any stale inline theme style overrides on mount so CSS tokens and next-themes drive theme cleanly
-  useEffect(() => {
-    const root = document.documentElement;
-    const staleProps = [
-      "--background",
-      "--foreground",
-      "--card",
-      "--card-foreground",
-      "--popover",
-      "--popover-foreground",
-      "--border",
-      "--input",
-      "--dark",
-      "--light",
-      "--muted",
-      "--navy",
-    ];
-    staleProps.forEach((prop) => root.style.removeProperty(prop));
-    try {
-      localStorage.removeItem("ag-theme-config");
-    } catch {
-      // ignore
-    }
-  }, []);
 
   useEffect(() => {
     // Prevent browser auto-restoration from clamping scroll to unrendered document height on refresh
@@ -127,18 +104,10 @@ function App() {
       <UtmTracker />
       <SkipToContent />
       <ScrollToTop />
-      <Routes>
-        {/* Primary Routes (V2) — /, /about, /services, /web-development, etc. */}
-        {renderV2Routes()}
-
-        {/* Future Version 3 Routes */}
-        {renderV3Routes()}
-
-        {/* Legacy V1 Routes — /home-v1, /portfolio, /blogs, etc. */}
-        {renderV1Routes()}
-      </Routes>
+      <AppRoutes />
     </>
   );
 }
+
 
 export default App;

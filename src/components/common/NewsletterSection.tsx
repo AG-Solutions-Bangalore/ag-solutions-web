@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
-import { useCreateNewsletter } from "@/features/v1/newsletter/hooks/useCreateNewsletter";
+import { useCreateNewsletter } from "@/features/newsletter/hooks/useCreateNewsletter";
+
+
 import { getImageUrl } from "@/utils/imageUrl";
 
 export function NewsletterSection() {

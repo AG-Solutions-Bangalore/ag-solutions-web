@@ -8,118 +8,77 @@ const normalizePath = (path: string) => {
 };
 
 /* ==========================================================================
-   VERSION 1 (v1) PAGE LOADERS
+   PAGE LOADERS (Direct & Unversioned)
    ========================================================================== */
-export const v1Loaders = {
-  home: () => import("@/features/v1/home/pages/HomePage"),
-  about: () => import("@/features/v1/about/pages/AboutPage"),
-  contact: () => import("@/features/v1/contact-us/pages/ContactPage"),
-  portfolio: () => import("@/features/v1/portfolio/pages/PortfolioPage"),
-  webDevelopment: () => import("@/features/v1/service/web-development/pages/WebDevelopmentPage"),
-  mobileAppDevelopment: () => import("@/features/v1/service/mobile-app-development/pages/MobileAppDevelopmentPage"),
-  desktopApplications: () => import("@/features/v1/service/desktop-applications/pages/DesktopApplicationsPage"),
-  blogList: () => import("@/features/v1/blog/pages/BlogListPage"),
-  blogDetail: () => import("@/features/v1/blog/pages/BlogDetailPage"),
-  products: () => import("@/features/v1/products/pages/ProductsPage"),
-  exportBiz: () => import("@/features/v1/products/pages/ExportBizPage"),
-  easeMarketing: () => import("@/features/v1/products/pages/EaseMarketingPage"),
-  growTogether: () => import("@/features/v1/products/pages/GrowTogetherPage"),
-  notFound: () => import("@/features/v1/not-found/pages/NotFoundPage"),
+export const pageLoaders = {
+  home: () => import("@/features/home/pages/HomePage"),
+  about: () => import("@/features/about/pages/AboutPage"),
+  webDevelopment: () => import("@/features/services/pages/WebDevelopmentPageV2"),
+  mobileApp: () => import("@/features/services/pages/MobileAppPageV2"),
+  digitalMarketing: () => import("@/features/services/pages/DigitalMarketingPageV2"),
+  exportBiz: () => import("@/features/products/export-biz/pages/ExportBizNewPage"),
+  bizstock: () => import("@/features/products/bizstock/pages/BizStockPage"),
+  products: () => import("@/features/products/pages/ProductsPage"),
+  easeMarketing: () => import("@/features/products/ease-marketing/pages/EaseMarketingPage"),
+  growTogether: () => import("@/features/coming-soon/pages/ComingSoonPage"),
+  comingSoon: () => import("@/features/coming-soon/pages/ComingSoonPage"),
+  notFound: () => import("@/features/not-found/pages/NotFoundPageV2"),
+  contact: () => import("@/features/contact-us/pages/ContactPage"),
+  portfolio: () => import("@/features/portfolio/pages/PortfolioPage"),
+  blogList: () => import("@/features/blog/pages/BlogListPage"),
+  blogDetail: () => import("@/features/blog/pages/BlogDetailPage"),
 };
 
-/* ==========================================================================
-   VERSION 2 (v2) PAGE LOADERS
-   ========================================================================== */
-export const v2Loaders = {
-  home: () => import("@/features/v2/home/pages/HomePage"),
-  about: () => import("@/features/v2/about/pages/AboutPage"),
-  webDevelopment: () => import("@/features/v2/services/pages/WebDevelopmentPageV2"),
-  mobileApp: () => import("@/features/v2/services/pages/MobileAppPageV2"),
-  digitalMarketing: () => import("@/features/v2/services/pages/DigitalMarketingPageV2"),
-  exportBiz: () => import("@/features/v2/products/export-biz/pages/ExportBizNewPage"),
-  bizstock: () => import("@/features/v2/products/bizstock/pages/BizStockPage"),
-  products: () => import("@/features/v2/products/pages/ProductsPage"),
-  easeMarketing: () => import("@/features/v2/products/ease-marketing/pages/EaseMarketingPage"),
-  growTogether: () => import("@/features/v2/coming-soon/pages/ComingSoonPage"),
-  notFound: () => import("@/features/v2/not-found/pages/NotFoundPageV2"),
-  comingSoon: () => import("@/features/v2/coming-soon/pages/ComingSoonPage"),
-  contact: () => import("@/features/v2/contact-us/pages/ContactPage"),
-  blogList: () => import("@/features/v2/blog/pages/BlogListPage"),
-  blogDetail: () => import("@/features/v2/blog/pages/BlogDetailPage"),
-};
+// Aliases for compatibility
+export const v2Loaders = pageLoaders;
+export const v1Loaders = pageLoaders;
 
 /* ==========================================================================
-   VERSION 3 (v3) PAGE LOADERS (Scalable placeholder for future v3)
+   CONVENIENCE NAMED EXPORTS
    ========================================================================== */
-export const v3Loaders = {
-  // e.g. home: () => import("@/features/v3/home/pages/HomePageV3"),
-};
-
-/* ==========================================================================
-   CONVENIENCE NAMED EXPORTS (Maintains backward compatibility)
-   ========================================================================== */
-export const loadHomePage = v1Loaders.home;
-export const loadAboutPage = v1Loaders.about;
-export const loadContactPage = v1Loaders.contact;
-export const loadPortfolioPage = v1Loaders.portfolio;
-export const loadWebDevelopmentPage = v1Loaders.webDevelopment;
-export const loadMobileAppDevelopmentPage = v1Loaders.mobileAppDevelopment;
-export const loadDesktopApplicationsPage = v1Loaders.desktopApplications;
-export const loadBlogListPage = v1Loaders.blogList;
-export const loadBlogDetailPage = v1Loaders.blogDetail;
-export const loadProductsPage = v1Loaders.products;
-export const loadExportBizPage = v1Loaders.exportBiz;
-export const loadEaseMarketingPage = v1Loaders.easeMarketing;
-export const loadGrowTogetherPage = v1Loaders.growTogether;
-export const loadNotFoundPage = v1Loaders.notFound;
-
-export const loadHomePageV2 = v2Loaders.home;
-export const loadAboutPageV2 = v2Loaders.about;
-export const loadWebDevelopmentPageV2 = v2Loaders.webDevelopment;
-export const loadServicePageV2 = v2Loaders.webDevelopment;
-export const loadMobileAppPageV2 = v2Loaders.mobileApp;
-export const loadDigitalMarketingPageV2 = v2Loaders.digitalMarketing;
-export const loadExportBizNewPage = v2Loaders.exportBiz;
-export const loadBizStockPage = v2Loaders.bizstock;
-export const loadEaseMarketingPageV2 = v2Loaders.easeMarketing;
-export const loadBlogListPageV2 = v2Loaders.blogList;
-export const loadBlogDetailPageV2 = v2Loaders.blogDetail;
+export const loadHomePage = pageLoaders.home;
+export const loadAboutPage = pageLoaders.about;
+export const loadContactPage = pageLoaders.contact;
+export const loadPortfolioPage = pageLoaders.portfolio;
+export const loadWebDevelopmentPage = pageLoaders.webDevelopment;
+export const loadMobileAppPage = pageLoaders.mobileApp;
+export const loadDigitalMarketingPage = pageLoaders.digitalMarketing;
+export const loadProductsPage = pageLoaders.products;
+export const loadExportBizPage = pageLoaders.exportBiz;
+export const loadBizStockPage = pageLoaders.bizstock;
+export const loadEaseMarketingPage = pageLoaders.easeMarketing;
+export const loadGrowTogetherPage = pageLoaders.growTogether;
+export const loadBlogListPage = pageLoaders.blogList;
+export const loadBlogDetailPage = pageLoaders.blogDetail;
+export const loadNotFoundPage = pageLoaders.notFound;
 
 /* ==========================================================================
    ROUTE PRELOADING MAP
    ========================================================================== */
 const routeLoaders: Record<string, () => Promise<unknown>> = {
-  "/": loadHomePageV2,
-  "/home": loadHomePageV2,
-  "/home-v2": loadHomePageV2,
-  "/about": loadAboutPageV2,
-  "/about-v2": loadAboutPageV2,
+  "/": loadHomePage,
+  "/home": loadHomePage,
+  "/about": loadAboutPage,
+  "/about-us": loadAboutPage,
+  "/contact": loadContactPage,
   "/contacts": loadContactPage,
   "/contactus": loadContactPage,
   "/portfolio": loadPortfolioPage,
-  "/services": loadWebDevelopmentPageV2,
-  "/service-v2": loadServicePageV2,
-  "/web-development": loadWebDevelopmentPageV2,
-  "/web-development-v2": loadWebDevelopmentPageV2,
-  "/mobile-app": loadMobileAppPageV2,
-  "/mobile-app-development": loadMobileAppPageV2,
-  "/mobile-app-v2": loadMobileAppPageV2,
-  "/mobile-app-development-v2": loadMobileAppPageV2,
-  "/digital-marketing": loadDigitalMarketingPageV2,
-  "/digital-marketing-v2": loadDigitalMarketingPageV2,
-  "/ease-marketing": loadEaseMarketingPageV2,
-  "/EASE-Marketing": loadEaseMarketingPageV2,
-  "/ease-marketing-v2": loadEaseMarketingPageV2,
+  "/services": loadWebDevelopmentPage,
+  "/web-development": loadWebDevelopmentPage,
+  "/mobile-app": loadMobileAppPage,
+  "/mobile-app-development": loadMobileAppPage,
+  "/digital-marketing": loadDigitalMarketingPage,
+  "/ease-marketing": loadEaseMarketingPage,
+  "/EASE-Marketing": loadEaseMarketingPage,
   "/products": loadProductsPage,
-  "/export-biz": loadExportBizNewPage,
-  "/export-biz-new": loadExportBizNewPage,
+  "/export-biz": loadExportBizPage,
+  "/export-biz-new": loadExportBizPage,
   "/bizstock": loadBizStockPage,
   "/biz-stock": loadBizStockPage,
-  "/bizstock-v2": loadBizStockPage,
   "/grow-together": loadGrowTogetherPage,
-  "/desktop-applications": loadDesktopApplicationsPage,
-  "/blogs": loadBlogListPageV2,
-  "/blog": loadBlogListPageV2,
+  "/blogs": loadBlogListPage,
+  "/blog": loadBlogListPage,
 };
 
 export const preloadRoute = (path: string) => {
