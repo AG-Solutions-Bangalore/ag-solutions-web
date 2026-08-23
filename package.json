@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && bun scripts/prerenderSeo.ts",
     "lint": "eslint .",
     "preview": "vite preview",
-    "validate:schema": "bun scripts/validateSchemas.ts"
-
+    "validate:schema": "bun scripts/validateSchemas.ts",
+    "prerender": "bun scripts/prerenderSeo.ts"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",

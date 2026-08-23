@@ -1,12 +1,11 @@
 import SEO from "@/components/seo/SEO";
-import { FAQSchema, TestimonialSchema } from "@/components/seo";
+import { FAQSchema } from "@/components/seo";
 import AboutHero from "../components/AboutHero";
 import AboutStats from "../components/AboutStats";
 import AboutValues from "../components/AboutValues";
 import WhyChooseUs from "../components/WhyChooseUs";
 import BuildTogetherCta from "../components/BuildTogetherCta";
 import Industries from "@/features/home/components/Industries";
-
 
 const aboutFaqs = [
   {
@@ -26,17 +25,6 @@ const aboutFaqs = [
   },
 ];
 
-const aboutReviews = [
-  {
-    authorName: "Sanjay Gupta",
-    reviewBody:
-      "Partnering with AG Solutions has accelerated our product roadmap. Their technical leadership, attention to detail, and support have been exemplary.",
-    ratingValue: 5,
-    itemReviewedName: "AG Solutions",
-    itemType: "Organization" as const,
-  },
-];
-
 function AboutPageV2() {
     return (
         <>
@@ -44,8 +32,8 @@ function AboutPageV2() {
                 title="About Us - AG Solutions | Solution Provider for New Age Businesses"
                 description="Learn about AG Solutions, our core values, mission, team, and why businesses worldwide trust us as their IT solution partner."
             />
-            <TestimonialSchema reviews={aboutReviews} />
             <FAQSchema faqs={aboutFaqs} />
+
 
 
             <div className="bg-white font-sans text-accent-dark antialiased">

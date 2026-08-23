@@ -3,8 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/icons/favicon-32x32.png" />
+    <script>
+      // Automatic stale build recovery for React SPA deployments
+      window.addEventListener('error', function (e) {
+        var target = e.target || e.srcElement;
+        if (target && target.tagName === 'SCRIPT' && /assets\/.*\.js/.test(target.src || '')) {
+          var lastReload = sessionStorage.getItem('ag_chunk_reload');
+          var now = Date.now();
+          if (!lastReload || now - parseInt(lastReload, 10) > 10000) {
+            sessionStorage.setItem('ag_chunk_reload', String(now));
+            window.location.reload();
+          }
+        }
+      }, true);
+      window.addEventListener('vite:preloadError', function () {
+        var lastReload = sessionStorage.getItem('ag_chunk_reload');
+        var now = Date.now();
+        if (!lastReload || now - parseInt(lastReload, 10) > 10000) {
+          sessionStorage.setItem('ag_chunk_reload', String(now));
+          window.location.reload();
+        }
+      });
+    </script>
+
     <!-- Preconnect to external assets -->
-    <link rel="preconnect" href="http://ag-solutions.in" />
+    <link rel="preconnect" href="https://ag-solutions.in" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
@@ -36,7 +59,7 @@
       name="description"
       content="AG Solutions builds web applications, mobile apps, desktop software, digital marketing systems, and export documentation products."
     />
-    <title>AG Solutions | Web Development, Mobile App Development & Software Solutions Company</title>
+    <title>Updated AG Solutions | Web Development, Mobile App Development & Software Solutions Company</title>
 
     <!-- Google Tag Manager -->
     <script>

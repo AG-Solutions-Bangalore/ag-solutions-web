@@ -53,28 +53,28 @@ const homeReviews = [
 ];
 
 function HomePage() {
-    return (
-        <>
-            <SEO
-                title="AG Solutions - Solution Provider for New Age Businesses"
-                description="We help businesses transform ideas into scalable, secure and future-ready digital solutions."
-            />
-            <TestimonialSchema reviews={homeReviews} />
-            <FAQSchema faqs={homeFaqs} />
+  return (
+    <>
+      <SEO
+        title="Updated AG Solutions - Solution Provider for New Age Businesses"
+        description="We help businesses transform ideas into scalable, secure and future-ready digital solutions."
+      />
+      <TestimonialSchema reviews={homeReviews} />
+      <FAQSchema faqs={homeFaqs} />
 
 
-            <div className="bg-background font-sans text-foreground antialiased transition-colors duration-200">
-                <HeroSection />
-                <HomeStatsStrip />
-                <FeatureCards />
-                <ServicesSection />
-                <FeaturedBlogsSection />
-                <AboutSection />
-                <Industries />
-                <HomeBlogSection />
-            </div>
-        </>
-    );
+      <div className="bg-background font-sans text-foreground antialiased transition-colors duration-200">
+        <HeroSection />
+        <HomeStatsStrip />
+        <FeatureCards />
+        <ServicesSection />
+        <FeaturedBlogsSection />
+        <AboutSection />
+        <Industries />
+        <HomeBlogSection />
+      </div>
+    </>
+  );
 }
 
 export default HomePage;
