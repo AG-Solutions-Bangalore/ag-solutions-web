@@ -56,7 +56,7 @@ function HomePage() {
   return (
     <>
       <SEO
-        title="Updated AG Solutions - Solution Provider for New Age Businesses"
+        title="AG Solutions - Solution Provider for New Age Businesses"
         description="We help businesses transform ideas into scalable, secure and future-ready digital solutions."
       />
       <TestimonialSchema reviews={homeReviews} />

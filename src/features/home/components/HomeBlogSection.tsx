@@ -17,7 +17,7 @@ const fallbackBlogPosts = [
     date: "Aug 12, 2026",
     readTime: "5 min read",
     tagColor: "bg-teal/15 text-teal border-teal/30",
-    image: "/images/ag-sl-desk.png",
+    image: "/images/ag-sl-desk.webp",
     link: "/blogs",
   },
   {
@@ -29,7 +29,7 @@ const fallbackBlogPosts = [
     date: "Aug 05, 2026",
     readTime: "6 min read",
     tagColor: "bg-pink/15 text-pink border-pink/30",
-    image: "/images/laptop.png",
+    image: "/images/laptop.webp",
     link: "/blogs",
   },
   {
@@ -90,7 +90,7 @@ export function HomeBlogSection({ source = "front", maxPosts = 3 }: HomeBlogSect
           date: item.blog_created_date ? formatDate(item.blog_created_date) : "Recent",
           readTime: "5 min read",
           tagColor,
-          image: item.blog_banner_image ? `${blogBaseUrl}${item.blog_banner_image}` : "/images/ag-sl-desk.png",
+          image: item.blog_banner_image ? `${blogBaseUrl}${item.blog_banner_image}` : "/images/ag-sl-desk.webp",
           link: item.blog_slug ? `/blog/${item.blog_slug}` : "/blogs",
         };
       })
@@ -182,7 +182,7 @@ export function HomeBlogSection({ source = "front", maxPosts = 3 }: HomeBlogSect
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = "/images/ag-sl-desk.png";
+                        (e.target as HTMLImageElement).src = "/images/ag-sl-desk.webp";
                       }}
                     />
                     <div className="absolute top-3 left-3">

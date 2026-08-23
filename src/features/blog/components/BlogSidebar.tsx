@@ -99,7 +99,7 @@ export default function BlogSidebar({
             {featuredBlogs.slice(0, 4).map((featBlog) => {
               const featImageUrl = featBlog.blog_banner_image
                 ? `${blogBaseUrl}${featBlog.blog_banner_image}`
-                : "/images/laptop.png";
+                : "/images/laptop.webp";
               const featUrl = featBlog.blog_slug ? `/blogs/${featBlog.blog_slug}` : "/blogs";
 
               return (
@@ -116,7 +116,7 @@ export default function BlogSidebar({
                       title={featBlog.blog_title}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = "/images/laptop.png";
+                        (e.target as HTMLImageElement).src = "/images/laptop.webp";
                       }}
                     />
                   </Link>

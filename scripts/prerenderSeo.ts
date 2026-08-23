@@ -53,7 +53,7 @@ const GLOBAL_WEBSITE_SCHEMA = {
 
 const ROUTES_CONFIG: Record<string, RouteSEO> = {
   "/": {
-    title: "Updated AG Solutions | Web Development, Mobile App Development & Software Solutions Company",
+    title: "AG Solutions | Web Development, Mobile App Development & Software Solutions Company",
     description: "AG Solutions is a leading software development company providing web development, mobile applications, digital marketing, and export compliance software.",
     keywords: "web development company, mobile app development, export biz, ease marketing, ag solutions",
     schemas: [

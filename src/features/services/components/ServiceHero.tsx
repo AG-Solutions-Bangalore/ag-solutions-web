@@ -89,8 +89,11 @@ function ServiceHero() {
 
                             {/* Main Laptop / Desktop Image Asset */}
                             <img
-                                src="/images/laptop.png"
+                                src="/images/laptop.webp"
                                 alt="Powerful Web Development Services"
+                                width={612}
+                                height={408}
+                                fetchPriority="high"
                                 className="relative z-10 w-full object-contain drop-shadow-2xl"
                             />
                         </div>

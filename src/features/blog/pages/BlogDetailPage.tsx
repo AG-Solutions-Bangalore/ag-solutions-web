@@ -113,7 +113,7 @@ export function BlogDetailPage() {
 
   const headerImageUrl = blog.blog_banner_image
     ? `${blogBaseUrl}${blog.blog_banner_image}`
-    : "/images/laptop.png";
+    : "/images/laptop.webp";
 
   return (
     <>

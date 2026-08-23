@@ -5,6 +5,7 @@ import { useLeadModal } from "@/context/LeadModalContext";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { AGSLogo } from "@/components/brand/AGSLogo";
 import { FlipButton } from "@/components/ui/FlipButton";
+import { preloadRoute } from "@/routes/lazyRoutes";
 
 interface HeaderV2Props {
     activeNav?: "home" | "about" | "services" | "products" | "blog" | "contact";
@@ -113,6 +114,8 @@ export function Header({ activeNav }: HeaderV2Props) {
                         <Link
                             to="/"
                             title="AG Solutions – Web & Mobile App Development"
+                            onMouseEnter={() => preloadRoute("/")}
+                            onFocus={() => preloadRoute("/")}
                             className={`relative text-sm font-semibold transition-colors no-underline py-1 ${currentTab === "home"
                                 ? "text-pink"
                                 : "text-foreground hover:text-pink"
@@ -127,6 +130,8 @@ export function Header({ activeNav }: HeaderV2Props) {
                         <Link
                             to="/about"
                             title="About AG Solutions"
+                            onMouseEnter={() => preloadRoute("/about")}
+                            onFocus={() => preloadRoute("/about")}
                             className={`relative text-sm font-semibold transition-colors no-underline py-1 ${currentTab === "about"
                                 ? "text-pink"
                                 : "text-foreground hover:text-pink"
@@ -141,7 +146,12 @@ export function Header({ activeNav }: HeaderV2Props) {
                         {/* Services Dropdown */}
                         <div
                             className="relative"
-                            onMouseEnter={() => setActiveDropdown("services")}
+                            onMouseEnter={() => {
+                                setActiveDropdown("services");
+                                preloadRoute("/web-development");
+                                preloadRoute("/mobile-app-development");
+                                preloadRoute("/digital-marketing");
+                            }}
                             onMouseLeave={() => setActiveDropdown(null)}
                         >
                             <button
@@ -163,6 +173,7 @@ export function Header({ activeNav }: HeaderV2Props) {
                                         <Link
                                             to="/web-development"
                                             title="Web Development Services – AG Solutions"
+                                            onMouseEnter={() => preloadRoute("/web-development")}
                                             onClick={() => setActiveDropdown(null)}
                                             className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-pink-light hover:text-pink rounded-xl transition-colors no-underline"
                                         >
@@ -171,6 +182,7 @@ export function Header({ activeNav }: HeaderV2Props) {
                                         <Link
                                             to="/mobile-app-development"
                                             title="Mobile App Development Services – AG Solutions"
+                                            onMouseEnter={() => preloadRoute("/mobile-app-development")}
                                             onClick={() => setActiveDropdown(null)}
                                             className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-teal-light hover:text-teal rounded-xl transition-colors no-underline"
                                         >
@@ -179,6 +191,7 @@ export function Header({ activeNav }: HeaderV2Props) {
                                         <Link
                                             to="/digital-marketing"
                                             title="Digital Marketing Services – AG Solutions"
+                                            onMouseEnter={() => preloadRoute("/digital-marketing")}
                                             onClick={() => setActiveDropdown(null)}
                                             className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-green-light hover:text-green rounded-xl transition-colors no-underline"
                                         >
@@ -192,7 +205,11 @@ export function Header({ activeNav }: HeaderV2Props) {
                         {/* Products Dropdown */}
                         <div
                             className="relative"
-                            onMouseEnter={() => setActiveDropdown("products")}
+                            onMouseEnter={() => {
+                                setActiveDropdown("products");
+                                preloadRoute("/export-biz");
+                                preloadRoute("/grow-together");
+                            }}
                             onMouseLeave={() => setActiveDropdown(null)}
                         >
                             <button
@@ -214,30 +231,16 @@ export function Header({ activeNav }: HeaderV2Props) {
                                         <Link
                                             to="/export-biz"
                                             title="Export Biz – Export Documentation Software"
+                                            onMouseEnter={() => preloadRoute("/export-biz")}
                                             onClick={() => setActiveDropdown(null)}
                                             className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-pink-light hover:text-pink rounded-xl transition-colors no-underline"
                                         >
                                             Export Biz Software
                                         </Link>
-                                        {/* <Link
-                                            to="/bizstock"
-                                            title="BizStock – Inventory Management Software"
-                                            onClick={() => setActiveDropdown(null)}
-                                            className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-blue-500/10 hover:text-blue-600 dark:hover:text-blue-400 rounded-xl transition-colors no-underline"
-                                        >
-                                            BizStock
-                                        </Link> */}
-                                        {/* <Link
-                                            to="/ease-marketing"
-                                            title="EASE Marketing – AG Solutions"
-                                            onClick={() => setActiveDropdown(null)}
-                                            className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-teal-light hover:text-teal rounded-xl transition-colors no-underline"
-                                        >
-                                            EASE Marketing
-                                        </Link> */}
                                         <Link
                                             to="/grow-together"
                                             title="Grow Together – AG Solutions"
+                                            onMouseEnter={() => preloadRoute("/grow-together")}
                                             onClick={() => setActiveDropdown(null)}
                                             className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-yellow-light hover:text-yellow rounded-xl transition-colors no-underline"
                                         >
@@ -252,6 +255,8 @@ export function Header({ activeNav }: HeaderV2Props) {
                         <Link
                             to="/blogs"
                             title="AG Solutions Blogs – Technology & Digital Marketing"
+                            onMouseEnter={() => preloadRoute("/blogs")}
+                            onFocus={() => preloadRoute("/blogs")}
                             className={`relative text-sm font-semibold transition-colors no-underline py-1 ${currentTab === "blog"
                                 ? "text-pink"
                                 : "text-foreground hover:text-pink"
@@ -266,6 +271,8 @@ export function Header({ activeNav }: HeaderV2Props) {
                         <Link
                             to="/contacts"
                             title="Contact AG Solutions"
+                            onMouseEnter={() => preloadRoute("/contacts")}
+                            onFocus={() => preloadRoute("/contacts")}
                             className={`relative text-sm font-semibold transition-colors no-underline py-1 ${currentTab === "contact"
                                 ? "text-pink"
                                 : "text-foreground hover:text-pink"
@@ -351,6 +358,9 @@ export function Header({ activeNav }: HeaderV2Props) {
                                 onClick={() => {
                                     setMobileServicesOpen((prev) => !prev);
                                     setMobileProductsOpen(false);
+                                    preloadRoute("/web-development");
+                                    preloadRoute("/mobile-app-development");
+                                    preloadRoute("/digital-marketing");
                                 }}
                                 className={`w-full flex items-center justify-between px-4 py-3 text-base font-semibold transition-colors bg-transparent border-none cursor-pointer ${isServicesPath ? "text-pink bg-pink-light/40" : "text-foreground hover:bg-muted/10"
                                     }`}
@@ -399,6 +409,8 @@ export function Header({ activeNav }: HeaderV2Props) {
                                 onClick={() => {
                                     setMobileProductsOpen((prev) => !prev);
                                     setMobileServicesOpen(false);
+                                    preloadRoute("/export-biz");
+                                    preloadRoute("/grow-together");
                                 }}
                                 className={`w-full flex items-center justify-between px-4 py-3 text-base font-semibold transition-colors bg-transparent border-none cursor-pointer ${isProductsPath ? "text-pink bg-pink-light/40" : "text-foreground hover:bg-muted/10"
                                     }`}
@@ -419,22 +431,6 @@ export function Header({ activeNav }: HeaderV2Props) {
                                     >
                                         Export Biz
                                     </Link>
-                                    {/* <Link
-                                        to="/bizstock"
-                                        title="BizStock – Inventory Management Software"
-                                        onClick={() => setMobileMenuOpen(false)}
-                                        className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-blue-600 dark:hover:text-blue-400 hover:bg-card rounded-lg no-underline transition-colors"
-                                    >
-                                        BizStock
-                                    </Link> */}
-                                    {/* <Link
-                                        to="/ease-marketing"
-                                        title="EASE Marketing – AG Solutions"
-                                        onClick={() => setMobileMenuOpen(false)}
-                                        className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-teal hover:bg-card rounded-lg no-underline transition-colors"
-                                    >
-                                        EASE Marketing
-                                    </Link> */}
                                     <Link
                                         to="/grow-together"
                                         title="Grow Together – AG Solutions"

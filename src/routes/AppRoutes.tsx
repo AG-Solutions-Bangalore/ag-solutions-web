@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import { pageLoaders } from "./lazyRoutes";
 import Layout from "@/components/layout/Layout";
@@ -22,8 +22,9 @@ const BlogDetailPage = lazy(pageLoaders.blogDetail);
 
 export function AppRoutes() {
   return (
-    <Routes>
-      <Route element={<Layout />}>
+    <Suspense fallback={<div className="min-h-screen bg-background" />}>
+      <Routes>
+        <Route element={<Layout />}>
         {/* Home */}
         <Route index element={<HomePage />} />
         <Route path="home" element={<HomePage />} />
@@ -104,6 +105,7 @@ export function AppRoutes() {
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
+    </Suspense>
   );
 }
 

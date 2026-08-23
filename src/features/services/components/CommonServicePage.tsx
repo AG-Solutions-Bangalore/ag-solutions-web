@@ -105,7 +105,7 @@ export function CommonServicePage({
     heroCtaText = "Get a Quote",
     onHeroCtaClick,
     heroFeatures = [],
-    heroImage = "/images/laptop.png",
+    heroImage = "/images/laptop.webp",
     heroImageAlt,
     heroImageTitle,
 

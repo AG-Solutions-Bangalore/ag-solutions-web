@@ -46,8 +46,9 @@ const features = [
 
 function FeatureCards() {
     return (
-        <section className="bg-background py-4 transition-colors duration-200">
+        <section className="bg-background py-4 transition-colors duration-200" aria-label="Key Advantages">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <h2 className="sr-only">Key Advantages of Choosing AG Solutions</h2>
                 <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
                     {features.map((feature, idx) => {
                         const Icon = feature.icon;

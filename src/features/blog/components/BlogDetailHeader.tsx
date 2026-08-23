@@ -143,7 +143,7 @@ export default function BlogDetailHeader({ blog, imageUrl }: BlogDetailHeaderPro
           alt={blog.blog_banner_image_alt || blog.blog_title}
           className="h-full w-full object-cover"
           onError={(e) => {
-            (e.target as HTMLImageElement).src = "/images/laptop.png";
+            (e.target as HTMLImageElement).src = "/images/laptop.webp";
           }}
         />
       </div>

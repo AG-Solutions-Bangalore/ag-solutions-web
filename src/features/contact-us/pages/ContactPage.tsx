@@ -293,9 +293,12 @@ export default function ContactPage() {
                 {/* Main Reception Photo with Cut-out Geometry */}
                 <div className="relative z-10 overflow-hidden rounded-tl-[50px] sm:rounded-tl-[70px] rounded-br-[50px] sm:rounded-br-[70px] rounded-tr-[24px] rounded-bl-[24px] shadow-2xl transition-transform duration-500 hover:scale-[1.01] aspect-[16/11] sm:aspect-[4/3] bg-slate-100 dark:bg-slate-800 border border-border">
                   <img
-                    src="/images/ag-sl-desk.png"
+                    src="/images/ag-sl-desk.webp"
                     alt="AG Solutions Reception Office"
                     title="AG Solutions Office and Reception"
+                    width={600}
+                    height={450}
+                    loading="lazy"
                     className="h-full w-full object-cover"
                   />
                 </div>

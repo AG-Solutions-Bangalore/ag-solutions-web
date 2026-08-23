@@ -282,17 +282,17 @@ export function FooterV2() {
                     </div>
 
                     {/* Bottom Strip */}
-                    <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                    <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-400">
                         <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-1">
                             <span>© {new Date().getFullYear()} AG Solutions. All Rights Reserved.</span>
-                            <FooterFlipLink to="/about" title="AG Solutions Privacy Policy" hoverColor="hover:text-slate-300">
+                            <FooterFlipLink to="/about" title="AG Solutions Privacy Policy" hoverColor="hover:text-slate-200">
                                 Privacy Policy
                             </FooterFlipLink>
-                            <FooterFlipLink to="/about" title="Terms and Conditions – AG Solutions" hoverColor="hover:text-slate-300">
+                            <FooterFlipLink to="/about" title="Terms and Conditions – AG Solutions" hoverColor="hover:text-slate-200">
                                 Terms &amp; Conditions
                             </FooterFlipLink>
                         </div>
-                        <div className="text-slate-500">
+                        <div className="text-slate-400">
                             Single Click Solution for Modern Businesses
                         </div>
                     </div>

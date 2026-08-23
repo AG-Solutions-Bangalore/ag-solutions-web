@@ -53,7 +53,7 @@ export default function BlogCard({ blog, imageBaseUrl, index = 0 }: BlogCardProp
 
   const imageUrl = blog.blog_banner_image
     ? `${imageBaseUrl}${blog.blog_banner_image}`
-    : "/images/laptop.png";
+    : "/images/laptop.webp";
 
   const postUrl = blog.blog_slug ? `/blogs/${blog.blog_slug}` : "/blogs";
   const readTime = estimateReadTime(blog.blog_description || blog.blog_short_description);
@@ -81,7 +81,7 @@ export default function BlogCard({ blog, imageBaseUrl, index = 0 }: BlogCardProp
             className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
             loading="lazy"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = "/images/laptop.png";
+              (e.target as HTMLImageElement).src = "/images/laptop.webp";
             }}
           />
           {/* Subtle gradient overlay on hover */}

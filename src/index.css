@@ -197,8 +197,8 @@
   --pink-light: #fff0f4;
   --pink-border: #fbcfe8;
 
-  --teal: #00a8b5;
-  --teal-hover: #008f9b;
+  --teal: #008794;
+  --teal-hover: #00737f;
   --teal-dark: #0d9488;
   --teal-light: #e6f7f8;
   --teal-border: #a5f3fc;
@@ -208,8 +208,8 @@
   --yellow-light: #fff8ec;
   --yellow-border: #fde68a;
 
-  --green: #7cb342;
-  --green-hover: #689f38;
+  --green: #4d8a1b;
+  --green-hover: #3f7316;
   --green-light: #f1f8e9;
   --green-border: #d9f99d;
 
@@ -278,7 +278,6 @@
     font-family: var(--font-sans);
     background-color: var(--color-background);
     color: var(--color-foreground);
-    transition: background-color 0.25s ease, color 0.25s ease;
   }
 }
 

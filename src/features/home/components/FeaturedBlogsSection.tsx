@@ -16,7 +16,7 @@ const fallbackFeaturedPosts = [
     date: "Dec 18, 2025",
     readTime: "5 min read",
     tagColor: "bg-pink/15 text-pink border-pink/30",
-    image: "/images/laptop.png",
+    image: "/images/laptop.webp",
     link: "/blogs",
   },
   {
@@ -27,7 +27,7 @@ const fallbackFeaturedPosts = [
     date: "Dec 18, 2025",
     readTime: "6 min read",
     tagColor: "bg-teal/15 text-teal border-teal/30",
-    image: "/images/ag-sl-desk.png",
+    image: "/images/ag-sl-desk.webp",
     link: "/blogs",
   },
   {
@@ -80,7 +80,7 @@ export function FeaturedBlogsSection() {
             tagColor,
             image: item.blog_banner_image
               ? `${blogBaseUrl}${item.blog_banner_image}`
-              : "/images/laptop.png",
+              : "/images/laptop.webp",
             link: item.blog_slug ? `/blog/${item.blog_slug}` : "/blogs",
           };
         })
@@ -175,7 +175,7 @@ export function FeaturedBlogsSection() {
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = "/images/laptop.png";
+                        (e.target as HTMLImageElement).src = "/images/laptop.webp";
                       }}
                     />
                     <div className="absolute top-3 left-3">

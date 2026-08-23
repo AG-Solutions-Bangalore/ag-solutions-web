@@ -19,7 +19,9 @@ export function LayoutV2({ children, activeNav }: LayoutV2Props) {
             <WebSiteSchema />
             <div className="min-h-screen bg-background font-sans text-foreground antialiased transition-colors duration-200">
                 <HeaderV2 activeNav={activeNav} />
-                <main>{children || <Outlet />}</main>
+                <main id="main-content" tabIndex={-1} className="outline-none">
+                    {children || <Outlet />}
+                </main>
                 <FooterV2 />
                 <LeadCaptureModal />
                 <WhatsAppButton />

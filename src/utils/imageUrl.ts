@@ -1,4 +1,4 @@
-export const SERVER_IMAGE_BASE = "http://ag-solutions.in/webapi/public/assets/images/web_images_new";
+export const SERVER_IMAGE_BASE = "https://ag-solutions.in/webapi/public/assets/images/web_images_new";
 
 /**
  * Helper to get the correct URL for an image asset.
@@ -17,11 +17,14 @@ export function getImageUrl(path: string | undefined | null): string {
 
   // Keep critical performance hero & core UI assets local
   if (
-    cleanPath === "/images/logo.png" ||
-    cleanPath === "/images/home/logo.png" ||
-    cleanPath === "/images/laptop.png" ||
-    cleanPath === "/images/ag-sl-desk.png" ||
-    cleanPath === "/images/ag-sl-desk1.png" ||
+    cleanPath === "/images/logo.webp" ||
+    cleanPath === "/images/home/logo.webp" ||
+    cleanPath === "/images/laptop.webp" ||
+    cleanPath === "/images/laptop.webp" ||
+    cleanPath === "/images/ag-sl-desk.webp" ||
+    cleanPath === "/images/ag-sl-desk.webp" ||
+    cleanPath === "/images/ag-sl-desk1.webp" ||
+    cleanPath === "/images/ag-sl-desk1.webp" ||
     cleanPath === "/images/home/mobile_dev.webp" ||
     cleanPath.endsWith(".svg") ||
     cleanPath.startsWith("/icons/")

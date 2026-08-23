@@ -13,7 +13,7 @@ interface BlogFeaturedHeroProps {
 export default function BlogFeaturedHero({ blog, imageBaseUrl }: BlogFeaturedHeroProps) {
   const imageUrl = blog.blog_banner_image
     ? `${imageBaseUrl}${blog.blog_banner_image}`
-    : "/images/laptop.png";
+    : "/images/laptop.webp";
 
   const postUrl = blog.blog_slug ? `/blogs/${blog.blog_slug}` : "/blogs";
   const readTime = estimateReadTime(blog.blog_description || blog.blog_short_description);
@@ -41,7 +41,7 @@ export default function BlogFeaturedHero({ blog, imageBaseUrl }: BlogFeaturedHer
                 title={blog.blog_title}
                 className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = "/images/laptop.png";
+                  (e.target as HTMLImageElement).src = "/images/laptop.webp";
                 }}
               />
             </Link>

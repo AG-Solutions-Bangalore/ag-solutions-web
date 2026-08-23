@@ -134,6 +134,7 @@ function ServicesSection() {
                                         <Link
                                             to={service.link}
                                             title={service.linkTitle}
+                                            aria-label={`Learn more about ${service.title}`}
                                             className={`inline-flex items-center gap-1.5 text-xs font-bold ${service.linkColor} hover:opacity-80 transition-opacity no-underline`}
                                         >
                                             <span>Learn More</span>
