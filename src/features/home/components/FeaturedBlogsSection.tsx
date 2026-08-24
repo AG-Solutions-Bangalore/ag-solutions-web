@@ -218,9 +218,11 @@ export function FeaturedBlogsSection() {
                   <Link
                     to={post.link}
                     title={post.title}
+                    aria-label={`Read full story: ${post.title}`}
                     className="inline-flex items-center gap-1.5 text-xs font-bold text-pink group-hover:text-teal transition-colors no-underline"
                   >
                     <span>Read Full Story</span>
+                    <span className="sr-only">: {post.title}</span>
                     <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </Link>
                 </div>

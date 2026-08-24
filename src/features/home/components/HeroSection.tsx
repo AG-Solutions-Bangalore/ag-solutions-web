@@ -38,7 +38,7 @@ function HeroSection() {
                         </p>
 
                         {/* Typewriter text: static 'We provide' with rotating looping services */}
-                        <div className="mt-3 min-h-[30px] text-sm sm:text-base md:text-lg font-bold text-teal flex items-center justify-center lg:justify-start">
+                        <div className="mt-3 min-h-[30px] text-sm sm:text-base md:text-lg font-bold text-foreground flex items-center justify-center lg:justify-start">
                             <TypewriterText
                                 prefix="We provide"
                                 words={[
@@ -66,12 +66,7 @@ function HeroSection() {
                         </div>
                     </motion.div>
 
-                    <motion.div
-                        className="relative flex justify-center lg:col-span-6"
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                    >
+                    <div className="relative flex justify-center lg:col-span-6">
                         <div className="relative w-full max-w-lg lg:max-w-xl flex items-center justify-center py-2 sm:py-4">
                             <img
                                 src="/images/laptop.webp"
@@ -83,7 +78,7 @@ function HeroSection() {
                                 className="relative z-10 w-full object-contain drop-shadow-xl transition-transform duration-500 hover:scale-[1.02]"
                             />
                         </div>
-                    </motion.div>
+                    </div>
                 </div>
             </div>
         </section>

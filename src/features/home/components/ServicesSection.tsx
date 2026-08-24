@@ -138,6 +138,7 @@ function ServicesSection() {
                                             className={`inline-flex items-center gap-1.5 text-xs font-bold ${service.linkColor} hover:opacity-80 transition-opacity no-underline`}
                                         >
                                             <span>Learn More</span>
+                                            <span className="sr-only"> about {service.title}</span>
                                             <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                                         </Link>
                                     </div>

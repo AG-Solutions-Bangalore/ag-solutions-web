@@ -381,6 +381,22 @@ const ROUTES_CONFIG: Record<string, RouteSEO> = {
       },
     ],
   },
+  "/services": {
+    title: "Services | Web, Mobile & Digital Marketing Solutions | AG Solutions",
+    description: "Explore our software services: Full-Stack Web Development, iOS & Android Mobile Apps, and Performance Digital Marketing.",
+    keywords: "it services, web development, mobile apps, digital marketing, software development",
+    schemas: [
+      GLOBAL_ORGANIZATION_SCHEMA,
+    ],
+  },
+  "/products": {
+    title: "Products & Software Solutions | Export Biz, BizStock & Ease Marketing",
+    description: "Discover innovative enterprise software by AG Solutions: Export Biz for documentation, BizStock for ERP inventory, and Ease Marketing for WhatsApp CRM.",
+    keywords: "ag solutions products, export biz, bizstock, ease marketing, business software",
+    schemas: [
+      GLOBAL_ORGANIZATION_SCHEMA,
+    ],
+  },
   "/blogs": {
     title: "Blogs & Tech Insights | AG Solutions",
     description: "Read the latest articles on web architecture, software engineering, export compliance, and digital marketing trends.",
@@ -404,6 +420,8 @@ const ROUTES_CONFIG: Record<string, RouteSEO> = {
     ],
   },
 };
+
+import { generateSitemap, fetchLiveBlogArticles } from "./generateSitemap";
 
 function upsertTag(html: string, regex: RegExp, newTag: string): string {
   if (regex.test(html)) {
@@ -450,7 +468,7 @@ function buildHtmlForRoute(baseHtml: string, route: string, seo: RouteSEO): stri
   return html;
 }
 
-export function prerenderAllRoutes() {
+export async function prerenderAllRoutes() {
   if (!fs.existsSync(DIST_INDEX)) {
     console.error("❌ dist/index.html not found. Run vite build first!");
     process.exit(1);
@@ -461,6 +479,7 @@ export function prerenderAllRoutes() {
 
   console.log("🚀 Starting Static Pre-Rendering & Schema Injection...");
 
+  // 1. Static Routes
   for (const [route, seo] of Object.entries(ROUTES_CONFIG)) {
     const routeHtml = buildHtmlForRoute(baseHtml, route, seo);
 
@@ -483,7 +502,66 @@ export function prerenderAllRoutes() {
     }
   }
 
+  // 2. Dynamic Blog Routes Pre-Rendering
+  try {
+    const blogPosts = await fetchLiveBlogArticles();
+    console.log(`\n📚 Pre-rendering ${blogPosts.length} Dynamic Blog Articles...`);
+    for (const blog of blogPosts) {
+      const slug = blog.url.split("/blogs/")[1] || "";
+      if (!slug) continue;
+      const blogRoute = `/blogs/${slug}`;
+      const blogTitle = blog.name || slug
+        .split("-")
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(" ");
+
+      const blogSeo: RouteSEO = {
+        title: `${blogTitle} | AG Solutions Blog`,
+        description: `Read "${blogTitle}" and get the latest insights on software, technology, and business growth from AG Solutions.`,
+        canonical: `${SITE_ORIGIN}${blogRoute}`,
+        schemas: [
+          GLOBAL_ORGANIZATION_SCHEMA,
+          {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: blogTitle,
+            url: `${SITE_ORIGIN}${blogRoute}`,
+            datePublished: blog.lastmod,
+            dateModified: blog.lastmod,
+            author: {
+              "@type": "Organization",
+              name: "AG Solutions",
+            },
+            publisher: {
+              "@type": "Organization",
+              "@id": "https://ag-solutions.in/#organization",
+              name: "AG Solutions",
+            },
+          },
+        ],
+      };
+
+      const blogHtml = buildHtmlForRoute(baseHtml, blogRoute, blogSeo);
+      const blogTargetDir = path.join(DIST_DIR, "blogs", slug);
+      fs.mkdirSync(blogTargetDir, { recursive: true });
+      fs.writeFileSync(path.join(blogTargetDir, "index.html"), blogHtml, "utf-8");
+
+      const blogCleanFile = path.join(DIST_DIR, "blogs", `${slug}.html`);
+      fs.writeFileSync(blogCleanFile, blogHtml, "utf-8");
+
+      generatedCount++;
+    }
+  } catch (err: any) {
+    console.warn(`⚠️ Blog prerender skipped: ${err.message}`);
+  }
+
   console.log(`\n🎉 Static SEO Pre-rendering Complete! ${generatedCount} routes generated with embedded JSON-LD schemas.`);
+
+  // 3. Automatically Generate and Sync Sitemap
+  await generateSitemap();
 }
 
-prerenderAllRoutes();
+prerenderAllRoutes().catch((err) => {
+  console.error("❌ Pre-rendering failed:", err);
+  process.exit(1);
+});

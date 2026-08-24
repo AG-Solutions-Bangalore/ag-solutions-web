@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import PortfolioSEO from "../seo/PortfolioSEO";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
@@ -8,176 +8,95 @@ import { Card, Lightbox } from "@/components/ui";
 import { getImageUrl } from "@/utils/imageUrl";
 
 interface PortfolioItem {
+  id?: string | number;
   title: string;
   subtitle: string;
   image: string;
+  categoryKey?: string;
 }
 
-const featuredItems: readonly PortfolioItem[] = [
-  {
-    title: "The Basics Web UI Kit",
-    subtitle: "Technologies",
-    image: getImageUrl("/images/portfolio/case1.jpg"),
-  },
-  {
-    title: "Anorak Long",
-    subtitle: "SMM",
-    image: getImageUrl("/images/portfolio/case2.jpg"),
-  },
-];
-
-const webItems: readonly PortfolioItem[] = [
-  {
-    title: "Agrawal Samaj",
-    subtitle: "Community",
-    image: getImageUrl("/images/portfolio/web1.png"),
-  },
-  {
-    title: "Foundation India",
-    subtitle: "Social",
-    image: getImageUrl("/images/portfolio/web2.png"),
-  },
-  {
-    title: "GPW Build Tech",
-    subtitle: "Builder",
-    image: getImageUrl("/images/portfolio/web3.png"),
-  },
-  {
-    title: "Hera Associate",
-    subtitle: "Civil",
-    image: getImageUrl("/images/portfolio/web4.png"),
-  },
-  {
-    title: "Naturalii",
-    subtitle: "Ecommerce",
-    image: getImageUrl("/images/portfolio/web5.png"),
-  },
-  {
-    title: "Business Boosters",
-    subtitle: "B2B Services",
-    image: getImageUrl("/images/portfolio/web6.png"),
-  },
-];
-
-const mobileItems: readonly PortfolioItem[] = [
-  {
-    title: "Ease Marketing",
-    subtitle: "Marketing",
-    image: getImageUrl("/images/portfolio/em.jpg"),
-  },
-  {
-    title: "IVF Kidney",
-    subtitle: "matrimonial",
-    image: getImageUrl("/images/portfolio/ivf.jpg"),
-  },
-  {
-    title: "Grow Together",
-    subtitle: "Business",
-    image: getImageUrl("/images/portfolio/gt.jpg"),
-  },
-];
-
-const desktopItems: readonly PortfolioItem[] = [
-  {
-    title: "Login Page",
-    subtitle: "Safe & Secure",
-    image: getImageUrl("/images/portfolio/desktop1.png"),
-  },
-  {
-    title: "All Documents in 1 Minute",
-    subtitle: "Invoice & Packing List",
-    image: getImageUrl("/images/portfolio/desktop3.webp"),
-  },
-  {
-    title: "Print, Save As PDF, Email",
-    subtitle: "Print & Share",
-    image: getImageUrl("/images/portfolio/desktop4.png"),
-  },
-];
+const CATEGORY_TABS = [
+  { key: "all", label: "All Projects" },
+  { key: "web-development", label: "Web Development" },
+  { key: "mobile-app-development", label: "Mobile Apps" },
+  { key: "desktop-applications", label: "Desktop Software" },
+  { key: "digital-marketing", label: "Digital Marketing" },
+  { key: "ease-marketing", label: "Ease Marketing" },
+  { key: "grow-together", label: "Grow Together" },
+] as const;
 
 export default function PortfolioPage() {
-  const { data: projectsData, isLoading } = useProjects();
+  const { data: projectsData, isLoading } = useProjects("all");
+  const [activeTab, setActiveTab] = useState<string>("all");
   const [selectedImage, setSelectedImage] = useState<{
     image: string;
     title: string;
     subtitle?: string;
   } | null>(null);
 
-  const projectBaseUrl = projectsData?.image_url.find(
-    (img) => img.image_for === "Projects"
-  )?.image_url || "https://ag-solutions.in/webapi/public/assets/images/project_images/";
+  const projectBaseUrl = useMemo(() => {
+    return (
+      projectsData?.image_url.find((img) => img.image_for === "Projects")?.image_url ||
+      "https://ag-solutions.in/webapi/public/assets/images/project_images/"
+    );
+  }, [projectsData]);
 
-  const apiWebItems = projectsData?.data
-    .filter((p) => p.page === "web_development")
-    .map((p) => ({
-      title: p.project_name,
-      subtitle: p.project_type || "Web Development",
-      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : getImageUrl("/images/portfolio/web1.png"),
-    })) || [];
+  // Normalize API projects
+  const allProjects: PortfolioItem[] = useMemo(() => {
+    if (!projectsData?.data || !Array.isArray(projectsData.data)) {
+      return [];
+    }
 
-  const apiMobileItems = projectsData?.data
-    .filter((p) => p.page === "mobile_app_development")
-    .map((p) => ({
-      title: p.project_name,
-      subtitle: p.project_type || "Mobile App",
-      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : getImageUrl("/images/portfolio/em.jpg"),
-    })) || [];
+    return projectsData.data.map((p, idx) => {
+      const normalizedPage = String(p.page || "")
+        .trim()
+        .replace(/_/g, "-")
+        .toLowerCase();
 
-  const apiDesktopItems = projectsData?.data
-    .filter((p) => p.page === "desktop_application")
-    .map((p) => ({
-      title: p.project_name,
-      subtitle: p.project_type || "Desktop Application",
-      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : getImageUrl("/images/portfolio/desktop1.png"),
-    })) || [];
+      const imageUrl = p.project_image
+        ? `${projectBaseUrl}${p.project_image}`
+        : getImageUrl("/images/portfolio/case1.jpg");
 
-  const apiFeaturedItems = projectsData?.data
-    .filter((p) => p.page !== "web_development" && p.page !== "mobile_app_development" && p.page !== "desktop_application")
-    .slice(0, 2)
-    .map((p) => ({
-      title: p.project_name,
-      subtitle: p.project_type || p.page.replace(/_/g, " "),
-      image: p.project_image ? `${projectBaseUrl}${p.project_image}` : getImageUrl("/images/portfolio/case1.jpg"),
-    })) || [];
+      const categoryLabel =
+        CATEGORY_TABS.find((t) => t.key === normalizedPage)?.label ||
+        p.project_type ||
+        normalizedPage.replace(/-/g, " ");
 
-  const webList = apiWebItems.length > 0 ? apiWebItems : webItems;
-  const mobileList = apiMobileItems.length > 0 ? apiMobileItems : mobileItems;
-  const desktopList = apiDesktopItems.length > 0 ? apiDesktopItems : desktopItems;
-  const featuredList = apiFeaturedItems.length > 0 ? apiFeaturedItems : featuredItems;
+      return {
+        id: `${normalizedPage}-${p.project_sort || idx}-${p.project_name}`,
+        title: p.project_name || "Client Project",
+        subtitle: p.project_type || categoryLabel,
+        image: imageUrl,
+        categoryKey: normalizedPage,
+      };
+    });
+  }, [projectsData, projectBaseUrl]);
+
+  // Filtered by selected tab
+  const filteredProjects = useMemo(() => {
+    if (activeTab === "all") {
+      return allProjects;
+    }
+    return allProjects.filter((p) => p.categoryKey === activeTab);
+  }, [allProjects, activeTab]);
 
   function renderCard(item: PortfolioItem) {
     return (
       <Card
-        key={item.title}
+        key={item.id || item.title}
         title={item.title}
         subtitle={item.subtitle}
         image={item.image}
         onClick={() => setSelectedImage(item)}
-        className="rounded-none cursor-pointer"
+        className="rounded-none cursor-pointer hover:shadow-lg transition-shadow duration-300"
       />
     );
   }
 
-  function renderSkeletonGrid(count: number = 3) {
+  function renderSkeletonGrid(count: number = 6) {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {Array.from({ length: count }).map((_, i) => (
-          <div key={i} className="animate-pulse border border-slate-100 bg-white">
-            <div className="aspect-[3/2] bg-slate-100" />
-            <div className="py-5 px-6 text-center bg-[#f4f5ee]/50 space-y-2">
-              <div className="h-4 bg-slate-200 rounded w-2/3 mx-auto" />
-              <div className="h-3 bg-slate-100 rounded w-1/2 mx-auto" />
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  }
-
-  function renderFeaturedSkeleton() {
-    return (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {Array.from({ length: 2 }).map((_, i) => (
           <div key={i} className="animate-pulse border border-slate-100 bg-white">
             <div className="aspect-[3/2] bg-slate-100" />
             <div className="py-5 px-6 text-center bg-[#f4f5ee]/50 space-y-2">
@@ -203,28 +122,79 @@ export default function PortfolioPage() {
         ]}
       />
 
-      {/* 2. Featured Section */}
+      {/* Main Portfolio Explorer Section */}
       <AnimatedSection
         className="bg-white py-20 text-[#1b2c38] max-[760px]:py-14"
-        ariaLabel="Featured portfolio items"
+        ariaLabel="Client portfolio showcase"
       >
         {(isVisible) => (
           <div className={layoutContainerClass}>
             <SectionTitle
-              title="We Help Over 80 Companies"
+              title="We Help Over 80+ Companies Worldwide"
               align="center"
               titleClassName="text-[38px] leading-[1.16] font-black tracking-normal max-[760px]:text-[30px]"
               className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`}
             />
 
+            {/* Category Filter Tabs */}
             <div
-              className={`mt-14 home-animated-item ${isVisible ? "home-animated-item-visible" : ""
-                }`}
+              className={`mt-10 flex flex-wrap justify-center items-center gap-2.5 home-animated-item ${
+                isVisible ? "home-animated-item-visible" : ""
+              }`}
               style={{ transitionDelay: "100ms" }}
             >
-              {isLoading ? renderFeaturedSkeleton() : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {featuredList.map(renderCard)}
+              {CATEGORY_TABS.map((tab) => {
+                const isActive = activeTab === tab.key;
+                const count =
+                  tab.key === "all"
+                    ? allProjects.length
+                    : allProjects.filter((p) => p.categoryKey === tab.key).length;
+
+                return (
+                  <button
+                    key={tab.key}
+                    onClick={() => setActiveTab(tab.key)}
+                    className={`px-5 py-2.5 text-sm font-semibold rounded-full transition-all duration-200 cursor-pointer ${
+                      isActive
+                        ? "bg-red-600 text-white shadow-md shadow-red-600/20"
+                        : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                    }`}
+                  >
+                    {tab.label}
+                    {count > 0 && (
+                      <span
+                        className={`ml-2 text-xs px-2 py-0.5 rounded-full ${
+                          isActive
+                            ? "bg-white/20 text-white"
+                            : "bg-slate-200/80 text-slate-600"
+                        }`}
+                      >
+                        {count}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Projects Grid */}
+            <div
+              className={`mt-14 home-animated-item ${
+                isVisible ? "home-animated-item-visible" : ""
+              }`}
+              style={{ transitionDelay: "200ms" }}
+            >
+              {isLoading ? (
+                renderSkeletonGrid(6)
+              ) : filteredProjects.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {filteredProjects.map(renderCard)}
+                </div>
+              ) : (
+                <div className="text-center py-16 bg-slate-50 border border-slate-100">
+                  <p className="text-slate-500 font-medium">
+                    No projects found for the selected category.
+                  </p>
                 </div>
               )}
             </div>
@@ -232,93 +202,7 @@ export default function PortfolioPage() {
         )}
       </AnimatedSection>
 
-      {/* 3. Web Development Section */}
-      <AnimatedSection
-        className="bg-slate-50/50 border-t border-slate-100 py-20 text-[#1b2c38] max-[760px]:py-14"
-        ariaLabel="Web development portfolio items"
-      >
-        {(isVisible) => (
-          <div className={layoutContainerClass}>
-            <SectionTitle
-              title="Web Development"
-              align="center"
-              titleClassName="text-[34px] leading-[1.16] font-black tracking-normal max-[760px]:text-[28px]"
-              className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`}
-            />
-
-            <div
-              className={`mt-12 home-animated-item ${isVisible ? "home-animated-item-visible" : ""
-                }`}
-              style={{ transitionDelay: "100ms" }}
-            >
-              {isLoading ? renderSkeletonGrid(3) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                  {webList.map(renderCard)}
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-      </AnimatedSection>
-
-      {/* 4. Mobile Application Section */}
-      <AnimatedSection
-        className="bg-white border-t border-slate-100 py-20 text-[#1b2c38] max-[760px]:py-14"
-        ariaLabel="Mobile application portfolio items"
-      >
-        {(isVisible) => (
-          <div className={layoutContainerClass}>
-            <SectionTitle
-              title="Mobile Application"
-              align="center"
-              titleClassName="text-[34px] leading-[1.16] font-black tracking-normal max-[760px]:text-[28px]"
-              className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`}
-            />
-
-            <div
-              className={`mt-12 home-animated-item ${isVisible ? "home-animated-item-visible" : ""
-                }`}
-              style={{ transitionDelay: "100ms" }}
-            >
-              {isLoading ? renderSkeletonGrid(3) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                  {mobileList.map(renderCard)}
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-      </AnimatedSection>
-
-      {/* 5. Desktop Application Section */}
-      <AnimatedSection
-        className="bg-slate-50/50 border-t border-slate-100 py-20 pb-28 text-[#1b2c38] max-[760px]:py-14 max-[760px]:pb-20"
-        ariaLabel="Desktop application portfolio items"
-      >
-        {(isVisible) => (
-          <div className={layoutContainerClass}>
-            <SectionTitle
-              title="Desktop Application"
-              align="center"
-              titleClassName="text-[34px] leading-[1.16] font-black tracking-normal max-[760px]:text-[28px]"
-              className={`home-animated-item ${isVisible ? "home-animated-item-visible" : ""}`}
-            />
-
-            <div
-              className={`mt-12 home-animated-item ${isVisible ? "home-animated-item-visible" : ""
-                }`}
-              style={{ transitionDelay: "100ms" }}
-            >
-              {isLoading ? renderSkeletonGrid(3) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                  {desktopList.map(renderCard)}
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-      </AnimatedSection>
-
+      {/* Lightbox for full image inspection */}
       <Lightbox
         isOpen={selectedImage !== null}
         image={selectedImage?.image || ""}

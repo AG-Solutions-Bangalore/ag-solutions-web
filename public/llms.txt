@@ -1,0 +1,25 @@
+# AG Solutions - Enterprise Web, Mobile & Software Development
+
+> Single-Click Digital Solutions for Modern Businesses. AG Solutions delivers scalable web applications, cross-platform mobile apps, cloud systems, and specialized export documentation products.
+
+## Core Navigation & Services
+- [Home](https://ag-solutions.in/): Company overview, client achievements, and service highlights.
+- [About Us](https://ag-solutions.in/about): Company mission, vision, team culture, and values.
+- [Web Development](https://ag-solutions.in/web-development): Custom full-stack web applications, React/Next.js platforms, and high-performance websites.
+- [Mobile App Development](https://ag-solutions.in/mobile-app-development): iOS and Android applications built with Flutter, React Native, and native SDKs.
+- [Digital Marketing](https://ag-solutions.in/digital-marketing): Data-driven SEO, PPC campaigns, brand strategy, and conversion optimization.
+- [Export Biz Software](https://ag-solutions.in/export-biz): Automated export documentation software streamlining international trade compliance.
+- [Portfolio](https://ag-solutions.in/portfolio): Case studies and live client project demonstrations.
+- [Tech & Business Blog](https://ag-solutions.in/blogs): Expert articles, engineering insights, and tech tutorials.
+- [Contact Us](https://ag-solutions.in/contacts): Inquiries, project estimates, and business consultations.
+
+## Technology Stack
+- Frontend: React 19, TypeScript, Tailwind CSS, Vite
+- Backend: REST APIs, Node.js, PHP / Laravel, Supabase, Cloud Infrastructure
+- Mobile: Flutter, React Native, iOS, Android
+
+## Contact Information
+- Website: https://ag-solutions.in
+- Phone: +91 8867171060
+- Email: info@ag-solutions.in
+- Address: Jayanagara 9th Block, Bengaluru, 560069, Karnataka, India

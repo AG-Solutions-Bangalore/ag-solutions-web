@@ -68,7 +68,7 @@ export function HomeStatsStrip() {
                     <div className="text-xl sm:text-2xl font-black text-dark md:text-3xl tracking-tight transition-colors duration-200 group-hover:text-pink">
                       <AnimatedCounter value={stat.number} />
                     </div>
-                    <div className="text-[11px] sm:text-xs font-semibold text-muted mt-0.5">
+                    <div className="text-[11px] sm:text-xs font-bold text-slate-600 dark:text-slate-400 mt-0.5">
                       {stat.label}
                     </div>
                   </div>

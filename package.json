@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "bun scripts/optimizeAndAuditImages.ts && tsc -b && vite build && bun scripts/prerenderSeo.ts",
+    "build": "bun scripts/optimizeAndAuditImages.ts && bun scripts/generateSitemap.ts && tsc -b && vite build && bun scripts/prerenderSeo.ts",
     "optimize:images": "bun scripts/optimizeAndAuditImages.ts",
     "lint": "eslint .",
     "preview": "vite preview",
     "validate:schema": "bun scripts/validateSchemas.ts",
-    "prerender": "bun scripts/prerenderSeo.ts"
+    "prerender": "bun scripts/prerenderSeo.ts",
+    "sitemap": "bun scripts/generateSitemap.ts"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",

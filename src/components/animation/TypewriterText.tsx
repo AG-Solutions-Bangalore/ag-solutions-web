@@ -41,7 +41,7 @@ export const TypewriterText: React.FC<TypewriterTextProps> = ({
   const wordList = words && words.length > 0 ? words : text ? [text] : [];
 
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [currentText, setCurrentText] = useState("");
+  const [currentText, setCurrentText] = useState(wordList[0] || "");
   const [isDeleting, setIsDeleting] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
 

@@ -222,7 +222,7 @@ export default function HowWeWork() {
             <Rocket className="h-8 w-8 text-sky-300 sm:h-9 sm:w-9" />
           </motion.div>
 
-          <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-400">
+          <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-300">
             PROJECT GOES LIVE
           </p>
           <h3 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">

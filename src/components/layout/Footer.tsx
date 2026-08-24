@@ -119,7 +119,7 @@ export function FooterV2() {
                                 Ready to Start Your Project?
                             </h3>
 
-                            <p className="text-sm sm:text-base text-slate-400 leading-relaxed max-w-sm mb-6">
+                            <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-sm mb-6">
                                 Let's work together to build something amazing.
                             </p>
 
@@ -137,7 +137,7 @@ export function FooterV2() {
 
                             {/* Social Media Links (Elevated placement) */}
                             <div className="mt-6">
-                                <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-3">
+                                <span className="text-xs font-bold uppercase tracking-wider text-slate-300 block mb-3">
                                     Follow Us
                                 </span>
                                 <div className="flex items-center gap-3">
@@ -166,7 +166,7 @@ export function FooterV2() {
                             <h4 className="text-sm font-bold uppercase tracking-wider text-white mb-4">
                                 Quick Links
                             </h4>
-                            <ul className="space-y-2.5 text-sm text-slate-400 list-none p-0 m-0">
+                            <ul className="space-y-2.5 text-sm text-slate-300 list-none p-0 m-0">
                                 {quickLinks.map((link) => (
                                     <li key={link.label}>
                                         <FooterFlipLink
@@ -186,7 +186,7 @@ export function FooterV2() {
                             <h4 className="text-sm font-bold uppercase tracking-wider text-white mb-4">
                                 Core Services
                             </h4>
-                            <ul className="space-y-2.5 text-sm text-slate-400 list-none p-0 m-0">
+                            <ul className="space-y-2.5 text-sm text-slate-300 list-none p-0 m-0">
                                 {serviceLinks.map((link) => (
                                     <li key={link.label}>
                                         <FooterFlipLink
@@ -206,7 +206,7 @@ export function FooterV2() {
                             <h4 className="text-sm font-bold uppercase tracking-wider text-white mb-4">
                                 Products
                             </h4>
-                            <ul className="space-y-2.5 text-sm text-slate-400 list-none p-0 m-0 mb-6">
+                            <ul className="space-y-2.5 text-sm text-slate-300 list-none p-0 m-0 mb-6">
                                 {productLinks.map((link) => (
                                     <li key={link.label}>
                                         <FooterFlipLink
@@ -223,12 +223,12 @@ export function FooterV2() {
                             <h4 className="text-sm font-bold uppercase tracking-wider text-white mb-3">
                                 Contact
                             </h4>
-                            <ul className="space-y-2 text-xs text-slate-400 list-none p-0 m-0">
+                            <ul className="space-y-2 text-xs text-slate-300 list-none p-0 m-0">
                                 <li>
                                     <a
                                         href="tel:+918867171060"
                                         title="Call AG Solutions: +91 8867171060"
-                                        className="group inline-flex items-center gap-2 text-slate-400 hover:text-green transition-colors no-underline py-0.5"
+                                        className="group inline-flex items-center gap-2 text-slate-300 hover:text-green transition-colors no-underline py-0.5"
                                     >
                                         <Phone className="h-3.5 w-3.5 text-green shrink-0 transition-transform duration-200 group-hover:scale-110" />
                                         <span className="relative inline-block overflow-hidden h-[1.35em] leading-[1.35em]">
@@ -245,7 +245,7 @@ export function FooterV2() {
                                     <a
                                         href="mailto:info@ag-solutions.in"
                                         title="Email AG Solutions: info@ag-solutions.in"
-                                        className="group inline-flex items-center gap-2 text-slate-400 hover:text-pink transition-colors no-underline py-0.5"
+                                        className="group inline-flex items-center gap-2 text-slate-300 hover:text-pink transition-colors no-underline py-0.5"
                                     >
                                         <Mail className="h-3.5 w-3.5 text-pink shrink-0 transition-transform duration-200 group-hover:scale-110" />
                                         <span className="relative inline-block overflow-hidden h-[1.35em] leading-[1.35em]">
@@ -264,7 +264,7 @@ export function FooterV2() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         title="View AG Solutions on Google Maps"
-                                        className="group inline-flex items-start gap-2 text-slate-400 hover:text-teal transition-colors no-underline py-0.5"
+                                        className="group inline-flex items-start gap-2 text-slate-300 hover:text-teal transition-colors no-underline py-0.5"
                                     >
                                         <MapPin className="h-3.5 w-3.5 text-teal shrink-0 mt-0.5 transition-transform duration-200 group-hover:scale-110" />
                                         <span className="relative inline-block overflow-hidden h-[1.35em] leading-[1.35em]">
@@ -282,7 +282,7 @@ export function FooterV2() {
                     </div>
 
                     {/* Bottom Strip */}
-                    <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-400">
+                    <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-300">
                         <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-1">
                             <span>© {new Date().getFullYear()} AG Solutions. All Rights Reserved.</span>
                             <FooterFlipLink to="/about" title="AG Solutions Privacy Policy" hoverColor="hover:text-slate-200">
@@ -292,7 +292,7 @@ export function FooterV2() {
                                 Terms &amp; Conditions
                             </FooterFlipLink>
                         </div>
-                        <div className="text-slate-400">
+                        <div className="text-slate-300">
                             Single Click Solution for Modern Businesses
                         </div>
                     </div>

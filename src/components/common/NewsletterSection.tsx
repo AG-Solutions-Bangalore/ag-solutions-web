@@ -101,6 +101,10 @@ export function NewsletterSection() {
                 src={getImageUrl("/images/newslatterImage1.webp")}
                 alt="Subscribe to AG Solutions Newsletter"
                 title="Subscribe to AG Solutions Newsletter"
+                width={80}
+                height={80}
+                loading="lazy"
+                decoding="async"
                 className="h-14 sm:h-16 lg:h-20 w-auto object-contain drop-shadow-lg transition-transform duration-300 hover:scale-105"
               />
             </div>
