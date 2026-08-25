@@ -23,8 +23,8 @@ const serviceLinks = [
 
 const productLinks = [
     { to: "/export-biz", label: "Export Biz", title: "Export Biz – Export Documentation Software" },
-    // { to: "/bizstock", label: "BizStock", title: "BizStock – Inventory Management Software" },
-    // { to: "/ease-marketing", label: "EASE Marketing", title: "EASE Marketing – AG Solutions" },
+    { to: "/bizstock", label: "BizStock", title: "BizStock – Inventory Management Software" },
+    { to: "/ease-marketing", label: "Ease Marketing", title: "Ease Marketing – AG Solutions" },
     { to: "/grow-together", label: "Grow Together", title: "Grow Together – AG Solutions" },
 ];
 

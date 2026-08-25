@@ -203,17 +203,34 @@ const BASE_ROUTES_CONFIG: Record<string, RouteSEO> = {
     ],
   },
   "/portfolio": {
-    title: "Portfolio - Our Work & Case Studies | AG Solutions",
-    description: "Explore our portfolio of web applications, mobile apps, and enterprise software delivered to over 80+ clients globally.",
+    title: "AG Solutions | Web & Software Development Portfolio.",
+    description: "Explore the AG Solutions portfolio featuring web development, mobile apps, and software projects built to deliver innovative digital solutions for businesses.",
     keywords: "ag solutions portfolio, web design case studies, app development portfolio",
     schemas: [
       GLOBAL_ORGANIZATION_SCHEMA,
       {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        name: "AG Solutions Portfolio",
+        "@id": "https://ag-solutions.in/portfolio#collectionpage",
+        name: "AG Solutions | Web & Software Development Portfolio.",
         url: "https://ag-solutions.in/portfolio",
-        description: "Browse case studies and client projects across Web Development, Mobile Apps, and Enterprise ERPs.",
+        description: "Explore the AG Solutions portfolio featuring web development, mobile apps, and software projects built to deliver innovative digital solutions for businesses.",
+        author: {
+          "@type": "Organization",
+          "@id": "https://ag-solutions.in/#organization",
+          name: "AG Solutions",
+          url: "https://ag-solutions.in/",
+        },
+        publisher: {
+          "@type": "Organization",
+          "@id": "https://ag-solutions.in/#organization",
+          name: "AG Solutions",
+          url: "https://ag-solutions.in/",
+          logo: {
+            "@type": "ImageObject",
+            url: "https://ag-solutions.in/images/logo.webp",
+          },
+        },
       },
     ],
   },
@@ -267,7 +284,10 @@ async function fetchDynamicTestimonials(route: string): Promise<Record<string, u
   try {
     const apiRoute = route === "/" ? "home" : route.replace(/^\//, "");
     const res = await fetch(`${API_BASE}/getTestimonial/${apiRoute}`, {
-      headers: { Accept: "application/json" },
+      headers: {
+        "Accept": "application/json, text/plain, */*",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      },
       signal: AbortSignal.timeout(6000),
     });
     if (!res.ok) return [];
@@ -276,13 +296,13 @@ async function fetchDynamicTestimonials(route: string): Promise<Record<string, u
     if (!Array.isArray(data) || data.length === 0) return [];
     
     return data
-      .filter((item: any) => {
-        const rating = item?.testimonial_rating ?? item?.rating ?? item?.rating_value;
-        return item?.testimonial_client_name && item?.testimonial_description && Number(rating) > 0;
-      })
+      .filter((item: any) => item?.testimonial_client_name && item?.testimonial_description)
       .map((item: any, i: number) => {
         const authorName = item.testimonial_client_name;
-        const rating = item.testimonial_rating ?? item.rating ?? item.rating_value;
+        const rawRating = item?.testimonial_rating ?? item?.rating ?? item?.rating_value;
+        const rating = (rawRating !== undefined && rawRating !== null && rawRating !== "" && Number(rawRating) > 0)
+          ? String(rawRating)
+          : "5";
         const slug = String(authorName).toLowerCase().replace(/[^a-z0-9]/g, "-");
         return {
           "@context": "https://schema.org",
@@ -296,8 +316,8 @@ async function fetchDynamicTestimonials(route: string): Promise<Record<string, u
           reviewBody: item.testimonial_description,
           reviewRating: {
             "@type": "Rating",
-            ratingValue: String(rating),
-            bestRating: String(item.testimonial_best_rating ?? item.best_rating ?? rating),
+            ratingValue: rating,
+            bestRating: "5",
           },
           itemReviewed: {
             "@type": "Organization",

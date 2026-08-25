@@ -55,14 +55,15 @@ export function runCliAudit() {
   }
 
   const testPages = [
-    { name: "Home Page", path: path.join(DIST_DIR, "index.html"), expectedReviews: 0 },
-    { name: "Export Biz", path: path.join(DIST_DIR, "export-biz.html"), expectedReviews: 0 },
+    { name: "Home Page", path: path.join(DIST_DIR, "index.html"), expectedReviews: 25 },
+    { name: "Export Biz", path: path.join(DIST_DIR, "export-biz.html"), expectedReviews: 10 },
     { name: "BizStock", path: path.join(DIST_DIR, "bizstock.html"), expectedReviews: 0 },
     { name: "Ease Marketing", path: path.join(DIST_DIR, "ease-marketing.html"), expectedReviews: 0 },
-    { name: "Web Development", path: path.join(DIST_DIR, "web-development.html"), expectedReviews: 0 },
-    { name: "Mobile App Development", path: path.join(DIST_DIR, "mobile-app-development.html"), expectedReviews: 0 },
-    { name: "Digital Marketing", path: path.join(DIST_DIR, "digital-marketing.html"), expectedReviews: 0 },
+    { name: "Web Development", path: path.join(DIST_DIR, "web-development.html"), expectedReviews: 5 },
+    { name: "Mobile App Development", path: path.join(DIST_DIR, "mobile-app-development.html"), expectedReviews: 5 },
+    { name: "Digital Marketing", path: path.join(DIST_DIR, "digital-marketing.html"), expectedReviews: 5 },
     { name: "About Page", path: path.join(DIST_DIR, "about.html"), expectedReviews: 0 },
+    { name: "Portfolio Page", path: path.join(DIST_DIR, "portfolio.html"), expectedReviews: 0 },
     { name: "Contacts Page", path: path.join(DIST_DIR, "contacts.html"), expectedReviews: 0 },
     { name: "Blog Detail Page", path: path.join(DIST_DIR, "blogs/why-seo-starts-with-a-strong-website.html"), expectedReviews: 0, expectedBlogPosting: 1, expectedBreadcrumb: 1 },
   ];

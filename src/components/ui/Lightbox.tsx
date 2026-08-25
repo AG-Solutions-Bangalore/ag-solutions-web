@@ -75,6 +75,7 @@ export default function Lightbox({ isOpen, image, title, subtitle, onClose }: Li
         <img
           src={image}
           alt={title}
+          title={title}
           className="max-h-[70vh] max-w-full rounded-lg border border-white/10 object-contain shadow-2xl"
           decoding="async"
         />

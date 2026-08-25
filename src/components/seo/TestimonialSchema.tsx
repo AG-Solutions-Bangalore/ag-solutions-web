@@ -30,52 +30,60 @@ export const TestimonialSchema: React.FC<TestimonialSchemaProps> = ({
   bestRating,
   itemReviewedName = "AG Solutions",
 }) => {
-  // If multiple dynamic reviews are provided
-  const isValidRating = (value: string | number | null | undefined): value is string | number =>
-    value !== undefined && value !== "" && Number(value) > 0;
+  const getRatingValue = (val: string | number | null | undefined): string => {
+    if (val !== undefined && val !== null && val !== "" && Number(val) > 0) {
+      return String(val);
+    }
+    return "5";
+  };
 
   if (reviews && reviews.length > 0) {
     return (
       <>
-        {reviews.filter((r) => isValidRating(r.ratingValue)).map((r, i) => {
-          const reviewSlug = (r.authorName || `reviewer-${i}`)
-            .toLowerCase()
-            .replace(/[^a-z0-9]/g, "-");
+        {reviews
+          .filter((r) => r.authorName && r.reviewBody)
+          .map((r, i) => {
+            const reviewSlug = (r.authorName || `reviewer-${i}`)
+              .toLowerCase()
+              .replace(/[^a-z0-9]/g, "-");
 
-          const schema = {
-            "@context": "https://schema.org",
-            "@type": "Review",
-            name: r.authorName,
-            author: {
-              "@type": "Person",
+            const finalRating = getRatingValue(r.ratingValue);
+
+            const schema = {
+              "@context": "https://schema.org",
+              "@type": "Review",
               name: r.authorName,
-            },
-            reviewBody: r.reviewBody,
-            reviewRating: {
-              "@type": "Rating",
-              ratingValue: String(r.ratingValue),
-              bestRating: String(r.bestRating || r.ratingValue),
-            },
-            itemReviewed: {
-              "@type": "Organization",
-              name: r.itemReviewedName || "AG Solutions",
-            },
-          };
+              author: {
+                "@type": "Person",
+                name: r.authorName,
+              },
+              reviewBody: r.reviewBody,
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: finalRating,
+                bestRating: String(r.bestRating || "5"),
+              },
+              itemReviewed: {
+                "@type": "Organization",
+                name: r.itemReviewedName || "AG Solutions",
+              },
+            };
 
-          return (
-            <JsonLd
-              key={`${reviewSlug}-${i}`}
-              id={`schema-review-${reviewSlug}-${i}`}
-              schema={schema}
-            />
-          );
-        })}
+            return (
+              <JsonLd
+                key={`${reviewSlug}-${i}`}
+                id={`schema-review-${reviewSlug}-${i}`}
+                schema={schema}
+              />
+            );
+          })}
       </>
     );
   }
 
   // Single review if explicitly provided
-  if (authorName && reviewBody && isValidRating(ratingValue)) {
+  if (authorName && reviewBody) {
+    const finalRating = getRatingValue(ratingValue);
     const schema = {
       "@context": "https://schema.org",
       "@type": "Review",
@@ -87,8 +95,8 @@ export const TestimonialSchema: React.FC<TestimonialSchemaProps> = ({
       reviewBody: reviewBody,
       reviewRating: {
         "@type": "Rating",
-        ratingValue: String(ratingValue),
-        bestRating: String(bestRating || ratingValue),
+        ratingValue: finalRating,
+        bestRating: String(bestRating || "5"),
       },
       itemReviewed: {
         "@type": "Organization",

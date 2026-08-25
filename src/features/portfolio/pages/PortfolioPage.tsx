@@ -15,7 +15,80 @@ interface PortfolioItem {
   title: string;
   subtitle: string;
   image: string;
+  imageAlt: string;
+  imageTitle: string;
   categoryKey?: string;
+}
+
+const IMAGE_TITLE_MAP: Record<string, string> = {
+  "13.png": "Login Page",
+  "1.png": "Agrawal Samaj Project",
+  "7.jpg": "Ease Marketing Project",
+  "10.jpg": "Login Page",
+  "24.png": "Login Page",
+  "29.jpg": "Login Page",
+  "2.png": "Foundation India Project",
+  "8.jpg": "IVFrishtey Project",
+  "11.png": "Export Documents Management",
+  "14.png": "Invoice Packing",
+  "25.jpg": "Sign Up Page",
+  "30.jpg": "Grow Together Project",
+  "3.png": "GPW Buildtech Project",
+  "9.jpg": "Grow Together Project",
+  "12.png": "Print, Save PDF & Email",
+  "15.png": "Invoice Packing",
+  "26.jpg": "Ease Marketing Project",
+  "31.jpg": "Registration Form",
+  "16.png": "Invoice Packing",
+  "27.jpg": "Category Selection",
+  "5.png": "Naturalli Project",
+  "17.png": "Invoice Packing",
+  "28.jpg": "Login Page",
+  "32.jpg": "Business Profile",
+  "6.png": "Business Boosters Project",
+  "18.png": "Invoice Packing",
+  "33.jpg": "Updated Login Page",
+  "19.png": "Invoice Packing",
+  "21.png": "Invoice Packing",
+  "33.jpeg": "Test Project",
+};
+
+const ALT_TITLE_MAP: Record<string, string> = {
+  "login": "Login Page",
+  "agrawalsamaj": "Agrawal Samaj Project",
+  "ease marketing": "Ease Marketing Project",
+  "login page": "Login Page",
+  "login updated": "Updated Login Page",
+  "foundation india": "Foundation India Project",
+  "ivfrishtey": "IVFrishtey Project",
+  "all documents in 1 minute": "Export Documents Management",
+  "invoice packing": "Invoice Packing",
+  "sign up": "Sign Up Page",
+  "grow together": "Grow Together Project",
+  "gpwbuildtech": "GPW Buildtech Project",
+  "print,save ad pdf,email": "Print, Save PDF & Email",
+  "registration form": "Registration Form",
+  "select category": "Category Selection",
+  "naturalli": "Naturalli Project",
+  "business profile": "Business Profile",
+  "businessboosters": "Business Boosters Project",
+  "test project": "Test Project",
+};
+
+function getSuggestedImageTitle(imagePath?: string, rawName?: string): string {
+  if (imagePath) {
+    const filename = imagePath.split("/").pop()?.toLowerCase();
+    if (filename && IMAGE_TITLE_MAP[filename]) {
+      return IMAGE_TITLE_MAP[filename];
+    }
+  }
+  if (rawName) {
+    const key = rawName.trim().toLowerCase();
+    if (ALT_TITLE_MAP[key]) {
+      return ALT_TITLE_MAP[key];
+    }
+  }
+  return rawName || "AG Solutions Portfolio Project";
 }
 
 const CATEGORY_TABS = [
@@ -65,11 +138,15 @@ export default function PortfolioPage() {
         p.project_type ||
         normalizedPage.replace(/-/g, " ");
 
+      const suggestedTitle = getSuggestedImageTitle(p.project_image, p.project_name);
+
       return {
         id: `${normalizedPage}-${p.project_sort || idx}-${p.project_name}`,
-        title: p.project_name || "Client Project",
+        title: suggestedTitle || p.project_name || "Client Project",
         subtitle: p.project_type || categoryLabel,
         image: imageUrl,
+        imageAlt: suggestedTitle,
+        imageTitle: suggestedTitle,
         categoryKey: normalizedPage,
       };
     });
@@ -90,6 +167,8 @@ export default function PortfolioPage() {
         title={item.title}
         subtitle={item.subtitle}
         image={item.image}
+        imageAlt={item.imageAlt}
+        imageTitle={item.imageTitle}
         onClick={() => setSelectedImage(item)}
         className="rounded-none cursor-pointer hover:shadow-lg transition-shadow duration-300"
       />

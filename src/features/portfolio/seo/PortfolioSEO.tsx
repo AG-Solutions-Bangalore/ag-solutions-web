@@ -5,17 +5,34 @@ import { SEO } from "@/components/seo/SEO";
 export const PortfolioSEO: React.FC = () => {
   const portfolioSchema = {
     "@type": "CollectionPage",
-    name: "AG Solutions Portfolio",
+    "@id": "https://ag-solutions.in/portfolio#collectionpage",
+    name: "AG Solutions | Web & Software Development Portfolio.",
     url: "https://ag-solutions.in/portfolio",
     description:
-      "Explore the AG Solutions portfolio. Discover our work in web development, mobile applications, and desktop applications.",
+      "Explore the AG Solutions portfolio featuring web development, mobile apps, and software projects built to deliver innovative digital solutions for businesses.",
+    author: {
+      "@type": "Organization",
+      "@id": "https://ag-solutions.in/#organization",
+      name: "AG Solutions",
+      url: "https://ag-solutions.in/",
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": "https://ag-solutions.in/#organization",
+      name: "AG Solutions",
+      url: "https://ag-solutions.in/",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://ag-solutions.in/images/logo.webp",
+      },
+    },
   };
 
   return (
     <>
       <SEO
-        title="Portfolio - AG Solutions"
-        description="Browse our portfolio of high-performance websites, custom mobile applications, and desktop software solutions built for business growth."
+        title="AG Solutions | Web & Software Development Portfolio."
+        description="Explore the AG Solutions portfolio featuring web development, mobile apps, and software projects built to deliver innovative digital solutions for businesses."
         keywords={[
           "AG Solutions portfolio",
           "web development projects",
@@ -25,7 +42,7 @@ export const PortfolioSEO: React.FC = () => {
         ]}
         ogType="website"
       />
-      <JsonLd schema={portfolioSchema} />
+      <JsonLd id="schema-collectionpage" schema={portfolioSchema} />
     </>
   );
 };

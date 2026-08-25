@@ -208,6 +208,8 @@ export function Header({ activeNav }: HeaderV2Props) {
                             onMouseEnter={() => {
                                 setActiveDropdown("products");
                                 preloadRoute("/export-biz");
+                                preloadRoute("/bizstock");
+                                preloadRoute("/ease-marketing");
                                 preloadRoute("/grow-together");
                             }}
                             onMouseLeave={() => setActiveDropdown(null)}
@@ -236,6 +238,24 @@ export function Header({ activeNav }: HeaderV2Props) {
                                             className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-pink-light hover:text-pink rounded-xl transition-colors no-underline"
                                         >
                                             Export Biz Software
+                                        </Link>
+                                        <Link
+                                            to="/bizstock"
+                                            title="BizStock – Inventory Management Software"
+                                            onMouseEnter={() => preloadRoute("/bizstock")}
+                                            onClick={() => setActiveDropdown(null)}
+                                            className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-teal-light hover:text-teal rounded-xl transition-colors no-underline"
+                                        >
+                                            BizStock
+                                        </Link>
+                                        <Link
+                                            to="/ease-marketing"
+                                            title="Ease Marketing – Marketing & Automation"
+                                            onMouseEnter={() => preloadRoute("/ease-marketing")}
+                                            onClick={() => setActiveDropdown(null)}
+                                            className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-pink-light hover:text-pink rounded-xl transition-colors no-underline"
+                                        >
+                                            Ease Marketing
                                         </Link>
                                         <Link
                                             to="/grow-together"
@@ -430,6 +450,22 @@ export function Header({ activeNav }: HeaderV2Props) {
                                         className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-pink hover:bg-card rounded-lg no-underline transition-colors"
                                     >
                                         Export Biz
+                                    </Link>
+                                    <Link
+                                        to="/bizstock"
+                                        title="BizStock – Inventory Management Software"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-teal hover:bg-card rounded-lg no-underline transition-colors"
+                                    >
+                                        BizStock
+                                    </Link>
+                                    <Link
+                                        to="/ease-marketing"
+                                        title="Ease Marketing – Marketing & Automation"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-pink hover:bg-card rounded-lg no-underline transition-colors"
+                                    >
+                                        Ease Marketing
                                     </Link>
                                     <Link
                                         to="/grow-together"
