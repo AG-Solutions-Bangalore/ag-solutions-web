@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import SEO from "@/components/seo/SEO";
-import { FAQSchema, BlogPostingSchema } from "@/components/seo";
+import { FAQSchema, BlogPostingSchema, BreadcrumbSchema } from "@/components/seo";
 import { useBlogBySlug, useBlogs } from "../hooks/useBlogs";
 import BlogDetailHeader from "../components/BlogDetailHeader";
 import BlogFaqAccordion from "../components/BlogFaqAccordion";
@@ -26,6 +26,30 @@ export function BlogDetailPage() {
     "https://ag-solutions.in/webapi/public/assets/images/sponsors_images/";
 
   const blog = blogData?.data;
+
+  // Dynamic Breadcrumb List for Schema.org JSON-LD
+  const breadcrumbItems = useMemo(() => {
+    if (!blog) return [];
+    const origin =
+      typeof window !== "undefined" && window.location.origin
+        ? window.location.origin
+        : "https://ag-solutions.in";
+
+    return [
+      {
+        name: "Home",
+        item: `${origin}/`,
+      },
+      {
+        name: "Blogs",
+        item: `${origin}/blogs`,
+      },
+      {
+        name: blog.blog_title || "Article",
+        item: `${origin}/blogs/${blog.blog_slug}`,
+      },
+    ];
+  }, [blog]);
 
   // Compute related articles (excluding current)
   const relatedArticles = useMemo(() => {
@@ -139,6 +163,9 @@ export function BlogDetailPage() {
         dateModified={blog.blog_updated_date || blog.blog_created_date || "2026-08-20"}
         authorName={blog.created_by || "AG Solutions"}
       />
+      {breadcrumbItems.length > 0 && (
+        <BreadcrumbSchema items={breadcrumbItems} />
+      )}
       {faqSchemaList.length > 0 && (
         <FAQSchema faqs={faqSchemaList} />
       )}

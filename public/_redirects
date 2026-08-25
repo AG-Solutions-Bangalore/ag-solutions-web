@@ -1,2 +1,12 @@
-/sitemap.xml   /sitemap.xml   200
-/*             /index.html    200
+# 301 Permanent Redirects for legacy and duplicate URLs
+/index.html            https://ag-solutions.in/                301!
+/index.php             https://ag-solutions.in/                301!
+/mobile_app.php        https://ag-solutions.in/mobile-app-development 301!
+/mobile_app            https://ag-solutions.in/mobile-app-development 301!
+/mobile-app            https://ag-solutions.in/mobile-app-development 301!
+/home                  https://ag-solutions.in/                301!
+
+# Sitemap and Static SPA routing
+/sitemap.xml           /sitemap.xml                            200
+/*                     /index.html                             200
+

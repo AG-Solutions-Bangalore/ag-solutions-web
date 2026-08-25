@@ -40,7 +40,7 @@ import type { CommonServicePageProps } from "../components/CommonServicePage";
 
 // 1. Web & Website Development Service Data Constant (Solid Exact Icons)
 export const webDevelopmentServiceData: CommonServicePageProps = {
-    seoTitle: "Web & Website Development Services - AG Solutions | Powerful Websites",
+    seoTitle: "Web & Website Development Company | AG Solutions",
     seoDescription: "We design and develop responsive, fast and SEO-friendly websites that deliver exceptional user experiences and drive real business results.",
     heroBadge: "WEB & WEBSITE DEVELOPMENT",
     heroTitle: "Powerful Websites.",
@@ -192,7 +192,7 @@ export const webDevelopmentServiceData: CommonServicePageProps = {
 
 // 2. Mobile App Development Service Data Constant (Solid Exact Icons including FaApple & FaAndroid)
 export const mobileAppServiceData: CommonServicePageProps = {
-    seoTitle: "Mobile App Development Services - AG Solutions | iOS & Android Apps",
+    seoTitle: "Mobile App Development | iOS & Android – AG Solutions",
     seoDescription: "We design and develop intuitive, secure and high-performance mobile apps that engage users and accelerate your business growth on iOS and Android platforms.",
     heroBadge: "MOBILE APP DEVELOPMENT",
     heroTitle: "Build Apps.",

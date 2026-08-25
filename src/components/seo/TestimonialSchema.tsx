@@ -24,12 +24,12 @@ export interface TestimonialSchemaProps {
 export const TestimonialSchema: React.FC<TestimonialSchemaProps> = ({
   id,
   reviews,
-  authorName = "Ravi Sharma",
-  reviewBody = "AG Solutions delivered an outstanding digital solution on time. Highly recommended for any business.",
+  authorName,
+  reviewBody,
   ratingValue = "5",
   bestRating = "5",
+  itemReviewedName = "AG Solutions",
 }) => {
-
   // If multiple dynamic reviews are provided
   if (reviews && reviews.length > 0) {
     return (
@@ -42,7 +42,7 @@ export const TestimonialSchema: React.FC<TestimonialSchemaProps> = ({
           const schema = {
             "@context": "https://schema.org",
             "@type": "Review",
-            name: `${r.authorName} Review`,
+            name: r.authorName,
             author: {
               "@type": "Person",
               name: r.authorName,
@@ -55,9 +55,7 @@ export const TestimonialSchema: React.FC<TestimonialSchemaProps> = ({
             },
             itemReviewed: {
               "@type": "Organization",
-              "@id": "https://ag-solutions.in/#organization",
-              name: "AG Solutions",
-              url: "https://ag-solutions.in/",
+              name: r.itemReviewedName || "AG Solutions",
             },
           };
 
@@ -73,32 +71,33 @@ export const TestimonialSchema: React.FC<TestimonialSchemaProps> = ({
     );
   }
 
-  // Single review fallback
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "Review",
-    name: `${authorName} Review`,
-    author: {
-      "@type": "Person",
+  // Single review if explicitly provided
+  if (authorName && reviewBody) {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "Review",
       name: authorName,
-    },
-    reviewBody: reviewBody,
-    reviewRating: {
-      "@type": "Rating",
-      ratingValue: String(ratingValue),
-      bestRating: String(bestRating),
-    },
-    itemReviewed: {
-      "@type": "Organization",
-      "@id": "https://ag-solutions.in/#organization",
-      name: "AG Solutions",
-      url: "https://ag-solutions.in/",
-    },
-  };
+      author: {
+        "@type": "Person",
+        name: authorName,
+      },
+      reviewBody: reviewBody,
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: String(ratingValue),
+        bestRating: String(bestRating),
+      },
+      itemReviewed: {
+        "@type": "Organization",
+        name: itemReviewedName || "AG Solutions",
+      },
+    };
 
+    return <JsonLd id={id || "schema-review-single"} schema={schema} />;
+  }
 
-
-  return <JsonLd id={id || "schema-review-single"} schema={schema} />;
+  // Return null if no data
+  return null;
 };
 
 

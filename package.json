@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "validate:schema": "bun scripts/validateSchemas.ts",
+    "validate:dist": "bun scripts/validateDistHtml.ts",
     "prerender": "bun scripts/prerenderSeo.ts",
     "sitemap": "bun scripts/generateSitemap.ts"
   },

@@ -12,6 +12,14 @@ export interface FAQResponse {
 }
 
 export const getFAQsBySlug = async (slug: string): Promise<FAQResponse> => {
-  const response = await apiClient.get<FAQResponse>(`/getFAQBySlug/${slug}`);
-  return response.data;
+  try {
+    const response = await apiClient.get<FAQResponse>(`/getFAQBySlug/${slug}`);
+    if (response.data && Array.isArray(response.data.data)) {
+      return response.data;
+    }
+    return { data: [] };
+  } catch {
+    return { data: [] };
+  }
 };
+

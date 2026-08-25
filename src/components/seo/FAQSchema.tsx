@@ -29,17 +29,15 @@ interface FAQSchemaProps {
 }
 
 export const FAQSchema: React.FC<FAQSchemaProps> = ({ faqs }) => {
-  // If faqs is explicitly an empty array, do not render any schema
-  if (Array.isArray(faqs) && faqs.length === 0) {
+  // If faqs is missing or empty, do not render any schema
+  if (!faqs || faqs.length === 0) {
     return null;
   }
-
-  const activeFaqs = faqs && faqs.length > 0 ? faqs : DEFAULT_FAQS;
 
   const schema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: activeFaqs.map((faq) => ({
+    mainEntity: faqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: {

@@ -7,8 +7,8 @@ const __dirname = path.dirname(__filename);
 
 const DIST_DIR = path.resolve(__dirname, "../dist");
 const DIST_INDEX = path.resolve(DIST_DIR, "index.html");
-const SITEMAP_PATH = path.resolve(DIST_DIR, "sitemap.xml");
 const SITE_ORIGIN = "https://ag-solutions.in";
+const API_BASE = "https://ag-solutions.in/webapi/public/api";
 
 interface RouteSEO {
   title: string;
@@ -51,7 +51,8 @@ const GLOBAL_WEBSITE_SCHEMA = {
   },
 };
 
-const ROUTES_CONFIG: Record<string, RouteSEO> = {
+// Base configurations for static routes (Only structural identity schemas)
+const BASE_ROUTES_CONFIG: Record<string, RouteSEO> = {
   "/": {
     title: "AG Solutions | Web Development, Mobile App Development & Software Solutions Company",
     description: "AG Solutions is a leading software development company providing web development, mobile applications, digital marketing, and export compliance software.",
@@ -59,41 +60,6 @@ const ROUTES_CONFIG: Record<string, RouteSEO> = {
     schemas: [
       GLOBAL_ORGANIZATION_SCHEMA,
       GLOBAL_WEBSITE_SCHEMA,
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "What services does AG Solutions provide?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "AG Solutions provides Web Development, Mobile App Development (iOS & Android), Digital Marketing, Custom ERP, and Software Products like Export Biz, BizStock, and Ease Marketing.",
-            },
-          },
-        ],
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "Review",
-        itemReviewed: {
-          "@type": "Organization",
-          "@id": "https://ag-solutions.in/#organization",
-          name: "AG Solutions",
-          url: "https://ag-solutions.in/",
-        },
-        author: {
-          "@type": "Person",
-          name: "Vikram Singhania",
-        },
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: "5",
-          bestRating: "5",
-          worstRating: "1",
-        },
-        reviewBody: "AG Solutions built our entire enterprise export portal with top-notch performance and zero downtime.",
-      },
     ],
   },
   "/export-biz": {
@@ -111,54 +77,6 @@ const ROUTES_CONFIG: Record<string, RouteSEO> = {
         applicationCategory: "BusinessApplication",
         operatingSystem: "Windows, Web Browser, Cloud-based",
         url: "https://ag-solutions.in/export-biz",
-        offers: {
-          "@type": "Offer",
-          price: "0",
-          priceCurrency: "INR",
-          availability: "https://schema.org/InStock",
-        },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          reviewCount: "84",
-          bestRating: "5",
-          worstRating: "1",
-        },
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "What documents can Export Biz generate?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Export Biz generates Commercial Invoices, Packing Lists, Shipping Bills, Certificates of Origin, and customs compliance reports in 1 minute.",
-            },
-          },
-        ],
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "Review",
-        itemReviewed: {
-          "@type": "Organization",
-          "@id": "https://ag-solutions.in/#organization",
-          name: "AG Solutions",
-          url: "https://ag-solutions.in/",
-        },
-        author: {
-          "@type": "Person",
-          name: "Sneha Patel",
-        },
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: "5",
-          bestRating: "5",
-          worstRating: "1",
-        },
-        reviewBody: "Export Biz reduced our documentation errors by 90% and saved 4 hours every day on shipping paperwork.",
       },
     ],
   },
@@ -177,33 +95,6 @@ const ROUTES_CONFIG: Record<string, RouteSEO> = {
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web Browser, Android, iOS, Windows",
         url: "https://ag-solutions.in/bizstock",
-        offers: {
-          "@type": "Offer",
-          price: "0",
-          priceCurrency: "INR",
-          availability: "https://schema.org/InStock",
-        },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.8",
-          reviewCount: "67",
-          bestRating: "5",
-          worstRating: "1",
-        },
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "Does BizStock support multiple warehouses?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Yes, BizStock supports unlimited multi-location warehouses with real-time stock transfers and low-stock alerts.",
-            },
-          },
-        ],
       },
     ],
   },
@@ -222,38 +113,11 @@ const ROUTES_CONFIG: Record<string, RouteSEO> = {
         applicationCategory: "MarketingApplication",
         operatingSystem: "Web Browser, Cloud-based",
         url: "https://ag-solutions.in/ease-marketing",
-        offers: {
-          "@type": "Offer",
-          price: "0",
-          priceCurrency: "INR",
-          availability: "https://schema.org/InStock",
-        },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          reviewCount: "112",
-          bestRating: "5",
-          worstRating: "1",
-        },
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "What is Ease Marketing?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Ease Marketing is an automated WhatsApp marketing and bulk communication CRM software.",
-            },
-          },
-        ],
       },
     ],
   },
   "/web-development": {
-    title: "Web Development Services | Custom Websites & Web Apps | AG Solutions",
+    title: "Web & Website Development Company | AG Solutions",
     description: "High-performance, WCAG compliant, and SEO-optimized website and web application development using React, Next.js, and modern tech.",
     keywords: "web development services, custom website development, react developer, ag solutions",
     schemas: [
@@ -276,24 +140,10 @@ const ROUTES_CONFIG: Record<string, RouteSEO> = {
           name: "IN",
         },
       },
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "What web development technologies do you use?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "We develop websites using React, Next.js, Vite, TypeScript, Tailwind CSS, Node.js, and modern headless CMS platforms.",
-            },
-          },
-        ],
-      },
     ],
   },
   "/mobile-app-development": {
-    title: "Mobile App Development Services | iOS & Android Apps | AG Solutions",
+    title: "Mobile App Development | iOS & Android – AG Solutions",
     description: "Custom iOS and Android mobile app development with high performance, seamless UX, and offline-first cloud sync.",
     keywords: "mobile app development, ios app, android app development company",
     schemas: [
@@ -345,25 +195,11 @@ const ROUTES_CONFIG: Record<string, RouteSEO> = {
     ],
   },
   "/about": {
-    title: "About Us | AG Solutions - Software & Technology Partners",
+    title: "About AG Solutions | IT Solutions for New Age Businesses",
     description: "Learn about AG Solutions - Our mission, experienced team, and dedication to building world-class software and web architectures.",
     keywords: "about ag solutions, software company history, it development team",
     schemas: [
       GLOBAL_ORGANIZATION_SCHEMA,
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "Where is AG Solutions located?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "AG Solutions provides software solutions globally with core operations in India.",
-            },
-          },
-        ],
-      },
     ],
   },
   "/portfolio": {
@@ -406,7 +242,7 @@ const ROUTES_CONFIG: Record<string, RouteSEO> = {
     ],
   },
   "/contacts": {
-    title: "Contact Us | Get in Touch with AG Solutions",
+    title: "Contact AG Solutions | Business & IT Solutions",
     description: "Contact AG Solutions for project enquiries, software demos, and technical consultations. Reach us via phone, email, or WhatsApp.",
     keywords: "contact ag solutions, hire web developers, software quotation",
     schemas: [
@@ -422,6 +258,93 @@ const ROUTES_CONFIG: Record<string, RouteSEO> = {
 };
 
 import { generateSitemap, fetchLiveBlogArticles } from "./generateSitemap";
+
+/**
+ * Dynamically fetch testimonials from API for a given route.
+ * Returns Review schemas only if real API items exist.
+ */
+async function fetchDynamicTestimonials(route: string): Promise<Record<string, unknown>[]> {
+  try {
+    const apiRoute = route === "/" ? "home" : route.replace(/^\//, "");
+    const res = await fetch(`${API_BASE}/getTestimonial/${apiRoute}`, {
+      headers: { Accept: "application/json" },
+      signal: AbortSignal.timeout(6000),
+    });
+    if (!res.ok) return [];
+    const json = await res.json();
+    const data = json?.data;
+    if (!Array.isArray(data) || data.length === 0) return [];
+    
+    return data
+      .filter((item: any) => item?.testimonial_client_name && item?.testimonial_description)
+      .map((item: any, i: number) => {
+        const authorName = item.testimonial_client_name;
+        const slug = String(authorName).toLowerCase().replace(/[^a-z0-9]/g, "-");
+        return {
+          "@context": "https://schema.org",
+          "@type": "Review",
+          _scriptId: `schema-review-${slug}-${i}`,
+          name: authorName,
+          author: {
+            "@type": "Person",
+            name: authorName,
+          },
+          reviewBody: item.testimonial_description,
+          reviewRating: {
+            "@type": "Rating",
+            ratingValue: "5",
+            bestRating: "5",
+          },
+          itemReviewed: {
+            "@type": "Organization",
+            name: "AG Solutions",
+          },
+        };
+      });
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Dynamically fetch FAQs from API for a given route.
+ * Returns FAQPage schema only if real API items exist.
+ */
+async function fetchDynamicFAQs(route: string): Promise<Record<string, unknown> | null> {
+  try {
+    const slug = route === "/" ? "home" : route.replace(/^\//, "");
+    const res = await fetch(`${API_BASE}/getFAQBySlug/${slug}`, {
+      headers: { Accept: "application/json" },
+      signal: AbortSignal.timeout(6000),
+    });
+    if (!res.ok) return null;
+    const json = await res.json();
+    const data = json?.data;
+    if (!Array.isArray(data) || data.length === 0) return null;
+
+    const mainEntity = data
+      .filter((item: any) => item?.faq_que && item?.faq_ans)
+      .map((item: any) => ({
+        "@type": "Question",
+        name: item.faq_que,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.faq_ans,
+        },
+      }));
+
+    if (mainEntity.length === 0) return null;
+
+    return {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      _scriptId: "schema-faqpage",
+      mainEntity,
+    };
+  } catch {
+    return null;
+  }
+}
 
 function upsertTag(html: string, regex: RegExp, newTag: string): string {
   if (regex.test(html)) {
@@ -441,6 +364,46 @@ function escapeAttr(str = ""): string {
   return escapeHtml(str).replace(/"/g, "&quot;");
 }
 
+function getSchemaScriptId(s: Record<string, unknown>, idx: number): string {
+  if (s._scriptId && typeof s._scriptId === "string") {
+    return s._scriptId;
+  }
+  const type = (s["@type"] as string)?.toLowerCase() || "custom";
+  if (type === "review") {
+    const authorName = (s.author as any)?.name || (s.name as string) || `reviewer-${idx}`;
+    const slug = String(authorName).toLowerCase().replace(/[^a-z0-9]/g, "-");
+    return `schema-review-${slug}-${idx}`;
+  }
+  if (type === "faqpage") {
+    return "schema-faqpage";
+  }
+  if (type === "organization") {
+    return "schema-organization";
+  }
+  if (type === "website") {
+    return "schema-website";
+  }
+  if (type === "service") {
+    return "schema-service";
+  }
+  if (type === "softwareapplication") {
+    return "schema-softwareapplication";
+  }
+  if (type === "breadcrumblist") {
+    return "schema-breadcrumblist";
+  }
+  if (type === "blogposting") {
+    return "schema-blogposting";
+  }
+  if (type === "contactpage") {
+    return "schema-contactpage";
+  }
+  if (type === "collectionpage") {
+    return "schema-collectionpage";
+  }
+  return `schema-${type}-${idx}`;
+}
+
 function buildHtmlForRoute(baseHtml: string, route: string, seo: RouteSEO): string {
   let html = baseHtml;
   const canonical = `${SITE_ORIGIN}${route === "/" ? "/" : route}`;
@@ -458,12 +421,16 @@ function buildHtmlForRoute(baseHtml: string, route: string, seo: RouteSEO): stri
   html = upsertTag(html, /<meta\s+property=["']og:description["'][^>]*>/i, `<meta property="og:description" content="${escapeAttr(seo.description)}" />`);
   html = upsertTag(html, /<meta\s+property=["']og:url["'][^>]*>/i, `<meta property="og:url" content="${canonical}" />`);
 
-  // 3. Pre-inject JSON-LD Schemas directly into HTML head
+  // 3. Pre-inject JSON-LD Schemas directly into HTML head with data-rh="true" to sync with React Helmet
   const schemaTags = seo.schemas
-    .map((s) => `<script type="application/ld+json">${JSON.stringify(s)}</script>`)
+    .map((s, idx) => {
+      const scriptId = getSchemaScriptId(s, idx);
+      const { _scriptId, ...cleanSchema } = s;
+      return `<script id="${scriptId}" data-rh="true" type="application/ld+json">${JSON.stringify(cleanSchema)}</script>`;
+    })
     .join("\n    ");
 
-  html = html.replace("</head>", `    <!-- Prerendered Static JSON-LD Schemas -->\n    ${schemaTags}\n  </head>`);
+  html = html.replace("</head>", `    <!-- Prerendered Dynamic JSON-LD Schemas -->\n    ${schemaTags}\n  </head>`);
 
   return html;
 }
@@ -477,15 +444,34 @@ export async function prerenderAllRoutes() {
   const baseHtml = fs.readFileSync(DIST_INDEX, "utf-8");
   let generatedCount = 0;
 
-  console.log("🚀 Starting Static Pre-Rendering & Schema Injection...");
+  console.log("🚀 Starting Dynamic SSG Pre-Rendering & Schema Injection...");
 
-  // 1. Static Routes
-  for (const [route, seo] of Object.entries(ROUTES_CONFIG)) {
-    const routeHtml = buildHtmlForRoute(baseHtml, route, seo);
+  // 1. Static Routes with Dynamic Testimonial & FAQ API data
+  for (const [route, baseSeo] of Object.entries(BASE_ROUTES_CONFIG)) {
+    const schemas = [...baseSeo.schemas];
+
+    // Fetch dynamic FAQs from API for this route
+    const dynamicFaq = await fetchDynamicFAQs(route);
+    if (dynamicFaq) {
+      schemas.push(dynamicFaq);
+    }
+
+    // Fetch dynamic Testimonials from API for this route
+    const dynamicReviews = await fetchDynamicTestimonials(route);
+    if (dynamicReviews.length > 0) {
+      schemas.push(...dynamicReviews);
+    }
+
+    const routeSeo: RouteSEO = {
+      ...baseSeo,
+      schemas,
+    };
+
+    const routeHtml = buildHtmlForRoute(baseHtml, route, routeSeo);
 
     if (route === "/") {
       fs.writeFileSync(DIST_INDEX, routeHtml, "utf-8");
-      console.log(`✅ Pre-rendered Root: dist/index.html`);
+      console.log(`✅ Pre-rendered Root: dist/index.html (Dynamic Reviews: ${dynamicReviews.length}, FAQs: ${dynamicFaq ? 'Yes' : 'None'})`);
       generatedCount++;
     } else {
       const targetDir = path.join(DIST_DIR, route.replace(/^\//, ""));
@@ -497,7 +483,7 @@ export async function prerenderAllRoutes() {
       const cleanHtmlFile = path.join(DIST_DIR, `${route.replace(/^\//, "")}.html`);
       fs.writeFileSync(cleanHtmlFile, routeHtml, "utf-8");
 
-      console.log(`✅ Pre-rendered Route: ${route} -> dist${route}/index.html & dist${route}.html`);
+      console.log(`✅ Pre-rendered Route: ${route} (Dynamic Reviews: ${dynamicReviews.length}, FAQs: ${dynamicFaq ? 'Yes' : 'None'})`);
       generatedCount++;
     }
   }
@@ -517,25 +503,61 @@ export async function prerenderAllRoutes() {
 
       const blogSeo: RouteSEO = {
         title: `${blogTitle} | AG Solutions Blog`,
-        description: `Read "${blogTitle}" and get the latest insights on software, technology, and business growth from AG Solutions.`,
+        description: blog.description || `Read "${blogTitle}" and get the latest insights on software, technology, and business growth from AG Solutions.`,
         canonical: `${SITE_ORIGIN}${blogRoute}`,
         schemas: [
           GLOBAL_ORGANIZATION_SCHEMA,
           {
             "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://ag-solutions.in/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Blogs",
+                item: "https://ag-solutions.in/blogs",
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: blogTitle,
+                item: `https://ag-solutions.in/blogs/${slug}`,
+              },
+            ],
+          },
+          {
+            "@context": "https://schema.org",
             "@type": "BlogPosting",
             headline: blogTitle,
+            description: blog.description || `Read "${blogTitle}" and get the latest insights from AG Solutions.`,
+            image: [blog.image || "https://ag-solutions.in/images/08-subscribe.svg"],
             url: `${SITE_ORIGIN}${blogRoute}`,
-            datePublished: blog.lastmod,
-            dateModified: blog.lastmod,
+            datePublished: blog.lastmod ? new Date(blog.lastmod).toISOString() : new Date().toISOString(),
+            dateModified: blog.lastmod ? new Date(blog.lastmod).toISOString() : new Date().toISOString(),
             author: {
-              "@type": "Organization",
-              name: "AG Solutions",
+              "@type": (blog.author && !blog.author.toLowerCase().includes("ag solutions") && !blog.author.toLowerCase().includes("superadmin")) ? "Person" : "Organization",
+              name: blog.author || "AG Solutions",
+              url: "https://ag-solutions.in/",
             },
             publisher: {
               "@type": "Organization",
               "@id": "https://ag-solutions.in/#organization",
               name: "AG Solutions",
+              url: "https://ag-solutions.in/",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://ag-solutions.in/images/logo.png",
+              },
+            },
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": `${SITE_ORIGIN}${blogRoute}`,
             },
           },
         ],
@@ -555,7 +577,7 @@ export async function prerenderAllRoutes() {
     console.warn(`⚠️ Blog prerender skipped: ${err.message}`);
   }
 
-  console.log(`\n🎉 Static SEO Pre-rendering Complete! ${generatedCount} routes generated with embedded JSON-LD schemas.`);
+  console.log(`\n🎉 Static SEO Pre-rendering Complete! ${generatedCount} routes generated with dynamic embedded JSON-LD schemas.`);
 
   // 3. Automatically Generate and Sync Sitemap
   await generateSitemap();

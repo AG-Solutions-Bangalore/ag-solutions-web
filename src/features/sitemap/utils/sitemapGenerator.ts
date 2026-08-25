@@ -16,6 +16,9 @@ export interface SitemapEntry {
   type?: string;
   priority?: string;
   status?: string;
+  description?: string;
+  image?: string;
+  author?: string;
 }
 
 export function formatW3CDate(dateInput?: string | Date | null): string {
@@ -36,7 +39,13 @@ export function normalizeCanonicalPath(rawUrl: string): string {
     .replace(/^\/+/, "")
     .replace(/\/+$/, "");
 
-  if (!clean || clean === "home" || clean === "index") {
+  if (
+    !clean ||
+    clean === "home" ||
+    clean === "index" ||
+    clean === "index.php" ||
+    clean === "index.html"
+  ) {
     return "/";
   }
   if (clean === "about-us") {
@@ -44,6 +53,13 @@ export function normalizeCanonicalPath(rawUrl: string): string {
   }
   if (clean === "biz-stock") {
     return "/bizstock";
+  }
+  if (
+    clean === "mobile_app.php" ||
+    clean === "mobile_app" ||
+    clean === "mobile-app"
+  ) {
+    return "/mobile-app-development";
   }
 
   return `/${clean}`;
@@ -107,13 +123,24 @@ export async function fetchLiveBlogArticles(): Promise<SitemapEntry[]> {
     if (json && Array.isArray(json.data)) {
       return json.data
         .filter((item: any) => Boolean(item && item.blog_slug))
-        .map((item: any) => ({
-          url: `${SITE_ORIGIN}/blogs/${String(item.blog_slug).trim()}`,
-          lastmod: formatW3CDate(item.blog_updated_date || item.blog_created_date),
-          name: item.blog_title,
-          type: "Blog Article",
-          status: "Active",
-        }));
+        .map((item: any) => {
+          const rawImg = item.blog_image
+            ? String(item.blog_image).startsWith("http")
+              ? item.blog_image
+              : `https://ag-solutions.in/webapi/public/assets/images/blog_images/${item.blog_image}`
+            : "https://ag-solutions.in/images/08-subscribe.svg";
+
+          return {
+            url: `${SITE_ORIGIN}/blogs/${String(item.blog_slug).trim()}`,
+            lastmod: formatW3CDate(item.blog_updated_date || item.blog_created_date),
+            name: item.blog_title,
+            type: "Blog Article",
+            status: "Active",
+            description: item.blog_meta_description || item.blog_short_description || item.blog_title,
+            image: rawImg,
+            author: item.created_by || "AG Solutions",
+          };
+        });
     }
   } catch (err: any) {
     console.warn(`⚠️ Warning fetching /getBlogs: ${err.message}`);

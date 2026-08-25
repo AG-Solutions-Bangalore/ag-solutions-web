@@ -6,7 +6,8 @@ import { layoutContainerClass } from "@/components/layout/styles";
 import { FileSpreadsheet, Boxes, Megaphone, Users2 } from "lucide-react";
 import { SEO } from "@/components/seo/SEO";
 import { getImageUrl } from "@/utils/imageUrl";
-
+import { DynamicTestimonialSection } from "@/components/common/DynamicTestimonialSection";
+import { DynamicFaqSection } from "@/components/common/DynamicFaqSection";
 
 interface ProductCard {
   title: string;
@@ -173,6 +174,9 @@ export const ProductsPage: React.FC = () => {
           </div>
         )}
       </AnimatedSection>
+
+      <DynamicTestimonialSection route="products" />
+      <DynamicFaqSection slug="products" />
     </>
   );
 };

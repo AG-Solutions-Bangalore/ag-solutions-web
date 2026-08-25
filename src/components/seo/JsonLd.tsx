@@ -1,5 +1,4 @@
-import React from "react";
-import { Helmet } from "react-helmet-async";
+import React, { useEffect } from "react";
 
 interface JsonLdProps {
   id?: string;
@@ -22,13 +21,23 @@ export const JsonLd: React.FC<JsonLdProps> = React.memo(({ id, schema }) => {
       : "custom";
   const scriptId = id || `schema-${typeStr}`;
 
-  return (
-    <Helmet>
-      <script id={scriptId} type="application/ld+json">
-        {jsonString}
-      </script>
-    </Helmet>
-  );
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+
+    let el = document.getElementById(scriptId) as HTMLScriptElement | null;
+    if (el) {
+      el.textContent = jsonString;
+    } else {
+      el = document.createElement("script");
+      el.id = scriptId;
+      el.type = "application/ld+json";
+      el.setAttribute("data-rh", "true");
+      el.textContent = jsonString;
+      document.head.appendChild(el);
+    }
+  }, [scriptId, jsonString]);
+
+  return null;
 });
 
 JsonLd.displayName = "JsonLd";

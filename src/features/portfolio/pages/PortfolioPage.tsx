@@ -7,6 +7,9 @@ import { PageHero, SectionTitle } from "@/components/layout";
 import { Card, Lightbox } from "@/components/ui";
 import { getImageUrl } from "@/utils/imageUrl";
 
+import { DynamicTestimonialSection } from "@/components/common/DynamicTestimonialSection";
+import { DynamicFaqSection } from "@/components/common/DynamicFaqSection";
+
 interface PortfolioItem {
   id?: string | number;
   title: string;
@@ -201,6 +204,9 @@ export default function PortfolioPage() {
           </div>
         )}
       </AnimatedSection>
+
+      <DynamicTestimonialSection route="portfolio" />
+      <DynamicFaqSection slug="portfolio" />
 
       {/* Lightbox for full image inspection */}
       <Lightbox

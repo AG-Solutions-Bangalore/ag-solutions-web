@@ -5,6 +5,8 @@ import BlogHero from "../components/BlogHero";
 import BlogFeaturedHero from "../components/BlogFeaturedHero";
 import BlogCard from "../components/BlogCard";
 import { Sparkles, SearchX, RefreshCw, X, SlidersHorizontal } from "lucide-react";
+import { DynamicTestimonialSection } from "@/components/common/DynamicTestimonialSection";
+import { DynamicFaqSection } from "@/components/common/DynamicFaqSection";
 
 export function BlogListPage() {
   const { data: blogsData, isLoading, error, refetch } = useBlogs();
@@ -284,6 +286,9 @@ export function BlogListPage() {
             </div>
           )}
         </section>
+
+        <DynamicTestimonialSection route="blogs" />
+        <DynamicFaqSection slug="blogs" />
       </div>
     </>
   );

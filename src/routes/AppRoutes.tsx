@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { pageLoaders } from "./lazyRoutes";
 import Layout from "@/components/layout/Layout";
 
@@ -27,11 +27,14 @@ export function AppRoutes() {
         <Route element={<Layout />}>
         {/* Home */}
         <Route index element={<HomePage />} />
-        <Route path="home" element={<HomePage />} />
+        <Route path="home" element={<Navigate to="/" replace />} />
+        <Route path="index.html" element={<Navigate to="/" replace />} />
+        <Route path="index.php" element={<Navigate to="/" replace />} />
+        <Route path="index" element={<Navigate to="/" replace />} />
 
         {/* About Us */}
         <Route path="about" element={<AboutPage />} />
-        <Route path="about-us" element={<AboutPage />} />
+        <Route path="about-us" element={<Navigate to="/about" replace />} />
         <Route path="privacy-policy" element={<AboutPage />} />
         <Route path="terms-and-conditions" element={<AboutPage />} />
 
@@ -40,9 +43,11 @@ export function AppRoutes() {
         <Route path="web-development" element={<WebDevelopmentPage />} />
         <Route path="services/web-development" element={<WebDevelopmentPage />} />
 
-        <Route path="mobile-app" element={<MobileAppPage />} />
+        <Route path="mobile_app.php" element={<Navigate to="/mobile-app-development" replace />} />
+        <Route path="mobile_app" element={<Navigate to="/mobile-app-development" replace />} />
+        <Route path="mobile-app" element={<Navigate to="/mobile-app-development" replace />} />
         <Route path="mobile-app-development" element={<MobileAppPage />} />
-        <Route path="services/mobile-app" element={<MobileAppPage />} />
+        <Route path="services/mobile-app" element={<Navigate to="/mobile-app-development" replace />} />
         <Route path="services/mobile-app-development" element={<MobileAppPage />} />
 
         <Route path="digital-marketing" element={<DigitalMarketingPage />} />

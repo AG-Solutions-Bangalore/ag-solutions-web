@@ -1,11 +1,7 @@
 import { getUtmParams } from "@/utils/utmUtils";
 import {
-  Calendar,
   Clock,
   ExternalLink,
-  FileText,
-  Headphones,
-  HelpCircle,
   Mail,
   MapPin,
   Phone,
@@ -20,6 +16,8 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import { useCreateEnquiry } from "../hooks/useCreateEnquiry";
 import ContactSEO from "../seo/ContactSEO";
+import { DynamicTestimonialSection } from "@/components/common/DynamicTestimonialSection";
+import { DynamicFaqSection } from "@/components/common/DynamicFaqSection";
 
 // 5 Dedicated Services in 2 Rows matching PDF Page 15 & 16
 const SERVICE_ROWS = [
@@ -631,69 +629,11 @@ export default function ContactPage() {
           </div>
 
 
-          {/* ==========================================
-              SECTION 4: FAQS
-          ========================================== */}
-          <div className="space-y-6 pt-2">
-            <div className="text-center">
-              <span className="text-xs font-bold uppercase tracking-wider text-pink">
-                FAQS
-              </span>
-              <h2 className="mt-1.5 text-2xl font-extrabold text-dark sm:text-3xl lg:text-4xl">
-                Frequently Asked Questions
-              </h2>
-            </div>
+          {/* Dynamic Testimonials */}
+          <DynamicTestimonialSection route="contact" />
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="group rounded-2xl bg-card p-5 shadow-xs border border-border transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-teal-light text-teal mb-3 border border-teal-border/30">
-                  <HelpCircle className="h-5 w-5 stroke-[2]" />
-                </div>
-                <h3 className="text-xs sm:text-sm font-bold text-dark leading-snug">
-                  How quickly will you respond to my inquiry?
-                </h3>
-                <p className="mt-1.5 text-xs text-muted font-normal leading-relaxed">
-                  We typically respond to all inquiries within 24 business hours.
-                </p>
-              </div>
-
-              <div className="group rounded-2xl bg-card p-5 shadow-xs border border-border transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-pink-light text-pink mb-3 border border-pink-border/30">
-                  <FileText className="h-5 w-5 stroke-[2]" />
-                </div>
-                <h3 className="text-xs sm:text-sm font-bold text-dark leading-snug">
-                  Can I get a customized quote for my project?
-                </h3>
-                <p className="mt-1.5 text-xs text-muted font-normal leading-relaxed">
-                  Yes! Just share your requirements and we'll provide a tailored quote.
-                </p>
-              </div>
-
-              <div className="group rounded-2xl bg-card p-5 shadow-xs border border-border transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-green-light text-green mb-3 border border-green-border/30">
-                  <Calendar className="h-5 w-5 stroke-[2]" />
-                </div>
-                <h3 className="text-xs sm:text-sm font-bold text-dark leading-snug">
-                  What information do you need to get started?
-                </h3>
-                <p className="mt-1.5 text-xs text-muted font-normal leading-relaxed">
-                  A brief about your project, goals, timeline, and any specific requirements.
-                </p>
-              </div>
-
-              <div className="group rounded-2xl bg-card p-5 shadow-xs border border-border transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-yellow-light text-yellow mb-3 border border-yellow-border/30">
-                  <Headphones className="h-5 w-5 stroke-[2]" />
-                </div>
-                <h3 className="text-xs sm:text-sm font-bold text-dark leading-snug">
-                  Do you provide ongoing support after delivery?
-                </h3>
-                <p className="mt-1.5 text-xs text-muted font-normal leading-relaxed">
-                  Yes, we offer maintenance and support packages to keep your business running smoothly.
-                </p>
-              </div>
-            </div>
-          </div>
+          {/* Dynamic FAQs */}
+          <DynamicFaqSection slug="contact" />
 
         </div>
       </div>

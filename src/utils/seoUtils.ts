@@ -25,6 +25,32 @@ export function cleanPathForCanonical(pathname: string): string {
     clean = clean.slice(0, -1);
   }
 
+  if (
+    !clean ||
+    clean === "home" ||
+    clean === "index" ||
+    clean === "index.html" ||
+    clean === "index.php"
+  ) {
+    return "";
+  }
+
+  if (
+    clean === "mobile_app.php" ||
+    clean === "mobile_app" ||
+    clean === "mobile-app"
+  ) {
+    return "/mobile-app-development";
+  }
+
+  if (clean === "about-us") {
+    return "/about";
+  }
+
+  if (clean === "biz-stock") {
+    return "/bizstock";
+  }
+
   return clean ? `/${clean}` : "";
 }
 

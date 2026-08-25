@@ -115,9 +115,9 @@ export function FooterV2() {
                                 <Rocket className="w-6 h-6 text-teal" />
                             </div>
 
-                            <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-snug mb-2">
+                            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-snug mb-2">
                                 Ready to Start Your Project?
-                            </h3>
+                            </h2>
 
                             <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-sm mb-6">
                                 Let's work together to build something amazing.
@@ -163,9 +163,9 @@ export function FooterV2() {
 
                         {/* Col 2: Quick Links */}
                         <div className="lg:col-span-2">
-                            <h4 className="text-sm font-bold uppercase tracking-wider text-white mb-4">
+                            <h3 className="text-sm font-bold uppercase tracking-wider text-white mb-4">
                                 Quick Links
-                            </h4>
+                            </h3>
                             <ul className="space-y-2.5 text-sm text-slate-300 list-none p-0 m-0">
                                 {quickLinks.map((link) => (
                                     <li key={link.label}>
@@ -183,9 +183,9 @@ export function FooterV2() {
 
                         {/* Col 3: Services */}
                         <div className="lg:col-span-3">
-                            <h4 className="text-sm font-bold uppercase tracking-wider text-white mb-4">
+                            <h3 className="text-sm font-bold uppercase tracking-wider text-white mb-4">
                                 Core Services
-                            </h4>
+                            </h3>
                             <ul className="space-y-2.5 text-sm text-slate-300 list-none p-0 m-0">
                                 {serviceLinks.map((link) => (
                                     <li key={link.label}>
@@ -203,9 +203,9 @@ export function FooterV2() {
 
                         {/* Col 4: Products & Contact */}
                         <div className="lg:col-span-3">
-                            <h4 className="text-sm font-bold uppercase tracking-wider text-white mb-4">
+                            <h3 className="text-sm font-bold uppercase tracking-wider text-white mb-4">
                                 Products
-                            </h4>
+                            </h3>
                             <ul className="space-y-2.5 text-sm text-slate-300 list-none p-0 m-0 mb-6">
                                 {productLinks.map((link) => (
                                     <li key={link.label}>
@@ -220,9 +220,9 @@ export function FooterV2() {
                                 ))}
                             </ul>
 
-                            <h4 className="text-sm font-bold uppercase tracking-wider text-white mb-3">
+                            <h3 className="text-sm font-bold uppercase tracking-wider text-white mb-3">
                                 Contact
-                            </h4>
+                            </h3>
                             <ul className="space-y-2 text-xs text-slate-300 list-none p-0 m-0">
                                 <li>
                                     <a

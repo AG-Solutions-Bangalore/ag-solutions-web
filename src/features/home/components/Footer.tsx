@@ -34,9 +34,9 @@ function Footer() {
                         <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-full bg-white/20 backdrop-blur-xs">
                             <Rocket className="h-7 w-7 text-white" />
                         </div>
-                        <h3 className="text-2xl font-extrabold text-white">
+                        <h2 className="text-2xl font-extrabold text-white">
                             Ready to Start Your Project?
-                        </h3>
+                        </h2>
                         <p className="mt-2.5 text-sm text-teal-50 leading-relaxed">
                             Let's work together to build something amazing.
                         </p>

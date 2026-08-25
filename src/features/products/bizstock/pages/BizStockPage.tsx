@@ -1,41 +1,14 @@
 import React, { useEffect } from "react";
 import { SEO } from "@/components/seo/SEO";
-import { FAQSchema, SoftwareAppSchema, TestimonialSchema } from "@/components/seo";
-
-
-import { BizStockFaq, bizStockFaqs } from "../components/BizStockFaq";
+import { SoftwareAppSchema } from "@/components/seo";
 import { BizStockHero } from "../components/BizStockHero";
 import { BizStockFeatures } from "../components/BizStockFeatures";
 import { BizStockProcess } from "../components/BizStockProcess";
 import { BizStockIndustries } from "../components/BizStockIndustries";
-import { BizStockTestimonials } from "../components/BizStockTestimonials";
+import { DynamicTestimonialSection } from "@/components/common/DynamicTestimonialSection";
+import { DynamicFaqSection } from "@/components/common/DynamicFaqSection";
 import { BizStockCtaBanner } from "../components/BizStockCtaBanner";
 import { useLeadModal } from "@/context/LeadModalContext";
-
-
-const bizStockReviews = [
-  {
-    authorName: "Ravi Sharma",
-    reviewBody: "BizStock has simplified our inventory management. We save time, reduce errors, and our growth has doubled!",
-    ratingValue: 5,
-    itemReviewedName: "BizStock - AG Solutions",
-    itemType: "SoftwareApplication" as const,
-  },
-  {
-    authorName: "Sneha Patel",
-    reviewBody: "The reports and analytics help us make better decisions. Highly recommended for any business.",
-    ratingValue: 5,
-    itemReviewedName: "BizStock - AG Solutions",
-    itemType: "SoftwareApplication" as const,
-  },
-  {
-    authorName: "Arjun Mehta",
-    reviewBody: "Managing multiple warehouses was never this easy. BizStock is a game-changer!",
-    ratingValue: 5,
-    itemReviewedName: "BizStock - AG Solutions",
-    itemType: "SoftwareApplication" as const,
-  },
-];
 
 export const BizStockPage: React.FC = () => {
   const { openLeadModal } = useLeadModal();
@@ -74,8 +47,6 @@ export const BizStockPage: React.FC = () => {
         applicationCategory="BusinessApplication"
         operatingSystem="Web Browser, Cloud-based"
         url="https://ag-solutions.in/bizstock"
-        ratingValue={4.9}
-        reviewCount={98}
         features={[
           "Real-time Inventory Tracking",
           "Multi-Warehouse Management",
@@ -83,10 +54,6 @@ export const BizStockPage: React.FC = () => {
           "Purchase & Sales Order Workflows",
         ]}
       />
-      <TestimonialSchema reviews={bizStockReviews} />
-      <FAQSchema faqs={bizStockFaqs} />
-
-
 
       <div className="bg-background font-sans text-dark antialiased">
         {/* Hero Section */}
@@ -101,11 +68,11 @@ export const BizStockPage: React.FC = () => {
         {/* Built for Every Industry */}
         <BizStockIndustries />
 
-        {/* Testimonials */}
-        <BizStockTestimonials />
+        {/* Dynamic Testimonials */}
+        <DynamicTestimonialSection route="bizstock" />
 
-        {/* FAQs */}
-        <BizStockFaq />
+        {/* Dynamic FAQs */}
+        <DynamicFaqSection slug="bizstock" />
 
         {/* CTA Banner */}
         <BizStockCtaBanner />
@@ -113,6 +80,5 @@ export const BizStockPage: React.FC = () => {
     </>
   );
 };
-
 
 export default BizStockPage;

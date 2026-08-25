@@ -33,8 +33,8 @@ export const SoftwareAppSchema: React.FC<SoftwareAppSchemaProps> = ({
   image = "https://ag-solutions.in/images/logo.webp",
   price = "0",
   priceCurrency = "INR",
-  ratingValue = 4.9,
-  reviewCount = 120,
+  ratingValue,
+  reviewCount,
   features = [],
   reviews = [],
 }) => {
@@ -67,14 +67,17 @@ export const SoftwareAppSchema: React.FC<SoftwareAppSchemaProps> = ({
         name: "AG Solutions",
       },
     },
-    aggregateRating: {
+  };
+
+  if (ratingValue && reviewCount) {
+    schema.aggregateRating = {
       "@type": "AggregateRating",
       ratingValue: String(ratingValue),
       reviewCount: String(reviewCount),
       bestRating: "5",
       worstRating: "1",
-    },
-  };
+    };
+  }
 
   if (features && features.length > 0) {
     schema.featureList = features.join(", ");
