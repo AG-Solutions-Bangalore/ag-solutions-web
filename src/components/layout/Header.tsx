@@ -241,7 +241,7 @@ export function Header({ activeNav }: HeaderV2Props) {
                                         </Link>
                                         <Link
                                             to="/bizstock"
-                                            title="BizStock – Inventory Management Software"
+                                            title="BizStock – Business Management Software"
                                             onMouseEnter={() => preloadRoute("/bizstock")}
                                             onClick={() => setActiveDropdown(null)}
                                             className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-teal-light hover:text-teal rounded-xl transition-colors no-underline"
@@ -453,7 +453,7 @@ export function Header({ activeNav }: HeaderV2Props) {
                                     </Link>
                                     <Link
                                         to="/bizstock"
-                                        title="BizStock – Inventory Management Software"
+                                        title="BizStock – Business Management Software"
                                         onClick={() => setMobileMenuOpen(false)}
                                         className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-teal hover:bg-card rounded-lg no-underline transition-colors"
                                     >

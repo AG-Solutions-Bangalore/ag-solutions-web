@@ -81,7 +81,7 @@ const BASE_ROUTES_CONFIG: Record<string, RouteSEO> = {
     ],
   },
   "/bizstock": {
-    title: "BizStock - Inventory & Stock Management Software | AG Solutions",
+    title: "BizStock - Business Management Software | AG Solutions",
     description: "BizStock ERP software for smart inventory tracking, multi-warehouse sync, automatic purchase orders, and barcode scanning.",
     keywords: "inventory management software, stock management erp, warehouse software",
     schemas: [

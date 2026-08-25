@@ -28,7 +28,7 @@ export const BizStockPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="BizStock - Manage Stock. Maximize Growth. | AG Solutions"
+        title="BizStock – Business Management Software | AG Solutions"
         description="BizStock helps businesses track inventory, manage sales & purchases, and gain real-time visibility to make smarter decisions and grow faster."
         keywords={[
           "BizStock",
