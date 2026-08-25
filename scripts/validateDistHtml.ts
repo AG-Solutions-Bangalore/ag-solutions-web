@@ -55,13 +55,13 @@ export function runCliAudit() {
   }
 
   const testPages = [
-    { name: "Home Page", path: path.join(DIST_DIR, "index.html"), expectedReviews: 25 },
-    { name: "Export Biz", path: path.join(DIST_DIR, "export-biz.html"), expectedReviews: 10 },
+    { name: "Home Page", path: path.join(DIST_DIR, "index.html"), expectedReviews: 0 },
+    { name: "Export Biz", path: path.join(DIST_DIR, "export-biz.html"), expectedReviews: 0 },
     { name: "BizStock", path: path.join(DIST_DIR, "bizstock.html"), expectedReviews: 0 },
     { name: "Ease Marketing", path: path.join(DIST_DIR, "ease-marketing.html"), expectedReviews: 0 },
-    { name: "Web Development", path: path.join(DIST_DIR, "web-development.html"), expectedReviews: 5 },
-    { name: "Mobile App Development", path: path.join(DIST_DIR, "mobile-app-development.html"), expectedReviews: 5 },
-    { name: "Digital Marketing", path: path.join(DIST_DIR, "digital-marketing.html"), expectedReviews: 5 },
+    { name: "Web Development", path: path.join(DIST_DIR, "web-development.html"), expectedReviews: 0 },
+    { name: "Mobile App Development", path: path.join(DIST_DIR, "mobile-app-development.html"), expectedReviews: 0 },
+    { name: "Digital Marketing", path: path.join(DIST_DIR, "digital-marketing.html"), expectedReviews: 0 },
     { name: "About Page", path: path.join(DIST_DIR, "about.html"), expectedReviews: 0 },
     { name: "Contacts Page", path: path.join(DIST_DIR, "contacts.html"), expectedReviews: 0 },
     { name: "Blog Detail Page", path: path.join(DIST_DIR, "blogs/why-seo-starts-with-a-strong-website.html"), expectedReviews: 0, expectedBlogPosting: 1, expectedBreadcrumb: 1 },
@@ -72,6 +72,7 @@ export function runCliAudit() {
   for (const page of testPages) {
     console.log(`📄 Testing: ${page.name} (${path.relative(DIST_DIR, page.path)})`);
     const schemas = extractSchemasFromHtml(page.path);
+    const html = fs.readFileSync(page.path, "utf-8");
 
     const typeCounts: Record<string, number> = {};
     const reviewAuthors: string[] = [];
@@ -115,6 +116,30 @@ export function runCliAudit() {
 
     if (reviewAuthors.length > 0) {
       console.log(`   Sample Review Authors (first 3):`, reviewAuthors.slice(0, 3));
+    }
+
+    if (!/<meta\s+name=["']author["']\s+content=["']AG Solutions["'][^>]*>/i.test(html) ||
+        !/<meta\s+name=["']publisher["']\s+content=["']AG Solutions["'][^>]*>/i.test(html)) {
+      console.error("   ❌ Missing author or publisher meta tag.");
+      hasErrors = true;
+    }
+
+    if (html.includes("logo.png")) {
+      console.error("   ❌ Found PNG logo in SEO output; expected WebP.");
+      hasErrors = true;
+    }
+
+    const breadcrumbCount = typeCounts["BreadcrumbList"] || 0;
+    const isBlogDetail = page.expectedBreadcrumb === 1;
+    if (breadcrumbCount !== (isBlogDetail ? 1 : 0)) {
+      console.error(`   ❌ Breadcrumb count mismatch: expected ${isBlogDetail ? 1 : 0}, found ${breadcrumbCount}.`);
+      hasErrors = true;
+    }
+
+    const blogPostingCount = typeCounts["BlogPosting"] || 0;
+    if (blogPostingCount !== (page.expectedBlogPosting || 0)) {
+      console.error(`   ❌ BlogPosting count mismatch: expected ${page.expectedBlogPosting || 0}, found ${blogPostingCount}.`);
+      hasErrors = true;
     }
 
     console.log("--------------------------------------------------------\n");

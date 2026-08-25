@@ -72,8 +72,7 @@ export const DynamicTestimonialSection: React.FC<DynamicTestimonialSectionProps>
   const schemaReviews = items.map((item) => ({
     authorName: item.testimonial_client_name,
     reviewBody: item.testimonial_description,
-    ratingValue: 5,
-    bestRating: 5,
+    ratingValue: item.testimonial_rating ?? item.rating ?? item.rating_value,
   }));
 
   return (

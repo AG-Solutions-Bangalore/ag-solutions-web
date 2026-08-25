@@ -4,7 +4,7 @@ import JsonLd from "./JsonLd";
 export interface ReviewItem {
   authorName: string;
   reviewBody: string;
-  ratingValue?: string | number;
+  ratingValue?: string | number | null;
   bestRating?: string | number;
   itemReviewedName?: string;
   itemType?: "SoftwareApplication" | "Organization" | "Product" | "Service";
@@ -26,15 +26,18 @@ export const TestimonialSchema: React.FC<TestimonialSchemaProps> = ({
   reviews,
   authorName,
   reviewBody,
-  ratingValue = "5",
-  bestRating = "5",
+  ratingValue,
+  bestRating,
   itemReviewedName = "AG Solutions",
 }) => {
   // If multiple dynamic reviews are provided
+  const isValidRating = (value: string | number | null | undefined): value is string | number =>
+    value !== undefined && value !== "" && Number(value) > 0;
+
   if (reviews && reviews.length > 0) {
     return (
       <>
-        {reviews.map((r, i) => {
+        {reviews.filter((r) => isValidRating(r.ratingValue)).map((r, i) => {
           const reviewSlug = (r.authorName || `reviewer-${i}`)
             .toLowerCase()
             .replace(/[^a-z0-9]/g, "-");
@@ -50,8 +53,8 @@ export const TestimonialSchema: React.FC<TestimonialSchemaProps> = ({
             reviewBody: r.reviewBody,
             reviewRating: {
               "@type": "Rating",
-              ratingValue: String(r.ratingValue || "5"),
-              bestRating: String(r.bestRating || "5"),
+              ratingValue: String(r.ratingValue),
+              bestRating: String(r.bestRating || r.ratingValue),
             },
             itemReviewed: {
               "@type": "Organization",
@@ -72,7 +75,7 @@ export const TestimonialSchema: React.FC<TestimonialSchemaProps> = ({
   }
 
   // Single review if explicitly provided
-  if (authorName && reviewBody) {
+  if (authorName && reviewBody && isValidRating(ratingValue)) {
     const schema = {
       "@context": "https://schema.org",
       "@type": "Review",
@@ -85,7 +88,7 @@ export const TestimonialSchema: React.FC<TestimonialSchemaProps> = ({
       reviewRating: {
         "@type": "Rating",
         ratingValue: String(ratingValue),
-        bestRating: String(bestRating),
+        bestRating: String(bestRating || ratingValue),
       },
       itemReviewed: {
         "@type": "Organization",
@@ -105,5 +108,3 @@ export const TestimonialSchema: React.FC<TestimonialSchemaProps> = ({
 
 
 export default TestimonialSchema;
-
-

@@ -124,11 +124,12 @@ export async function fetchLiveBlogArticles(): Promise<SitemapEntry[]> {
       return json.data
         .filter((item: any) => Boolean(item && item.blog_slug))
         .map((item: any) => {
-          const rawImg = item.blog_image
-            ? String(item.blog_image).startsWith("http")
-              ? item.blog_image
-              : `https://ag-solutions.in/webapi/public/assets/images/blog_images/${item.blog_image}`
-            : "https://ag-solutions.in/images/08-subscribe.svg";
+          const rawImage = item.blog_banner_image || item.blog_image;
+          const rawImg = rawImage
+            ? String(rawImage).startsWith("http")
+              ? rawImage
+              : `https://ag-solutions.in/webapi/public/assets/images/blog_images/${rawImage}`
+            : undefined;
 
           return {
             url: `${SITE_ORIGIN}/blogs/${String(item.blog_slug).trim()}`,

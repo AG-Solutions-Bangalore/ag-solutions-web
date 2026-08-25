@@ -159,9 +159,9 @@ export function BlogDetailPage() {
         description={blog.blog_meta_description || blog.blog_short_description}
         image={headerImageUrl}
         url={`https://ag-solutions.in/blogs/${blog.blog_slug}`}
-        datePublished={blog.blog_created_date || "2026-08-20"}
-        dateModified={blog.blog_updated_date || blog.blog_created_date || "2026-08-20"}
-        authorName={blog.created_by || "AG Solutions"}
+        datePublished={blog.blog_created_date}
+        dateModified={blog.blog_updated_date || blog.blog_created_date}
+        authorName={blog.created_by}
       />
       {breadcrumbItems.length > 0 && (
         <BreadcrumbSchema items={breadcrumbItems} />

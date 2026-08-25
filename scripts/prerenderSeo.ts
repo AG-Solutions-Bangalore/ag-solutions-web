@@ -27,7 +27,7 @@ const GLOBAL_ORGANIZATION_SCHEMA = {
   url: "https://ag-solutions.in/",
   logo: {
     "@type": "ImageObject",
-    url: "https://ag-solutions.in/images/logo.png",
+    url: "https://ag-solutions.in/images/logo.webp",
   },
   contactPoint: {
     "@type": "ContactPoint",
@@ -276,9 +276,13 @@ async function fetchDynamicTestimonials(route: string): Promise<Record<string, u
     if (!Array.isArray(data) || data.length === 0) return [];
     
     return data
-      .filter((item: any) => item?.testimonial_client_name && item?.testimonial_description)
+      .filter((item: any) => {
+        const rating = item?.testimonial_rating ?? item?.rating ?? item?.rating_value;
+        return item?.testimonial_client_name && item?.testimonial_description && Number(rating) > 0;
+      })
       .map((item: any, i: number) => {
         const authorName = item.testimonial_client_name;
+        const rating = item.testimonial_rating ?? item.rating ?? item.rating_value;
         const slug = String(authorName).toLowerCase().replace(/[^a-z0-9]/g, "-");
         return {
           "@context": "https://schema.org",
@@ -292,8 +296,8 @@ async function fetchDynamicTestimonials(route: string): Promise<Record<string, u
           reviewBody: item.testimonial_description,
           reviewRating: {
             "@type": "Rating",
-            ratingValue: "5",
-            bestRating: "5",
+            ratingValue: String(rating),
+            bestRating: String(item.testimonial_best_rating ?? item.best_rating ?? rating),
           },
           itemReviewed: {
             "@type": "Organization",
@@ -344,6 +348,23 @@ async function fetchDynamicFAQs(route: string): Promise<Record<string, unknown> 
   } catch {
     return null;
   }
+}
+
+async function fetchBlogDetail(slug: string): Promise<any | null> {
+  try {
+    const res = await fetch(`${API_BASE}/getBlogsBySlug/${slug}`, {
+      headers: { Accept: "application/json" },
+      signal: AbortSignal.timeout(6000),
+    });
+    return res.ok ? await res.json() : null;
+  } catch {
+    return null;
+  }
+}
+
+function toIsoDate(value?: string): string | undefined {
+  const date = value ? new Date(value) : null;
+  return date && !Number.isNaN(date.getTime()) ? date.toISOString() : undefined;
 }
 
 function upsertTag(html: string, regex: RegExp, newTag: string): string {
@@ -411,6 +432,8 @@ function buildHtmlForRoute(baseHtml: string, route: string, seo: RouteSEO): stri
   // 1. Title & Meta
   html = upsertTag(html, /<title>.*?<\/title>/i, `<title>${escapeHtml(seo.title)}</title>`);
   html = upsertTag(html, /<meta\s+name=["']description["'][^>]*>/i, `<meta name="description" content="${escapeAttr(seo.description)}" />`);
+  html = upsertTag(html, /<meta\s+name=["']author["'][^>]*>/i, `<meta name="author" content="AG Solutions" />`);
+  html = upsertTag(html, /<meta\s+name=["']publisher["'][^>]*>/i, `<meta name="publisher" content="AG Solutions" />`);
   if (seo.keywords) {
     html = upsertTag(html, /<meta\s+name=["']keywords["'][^>]*>/i, `<meta name="keywords" content="${escapeAttr(seo.keywords)}" />`);
   }
@@ -496,71 +519,78 @@ export async function prerenderAllRoutes() {
       const slug = blog.url.split("/blogs/")[1] || "";
       if (!slug) continue;
       const blogRoute = `/blogs/${slug}`;
-      const blogTitle = blog.name || slug
+      const detail = await fetchBlogDetail(slug);
+      const detailBlog = detail?.data;
+      const blogTitle = detailBlog?.blog_title || blog.name || slug
         .split("-")
         .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
         .join(" ");
+      const description = detailBlog?.blog_meta_description || detailBlog?.blog_short_description || blog.description || blogTitle;
+      const imageBaseUrl = detail?.image_url?.find((item: any) => item?.image_for === "Blog")?.image_url;
+      const image = detailBlog?.blog_banner_image && imageBaseUrl
+        ? `${imageBaseUrl}${detailBlog.blog_banner_image}`
+        : blog.image;
+      const datePublished = toIsoDate(detailBlog?.blog_created_date || blog.lastmod);
+      const dateModified = toIsoDate(detailBlog?.blog_updated_date || detailBlog?.blog_created_date || blog.lastmod);
+      const authorName = detailBlog?.created_by || blog.author || "AG Solutions";
+      const faqMainEntity = Array.isArray(detail?.faq)
+        ? detail.faq
+            .filter((faq: any) => faq?.faq_que && faq?.faq_ans)
+            .map((faq: any) => ({
+              "@type": "Question",
+              name: faq.faq_que,
+              acceptedAnswer: { "@type": "Answer", text: faq.faq_ans },
+            }))
+        : [];
+
+      const schemas: Record<string, unknown>[] = [
+        GLOBAL_ORGANIZATION_SCHEMA,
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_ORIGIN}/` },
+            { "@type": "ListItem", position: 2, name: "Blogs", item: `${SITE_ORIGIN}/blogs` },
+            { "@type": "ListItem", position: 3, name: blogTitle, item: `${SITE_ORIGIN}${blogRoute}` },
+          ],
+        },
+      ];
+
+      if (datePublished && dateModified) {
+        schemas.push({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          headline: blogTitle,
+          description,
+          ...(image ? { image: [image] } : {}),
+          url: `${SITE_ORIGIN}${blogRoute}`,
+          datePublished,
+          dateModified,
+          author: {
+            "@type": authorName.toLowerCase().includes("ag solutions") || authorName.toLowerCase().includes("superadmin") ? "Organization" : "Person",
+            name: authorName.toLowerCase().includes("ag solutions") || authorName.toLowerCase().includes("superadmin") ? "AG Solutions" : authorName,
+            url: `${SITE_ORIGIN}/`,
+          },
+          publisher: {
+            "@type": "Organization",
+            "@id": `${SITE_ORIGIN}/#organization`,
+            name: "AG Solutions",
+            url: `${SITE_ORIGIN}/`,
+            logo: { "@type": "ImageObject", url: `${SITE_ORIGIN}/images/logo.webp` },
+          },
+          mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_ORIGIN}${blogRoute}` },
+        });
+      }
+
+      if (faqMainEntity.length > 0) {
+        schemas.push({ "@context": "https://schema.org", "@type": "FAQPage", _scriptId: "schema-faqpage", mainEntity: faqMainEntity });
+      }
 
       const blogSeo: RouteSEO = {
         title: `${blogTitle} | AG Solutions Blog`,
-        description: blog.description || `Read "${blogTitle}" and get the latest insights on software, technology, and business growth from AG Solutions.`,
+        description,
         canonical: `${SITE_ORIGIN}${blogRoute}`,
-        schemas: [
-          GLOBAL_ORGANIZATION_SCHEMA,
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: "https://ag-solutions.in/",
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Blogs",
-                item: "https://ag-solutions.in/blogs",
-              },
-              {
-                "@type": "ListItem",
-                position: 3,
-                name: blogTitle,
-                item: `https://ag-solutions.in/blogs/${slug}`,
-              },
-            ],
-          },
-          {
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            headline: blogTitle,
-            description: blog.description || `Read "${blogTitle}" and get the latest insights from AG Solutions.`,
-            image: [blog.image || "https://ag-solutions.in/images/08-subscribe.svg"],
-            url: `${SITE_ORIGIN}${blogRoute}`,
-            datePublished: blog.lastmod ? new Date(blog.lastmod).toISOString() : new Date().toISOString(),
-            dateModified: blog.lastmod ? new Date(blog.lastmod).toISOString() : new Date().toISOString(),
-            author: {
-              "@type": (blog.author && !blog.author.toLowerCase().includes("ag solutions") && !blog.author.toLowerCase().includes("superadmin")) ? "Person" : "Organization",
-              name: blog.author || "AG Solutions",
-              url: "https://ag-solutions.in/",
-            },
-            publisher: {
-              "@type": "Organization",
-              "@id": "https://ag-solutions.in/#organization",
-              name: "AG Solutions",
-              url: "https://ag-solutions.in/",
-              logo: {
-                "@type": "ImageObject",
-                url: "https://ag-solutions.in/images/logo.png",
-              },
-            },
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id": `${SITE_ORIGIN}${blogRoute}`,
-            },
-          },
-        ],
+        schemas,
       };
 
       const blogHtml = buildHtmlForRoute(baseHtml, blogRoute, blogSeo);

@@ -91,6 +91,8 @@ export const SEO: React.FC<SEOProps> = React.memo(
         <meta name="description" content={description} />
         <meta name="keywords" content={parsedKeywords} />
         <meta name="robots" content={robots} />
+        <meta name="author" content="AG Solutions" />
+        <meta name="publisher" content="AG Solutions" />
         <link rel="canonical" href={resolvedCanonical} />
 
         {/* Open Graph / Facebook */}

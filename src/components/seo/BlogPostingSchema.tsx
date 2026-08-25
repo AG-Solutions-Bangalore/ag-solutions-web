@@ -13,8 +13,8 @@ export interface BlogPostingProps {
   url?: string;
 }
 
-const formatIsoDate = (dateStr?: string | null): string => {
-  if (!dateStr) return new Date().toISOString();
+const formatIsoDate = (dateStr?: string | null): string | undefined => {
+  if (!dateStr) return undefined;
   // If date is already ISO with time/timezone
   if (dateStr.includes("T")) return dateStr;
   
@@ -23,23 +23,28 @@ const formatIsoDate = (dateStr?: string | null): string => {
   if (!isNaN(parsed.getTime())) {
     return parsed.toISOString();
   }
-  return new Date().toISOString();
+  return undefined;
 };
 
 export const BlogPostingSchema: React.FC<BlogPostingProps> = ({
-  headline = "10 Tips to Improve Your Website Performance",
-  description = "Learn practical ways to improve website speed and performance.",
-  image = "https://ag-solutions.in/images/08-subscribe.svg",
-  authorName = "AG Solutions",
+  headline,
+  description,
+  image,
+  authorName,
   publisherName = "AG Solutions",
-  publisherLogo = "https://ag-solutions.in/webapi/public/assets/images/web_images_new/logo.png",
+  publisherLogo = "https://ag-solutions.in/images/logo.webp",
   datePublished,
   dateModified,
-  url = "https://ag-solutions.in/blogs",
+  url,
 }) => {
-  const isOrgAuthor = authorName.toLowerCase().includes("ag solutions") || authorName.toLowerCase().includes("superadmin");
+  const published = formatIsoDate(datePublished);
+  if (!headline || !published || !url) return null;
+  const modified = formatIsoDate(dateModified || datePublished) || published;
+
+  const resolvedAuthorName = authorName || publisherName;
+  const isOrgAuthor = resolvedAuthorName.toLowerCase().includes("ag solutions") || resolvedAuthorName.toLowerCase().includes("superadmin");
   const authorType = isOrgAuthor ? "Organization" : "Person";
-  const authorFinalName = isOrgAuthor ? "AG Solutions" : authorName;
+  const authorFinalName = isOrgAuthor ? publisherName : resolvedAuthorName;
 
   const schema = {
     "@context": "https://schema.org",
@@ -62,8 +67,8 @@ export const BlogPostingSchema: React.FC<BlogPostingProps> = ({
         url: publisherLogo,
       },
     },
-    datePublished: formatIsoDate(datePublished),
-    dateModified: formatIsoDate(dateModified || datePublished),
+    datePublished: published,
+    dateModified: modified,
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": url,
