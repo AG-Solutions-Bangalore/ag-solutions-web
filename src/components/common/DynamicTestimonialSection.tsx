@@ -177,9 +177,9 @@ export const DynamicTestimonialSection: React.FC<DynamicTestimonialSectionProps>
                           <UserCheck className="h-5 w-5 text-teal" />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h4 className="text-xs sm:text-sm font-bold text-foreground truncate">
+                          <h3 className="text-xs sm:text-sm font-bold text-foreground truncate">
                             {item.testimonial_client_name}
-                          </h4>
+                          </h3>
                           {item.testimonial_for && (
                             <span className="inline-block text-[11px] font-semibold text-muted uppercase tracking-wider truncate">
                               {item.testimonial_for.replace(/-/g, " ")}
@@ -196,17 +196,21 @@ export const DynamicTestimonialSection: React.FC<DynamicTestimonialSectionProps>
 
           {/* Dots Indicator for Mobile */}
           {totalPages > 1 && (
-            <div className="mt-8 flex justify-center items-center gap-2 md:hidden">
+            <div className="mt-8 flex justify-center items-center gap-1 md:hidden">
               {Array.from({ length: totalPages }).map((_, i) => (
                 <button
                   key={i}
                   type="button"
                   onClick={() => setCurrentPage(i)}
-                  className={`h-2 rounded-full transition-all cursor-pointer ${
-                    currentPage === i ? "w-6 bg-teal" : "w-2 bg-muted/30"
-                  }`}
+                  className="p-2 flex items-center justify-center cursor-pointer border-none bg-transparent"
                   aria-label={`Go to slide ${i + 1}`}
-                />
+                >
+                  <span
+                    className={`h-2 rounded-full transition-all ${
+                      currentPage === i ? "w-6 bg-teal" : "w-2 bg-muted/30"
+                    }`}
+                  />
+                </button>
               ))}
             </div>
           )}

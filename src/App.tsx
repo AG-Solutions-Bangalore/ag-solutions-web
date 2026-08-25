@@ -70,31 +70,42 @@ function App() {
       return;
     }
 
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // easeOutExpo
-      smoothWheel: true,
-    });
-    (window as any).lenis = lenis;
-
+    let lenis: Lenis | undefined;
     let rafId = 0;
-    function raf(time: DOMHighResTimeStamp) {
-      lenis.raf(time);
+    let resizeObserver: ResizeObserver | undefined;
+    let cancelStart = () => {};
+
+    const startLenis = () => {
+      lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+      });
+      (window as any).lenis = lenis;
+
+      const raf = (time: DOMHighResTimeStamp) => {
+        lenis?.raf(time);
+        rafId = requestAnimationFrame(raf);
+      };
       rafId = requestAnimationFrame(raf);
+
+      resizeObserver = new ResizeObserver(() => lenis?.resize());
+      resizeObserver.observe(document.body);
+    };
+
+    if ("requestIdleCallback" in window) {
+      const idleId = window.requestIdleCallback(startLenis, { timeout: 3000 });
+      cancelStart = () => window.cancelIdleCallback(idleId);
+    } else {
+      const timeoutId = setTimeout(startLenis, 1500);
+      cancelStart = () => clearTimeout(timeoutId);
     }
 
-    rafId = requestAnimationFrame(raf);
-
-    // Keep Lenis updated on page height as lazy components/images load
-    const resizeObserver = new ResizeObserver(() => {
-      lenis.resize();
-    });
-    resizeObserver.observe(document.body);
-
     return () => {
-      resizeObserver.disconnect();
+      cancelStart();
+      resizeObserver?.disconnect();
       cancelAnimationFrame(rafId);
-      lenis.destroy();
+      lenis?.destroy();
       (window as any).lenis = undefined;
     };
   }, []);

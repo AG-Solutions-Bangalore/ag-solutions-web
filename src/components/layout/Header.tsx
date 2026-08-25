@@ -61,8 +61,7 @@ export function Header({ activeNav }: HeaderV2Props) {
         location.pathname === "/bizstock" ||
         location.pathname === "/biz-stock" ||
         location.pathname === "/ease-marketing" ||
-        location.pathname === "/EASE-Marketing" ||
-        location.pathname === "/grow-together";
+        location.pathname === "/EASE-Marketing";
 
     const isServicesPath =
         location.pathname === "/services" ||
@@ -210,7 +209,6 @@ export function Header({ activeNav }: HeaderV2Props) {
                                 preloadRoute("/export-biz");
                                 preloadRoute("/bizstock");
                                 preloadRoute("/ease-marketing");
-                                preloadRoute("/grow-together");
                             }}
                             onMouseLeave={() => setActiveDropdown(null)}
                         >
@@ -256,15 +254,6 @@ export function Header({ activeNav }: HeaderV2Props) {
                                             className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-pink-light hover:text-pink rounded-xl transition-colors no-underline"
                                         >
                                             Ease Marketing
-                                        </Link>
-                                        <Link
-                                            to="/grow-together"
-                                            title="Grow Together – AG Solutions"
-                                            onMouseEnter={() => preloadRoute("/grow-together")}
-                                            onClick={() => setActiveDropdown(null)}
-                                            className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-yellow-light hover:text-yellow rounded-xl transition-colors no-underline"
-                                        >
-                                            Grow Together
                                         </Link>
                                     </div>
                                 </div>
@@ -430,7 +419,8 @@ export function Header({ activeNav }: HeaderV2Props) {
                                     setMobileProductsOpen((prev) => !prev);
                                     setMobileServicesOpen(false);
                                     preloadRoute("/export-biz");
-                                    preloadRoute("/grow-together");
+                                    preloadRoute("/bizstock");
+                                    preloadRoute("/ease-marketing");
                                 }}
                                 className={`w-full flex items-center justify-between px-4 py-3 text-base font-semibold transition-colors bg-transparent border-none cursor-pointer ${isProductsPath ? "text-pink bg-pink-light/40" : "text-foreground hover:bg-muted/10"
                                     }`}
@@ -466,14 +456,6 @@ export function Header({ activeNav }: HeaderV2Props) {
                                         className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-pink hover:bg-card rounded-lg no-underline transition-colors"
                                     >
                                         Ease Marketing
-                                    </Link>
-                                    <Link
-                                        to="/grow-together"
-                                        title="Grow Together – AG Solutions"
-                                        onClick={() => setMobileMenuOpen(false)}
-                                        className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-yellow hover:bg-card rounded-lg no-underline transition-colors"
-                                    >
-                                        Grow Together
                                     </Link>
                                 </div>
                             )}

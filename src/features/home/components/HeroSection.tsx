@@ -75,6 +75,7 @@ function HeroSection() {
                                 width={612}
                                 height={408}
                                 fetchPriority="high"
+                                decoding="async"
                                 className="relative z-10 w-full object-contain drop-shadow-xl transition-transform duration-500 hover:scale-[1.02]"
                             />
                         </div>
