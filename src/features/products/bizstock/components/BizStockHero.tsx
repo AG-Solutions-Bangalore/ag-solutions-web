@@ -92,6 +92,7 @@ export const BizStockHero: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 title="BizStock – Business Management Software"
+                aria-label="BizStock – Business Management Software"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-pink hover:bg-pink-hover text-white font-bold text-sm sm:text-base px-8 py-3.5 shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95 cursor-pointer border-none no-underline"
               >
                 <span>Start Free Trial</span>
