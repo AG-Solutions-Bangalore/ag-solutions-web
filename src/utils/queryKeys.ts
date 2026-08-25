@@ -17,4 +17,8 @@ export const queryKeys = {
   sitemap: {
     all: ["sitemap"] as const,
   },
+  testimonials: {
+    all: ["testimonials"] as const,
+    detail: (route: string) => [...queryKeys.testimonials.all, route] as const,
+  },
 };

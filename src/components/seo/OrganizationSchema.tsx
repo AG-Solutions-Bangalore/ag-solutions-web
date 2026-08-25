@@ -4,17 +4,17 @@ import JsonLd from "./JsonLd";
 export const OrganizationSchema: React.FC = () => {
   const schema = {
     "@context": "https://schema.org",
-    "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
+    "@type": "Organization",
     "@id": "https://ag-solutions.in/#organization",
     name: "AG Solutions",
+    legalName: "AG Solutions",
     url: "https://ag-solutions.in/",
-    logo: "https://ag-solutions.in/webapi/public/assets/images/web_images_new/logo.png",
-    image: "https://ag-solutions.in/webapi/public/assets/images/web_images_new/logo.png",
+    logo: "https://ag-solutions.in/images/logo.webp",
+    image: "https://ag-solutions.in/images/logo.webp",
     description:
       "AG Solutions builds web applications, mobile apps, desktop software, digital marketing systems, and export documentation products.",
     telephone: "+91-8867171060",
     email: "info@ag-solutions.in",
-    priceRange: "$$",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Jayanagara 9th Block",
@@ -28,9 +28,21 @@ export const OrganizationSchema: React.FC = () => {
       "https://www.facebook.com/profile.php?id=61591878191618",
       "https://www.instagram.com/ag_solutions_official/",
     ],
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: "+91-8867171060",
+        contactType: "customer service",
+        email: "info@ag-solutions.in",
+        areaServed: "IN",
+        availableLanguage: ["English", "Hindi", "Kannada"],
+      },
+    ],
   };
 
   return <JsonLd id="schema-organization" schema={schema} />;
 };
 
+
 export default OrganizationSchema;
+

@@ -1,41 +1,32 @@
-import { Suspense } from "react";
-import { Outlet, useLocation } from "react-router-dom";
-import Footer from "./Footer";
-import Navbar from "./Navbar";
-import PageContainer from "./PageContainer";
+import type { ReactNode } from "react";
+import { Outlet } from "react-router-dom";
+import HeaderV2 from "./Header";
+import FooterV2 from "./Footer";
+import { LeadModalProvider } from "@/context/LeadModalContext";
+import LeadCaptureModal from "@/components/modal/LeadCaptureModal";
+import WhatsAppButton from "@/components/common/WhatsAppButton";
 import { OrganizationSchema, WebSiteSchema } from "@/components/seo";
 
-function AppLayout() {
-  const location = useLocation();
-  const normalizedPath =
-    location.pathname.length > 1 && location.pathname.endsWith("/")
-      ? location.pathname.slice(0, -1)
-      : location.pathname;
-
-  const usesLimeFooter = [
-    "/about",
-    "/contacts",
-    "/portfolio",
-    "/web-development",
-    "/mobile-app-development",
-    "/desktop-applications",
-  ].includes(normalizedPath);
-
-  return (
-    <div className="min-h-screen bg-white">
-      <OrganizationSchema />
-      <WebSiteSchema />
-      <Navbar />
-      <PageContainer>
-        <Suspense fallback={null}>
-          <Outlet />
-        </Suspense>
-      </PageContainer>
-      <Footer
-        bg={usesLimeFooter ? "pattern-bg-lime.jpg" : "pattern-bg-breez.jpg"}
-      />
-    </div>
-  );
+interface LayoutV2Props {
+    children?: ReactNode;
+    activeNav?: "home" | "about" | "services" | "products" | "contact";
 }
 
-export default AppLayout;
+export function LayoutV2({ children, activeNav }: LayoutV2Props) {
+    return (
+        <LeadModalProvider>
+            <OrganizationSchema />
+            <WebSiteSchema />
+            <div className="min-h-screen bg-background font-sans text-foreground antialiased transition-colors duration-200">
+                <HeaderV2 activeNav={activeNav} />
+                <main>{children || <Outlet />}</main>
+                <FooterV2 />
+                <LeadCaptureModal />
+                <WhatsAppButton />
+            </div>
+        </LeadModalProvider>
+    );
+}
+
+export default LayoutV2;
+

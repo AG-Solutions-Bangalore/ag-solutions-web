@@ -3,31 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/icons/favicon-32x32.png" />
+    <script>
+      // Automatic stale build recovery for React SPA deployments
+      window.addEventListener('error', function (e) {
+        var target = e.target || e.srcElement;
+        if (target && target.tagName === 'SCRIPT' && /assets\/.*\.js/.test(target.src || '')) {
+          var lastReload = sessionStorage.getItem('ag_chunk_reload');
+          var now = Date.now();
+          if (!lastReload || now - parseInt(lastReload, 10) > 10000) {
+            sessionStorage.setItem('ag_chunk_reload', String(now));
+            window.location.reload();
+          }
+        }
+      }, true);
+      window.addEventListener('vite:preloadError', function () {
+        var lastReload = sessionStorage.getItem('ag_chunk_reload');
+        var now = Date.now();
+        if (!lastReload || now - parseInt(lastReload, 10) > 10000) {
+          sessionStorage.setItem('ag_chunk_reload', String(now));
+          window.location.reload();
+        }
+      });
+    </script>
+
     <!-- Preconnect to external assets -->
-    <link rel="preconnect" href="http://ag-solutions.in" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
-    <!-- Preload above-the-fold critical assets -->
-    <link rel="preload" href="/images/home/01Crausle.svg" as="image" type="image/svg+xml" fetchpriority="high" />
-    <link rel="preload" href="/images/logo.png" as="image" type="image/png" />
+    <!-- Preload above-the-fold critical LCP assets -->
+    <link rel="preload" href="/images/laptop.webp" as="image" type="image/webp" fetchpriority="high" />
+    <link rel="preload" href="/images/home/01Crausle.svg" as="image" type="image/svg+xml" />
+    <link rel="preload" href="/images/logo.webp" as="image" type="image/webp" />
     
     <!-- Google Fonts loading (Non-render-blocking) -->
     <link
       rel="preload"
       as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&family=Roboto:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&family=Roboto:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       media="print"
       onload="this.media='all'"
     />
     <noscript>
       <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&family=Roboto:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       />
     </noscript>
 
@@ -38,37 +61,45 @@
     />
     <title>AG Solutions | Web Development, Mobile App Development & Software Solutions Company</title>
 
-    <!-- Google Tag Manager -->
+    <!-- Deferred Non-Blocking Google Tag Manager & Google Analytics -->
     <script>
-      (function(w,d,s,l,i){
-        w[l]=w[l]||[];
-        w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+      function initAnalytics() {
+        if (window.__analytics_initialized) return;
+        window.__analytics_initialized = true;
 
-        var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),
-            dl=l!='dataLayer'?'&l='+l:'';
+        // 1. Google Tag Manager
+        (function(w,d,s,l,i){
+          w[l]=w[l]||[];
+          w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+          var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),
+              dl=l!='dataLayer'?'&l='+l:'';
+          j.async=true;
+          j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+          f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GT-W6VNKGP');
 
-        j.async=true;
-        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+        // 2. Google Analytics (gtag.js)
+        var gtagScript = document.createElement('script');
+        gtagScript.async = true;
+        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-JFGJ3JE7HK';
+        document.head.appendChild(gtagScript);
 
-        f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GT-W6VNKGP');
-    </script>
-    <!-- End Google Tag Manager -->
-
-    <!-- Google Analytics (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JFGJ3JE7HK"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { window.dataLayer.push(arguments); }
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', 'G-JFGJ3JE7HK');
+        gtag('config', 'GT-W6VNKGP');
       }
-      gtag('js', new Date());
 
-      gtag('config', 'G-JFGJ3JE7HK');
-      gtag('config', 'GT-W6VNKGP');
+      // Schedule analytics execution after first paint / idle time
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function() { setTimeout(initAnalytics, 1200); }, { timeout: 3000 });
+      } else {
+        window.addEventListener('load', function() { setTimeout(initAnalytics, 1200); });
+      }
     </script>
-    <!-- End Google Analytics -->
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->

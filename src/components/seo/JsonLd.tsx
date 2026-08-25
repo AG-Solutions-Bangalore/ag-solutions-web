@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
 
 interface JsonLdProps {
   id?: string;
@@ -13,36 +12,35 @@ export const JsonLd: React.FC<JsonLdProps> = React.memo(({ id, schema }) => {
   };
 
   const jsonString = JSON.stringify(schemaWithContext);
-  const type = (schema["@type"] as string) || "schema";
-  const scriptId = id || `schema-${type.toLowerCase()}`;
 
-  // Dynamic Client-side DOM Injection guarantee on every page transition
+  const rawType = schema["@type"];
+  const typeStr = Array.isArray(rawType)
+    ? rawType.join("-").toLowerCase()
+    : typeof rawType === "string"
+      ? rawType.toLowerCase()
+      : "custom";
+  const scriptId = id || `schema-${typeStr}`;
+
   useEffect(() => {
     if (typeof document === "undefined") return;
 
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.setAttribute("data-schema-type", type);
-    script.id = scriptId;
-    script.text = jsonString;
-    document.head.appendChild(script);
+    let el = document.getElementById(scriptId) as HTMLScriptElement | null;
+    if (el) {
+      el.textContent = jsonString;
+    } else {
+      el = document.createElement("script");
+      el.id = scriptId;
+      el.type = "application/ld+json";
+      el.setAttribute("data-rh", "true");
+      el.textContent = jsonString;
+      document.head.appendChild(el);
+    }
+  }, [scriptId, jsonString]);
 
-    return () => {
-      if (document.head.contains(script)) {
-        document.head.removeChild(script);
-      }
-    };
-  }, [scriptId, type, jsonString]);
-
-  return (
-    <Helmet>
-      <script type="application/ld+json">
-        {jsonString}
-      </script>
-    </Helmet>
-  );
+  return null;
 });
 
 JsonLd.displayName = "JsonLd";
 
 export default JsonLd;
+

@@ -23,7 +23,7 @@ createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <HelmetProvider>
-          <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          <ThemeProvider attribute="class" defaultTheme="light">
             <App />
           </ThemeProvider>
         </HelmetProvider>

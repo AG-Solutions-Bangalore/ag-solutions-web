@@ -4,98 +4,115 @@ import JsonLd from "./JsonLd";
 export interface ReviewItem {
   authorName: string;
   reviewBody: string;
-  ratingValue?: string | number;
+  ratingValue?: string | number | null;
   bestRating?: string | number;
   itemReviewedName?: string;
-  itemType?: "SoftwareApplication" | "Organization" | "Product";
+  itemType?: "SoftwareApplication" | "Organization" | "Product" | "Service";
 }
 
 export interface TestimonialSchemaProps {
+  id?: string;
   reviews?: ReviewItem[];
   authorName?: string;
   reviewBody?: string;
   ratingValue?: string | number;
   bestRating?: string | number;
   itemReviewedName?: string;
-  itemType?: "SoftwareApplication" | "Organization" | "Product";
+  itemType?: "SoftwareApplication" | "Organization" | "Product" | "Service";
 }
 
 export const TestimonialSchema: React.FC<TestimonialSchemaProps> = ({
+  id,
   reviews,
-  authorName = "Ravi Sharma",
-  reviewBody = "AG Solutions delivered an outstanding digital solution on time. Highly recommended for any business.",
-  ratingValue = "5",
-  bestRating = "5",
+  authorName,
+  reviewBody,
+  ratingValue,
+  bestRating,
   itemReviewedName = "AG Solutions",
-  itemType = "Organization",
 }) => {
-  // If multiple dynamic reviews are provided
+  const getRatingValue = (val: string | number | null | undefined): string => {
+    if (val !== undefined && val !== null && val !== "" && Number(val) > 0) {
+      return String(val);
+    }
+    return "5";
+  };
+
   if (reviews && reviews.length > 0) {
     return (
       <>
-        {reviews.map((r, i) => {
-          const currentItemType = r.itemType || itemType;
+        {reviews
+          .filter((r) => r.authorName && r.reviewBody)
+          .map((r, i) => {
+            const reviewSlug = (r.authorName || `reviewer-${i}`)
+              .toLowerCase()
+              .replace(/[^a-z0-9]/g, "-");
 
-          const schema = {
-            "@type": "Review",
-            name: `${r.authorName} Review`,
-            author: {
-              "@type": "Person",
-              name: r.authorName,
-            },
-            reviewBody: r.reviewBody,
-            reviewRating: {
-              "@type": "Rating",
-              ratingValue: String(r.ratingValue || "5"),
-              bestRating: String(r.bestRating || "5"),
-            },
-            itemReviewed: {
-              "@type": currentItemType,
-              "@id": "https://ag-solutions.in/#organization",
-              name: r.authorName,
-              legalName: r.itemReviewedName || itemReviewedName,
-              url: "https://ag-solutions.in/",
-              image: "https://ag-solutions.in/webapi/public/assets/images/web_images_new/logo.png",
-            },
-          };
+            const finalRating = getRatingValue(r.ratingValue);
 
-          return (
-            <JsonLd
-              key={`${r.authorName}-${i}`}
-              id={`schema-review-${r.authorName.toLowerCase().replace(/\s+/g, "-")}`}
-              schema={schema}
-            />
-          );
-        })}
+            const schema = {
+              "@context": "https://schema.org",
+              "@type": "Review",
+              name: r.authorName,
+              author: {
+                "@type": "Person",
+                name: r.authorName,
+              },
+              reviewBody: r.reviewBody,
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: finalRating,
+                bestRating: String(r.bestRating || "5"),
+              },
+              itemReviewed: {
+                "@type": "Organization",
+                name: r.itemReviewedName || "AG Solutions",
+              },
+            };
+
+            return (
+              <JsonLd
+                key={`${reviewSlug}-${i}`}
+                id={`schema-review-${reviewSlug}-${i}`}
+                schema={schema}
+              />
+            );
+          })}
       </>
     );
   }
 
-  // Single review fallback
-  const schema = {
-    "@type": "Review",
-    name: `${authorName} Review`,
-    author: {
-      "@type": "Person",
+  // Single review if explicitly provided
+  if (authorName && reviewBody) {
+    const finalRating = getRatingValue(ratingValue);
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "Review",
       name: authorName,
-    },
-    reviewBody: reviewBody,
-    reviewRating: {
-      "@type": "Rating",
-      ratingValue: String(ratingValue),
-      bestRating: String(bestRating),
-    },
-    itemReviewed: {
-      "@type": itemType,
-      "@id": "https://ag-solutions.in/#organization",
-      name: authorName,
-      legalName: itemReviewedName,
-      url: "https://ag-solutions.in/",
-      image: "https://ag-solutions.in/webapi/public/assets/images/web_images_new/logo.png",
-    },
-  };
+      author: {
+        "@type": "Person",
+        name: authorName,
+      },
+      reviewBody: reviewBody,
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: finalRating,
+        bestRating: String(bestRating || "5"),
+      },
+      itemReviewed: {
+        "@type": "Organization",
+        name: itemReviewedName || "AG Solutions",
+      },
+    };
 
-  return <JsonLd id="schema-review-single" schema={schema} />;
+    return <JsonLd id={id || "schema-review-single"} schema={schema} />;
+  }
+
+  // Return null if no data
+  return null;
 };
+
+
+
+
 
 export default TestimonialSchema;

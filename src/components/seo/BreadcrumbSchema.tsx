@@ -11,6 +11,10 @@ interface BreadcrumbSchemaProps {
 }
 
 export const BreadcrumbSchema: React.FC<BreadcrumbSchemaProps> = ({ items }) => {
+  if (!items || items.length === 0) {
+    return null;
+  }
+
   const schema = {
     "@type": "BreadcrumbList",
     itemListElement: items.map((item, index) => ({
@@ -21,7 +25,7 @@ export const BreadcrumbSchema: React.FC<BreadcrumbSchemaProps> = ({ items }) => 
     })),
   };
 
-  return <JsonLd schema={schema} />;
+  return <JsonLd id="schema-breadcrumblist" schema={schema} />;
 };
 
 export default BreadcrumbSchema;
