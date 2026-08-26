@@ -8,6 +8,35 @@ const normalizePath = (path: string) => {
 };
 
 /* ==========================================================================
+   DATA PREFETCH HELPERS
+   ========================================================================== */
+// Routes whose first paint is gated on a remote API call benefit from
+// prefetching on nav hover/focus. Add new entries here.
+const dataPrefetchers: Record<string, () => void> = {
+  "/portfolio": () => {
+    void import("@/features/portfolio/api/portfolioApi").then(({ getProjects }) => {
+      void import("@/utils/queryClient").then(({ queryClient }) => {
+        void import("@/utils/queryKeys").then(({ queryKeys }) => {
+          queryClient.prefetchQuery({
+            queryKey: queryKeys.projects.list("all"),
+            queryFn: () => getProjects("all"),
+            staleTime: 15 * 60 * 1000,
+          });
+        });
+      });
+    });
+  },
+};
+
+export const prefetchRouteData = (path: string) => {
+  const key = normalizePath(path);
+  const prefetcher = dataPrefetchers[key];
+  if (prefetcher) {
+    prefetcher();
+  }
+};
+
+/* ==========================================================================
    PAGE LOADERS (Direct & Unversioned)
    ========================================================================== */
 export const pageLoaders = {

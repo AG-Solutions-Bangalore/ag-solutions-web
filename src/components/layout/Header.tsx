@@ -5,10 +5,10 @@ import { useLeadModal } from "@/context/LeadModalContext";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { AGSLogo } from "@/components/brand/AGSLogo";
 import { FlipButton } from "@/components/ui/FlipButton";
-import { preloadRoute } from "@/routes/lazyRoutes";
+import { preloadRoute, prefetchRouteData } from "@/routes/lazyRoutes";
 
 interface HeaderV2Props {
-    activeNav?: "home" | "about" | "services" | "products" | "blog" | "contact";
+    activeNav?: "home" | "about" | "services" | "products" | "portfolio" | "blog" | "contact";
 }
 
 export function Header({ activeNav }: HeaderV2Props) {
@@ -80,6 +80,10 @@ export function Header({ activeNav }: HeaderV2Props) {
         location.pathname === "/blog" ||
         location.pathname.startsWith("/blog/");
 
+    const isPortfolioPath =
+        location.pathname === "/portfolio" ||
+        location.pathname.startsWith("/portfolio/");
+
     const currentTab =
         activeNav ||
         (location.pathname === "/about"
@@ -88,11 +92,13 @@ export function Header({ activeNav }: HeaderV2Props) {
                 ? "services"
                 : isProductsPath
                     ? "products"
-                    : isBlogPath
-                        ? "blog"
-                        : location.pathname === "/contacts"
-                            ? "contact"
-                            : "home");
+                    : isPortfolioPath
+                        ? "portfolio"
+                        : isBlogPath
+                            ? "blog"
+                            : location.pathname === "/contacts"
+                                ? "contact"
+                                : "home");
 
     return (
         <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-2xs transition-colors duration-200">
@@ -273,6 +279,29 @@ export function Header({ activeNav }: HeaderV2Props) {
                         >
                             Blog
                             {currentTab === "blog" && (
+                                <span className="absolute -bottom-1.5 left-0 right-0 h-0.5 rounded-full bg-pink" />
+                            )}
+                        </Link>
+
+                        {/* Portfolio Navigation Link */}
+                        <Link
+                            to="/portfolio"
+                            title="AG Solutions Portfolio – Our Projects & Case Studies"
+                            onMouseEnter={() => {
+                                preloadRoute("/portfolio");
+                                prefetchRouteData("/portfolio");
+                            }}
+                            onFocus={() => {
+                                preloadRoute("/portfolio");
+                                prefetchRouteData("/portfolio");
+                            }}
+                            className={`relative text-sm font-semibold transition-colors no-underline py-1 ${currentTab === "portfolio"
+                                ? "text-pink"
+                                : "text-foreground hover:text-pink"
+                                }`}
+                        >
+                            Portfolio
+                            {currentTab === "portfolio" && (
                                 <span className="absolute -bottom-1.5 left-0 right-0 h-0.5 rounded-full bg-pink" />
                             )}
                         </Link>
@@ -471,6 +500,18 @@ export function Header({ activeNav }: HeaderV2Props) {
                                 }`}
                         >
                             Blog
+                        </Link>
+
+                        <Link
+                            to="/portfolio"
+                            title="AG Solutions Portfolio – Our Projects & Case Studies"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className={`block px-4 py-3 text-base font-semibold rounded-xl no-underline transition-colors ${currentTab === "portfolio"
+                                ? "text-pink bg-pink-light"
+                                : "text-foreground hover:text-pink hover:bg-muted/10"
+                                }`}
+                        >
+                            Portfolio
                         </Link>
 
                         <Link

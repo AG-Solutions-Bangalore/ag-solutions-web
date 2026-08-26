@@ -10,6 +10,7 @@ const quickLinks = [
     { to: "/about", label: "About Us", title: "About AG Solutions" },
     { to: "/web-development", label: "Services", title: "Web Development Services – AG Solutions" },
     { to: "/blogs", label: "Blog", title: "AG Solutions Blogs – Technology & Digital Marketing" },
+    { to: "/portfolio", label: "Portfolio", title: "AG Solutions Portfolio – Our Projects & Case Studies" },
     { to: "/contacts", label: "Contact Us", title: "Contact AG Solutions" },
 ];
 

@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import PortfolioSEO from "../seo/PortfolioSEO";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
@@ -249,28 +249,125 @@ interface SectionCarouselProps {
 function SectionCarousel({ items, renderCard }: SectionCarouselProps) {
   const [scrollEl, setScrollEl] = useState<HTMLDivElement | null>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  // Tracks whether the user is actively scrolling (vertical or horizontal).
+  // We pause auto-scroll during/after user scroll to avoid fighting Lenis.
+  const userScrollingRef = useRef(false);
+  const userScrollTimerRef = useRef<number | null>(null);
 
-  // Duplicate items for continuous infinite scrolling
+  // Duplicate items once for continuous infinite scrolling (12 cards max per section)
   const displayItems = useMemo(() => {
     if (items.length <= 1) return items;
-    return [...items, ...items, ...items];
+    return [...items, ...items];
   }, [items]);
 
+  // Pause auto-scroll when section leaves the viewport
   useEffect(() => {
-    if (!scrollEl || isHovered || items.length <= 1) return;
+    const node = sectionRef.current;
+    if (!node || typeof IntersectionObserver === "undefined") {
+      setIsInView(true);
+      return;
+    }
 
-    const interval = setInterval(() => {
-      const { scrollLeft, clientWidth, scrollWidth } = scrollEl;
-      if (scrollLeft + clientWidth >= scrollWidth - 20) {
-        scrollEl.scrollTo({ left: 0, behavior: "instant" });
-      } else {
-        const amount = scrollEl.clientWidth * 0.75;
-        scrollEl.scrollBy({ left: amount, behavior: "smooth" });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setIsInView(entries[0]?.isIntersecting ?? false);
+      },
+      { rootMargin: "200px 0px", threshold: 0.1 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  // Detect vertical page scrolling and pause auto-scroll while the user is moving
+  useEffect(() => {
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(() => {
+        raf = 0;
+        userScrollingRef.current = true;
+        if (userScrollTimerRef.current !== null) {
+          window.clearTimeout(userScrollTimerRef.current);
+        }
+        userScrollTimerRef.current = window.setTimeout(() => {
+          userScrollingRef.current = false;
+          userScrollTimerRef.current = null;
+        }, 5000);
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+      if (userScrollTimerRef.current !== null) {
+        window.clearTimeout(userScrollTimerRef.current);
+        userScrollTimerRef.current = null;
       }
-    }, 3200);
+    };
+  }, []);
 
-    return () => clearInterval(interval);
-  }, [scrollEl, isHovered, items.length]);
+  // Detect horizontal carousel scrolling by the user
+  useEffect(() => {
+    if (!scrollEl) return;
+    const onCarouselScroll = () => {
+      userScrollingRef.current = true;
+      if (userScrollTimerRef.current !== null) {
+        window.clearTimeout(userScrollTimerRef.current);
+      }
+      userScrollTimerRef.current = window.setTimeout(() => {
+        userScrollingRef.current = false;
+        userScrollTimerRef.current = null;
+      }, 5000);
+    };
+    scrollEl.addEventListener("scroll", onCarouselScroll, { passive: true });
+    return () => {
+      scrollEl.removeEventListener("scroll", onCarouselScroll);
+    };
+  }, [scrollEl]);
+
+  useEffect(() => {
+    if (!scrollEl || isHovered || !isInView || items.length <= 1) return;
+
+    // Respect prefers-reduced-motion: don't auto-scroll
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (motionQuery.matches) return;
+
+    let intervalId: number | undefined;
+    let cancelled = false;
+
+    const start = () => {
+      if (cancelled) return;
+      intervalId = window.setInterval(() => {
+        // Skip if the user is actively scrolling the page or carousel
+        if (userScrollingRef.current) return;
+        const { scrollLeft, clientWidth, scrollWidth } = scrollEl;
+        if (scrollLeft + clientWidth >= scrollWidth - 20) {
+          // "auto" avoids triggering a smooth-scroll animation that fights Lenis
+          scrollEl.scrollTo({ left: 0, behavior: "auto" });
+        } else {
+          const amount = scrollEl.clientWidth * 0.75;
+          scrollEl.scrollBy({ left: amount, behavior: "auto" });
+        }
+      }, 4500);
+    };
+
+    // Defer auto-scroll until idle so first paint isn't blocked
+    const idleId = (window as any).requestIdleCallback
+      ? (window as any).requestIdleCallback(start, { timeout: 2000 })
+      : window.setTimeout(start, 1200);
+
+    return () => {
+      cancelled = true;
+      if (intervalId !== undefined) window.clearInterval(intervalId);
+      if ((window as any).requestIdleCallback) {
+        (window as any).cancelIdleCallback?.(idleId);
+      } else {
+        window.clearTimeout(idleId as number);
+      }
+    };
+  }, [scrollEl, isHovered, isInView, items.length]);
 
   const handleScroll = (direction: "left" | "right") => {
     if (scrollEl) {
@@ -284,6 +381,7 @@ function SectionCarousel({ items, renderCard }: SectionCarouselProps) {
 
   return (
     <div
+      ref={sectionRef}
       className="relative group/carousel px-10 sm:px-14"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -307,10 +405,13 @@ function SectionCarousel({ items, renderCard }: SectionCarouselProps) {
         <ChevronRight className="w-5 h-5" />
       </button>
 
-      {/* Carousel Container */}
+      {/* Carousel Container — removed scroll-smooth so auto-scroll doesn't chain
+          smooth animations that fight the Lenis vertical scroll. Removed
+          content-visibility/containIntrinsicSize which were causing layout
+          shifts that felt like a stuck scroll on first interaction. */}
       <div
         ref={setScrollEl}
-        className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth py-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="flex gap-6 overflow-x-auto snap-x snap-mandatory py-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         {displayItems.map((item, idx) => (
           <div
