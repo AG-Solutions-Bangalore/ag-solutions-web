@@ -70,13 +70,16 @@ function HeroSection() {
                         <div className="relative w-full max-w-lg lg:max-w-xl flex items-center justify-center py-2 sm:py-4">
                             <img
                                 src="/images/laptop.webp"
+                                srcSet="/images/laptop-mobile.webp 475w, /images/laptop.webp 612w"
+                                sizes="(max-width: 1023px) 475px, 612px"
                                 alt="AG Solutions Digital Dashboard Laptop"
                                 title="AG Solutions Digital Dashboard"
                                 width={612}
                                 height={408}
                                 fetchPriority="high"
                                 decoding="async"
-                                className="relative z-10 w-full object-contain drop-shadow-xl transition-transform duration-500 hover:scale-[1.02]"
+                                loading="eager"
+                                className="relative z-10 w-full h-auto object-contain drop-shadow-xl transition-transform duration-500 hover:scale-[1.02]"
                             />
                         </div>
                     </div>

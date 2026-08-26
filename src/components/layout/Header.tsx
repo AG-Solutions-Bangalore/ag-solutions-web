@@ -54,39 +54,44 @@ export function Header({ activeNav }: HeaderV2Props) {
     }, []);
 
     // Determine current active tab automatically if not explicitly passed
+    // Normalize trailing slash so paths like "/about/" still match the active tab.
+    const pathname = location.pathname.length > 1 && location.pathname.endsWith("/")
+        ? location.pathname.slice(0, -1)
+        : location.pathname;
+
     const isProductsPath =
-        location.pathname.startsWith("/products") ||
-        location.pathname === "/export-biz" ||
-        location.pathname === "/export-biz-new" ||
-        location.pathname === "/bizstock" ||
-        location.pathname === "/biz-stock" ||
-        location.pathname === "/ease-marketing" ||
-        location.pathname === "/EASE-Marketing";
+        pathname.startsWith("/products") ||
+        pathname === "/export-biz" ||
+        pathname === "/export-biz-new" ||
+        pathname === "/bizstock" ||
+        pathname === "/biz-stock" ||
+        pathname === "/ease-marketing" ||
+        pathname === "/EASE-Marketing";
 
     const isServicesPath =
-        location.pathname === "/services" ||
-        location.pathname.startsWith("/services/") ||
-        location.pathname === "/web-development" ||
-        location.pathname === "/web-development-v2" ||
-        location.pathname === "/mobile-app" ||
-        location.pathname === "/mobile-app-development" ||
-        location.pathname === "/mobile-app-v2" ||
-        location.pathname === "/digital-marketing" ||
-        location.pathname === "/digital-marketing-v2";
+        pathname === "/services" ||
+        pathname.startsWith("/services/") ||
+        pathname === "/web-development" ||
+        pathname === "/web-development-v2" ||
+        pathname === "/mobile-app" ||
+        pathname === "/mobile-app-development" ||
+        pathname === "/mobile-app-v2" ||
+        pathname === "/digital-marketing" ||
+        pathname === "/digital-marketing-v2";
 
     const isBlogPath =
-        location.pathname === "/blogs" ||
-        location.pathname.startsWith("/blogs/") ||
-        location.pathname === "/blog" ||
-        location.pathname.startsWith("/blog/");
+        pathname === "/blogs" ||
+        pathname.startsWith("/blogs/") ||
+        pathname === "/blog" ||
+        pathname.startsWith("/blog/");
 
     const isPortfolioPath =
-        location.pathname === "/portfolio" ||
-        location.pathname.startsWith("/portfolio/");
+        pathname === "/portfolio" ||
+        pathname.startsWith("/portfolio/");
 
     const currentTab =
         activeNav ||
-        (location.pathname === "/about"
+        (pathname === "/about"
             ? "about"
             : isServicesPath
                 ? "services"
@@ -96,7 +101,7 @@ export function Header({ activeNav }: HeaderV2Props) {
                         ? "portfolio"
                         : isBlogPath
                             ? "blog"
-                            : location.pathname === "/contacts"
+                            : pathname === "/contacts" || pathname === "/contact" || pathname === "/contactus"
                                 ? "contact"
                                 : "home");
 
