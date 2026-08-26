@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { MapPin } from "lucide-react";
 import FlipButton from "@/components/ui/FlipButton";
 import { getImageUrl } from "@/utils/imageUrl";
@@ -7,7 +7,7 @@ function BuildTogetherCta() {
     return (
         <section className="bg-background py-6 sm:py-10 transition-colors duration-200">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <motion.div
+                <m.div
                     className="relative overflow-hidden rounded-3xl bg-card dark:bg-slate-900/90 p-6 sm:p-8 md:p-10 lg:p-12 border border-border shadow-sm"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -59,7 +59,7 @@ function BuildTogetherCta() {
                             </div>
                         </div>
                     </div>
-                </motion.div>
+                </m.div>
             </div>
         </section>
     );

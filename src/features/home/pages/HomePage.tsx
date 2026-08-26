@@ -1,9 +1,12 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import SEO from "@/components/seo/SEO";
 import HeroSection from "../components/HeroSection";
-import HomeStatsStrip from "../components/HomeStatsStrip";
-import FeatureCards from "../components/FeatureCards";
-import ServicesSection from "../components/ServicesSection";
+
+// Below-the-fold components are lazy-loaded so they don't ship in the
+// initial JS bundle. They render once the user scrolls within ~600px.
+const HomeStatsStrip = lazy(() => import("../components/HomeStatsStrip"));
+const FeatureCards = lazy(() => import("../components/FeatureCards"));
+const ServicesSection = lazy(() => import("../components/ServicesSection"));
 
 const FeaturedBlogsSection = lazy(() => import("../components/FeaturedBlogsSection"));
 const AboutSection = lazy(() => import("../components/AboutSection"));
@@ -70,9 +73,12 @@ function HomePage() {
 
       <div className="bg-background font-sans text-foreground antialiased transition-colors duration-200">
         <HeroSection />
-        <HomeStatsStrip />
-        <FeatureCards />
-        <ServicesSection />
+        {/* Below-the-fold sections are code-split to keep the initial JS small */}
+        <Suspense fallback={null}>
+          <HomeStatsStrip />
+          <FeatureCards />
+          <ServicesSection />
+        </Suspense>
 
         <DeferredHomeContent />
       </div>

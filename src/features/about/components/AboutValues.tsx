@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Gem, ShieldCheck, Award, Users } from "lucide-react";
 
 const values = [
@@ -45,7 +45,7 @@ function AboutValues() {
 
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Header */}
-                <motion.div
+                <m.div
                     className="text-center"
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -70,14 +70,14 @@ function AboutValues() {
                     <p className="mx-auto mt-3 max-w-xl text-xs sm:text-sm text-muted">
                         Our core ethos centers on empowering businesses through unyielding quality, absolute transparency, and continuous innovation.
                     </p>
-                </motion.div>
+                </m.div>
 
                 {/* Cards Grid */}
                 <div className="mt-8 sm:mt-10 grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
                     {values.map((val, idx) => {
                         const Icon = val.icon;
                         return (
-                            <motion.div
+                            <m.div
                                 key={val.title}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -99,7 +99,7 @@ function AboutValues() {
                                 <div className="mt-5 flex justify-center w-full">
                                     <div className={`h-1 w-8 rounded-full ${val.barColor} transition-all duration-300 group-hover:w-16`} />
                                 </div>
-                            </motion.div>
+                            </m.div>
                         );
                     })}
                 </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Globe, ShieldCheck, Target, Headphones } from "lucide-react";
 
 interface MetricItem {
@@ -37,7 +37,7 @@ export const EaseMarketingMetricsStrip: React.FC = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
           {metrics.map((item, index) => (
-            <motion.div
+            <m.div
               key={item.label}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -52,7 +52,7 @@ export const EaseMarketingMetricsStrip: React.FC = () => {
                 <div className="text-2xl sm:text-3xl font-black text-white">{item.value}</div>
                 <div className="text-xs text-blue-200/80 font-medium mt-0.5">{item.label}</div>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

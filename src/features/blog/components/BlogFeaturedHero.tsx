@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Calendar, Clock, ArrowRight, Sparkles, User, Bookmark } from "lucide-react";
 import type { BlogItem } from "../types/blog.types";
@@ -20,7 +20,7 @@ export default function BlogFeaturedHero({ blog, imageBaseUrl }: BlogFeaturedHer
 
   return (
     <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-6 pb-6 sm:pt-8 sm:pb-8">
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -119,7 +119,7 @@ export default function BlogFeaturedHero({ blog, imageBaseUrl }: BlogFeaturedHer
             </div>
           </div>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 }

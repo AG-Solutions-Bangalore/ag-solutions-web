@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useLeadModal } from "@/context/LeadModalContext";
 import { getImageUrl } from "@/utils/imageUrl";
@@ -10,7 +10,7 @@ export const BizStockCtaBanner: React.FC = () => {
   return (
     <section className="bg-background py-14 sm:py-20 md:py-24 border-t border-border transition-colors duration-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -75,7 +75,7 @@ export const BizStockCtaBanner: React.FC = () => {
               </div>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

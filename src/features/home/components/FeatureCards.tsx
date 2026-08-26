@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Users, Lightbulb, ShieldCheck, Headphones } from "lucide-react";
 
 const features = [
@@ -53,7 +53,7 @@ function FeatureCards() {
                     {features.map((feature, idx) => {
                         const Icon = feature.icon;
                         return (
-                            <motion.div
+                            <m.div
                                 key={feature.title}
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -73,7 +73,7 @@ function FeatureCards() {
                                 <div className="mt-6 flex justify-center w-full">
                                     <div className={`h-1 w-8 rounded-full ${feature.classes.bar} transition-all duration-300 group-hover:w-16`} />
                                 </div>
-                            </motion.div>
+                            </m.div>
                         );
                     })}
                 </div>

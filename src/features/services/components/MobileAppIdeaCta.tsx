@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useLeadModal } from "@/context/LeadModalContext";
 import { ArrowRight, Sparkles } from "lucide-react";
 import {
@@ -49,7 +49,7 @@ export function MobileAppIdeaCta() {
           </div>
         </div>
 
-        <motion.div
+        <m.div
           className="relative rounded-3xl bg-card border border-border p-6 sm:p-10 lg:p-12 shadow-sm overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -100,7 +100,7 @@ export function MobileAppIdeaCta() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

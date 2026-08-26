@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   Globe,
   Radio,
@@ -65,7 +65,7 @@ export const EaseMarketingClientLogos: React.FC = () => {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 items-center justify-center">
           {clientBrands.map((brand, idx) => (
-            <motion.div
+            <m.div
               key={brand.name}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -78,7 +78,7 @@ export const EaseMarketingClientLogos: React.FC = () => {
                 <div className="text-xs sm:text-sm font-extrabold leading-none">{brand.name}</div>
                 <div className="text-[9px] text-muted font-normal leading-tight mt-0.5">{brand.sub}</div>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

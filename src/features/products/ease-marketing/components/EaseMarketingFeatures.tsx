@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   MessageSquare,
   Contact2,
@@ -79,7 +79,7 @@ export const EaseMarketingFeatures: React.FC = () => {
         {/* 6 Feature Cards Grid */}
         <div className="mt-12 sm:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6">
           {featureList.map((card, index) => (
-            <motion.div
+            <m.div
               key={card.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -106,7 +106,7 @@ export const EaseMarketingFeatures: React.FC = () => {
               <div className="mt-5 w-8 h-1 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800">
                 <div className={`w-full h-full ${card.accentColor}`} />
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

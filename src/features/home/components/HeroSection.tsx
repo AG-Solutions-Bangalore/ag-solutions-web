@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useLeadModal } from "@/context/LeadModalContext";
 import { ArrowRight } from "lucide-react";
 import TypewriterText from "@/components/animation/TypewriterText";
@@ -14,7 +14,7 @@ function HeroSection() {
 
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-8">
-                    <motion.div
+                    <m.div
                         className="lg:col-span-6 z-10 text-center lg:text-left"
                         initial={{ opacity: 0, x: -30 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -64,7 +64,7 @@ function HeroSection() {
                                 <ArrowRight className="h-4 w-4" />
                             </button>
                         </div>
-                    </motion.div>
+                    </m.div>
 
                     <div className="relative flex justify-center lg:col-span-6">
                         <div className="relative w-full max-w-lg lg:max-w-xl flex items-center justify-center py-2 sm:py-4">

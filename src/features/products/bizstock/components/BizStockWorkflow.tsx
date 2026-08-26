@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   QrCode,
   Warehouse,
@@ -99,7 +99,7 @@ export const BizStockWorkflow: React.FC = () => {
         {/* 4-Step Grid */}
         <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {workflowSteps.map((step, index) => (
-            <motion.div
+            <m.div
               key={step.step}
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -142,7 +142,7 @@ export const BizStockWorkflow: React.FC = () => {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

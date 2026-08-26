@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   TrendingUp,
   ShieldCheck,
@@ -33,7 +33,7 @@ export const BizStockDashboardPreview: React.FC = () => {
 
         {/* 3 Key Benefit Stat Cards */}
         <div className="mt-10 sm:mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -52,9 +52,9 @@ export const BizStockDashboardPreview: React.FC = () => {
               </div>
               <p className="text-xs text-muted mt-1 font-medium">Inventory Turnover Rate</p>
             </div>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -73,9 +73,9 @@ export const BizStockDashboardPreview: React.FC = () => {
               </div>
               <p className="text-xs text-muted mt-1 font-medium">Stock Discrepancy &amp; Shrinkage</p>
             </div>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -94,11 +94,11 @@ export const BizStockDashboardPreview: React.FC = () => {
               </div>
               <p className="text-xs text-muted mt-1 font-medium">Order Pick &amp; Pack Turnaround</p>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Tabbed Interactive Mock Dashboard Box */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -296,7 +296,7 @@ export const BizStockDashboardPreview: React.FC = () => {
               </div>
             </div>
           )}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   ArrowUp,
   BadgeCheck,
@@ -118,7 +118,7 @@ export default function HowWeWork() {
       </div>
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -137,7 +137,7 @@ export default function HowWeWork() {
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
             We follow a structured process from understanding your business to delivering reliable software and providing long-term support after launch.
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="mt-14 lg:mt-16">
           <div className="mb-7 flex items-center justify-between gap-4">
@@ -153,14 +153,14 @@ export default function HowWeWork() {
           </div>
 
           <div className="relative">
-            <motion.div
+            <m.div
               initial={{ scaleX: 0, opacity: 0 }}
               whileInView={{ scaleX: 1, opacity: 1 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.9, ease: "easeOut" }}
               className="absolute left-0 right-0 top-12 hidden h-[2px] origin-left rounded-full bg-gradient-to-r from-sky-400 via-violet-400 to-emerald-400 lg:block"
             />
-            <motion.div
+            <m.div
               initial={{ scaleY: 0, opacity: 0 }}
               whileInView={{ scaleY: 1, opacity: 1 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -173,7 +173,7 @@ export default function HowWeWork() {
                 const Icon = item.icon;
 
                 return (
-                  <motion.article
+                  <m.article
                     key={item.title}
                     initial={{ opacity: 0, y: 28 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -200,27 +200,27 @@ export default function HowWeWork() {
                     <p className="mt-3 text-sm leading-7 text-slate-600">
                       {item.description}
                     </p>
-                  </motion.article>
+                  </m.article>
                 );
               })}
             </div>
           </div>
         </div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="mt-16 overflow-hidden rounded-[2rem] border border-slate-200/70 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 px-8 py-8 text-center text-white shadow-[0_30px_90px_-24px_rgba(2,6,23,0.7)] sm:px-10 lg:px-14"
         >
-          <motion.div
+          <m.div
             animate={{ y: [0, -8, 0], rotate: [0, -3, 0], scale: [1, 1.02, 1] }}
             transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
             className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-white/15 bg-white/10 shadow-inner sm:h-18 sm:w-18"
           >
             <Rocket className="h-8 w-8 text-sky-300 sm:h-9 sm:w-9" />
-          </motion.div>
+          </m.div>
 
           <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-300">
             PROJECT GOES LIVE
@@ -231,10 +231,10 @@ export default function HowWeWork() {
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
             A smooth launch marks the beginning of a stronger digital experience built to scale with your team.
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="mt-16 lg:mt-20">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -250,14 +250,14 @@ export default function HowWeWork() {
             <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
               Our partnership doesn&apos;t end after deployment. We continue supporting, improving and scaling your software.
             </p>
-          </motion.div>
+          </m.div>
 
           <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {supportCards.map((card, index) => {
               const Icon = card.icon;
 
               return (
-                <motion.article
+                <m.article
                   key={card.title}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -279,7 +279,7 @@ export default function HowWeWork() {
                     {card.description}
                   </p>
                   <div className={`absolute -bottom-8 right-0 h-24 w-24 rounded-full bg-gradient-to-br ${card.gradient} opacity-0 blur-3xl transition duration-500 group-hover:opacity-30`} />
-                </motion.article>
+                </m.article>
               );
             })}
           </div>

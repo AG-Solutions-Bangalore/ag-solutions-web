@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Star, Quote, ChevronLeft, ChevronRight, Sparkles, UserCheck } from "lucide-react";
 import { useTestimonials } from "@/features/testimonials/hooks/useTestimonials";
 import type { TestimonialItem } from "@/features/testimonials/types/testimonial.types";
@@ -135,7 +135,7 @@ export const DynamicTestimonialSection: React.FC<DynamicTestimonialSectionProps>
           {/* Testimonial Cards Grid with Animation */}
           <div className="relative min-h-[300px]">
             <AnimatePresence mode="wait">
-              <motion.div
+              <m.div
                 key={currentPage}
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -190,7 +190,7 @@ export const DynamicTestimonialSection: React.FC<DynamicTestimonialSectionProps>
                     </div>
                   );
                 })}
-              </motion.div>
+              </m.div>
             </AnimatePresence>
           </div>
 

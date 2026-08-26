@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 const features = [
   {
@@ -61,7 +61,7 @@ export default function WhyChooseUs() {
       </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -84,11 +84,11 @@ export default function WhyChooseUs() {
             <span className="h-1 w-8 rounded-full bg-yellow" />
             <span className="h-1 w-8 rounded-full bg-green" />
           </div>
-        </motion.div>
+        </m.div>
 
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {features.map((item, index) => (
-            <motion.div
+            <m.div
               key={item.title}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -112,7 +112,7 @@ export default function WhyChooseUs() {
               <p className="text-sm leading-relaxed text-muted">
                 {item.description}
               </p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>
