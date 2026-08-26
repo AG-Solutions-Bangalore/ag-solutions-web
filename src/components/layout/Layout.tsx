@@ -1,15 +1,26 @@
-import type { ReactNode } from "react";
+import { lazy, Suspense, type ReactNode } from "react";
 import { Outlet } from "react-router-dom";
 import HeaderV2 from "./Header";
 import FooterV2 from "./Footer";
-import { LeadModalProvider } from "@/context/LeadModalContext";
-import LeadCaptureModal from "@/components/modal/LeadCaptureModal";
+import { LeadModalProvider, useLeadModal } from "@/context/LeadModalContext";
 import WhatsAppButton from "@/components/common/WhatsAppButton";
 import { OrganizationSchema, WebSiteSchema } from "@/components/seo";
+
+const LeadCaptureModal = lazy(() => import("@/components/modal/LeadCaptureModal"));
 
 interface LayoutV2Props {
     children?: ReactNode;
     activeNav?: "home" | "about" | "services" | "products" | "contact";
+}
+
+function OnDemandLeadModal() {
+    const { isOpen } = useLeadModal();
+
+    return isOpen ? (
+        <Suspense fallback={null}>
+            <LeadCaptureModal />
+        </Suspense>
+    ) : null;
 }
 
 export function LayoutV2({ children, activeNav }: LayoutV2Props) {
@@ -23,7 +34,7 @@ export function LayoutV2({ children, activeNav }: LayoutV2Props) {
                     {children || <Outlet />}
                 </main>
                 <FooterV2 />
-                <LeadCaptureModal />
+                <OnDemandLeadModal />
                 <WhatsAppButton />
             </div>
         </LeadModalProvider>
@@ -31,4 +42,3 @@ export function LayoutV2({ children, activeNav }: LayoutV2Props) {
 }
 
 export default LayoutV2;
-

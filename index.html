@@ -32,7 +32,6 @@
     
     <!-- Preload above-the-fold critical LCP assets -->
     <link rel="preload" href="/images/laptop.webp" as="image" type="image/webp" fetchpriority="high" />
-    <link rel="preload" href="/images/home/01Crausle.svg" as="image" type="image/svg+xml" />
     <link rel="preload" href="/images/logo.webp" as="image" type="image/webp" />
     
     <!-- Google Fonts loading (Non-render-blocking) -->
@@ -93,12 +92,25 @@
         gtag('config', 'GT-W6VNKGP');
       }
 
-      // Schedule analytics execution after first paint / idle time
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(function() { setTimeout(initAnalytics, 1200); }, { timeout: 3000 });
-      } else {
-        window.addEventListener('load', function() { setTimeout(initAnalytics, 1200); });
+      // Keep third-party scripts out of the critical rendering path.
+      function scheduleAnalytics() {
+        if (window.__analytics_scheduled) return;
+        window.__analytics_scheduled = true;
+
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(initAnalytics, { timeout: 8000 });
+        } else {
+          setTimeout(initAnalytics, 0);
+        }
       }
+
+      ['pointerdown', 'keydown', 'scroll'].forEach(function(eventName) {
+        window.addEventListener(eventName, scheduleAnalytics, { once: true, passive: true });
+      });
+
+      window.addEventListener('load', function() {
+        setTimeout(scheduleAnalytics, 5000);
+      }, { once: true });
     </script>
   </head>
   <body>

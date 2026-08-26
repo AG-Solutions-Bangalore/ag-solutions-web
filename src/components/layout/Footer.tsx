@@ -10,6 +10,7 @@ const quickLinks = [
     { to: "/about", label: "About Us", title: "About AG Solutions" },
     { to: "/web-development", label: "Services", title: "Web Development Services – AG Solutions" },
     { to: "/blogs", label: "Blog", title: "AG Solutions Blogs – Technology & Digital Marketing" },
+    { to: "/portfolio", label: "Portfolio", title: "AG Solutions Portfolio – Our Projects & Case Studies" },
     { to: "/contacts", label: "Contact Us", title: "Contact AG Solutions" },
 ];
 
@@ -23,9 +24,8 @@ const serviceLinks = [
 
 const productLinks = [
     { to: "/export-biz", label: "Export Biz", title: "Export Biz – Export Documentation Software" },
-    { to: "/bizstock", label: "BizStock", title: "BizStock – Inventory Management Software" },
+    { to: "/bizstock", label: "BizStock", title: "BizStock – Business Management Software" },
     { to: "/ease-marketing", label: "Ease Marketing", title: "Ease Marketing – AG Solutions" },
-    { to: "/grow-together", label: "Grow Together", title: "Grow Together – AG Solutions" },
 ];
 
 const socialLinks = [

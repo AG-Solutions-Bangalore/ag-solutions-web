@@ -162,6 +162,7 @@ export const ProductsPage: React.FC = () => {
                     <div className="mt-6 sm:mt-8 pt-4 border-t border-border">
                       <Link
                         to={product.path}
+                        title={`${product.title} – Business Management Software`}
                         className={`inline-flex items-center justify-center rounded-full bg-slate-900 dark:bg-pink dark:hover:bg-pink-hover text-white font-bold text-sm px-6 py-3 no-underline transition-all ${product.btnHoverClass} focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 w-full`}
                       >
                         Explore Product &rarr;

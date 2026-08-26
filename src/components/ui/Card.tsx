@@ -54,23 +54,23 @@ export const Card: React.FC<CardProps> = ({
       {/* Body content */}
       <div className="p-6 flex flex-col flex-1">
         {subtitle && (
-          <span className="text-[13px] text-[#7a8894] font-medium leading-none mb-2.5 block">
+          <span className="text-[13px] text-teal font-semibold leading-none mb-2.5 block uppercase tracking-wider">
             {subtitle}
           </span>
         )}
 
-        <h3 className="m-0 text-xl font-bold leading-snug tracking-tight text-[#1b2c38] transition-colors duration-300 group-hover:text-[#09c7ca]">
+        <h3 className="m-0 text-xl font-bold leading-snug tracking-tight text-dark dark:text-foreground transition-colors duration-300 group-hover:text-pink">
           {title}
         </h3>
 
         {description && (
-          <p className="m-0 mt-3 text-[14.5px] leading-relaxed text-[#4f5a62] font-normal flex-1 line-clamp-3">
+          <p className="m-0 mt-3 text-[14.5px] leading-relaxed text-muted font-normal flex-1 line-clamp-3">
             {description}
           </p>
         )}
 
         {footer && (
-          <div className="pt-5 mt-5 border-t border-slate-50 flex items-center">
+          <div className="pt-5 mt-5 border-t border-border flex items-center">
             {footer}
           </div>
         )}
@@ -78,8 +78,8 @@ export const Card: React.FC<CardProps> = ({
     </>
   );
 
-  const rootClassName = `group overflow-hidden border border-slate-100 bg-white shadow-xs hover:shadow-md transition-all duration-300 flex flex-col no-underline text-inherit ${
-    onClick ? "cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1289bc] focus-visible:ring-offset-4" : ""
+  const rootClassName = `group overflow-hidden border border-border bg-card text-card-foreground shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col no-underline text-inherit ${
+    onClick ? "cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-pink focus-visible:ring-offset-4" : ""
   } ${className}`;
 
   if (to) {

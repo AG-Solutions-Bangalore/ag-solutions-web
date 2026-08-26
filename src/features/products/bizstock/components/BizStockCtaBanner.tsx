@@ -44,6 +44,8 @@ export const BizStockCtaBanner: React.FC = () => {
                   href="https://bizstock.in/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  title="BizStock – Business Management Software"
+                  aria-label="BizStock – Business Management Software"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-pink hover:bg-pink-hover text-white font-bold text-xs sm:text-sm px-7 py-3.5 shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95 cursor-pointer border-none no-underline"
                 >
                   <span>Start Free Trial</span>

@@ -5,10 +5,10 @@ import { useLeadModal } from "@/context/LeadModalContext";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { AGSLogo } from "@/components/brand/AGSLogo";
 import { FlipButton } from "@/components/ui/FlipButton";
-import { preloadRoute } from "@/routes/lazyRoutes";
+import { preloadRoute, prefetchRouteData } from "@/routes/lazyRoutes";
 
 interface HeaderV2Props {
-    activeNav?: "home" | "about" | "services" | "products" | "blog" | "contact";
+    activeNav?: "home" | "about" | "services" | "products" | "portfolio" | "blog" | "contact";
 }
 
 export function Header({ activeNav }: HeaderV2Props) {
@@ -61,8 +61,7 @@ export function Header({ activeNav }: HeaderV2Props) {
         location.pathname === "/bizstock" ||
         location.pathname === "/biz-stock" ||
         location.pathname === "/ease-marketing" ||
-        location.pathname === "/EASE-Marketing" ||
-        location.pathname === "/grow-together";
+        location.pathname === "/EASE-Marketing";
 
     const isServicesPath =
         location.pathname === "/services" ||
@@ -81,6 +80,10 @@ export function Header({ activeNav }: HeaderV2Props) {
         location.pathname === "/blog" ||
         location.pathname.startsWith("/blog/");
 
+    const isPortfolioPath =
+        location.pathname === "/portfolio" ||
+        location.pathname.startsWith("/portfolio/");
+
     const currentTab =
         activeNav ||
         (location.pathname === "/about"
@@ -89,11 +92,13 @@ export function Header({ activeNav }: HeaderV2Props) {
                 ? "services"
                 : isProductsPath
                     ? "products"
-                    : isBlogPath
-                        ? "blog"
-                        : location.pathname === "/contacts"
-                            ? "contact"
-                            : "home");
+                    : isPortfolioPath
+                        ? "portfolio"
+                        : isBlogPath
+                            ? "blog"
+                            : location.pathname === "/contacts"
+                                ? "contact"
+                                : "home");
 
     return (
         <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-2xs transition-colors duration-200">
@@ -210,7 +215,6 @@ export function Header({ activeNav }: HeaderV2Props) {
                                 preloadRoute("/export-biz");
                                 preloadRoute("/bizstock");
                                 preloadRoute("/ease-marketing");
-                                preloadRoute("/grow-together");
                             }}
                             onMouseLeave={() => setActiveDropdown(null)}
                         >
@@ -241,7 +245,7 @@ export function Header({ activeNav }: HeaderV2Props) {
                                         </Link>
                                         <Link
                                             to="/bizstock"
-                                            title="BizStock – Inventory Management Software"
+                                            title="BizStock – Business Management Software"
                                             onMouseEnter={() => preloadRoute("/bizstock")}
                                             onClick={() => setActiveDropdown(null)}
                                             className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-teal-light hover:text-teal rounded-xl transition-colors no-underline"
@@ -256,15 +260,6 @@ export function Header({ activeNav }: HeaderV2Props) {
                                             className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-pink-light hover:text-pink rounded-xl transition-colors no-underline"
                                         >
                                             Ease Marketing
-                                        </Link>
-                                        <Link
-                                            to="/grow-together"
-                                            title="Grow Together – AG Solutions"
-                                            onMouseEnter={() => preloadRoute("/grow-together")}
-                                            onClick={() => setActiveDropdown(null)}
-                                            className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-yellow-light hover:text-yellow rounded-xl transition-colors no-underline"
-                                        >
-                                            Grow Together
                                         </Link>
                                     </div>
                                 </div>
@@ -284,6 +279,29 @@ export function Header({ activeNav }: HeaderV2Props) {
                         >
                             Blog
                             {currentTab === "blog" && (
+                                <span className="absolute -bottom-1.5 left-0 right-0 h-0.5 rounded-full bg-pink" />
+                            )}
+                        </Link>
+
+                        {/* Portfolio Navigation Link */}
+                        <Link
+                            to="/portfolio"
+                            title="AG Solutions Portfolio – Our Projects & Case Studies"
+                            onMouseEnter={() => {
+                                preloadRoute("/portfolio");
+                                prefetchRouteData("/portfolio");
+                            }}
+                            onFocus={() => {
+                                preloadRoute("/portfolio");
+                                prefetchRouteData("/portfolio");
+                            }}
+                            className={`relative text-sm font-semibold transition-colors no-underline py-1 ${currentTab === "portfolio"
+                                ? "text-pink"
+                                : "text-foreground hover:text-pink"
+                                }`}
+                        >
+                            Portfolio
+                            {currentTab === "portfolio" && (
                                 <span className="absolute -bottom-1.5 left-0 right-0 h-0.5 rounded-full bg-pink" />
                             )}
                         </Link>
@@ -430,7 +448,8 @@ export function Header({ activeNav }: HeaderV2Props) {
                                     setMobileProductsOpen((prev) => !prev);
                                     setMobileServicesOpen(false);
                                     preloadRoute("/export-biz");
-                                    preloadRoute("/grow-together");
+                                    preloadRoute("/bizstock");
+                                    preloadRoute("/ease-marketing");
                                 }}
                                 className={`w-full flex items-center justify-between px-4 py-3 text-base font-semibold transition-colors bg-transparent border-none cursor-pointer ${isProductsPath ? "text-pink bg-pink-light/40" : "text-foreground hover:bg-muted/10"
                                     }`}
@@ -453,7 +472,7 @@ export function Header({ activeNav }: HeaderV2Props) {
                                     </Link>
                                     <Link
                                         to="/bizstock"
-                                        title="BizStock – Inventory Management Software"
+                                        title="BizStock – Business Management Software"
                                         onClick={() => setMobileMenuOpen(false)}
                                         className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-teal hover:bg-card rounded-lg no-underline transition-colors"
                                     >
@@ -466,14 +485,6 @@ export function Header({ activeNav }: HeaderV2Props) {
                                         className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-pink hover:bg-card rounded-lg no-underline transition-colors"
                                     >
                                         Ease Marketing
-                                    </Link>
-                                    <Link
-                                        to="/grow-together"
-                                        title="Grow Together – AG Solutions"
-                                        onClick={() => setMobileMenuOpen(false)}
-                                        className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-yellow hover:bg-card rounded-lg no-underline transition-colors"
-                                    >
-                                        Grow Together
                                     </Link>
                                 </div>
                             )}
@@ -489,6 +500,18 @@ export function Header({ activeNav }: HeaderV2Props) {
                                 }`}
                         >
                             Blog
+                        </Link>
+
+                        <Link
+                            to="/portfolio"
+                            title="AG Solutions Portfolio – Our Projects & Case Studies"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className={`block px-4 py-3 text-base font-semibold rounded-xl no-underline transition-colors ${currentTab === "portfolio"
+                                ? "text-pink bg-pink-light"
+                                : "text-foreground hover:text-pink hover:bg-muted/10"
+                                }`}
+                        >
+                            Portfolio
                         </Link>
 
                         <Link
