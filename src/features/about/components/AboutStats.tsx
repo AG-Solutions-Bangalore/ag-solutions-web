@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Users, Briefcase, Award, Headphones } from "lucide-react";
 import AnimatedCounter from "@/components/animation/AnimatedCounter";
 
@@ -33,7 +33,7 @@ function AboutStats() {
     return (
         <section className="bg-background py-4 sm:py-6 transition-colors duration-200">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <motion.div
+                <m.div
                     className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-7 shadow-xs"
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -47,7 +47,7 @@ function AboutStats() {
                         {stats.map((stat, idx) => {
                             const Icon = stat.icon;
                             return (
-                                <motion.div
+                                <m.div
                                     key={stat.label}
                                     initial={{ opacity: 0, y: 15 }}
                                     whileInView={{ opacity: 1, y: 0 }}
@@ -68,11 +68,11 @@ function AboutStats() {
                                             {stat.label}
                                         </div>
                                     </div>
-                                </motion.div>
+                                </m.div>
                             );
                         })}
                     </div>
-                </motion.div>
+                </m.div>
             </div>
         </section>
     );

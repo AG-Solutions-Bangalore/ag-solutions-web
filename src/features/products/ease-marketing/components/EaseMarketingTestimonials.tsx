@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Quote } from "lucide-react";
 
 interface Testimonial {
@@ -52,7 +52,7 @@ export const EaseMarketingTestimonials: React.FC = () => {
         {/* 3 Testimonial Cards */}
         <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {testimonials.map((item, index) => (
-            <motion.div
+            <m.div
               key={item.name}
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -90,7 +90,7 @@ export const EaseMarketingTestimonials: React.FC = () => {
                   <p className="text-xs text-muted mt-0.5">{item.role}</p>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 

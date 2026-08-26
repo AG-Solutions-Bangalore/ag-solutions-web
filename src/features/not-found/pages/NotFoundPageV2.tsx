@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import SEO from "@/components/seo/SEO";
 import FlipButton from "@/components/ui/FlipButton";
 import { useLeadModal } from "@/context/LeadModalContext";
@@ -149,7 +149,7 @@ export default function NotFoundPageV2() {
 
         <div className="mx-auto max-w-5xl">
           {/* Main 404 Hero Container */}
-          <motion.div
+          <m.div
             className="text-center"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -166,7 +166,7 @@ export default function NotFoundPageV2() {
 
             {/* Stylized Floating 404 Display */}
             <div className="relative mt-6 flex items-center justify-center">
-              <motion.div
+              <m.div
                 initial={{ scale: 0.85, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
@@ -178,26 +178,26 @@ export default function NotFoundPageV2() {
                 <span className="absolute inset-0 flex items-center justify-center font-heading text-7xl font-black tracking-tighter bg-gradient-to-r from-pink via-teal to-blue bg-clip-text text-transparent sm:text-[120px] md:text-[160px] lg:text-[190px] leading-none pointer-events-none">
                   404
                 </span>
-              </motion.div>
+              </m.div>
 
               {/* Floating Floating Icon Badges */}
-              <motion.div
+              <m.div
                 animate={{ y: [-6, 6, -6], rotate: [0, 5, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -top-2 left-1/4 hidden sm:flex items-center gap-1.5 rounded-xl border border-teal-border bg-white/90 px-3 py-2 text-xs font-semibold text-teal shadow-md backdrop-blur-md"
               >
                 <Compass className="h-4 w-4" />
                 <span>Off Route</span>
-              </motion.div>
+              </m.div>
 
-              <motion.div
+              <m.div
                 animate={{ y: [6, -6, 6], rotate: [0, -4, 0] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                 className="absolute bottom-2 right-1/4 hidden sm:flex items-center gap-1.5 rounded-xl border border-pink-border bg-white/90 px-3 py-2 text-xs font-semibold text-pink shadow-md backdrop-blur-md"
               >
                 <Sparkles className="h-4 w-4" />
                 <span>Let's Reconnect</span>
-              </motion.div>
+              </m.div>
             </div>
 
             {/* Heading & Empathy Copy */}
@@ -233,10 +233,10 @@ export default function NotFoundPageV2() {
                 <span>Request Help</span>
               </button>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Quick Search & Explore Section */}
-          <motion.div
+          <m.div
             className="mt-12 sm:mt-20"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -281,7 +281,7 @@ export default function NotFoundPageV2() {
                       const style = ACCENT_STYLES[item.accent];
 
                       return (
-                        <motion.div
+                        <m.div
                           key={item.path}
                           initial={{ opacity: 0, y: 15 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -319,7 +319,7 @@ export default function NotFoundPageV2() {
                               <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                             </div>
                           </Link>
-                        </motion.div>
+                        </m.div>
                       );
                     })
                   ) : (
@@ -341,10 +341,10 @@ export default function NotFoundPageV2() {
                 </AnimatePresence>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Quick Support Assistance Callout */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
@@ -368,7 +368,7 @@ export default function NotFoundPageV2() {
                 <ArrowRight className="h-3.5 w-3.5" />
               </button>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </>

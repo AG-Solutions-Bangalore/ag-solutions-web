@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Skilld references (recreated by `skilld install`)
+.skilld

@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   CheckCircle2,
   ArrowRight,
@@ -15,7 +15,7 @@ export const EaseMarketingGrowthPartner: React.FC = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
           {/* Left Column: Text, Checklist & CTA Button */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -65,10 +65,10 @@ export const EaseMarketingGrowthPartner: React.FC = () => {
                 <ArrowRight className="h-4 w-4" />
               </button>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Right Column: Middle Showcase Graphic using base URL image */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -84,7 +84,7 @@ export const EaseMarketingGrowthPartner: React.FC = () => {
                 loading="lazy"
               />
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

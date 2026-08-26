@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import { useCreateNewsletter } from "@/features/newsletter/hooks/useCreateNewsletter";
 
@@ -38,7 +38,7 @@ export function NewsletterSection() {
   return (
     <section className="relative w-full dark:bg-[#0C1220] bg-[#F8FAFC]  py-3 sm:py-4 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
       <div className="mx-auto max-w-7xl">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -109,7 +109,7 @@ export function NewsletterSection() {
               />
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

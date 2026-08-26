@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   Store,
   Boxes,
@@ -65,7 +65,7 @@ export const BizStockIndustries: React.FC = () => {
         {/* 6 Industry Cards */}
         <div className="mt-12 sm:mt-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
           {industryList.map((item, index) => (
-            <motion.div
+            <m.div
               key={item.title}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -84,7 +84,7 @@ export const BizStockIndustries: React.FC = () => {
               <h3 className="text-xs sm:text-sm font-bold text-dark group-hover:text-pink transition-colors">
                 {item.title}
               </h3>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { getImageUrl } from "@/utils/imageUrl";
 
 const culture = [
@@ -51,7 +51,7 @@ export default function WorkCulture() {
         <div className="mt-24 grid gap-10 lg:grid-cols-5 items-start">
           {culture.map((item, index) => (
             <>
-              <motion.div
+              <m.div
                 key={item.title}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -59,7 +59,7 @@ export default function WorkCulture() {
                 transition={{ delay: index * 0.2 }}
                 className="text-center"
               >
-                <motion.img
+                <m.img
                   src={item.image}
                   alt={item.title}
                   animate={{ y: [0, -8, 0] }}
@@ -77,7 +77,7 @@ export default function WorkCulture() {
                 <p className="mt-4 text-lg leading-8 text-slate-600">
                   {item.description}
                 </p>
-              </motion.div>
+              </m.div>
 
               {index !== culture.length - 1 && (
                 <div className="hidden lg:flex items-center justify-center pt-20">

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calendar, Clock, ArrowUpRight } from "lucide-react";
 import { useFrontBlogs, useFeaturedBlogs } from "@/features/blog/hooks/useBlogs";
@@ -103,7 +103,7 @@ export function HomeBlogSection({ source = "front", maxPosts = 3 }: HomeBlogSect
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -124,7 +124,7 @@ export function HomeBlogSection({ source = "front", maxPosts = 3 }: HomeBlogSect
               <span className="h-1 w-6 rounded-full bg-yellow" />
               <span className="h-1 w-6 rounded-full bg-green" />
             </div>
-          </motion.div>
+          </m.div>
 
           <Link
             to="/blogs"
@@ -159,7 +159,7 @@ export function HomeBlogSection({ source = "front", maxPosts = 3 }: HomeBlogSect
           /* Dynamic Blog Cards Grid */
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayPosts.map((post, idx) => (
-              <motion.article
+              <m.article
                 key={post.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -233,7 +233,7 @@ export function HomeBlogSection({ source = "front", maxPosts = 3 }: HomeBlogSect
                     <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </Link>
                 </div>
-              </motion.article>
+              </m.article>
             ))}
           </div>
         )}

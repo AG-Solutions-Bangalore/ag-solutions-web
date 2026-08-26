@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { X, CheckCircle2, Check, Send, Sparkles } from "lucide-react";
 import { useLeadModal } from "@/context/LeadModalContext";
 import { useCreateEnquiry } from "@/features/contact-us/hooks/useCreateEnquiry";
@@ -242,7 +242,7 @@ export function LeadCaptureModal() {
       {isOpen && (
         <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
           {/* Backdrop */}
-          <motion.div
+          <m.div
             className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -251,7 +251,7 @@ export function LeadCaptureModal() {
           />
 
           {/* Modal Container */}
-          <motion.div
+          <m.div
             role="dialog"
             aria-modal="true"
             aria-labelledby="lead-modal-title"
@@ -272,14 +272,14 @@ export function LeadCaptureModal() {
 
             {isSuccess ? (
               <div className="p-6 sm:p-10 text-center py-12 sm:py-14">
-                <motion.div
+                <m.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", damping: 15 }}
                   className="mx-auto flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full bg-green-light/40 text-green mb-5 shadow-sm"
                 >
                   <CheckCircle2 className="h-8 w-8 sm:h-10 sm:w-10 text-green" />
-                </motion.div>
+                </m.div>
                 <h3 className="text-xl sm:text-2xl font-extrabold text-dark">Thank You, {name}!</h3>
                 <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-muted max-w-xs mx-auto leading-relaxed">
                   Your request has been received. Our solutions team will get in touch with you shortly.
@@ -472,7 +472,7 @@ export function LeadCaptureModal() {
                 </form>
               </div>
             )}
-          </motion.div>
+          </m.div>
         </div>
       )}
     </AnimatePresence>

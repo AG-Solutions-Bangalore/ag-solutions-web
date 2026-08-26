@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import FlipButton from "@/components/ui/FlipButton";
 import { CheckCircle2 } from "lucide-react";
 
@@ -6,7 +6,7 @@ function AboutSection() {
     return (
         <section className="bg-background py-6 sm:py-8 transition-colors duration-200">
             <div className="mx-auto max-w-7xl px-4">
-                <motion.div
+                <m.div
                     className="relative overflow-hidden rounded-3xl bg-card dark:bg-slate-900/90 p-6 border border-teal-border/40 shadow-2xs"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -105,7 +105,7 @@ function AboutSection() {
                             </div>
                         </div>
                     </div>
-                </motion.div>
+                </m.div>
             </div>
         </section>
     );

@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   Boxes,
   Bell,
@@ -22,7 +22,7 @@ export const BizStockHero: React.FC = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
           {/* Left Column: Heading, Copy, CTAs, 4 Quick Highlights */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -107,10 +107,10 @@ export const BizStockHero: React.FC = () => {
                 Book a Demo
               </button>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Right Column: Hero Graphic Preview using base URL image */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
@@ -125,7 +125,7 @@ export const BizStockHero: React.FC = () => {
                 loading="eager"
               />
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

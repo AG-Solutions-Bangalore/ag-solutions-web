@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import SEO from "@/components/seo/SEO";
 import { Sparkles, ArrowRight, Home, Clock, Layers, Rocket } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -30,7 +30,7 @@ export function ComingSoonPage({
         <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-yellow/5 blur-3xl" />
 
         <div className="relative z-10 mx-auto max-w-3xl text-center">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, ease: "easeOut" }}
@@ -111,7 +111,7 @@ export function ComingSoonPage({
                 <span>Back to Homepage</span>
               </Link>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </>

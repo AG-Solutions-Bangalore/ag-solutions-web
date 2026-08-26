@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Code2, Smartphone, ShoppingCart, Cloud, Settings, BarChart3, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -75,7 +75,7 @@ function ServicesSection() {
     return (
         <section className="bg-section-alt py-10 sm:py-14 border-t border-border transition-colors duration-200">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <motion.div
+                <m.div
                     className="text-center"
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -97,14 +97,14 @@ function ServicesSection() {
                         <span className="h-1 w-6 rounded-full bg-yellow" />
                         <span className="h-1 w-6 rounded-full bg-green" />
                     </div>
-                </motion.div>
+                </m.div>
 
                 {/* Horizontal Service Cards (Icons beside content as per PDF Page 3) */}
                 <div className="mt-8 sm:mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
                     {services.map((service, idx) => {
                         const Icon = service.icon;
                         return (
-                            <motion.div
+                            <m.div
                                 key={service.title}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -143,7 +143,7 @@ function ServicesSection() {
                                         </Link>
                                     </div>
                                 </div>
-                            </motion.div>
+                            </m.div>
                         );
                     })}
                 </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import { getImageUrl } from "@/utils/imageUrl";
 
@@ -16,7 +16,7 @@ export const GlobalTradePartnerSection: React.FC = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-10">
           {/* Left Column: Text & Bullets (PDF Page 12) */}
-          <motion.div
+          <m.div
             className="lg:col-span-6 z-10 text-center lg:text-left"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -49,10 +49,10 @@ export const GlobalTradePartnerSection: React.FC = () => {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Right Column: Cargo / Logistics Image with Exact Floating Squares & Outline */}
-          <motion.div
+          <m.div
             className="relative lg:col-span-6 flex justify-center"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -90,7 +90,7 @@ export const GlobalTradePartnerSection: React.FC = () => {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

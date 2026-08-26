@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Plus, Minus, HelpCircle, Sparkles } from "lucide-react";
 import { useFAQs } from "@/features/services/hooks/useFAQs";
 import type { FAQData } from "@/features/services/api/serviceApi";
@@ -137,7 +137,7 @@ export const DynamicFaqSection: React.FC<DynamicFaqSectionProps> = ({
 
                   <AnimatePresence initial={false}>
                     {isOpen && (
-                      <motion.div
+                      <m.div
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
@@ -148,7 +148,7 @@ export const DynamicFaqSection: React.FC<DynamicFaqSectionProps> = ({
                             {faq.faq_ans}
                           </div>
                         </div>
-                      </motion.div>
+                      </m.div>
                     )}
                   </AnimatePresence>
                 </div>

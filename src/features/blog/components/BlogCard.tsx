@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Calendar, Clock, ArrowUpRight, User } from "lucide-react";
 import type { BlogItem } from "../types/blog.types";
@@ -59,7 +59,7 @@ export default function BlogCard({ blog, imageBaseUrl, index = 0 }: BlogCardProp
   const readTime = estimateReadTime(blog.blog_description || blog.blog_short_description);
 
   return (
-    <motion.article
+    <m.article
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-30px" }}
@@ -144,6 +144,6 @@ export default function BlogCard({ blog, imageBaseUrl, index = 0 }: BlogCardProp
           <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </Link>
       </div>
-    </motion.article>
+    </m.article>
   );
 }

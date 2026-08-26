@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { ChevronDown, HelpCircle } from "lucide-react";
 
 export interface FaqItem {
@@ -71,7 +71,7 @@ export const BizStockFaq: React.FC = () => {
             const isOpen = openIndex === index;
 
             return (
-              <motion.div
+              <m.div
                 key={faq.question}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -99,7 +99,7 @@ export const BizStockFaq: React.FC = () => {
 
                 <AnimatePresence initial={false}>
                   {isOpen && (
-                    <motion.div
+                    <m.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -108,10 +108,10 @@ export const BizStockFaq: React.FC = () => {
                       <div className="px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-muted leading-relaxed border-t border-border/50 pt-3">
                         {faq.answer}
                       </div>
-                    </motion.div>
+                    </m.div>
                   )}
                 </AnimatePresence>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

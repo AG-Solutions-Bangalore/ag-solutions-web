@@ -1,5 +1,5 @@
 import type { ReactNode, ComponentType } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import SEO from "@/components/seo/SEO";
 import Industries from "@/features/home/components/Industries";
 
@@ -160,7 +160,7 @@ export function CommonServicePage({
 
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-8">
-                            <motion.div
+                            <m.div
                                 className="lg:col-span-6 z-10 text-center lg:text-left"
                                 initial={{ opacity: 0, x: -30 }}
                                 animate={{ opacity: 1, x: 0 }}
@@ -218,10 +218,10 @@ export function CommonServicePage({
                                         <ArrowRight className="h-4 w-4" />
                                     </button>
                                 </div>
-                            </motion.div>
+                            </m.div>
 
                             {/* Right Image Visual with Floating Square Dots (PDF Page 11) */}
-                            <motion.div
+                            <m.div
                                 className="relative flex justify-center lg:col-span-6"
                                 initial={{ opacity: 0, x: 30 }}
                                 animate={{ opacity: 1, x: 0 }}
@@ -240,7 +240,7 @@ export function CommonServicePage({
                                         className="relative z-10 w-full object-contain drop-shadow-xl transition-transform duration-500 hover:scale-[1.02]"
                                     />
                                 </div>
-                            </motion.div>
+                            </m.div>
                         </div>
                     </div>
                 </section>
@@ -252,7 +252,7 @@ export function CommonServicePage({
                     <section className="bg-section-alt py-8 sm:py-12 border-t border-border">
                         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                             {/* Section Header */}
-                            <motion.div
+                            <m.div
                                 className="text-center"
                                 initial={{ opacity: 0, y: 15 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -272,7 +272,7 @@ export function CommonServicePage({
                                     <span className="h-1 w-6 rounded-full bg-yellow" />
                                     <span className="h-1 w-6 rounded-full bg-green" />
                                 </div>
-                            </motion.div>
+                            </m.div>
 
                             {/* Service Cards: Adaptive grid (3 & 3 for 6 cards, 5 in a row for 5 cards) */}
                             <div className={`mt-8 sm:mt-10 grid grid-cols-1 sm:grid-cols-2 ${offerItems.length === 6
@@ -286,7 +286,7 @@ export function CommonServicePage({
                                 {offerItems.map((item, idx) => {
                                     const Icon = item.icon;
                                     return (
-                                        <motion.div
+                                        <m.div
                                             key={item.title}
                                             initial={{ opacity: 0, y: 20 }}
                                             whileInView={{ opacity: 1, y: 0 }}
@@ -317,7 +317,7 @@ export function CommonServicePage({
                                                     className={`h-1 w-6 rounded-full ${item.bgColor} transition-all duration-300 group-hover:w-12`}
                                                 />
                                             </div>
-                                        </motion.div>
+                                        </m.div>
                                     );
                                 })}
                             </div>
@@ -331,7 +331,7 @@ export function CommonServicePage({
                 {whyFeatures.length > 0 && (
                     <section className="bg-background py-8 sm:py-12">
                         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                            <motion.div
+                            <m.div
                                 className="relative rounded-3xl bg-card dark:bg-slate-900/90 border border-border p-5 sm:p-7 md:p-10 shadow-2xs"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -403,7 +403,7 @@ export function CommonServicePage({
                                         </div>
                                     </div>
                                 </div>
-                            </motion.div>
+                            </m.div>
                         </div>
                     </section>
                 )}
@@ -414,7 +414,7 @@ export function CommonServicePage({
                 {processSteps.length > 0 && (
                     <section className="bg-section-alt py-8 sm:py-12 border-t border-border">
                         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                            <motion.div
+                            <m.div
                                 className="text-center"
                                 initial={{ opacity: 0, y: 15 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -434,7 +434,7 @@ export function CommonServicePage({
                                     <span className="h-1 w-6 rounded-full bg-yellow" />
                                     <span className="h-1 w-6 rounded-full bg-green" />
                                 </div>
-                            </motion.div>
+                            </m.div>
 
                             <div className="relative mt-8 sm:mt-10">
                                 {/* Dotted Line Connector */}
@@ -449,7 +449,7 @@ export function CommonServicePage({
                                     {processSteps.map((stepItem, idx) => {
                                         const Icon = stepItem.icon;
                                         return (
-                                            <motion.div
+                                            <m.div
                                                 key={stepItem.step}
                                                 initial={{ opacity: 0, y: 20 }}
                                                 whileInView={{ opacity: 1, y: 0 }}
@@ -479,7 +479,7 @@ export function CommonServicePage({
                                                 <p className="mt-1.5 text-xs leading-relaxed text-muted max-w-[200px]">
                                                     {stepItem.description}
                                                 </p>
-                                            </motion.div>
+                                            </m.div>
                                         );
                                     })}
                                 </div>
@@ -494,7 +494,7 @@ export function CommonServicePage({
                 {stats.length > 0 && (
                     <section className="bg-background py-8 sm:py-10">
                         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                            <motion.div
+                            <m.div
                                 className="relative overflow-hidden rounded-3xl bg-card dark:bg-slate-900/90 p-5 sm:p-7 md:p-9 border border-border shadow-xs"
                                 initial={{ opacity: 0, scale: 0.98 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
@@ -545,7 +545,7 @@ export function CommonServicePage({
                                         </div>
                                     </div>
                                 </div>
-                            </motion.div>
+                            </m.div>
                         </div>
                     </section>
                 )}

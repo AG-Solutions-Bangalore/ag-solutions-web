@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Search, Sparkles, X } from "lucide-react";
 
 interface BlogHeroProps {
@@ -27,7 +27,7 @@ export default function BlogHero({
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto">
           {/* Badge */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
@@ -36,30 +36,30 @@ export default function BlogHero({
             <Sparkles className="h-3.5 w-3.5 text-yellow" />
             <span>AG SOLUTIONS INSIGHTS</span>
             <Sparkles className="h-3.5 w-3.5 text-yellow" />
-          </motion.div>
+          </m.div>
 
           {/* Title */}
-          <motion.h1
+          <m.h1
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground leading-tight"
           >
             Insights, Trends &amp; <span className="text-pink">Engineering Guides</span>
-          </motion.h1>
+          </m.h1>
 
           {/* Subtitle */}
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-3.5 text-sm sm:text-base md:text-lg leading-relaxed text-muted max-w-2xl mx-auto"
           >
             Explore thought leadership, software architecture patterns, UI/UX breakdowns, and digital growth strategies from our engineering experts.
-          </motion.p>
+          </m.p>
 
           {/* Search Input Bar */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4, delay: 0.3 }}
@@ -85,10 +85,10 @@ export default function BlogHero({
                 </button>
               )}
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Categories Pill Filters */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.4 }}
@@ -119,7 +119,7 @@ export default function BlogHero({
                 {cat}
               </button>
             ))}
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

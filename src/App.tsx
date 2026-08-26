@@ -1,10 +1,15 @@
-import Lenis from "lenis";
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import SkipToContent from "./components/accessibility/SkipToContent";
 import { createCampaignVisit } from "./features/products/api/campaignApi";
 import AppRoutes from "./routes";
 import { extractUtmParams, storeUtmParams } from "./utils/utmUtils";
+
+// Type-only import keeps the type without bundling Lenis into the main chunk.
+// The value is dynamically imported below only on desktop, so mobile users
+// never download the smooth-scroll library.
+import type LenisType from "lenis";
+type Lenis = LenisType;
 
 
 function UtmTracker() {
@@ -75,8 +80,11 @@ function App() {
     let resizeObserver: ResizeObserver | undefined;
     let cancelStart = () => {};
 
-    const startLenis = () => {
-      lenis = new Lenis({
+    const startLenis = async () => {
+      // Dynamic import keeps Lenis out of the initial bundle.
+      // Mobile / reduced-motion users never download it.
+      const { default: LenisCtor } = await import("lenis");
+      lenis = new LenisCtor({
         duration: 1.2,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
@@ -94,10 +102,14 @@ function App() {
     };
 
     if ("requestIdleCallback" in window) {
-      const idleId = window.requestIdleCallback(startLenis, { timeout: 3000 });
+      const idleId = window.requestIdleCallback(() => {
+        void startLenis();
+      }, { timeout: 3000 });
       cancelStart = () => window.cancelIdleCallback(idleId);
     } else {
-      const timeoutId = setTimeout(startLenis, 1500);
+      const timeoutId = setTimeout(() => {
+        void startLenis();
+      }, 1500);
       cancelStart = () => clearTimeout(timeoutId);
     }
 

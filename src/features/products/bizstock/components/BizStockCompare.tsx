@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { XCircle, CheckCircle2, Zap, ArrowRight } from "lucide-react";
 import { useLeadModal } from "@/context/LeadModalContext";
 
@@ -63,7 +63,7 @@ export const BizStockCompare: React.FC = () => {
         </div>
 
         {/* Comparison Table / Cards */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -125,7 +125,7 @@ export const BizStockCompare: React.FC = () => {
               <ArrowRight className="h-4 w-4" />
             </button>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

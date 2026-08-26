@@ -1,0 +1,8 @@
+skills:
+  unlighthouse-skilld:
+    packageName: unlighthouse
+    version: 0.18.0
+    repo: harlan-zw/unlighthouse
+    source: "https://github.com/harlan-zw/unlighthouse/tree/v0.18.0/docs"
+    syncedAt: 2026-08-26
+    generator: skilld

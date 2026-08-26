@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useLeadModal } from "@/context/LeadModalContext";
 import { ArrowRight } from "lucide-react";
 import { getImageUrl } from "@/utils/imageUrl";
@@ -14,7 +14,7 @@ function AboutHero() {
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-10">
                     {/* Left Column: Text & CTA */}
-                    <motion.div
+                    <m.div
                         className="lg:col-span-6 z-10 text-center lg:text-left"
                         initial={{ opacity: 0, x: -30 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -42,10 +42,10 @@ function AboutHero() {
                                 <ArrowRight className="h-4 w-4" />
                             </button>
                         </div>
-                    </motion.div>
+                    </m.div>
 
                     {/* Right Column: Reception Photo with Exact Floating Square Accents */}
-                    <motion.div
+                    <m.div
                         className="relative lg:col-span-6 flex justify-center"
                         initial={{ opacity: 0, x: 30 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -84,7 +84,7 @@ function AboutHero() {
                             {/* Floating Yellow Square (Bottom Right) */}
                             <div className="absolute -right-4 sm:-right-6 bottom-6 sm:bottom-10 z-20 h-12 w-12 sm:h-14 sm:w-14 rounded-md bg-yellow shadow-xl transition-transform duration-300 hover:scale-110" />
                         </div>
-                    </motion.div>
+                    </m.div>
                 </div>
             </div>
         </section>

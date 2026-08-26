@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "bun scripts/optimizeAndAuditImages.ts && bun scripts/generateSitemap.ts && tsc -b && vite build && bun scripts/prerenderSeo.ts",
+    "build": "bun scripts/optimizeAndAuditImages.ts && bun scripts/generateLcpVariants.ts && bun scripts/generateSitemap.ts && tsc -b && vite build && bun scripts/prerenderSeo.ts",
     "optimize:images": "bun scripts/optimizeAndAuditImages.ts",
+    "optimize:lcp": "bun scripts/generateLcpVariants.ts",
     "lint": "eslint .",
     "preview": "vite preview",
     "validate:schema": "bun scripts/validateSchemas.ts",

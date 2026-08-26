@@ -29,11 +29,19 @@
     <!-- Preconnect to external assets -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
-    <!-- Preload above-the-fold critical LCP assets -->
-    <link rel="preload" href="/images/laptop.webp" as="image" type="image/webp" fetchpriority="high" />
+
+    <!-- Preload above-the-fold critical LCP assets with responsive hints -->
+    <link
+      rel="preload"
+      as="image"
+      href="/images/laptop.webp"
+      type="image/webp"
+      fetchpriority="high"
+      imagesrcset="/images/laptop-mobile.webp 475w, /images/laptop.webp 612w"
+      imagesizes="(max-width: 1023px) 475px, 612px"
+    />
     <link rel="preload" href="/images/logo.webp" as="image" type="image/webp" />
-    
+
     <!-- Google Fonts loading (Non-render-blocking) -->
     <link
       rel="preload"
@@ -52,6 +60,25 @@
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       />
     </noscript>
+
+    <!-- Critical above-the-fold CSS (inlined for fastest LCP) -->
+    <style>
+      :root{--pink:#ec4899;--pink-hover:#db2777;--pink-light:#fce7f3;--teal:#14b8a6;--teal-light:#ccfbf1;--background:#ffffff;--foreground:#0f172a;--dark:#0f172a;--muted:#64748b;--card:#ffffff;--border:#e2e8f0;--pink-border:#f9a8d4}
+      html,body{margin:0;padding:0;background:var(--background);color:var(--foreground);font-family:"Roboto",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+      #root{min-height:100vh}
+      .sticky-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+      .header-inner{max-width:80rem;margin:0 auto;padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;min-height:4rem}
+      @media (min-width:640px){.header-inner{padding:1rem 1.5rem;min-height:5rem}}
+      .hero-section{background:var(--background);padding:1.5rem 0}
+      @media (min-width:640px){.hero-section{padding:2.5rem 0}}
+      .hero-grid{max-width:80rem;margin:0 auto;padding:0 1rem;display:grid;grid-template-columns:1fr;gap:2rem;align-items:center}
+      @media (min-width:1024px){.hero-grid{grid-template-columns:repeat(12,minmax(0,1fr));gap:2rem;padding:0 2rem}}
+      .hero-img{position:relative;z-index:10;width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 20px 13px rgb(0 0 0/.03)) drop-shadow(0 8px 5px rgb(0 0 0/.08))}
+      .lcp-placeholder{aspect-ratio:612/408;width:100%;max-width:32rem;background:linear-gradient(135deg,var(--pink-light),var(--teal-light));border-radius:1rem;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.875rem}
+      @media (min-width:1024px){.lcp-placeholder{max-width:36rem}}
+    </style>
+
+    <!-- Main CSS is loaded asynchronously via a Vite transformIndexHtml plugin (see vite.config.ts) -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta

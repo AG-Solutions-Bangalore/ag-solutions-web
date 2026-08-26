@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Users, Lightbulb, ShieldCheck, Headphones, TrendingUp, Handshake } from "lucide-react";
 
 const features = [
@@ -54,7 +54,7 @@ function WhyChooseUs() {
 
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 {/* Header */}
-                <motion.div
+                <m.div
                     className="text-center"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -76,14 +76,14 @@ function WhyChooseUs() {
                         <span className="h-1 w-6 rounded-full bg-yellow" />
                         <span className="h-1 w-6 rounded-full bg-green" />
                     </div>
-                </motion.div>
+                </m.div>
 
                 {/* 6 Feature Cards Grid */}
                 <div className="mt-8 sm:mt-12 grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {features.map((feat, idx) => {
                         const Icon = feat.icon;
                         return (
-                            <motion.div
+                            <m.div
                                 key={feat.title}
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -104,7 +104,7 @@ function WhyChooseUs() {
                                         {feat.description}
                                     </p>
                                 </div>
-                            </motion.div>
+                            </m.div>
                         );
                     })}
                 </div>

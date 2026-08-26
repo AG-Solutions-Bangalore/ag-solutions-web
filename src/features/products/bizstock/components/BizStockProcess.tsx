@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   ShoppingCart,
   Truck,
@@ -84,7 +84,7 @@ export const BizStockProcess: React.FC = () => {
         <div className="mt-14 sm:mt-18 relative">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4 relative">
             {processSteps.map((step, index) => (
-              <motion.div
+              <m.div
                 key={step.number}
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -118,7 +118,7 @@ export const BizStockProcess: React.FC = () => {
                 {index < processSteps.length - 1 && (
                   <div className="hidden lg:block absolute top-[52px] left-[calc(50%+45px)] w-[calc(100%-90px)] border-t-2 border-dashed border-slate-300 dark:border-slate-700 pointer-events-none z-0" />
                 )}
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
