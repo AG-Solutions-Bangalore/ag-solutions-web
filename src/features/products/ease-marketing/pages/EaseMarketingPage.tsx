@@ -9,6 +9,7 @@ import { EaseMarketingMetricsStrip } from "../components/EaseMarketingMetricsStr
 import { DynamicTestimonialSection } from "@/components/common/DynamicTestimonialSection";
 import { DynamicFaqSection } from "@/components/common/DynamicFaqSection";
 import { EaseMarketingCtaBanner } from "../components/EaseMarketingCtaBanner";
+import RelatedBlogSection from "@/features/blog/components/RelatedBlogSection";
 import { useLeadModal } from "@/context/LeadModalContext";
 
 export const EaseMarketingPage: React.FC = () => {
@@ -79,6 +80,15 @@ export const EaseMarketingPage: React.FC = () => {
 
         {/* 8. CTA Banner */}
         <EaseMarketingCtaBanner />
+
+        {/* 9. Related Blog Insights */}
+        <RelatedBlogSection
+          eyebrow="MARKETING & AUTOMATION INSIGHTS"
+          title="Marketing, Campaigns &"
+          titleHighlight="WhatsApp Automation"
+          subtitle="Tactics and case studies on WhatsApp marketing, campaign automation, conversion tracking, and customer engagement."
+          categories={["Tech"]}
+        />
       </div>
     </>
   );

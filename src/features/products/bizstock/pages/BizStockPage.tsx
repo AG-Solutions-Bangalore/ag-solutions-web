@@ -8,6 +8,7 @@ import { BizStockIndustries } from "../components/BizStockIndustries";
 import { DynamicTestimonialSection } from "@/components/common/DynamicTestimonialSection";
 import { DynamicFaqSection } from "@/components/common/DynamicFaqSection";
 import { BizStockCtaBanner } from "../components/BizStockCtaBanner";
+import RelatedBlogSection from "@/features/blog/components/RelatedBlogSection";
 import { useLeadModal } from "@/context/LeadModalContext";
 
 export const BizStockPage: React.FC = () => {
@@ -76,6 +77,15 @@ export const BizStockPage: React.FC = () => {
 
         {/* CTA Banner */}
         <BizStockCtaBanner />
+
+        {/* Related Blog Insights */}
+        <RelatedBlogSection
+          eyebrow="INVENTORY & OPERATIONS INSIGHTS"
+          title="Inventory, ERP &"
+          titleHighlight="Business Operations"
+          subtitle="Field-tested ideas on inventory automation, multi-warehouse management, purchase workflows, and operational efficiency."
+          categories={["Tech"]}
+        />
       </div>
     </>
   );

@@ -4,6 +4,7 @@ import { ServiceSchema } from "@/components/seo";
 import { DynamicTestimonialSection } from "@/components/common/DynamicTestimonialSection";
 import { DynamicFaqSection } from "@/components/common/DynamicFaqSection";
 import Industries from "@/features/home/components/Industries";
+import RelatedBlogSection from "@/features/blog/components/RelatedBlogSection";
 
 function WebDevelopmentPageV2() {
   return (
@@ -18,6 +19,13 @@ function WebDevelopmentPageV2() {
         <DynamicTestimonialSection route="web-development" />
         <DynamicFaqSection slug="web-development" />
         <Industries />
+        <RelatedBlogSection
+          eyebrow="WEB DEVELOPMENT INSIGHTS"
+          title="Web & Website"
+          titleHighlight="Development Insights"
+          subtitle="Expert articles on building high-performance websites, SEO best practices, and digital growth strategies for modern businesses."
+          categories={["Website", "Web Application"]}
+        />
       </CommonServicePage>
     </>
   );

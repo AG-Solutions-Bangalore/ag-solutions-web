@@ -5,6 +5,7 @@ import { ServiceSchema } from "@/components/seo";
 import { DynamicTestimonialSection } from "@/components/common/DynamicTestimonialSection";
 import { DynamicFaqSection } from "@/components/common/DynamicFaqSection";
 import Industries from "@/features/home/components/Industries";
+import RelatedBlogSection from "@/features/blog/components/RelatedBlogSection";
 
 function MobileAppPageV2() {
   return (
@@ -20,6 +21,13 @@ function MobileAppPageV2() {
         <DynamicTestimonialSection route="mobile-app-development" />
         <DynamicFaqSection slug="mobile-app-development" />
         <Industries />
+        <RelatedBlogSection
+          eyebrow="MOBILE APP INSIGHTS"
+          title="Mobile App"
+          titleHighlight="Growth & Engagement"
+          subtitle="Discover why mobile apps drive stronger customer loyalty, higher sales, and better engagement for modern brands."
+          categories={["Mobile App"]}
+        />
       </CommonServicePage>
     </>
   );
