@@ -9,6 +9,7 @@ import { TrustSection } from "../components/TrustSection";
 import { DynamicTestimonialSection } from "@/components/common/DynamicTestimonialSection";
 import { DynamicFaqSection } from "@/components/common/DynamicFaqSection";
 import { CtaBanner } from "../components/CtaBanner";
+import RelatedBlogSection from "@/features/blog/components/RelatedBlogSection";
 import { useLeadModal } from "@/context/LeadModalContext";
 
 export const ExportBizNewPage: React.FC = () => {
@@ -53,6 +54,13 @@ export const ExportBizNewPage: React.FC = () => {
         <DynamicTestimonialSection route="export-biz" />
         <DynamicFaqSection slug="export-biz" />
         <CtaBanner onStartDemo={() => openLeadModal("Export Biz Software")} />
+        <RelatedBlogSection
+          eyebrow="EXPORT & TRADE INSIGHTS"
+          title="Export, Trade &"
+          titleHighlight="Compliance Insights"
+          subtitle="Practical guides on export documentation, DGFT compliance, shipping workflows, and global trade best practices."
+          categories={["Tech"]}
+        />
       </CommonServicePage>
     </>
   );
