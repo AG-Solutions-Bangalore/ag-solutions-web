@@ -3,9 +3,16 @@ import type { TestimonialsResponse } from "../types/testimonial.types";
 
 export const getTestimonialsByRoute = async (route: string): Promise<TestimonialsResponse> => {
   try {
-    const response = await apiClient.get<TestimonialsResponse>(`/getTestimonial/${route}`);
-    if (response.data && Array.isArray(response.data.data)) {
+    const slug = route === "bizstock" ? "biz-stock" : route;
+    let response = await apiClient.get<TestimonialsResponse>(`/getTestimonial/${slug}`);
+    if (response.data && Array.isArray(response.data.data) && response.data.data.length > 0) {
       return response.data;
+    }
+    if (slug === "biz-stock") {
+      const fallback = await apiClient.get<TestimonialsResponse>(`/getTestimonial/bizstock`);
+      if (fallback.data && Array.isArray(fallback.data.data) && fallback.data.data.length > 0) {
+        return fallback.data;
+      }
     }
     return { data: [] };
   } catch {

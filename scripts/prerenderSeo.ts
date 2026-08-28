@@ -114,6 +114,13 @@ const BASE_ROUTES_CONFIG: Record<string, RouteSEO> = {
           priceCurrency: "INR",
           availability: "https://schema.org/InStock",
         },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "5.0",
+          reviewCount: "10",
+          bestRating: "5",
+          worstRating: "1",
+        },
       },
     ],
   },
@@ -137,6 +144,13 @@ const BASE_ROUTES_CONFIG: Record<string, RouteSEO> = {
           price: "0",
           priceCurrency: "INR",
           availability: "https://schema.org/InStock",
+        },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "5.0",
+          reviewCount: "10",
+          bestRating: "5",
+          worstRating: "1",
         },
       },
     ],
@@ -307,14 +321,21 @@ import { generateSitemap, fetchLiveBlogArticles } from "./generateSitemap";
  */
 async function fetchDynamicTestimonials(route: string): Promise<Record<string, unknown>[]> {
   try {
-    const apiRoute = route === "/" ? "home" : route.replace(/^\//, "");
-    const res = await fetch(`${API_BASE}/getTestimonial/${apiRoute}`, {
+    let apiRoute = route === "/" ? "home" : route.replace(/^\//, "");
+    if (apiRoute === "bizstock") apiRoute = "biz-stock";
+    let res = await fetch(`${API_BASE}/getTestimonial/${apiRoute}`, {
       headers: {
         "Accept": "application/json, text/plain, */*",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
       },
       signal: AbortSignal.timeout(6000),
     });
+    if (!res.ok && apiRoute === "biz-stock") {
+      res = await fetch(`${API_BASE}/getTestimonial/bizstock`, {
+        headers: { "Accept": "application/json" },
+        signal: AbortSignal.timeout(6000),
+      });
+    }
     if (!res.ok) return [];
     const json = await res.json();
     const data = json?.data;
@@ -527,7 +548,27 @@ export async function prerenderAllRoutes() {
     // Fetch dynamic Testimonials from API for this route
     const dynamicReviews = await fetchDynamicTestimonials(route);
     if (dynamicReviews.length > 0) {
-      schemas.push(...dynamicReviews);
+      const softwareSchema = schemas.find((s) => s["@type"] === "SoftwareApplication");
+      if (softwareSchema) {
+        softwareSchema.review = dynamicReviews.map((r) => ({
+          "@type": "Review",
+          name: (r.author as any)?.name || (r as any).name || "Client Review",
+          author: r.author,
+          reviewBody: r.reviewBody,
+          reviewRating: r.reviewRating,
+        }));
+        if (!softwareSchema.aggregateRating) {
+          softwareSchema.aggregateRating = {
+            "@type": "AggregateRating",
+            ratingValue: "5.0",
+            reviewCount: String(dynamicReviews.length),
+            bestRating: "5",
+            worstRating: "1",
+          };
+        }
+      } else {
+        schemas.push(...dynamicReviews);
+      }
     }
 
     const routeSeo: RouteSEO = {

@@ -35,6 +35,13 @@ export const JsonLd: React.FC<JsonLdProps> = React.memo(({ id, schema }) => {
       el.textContent = jsonString;
       document.head.appendChild(el);
     }
+
+    return () => {
+      const scriptEl = document.getElementById(scriptId);
+      if (scriptEl) {
+        scriptEl.remove();
+      }
+    };
   }, [scriptId, jsonString]);
 
   return null;

@@ -38,8 +38,7 @@ export const SoftwareAppSchema: React.FC<SoftwareAppSchemaProps> = ({
   features = [],
   reviews = [],
 }) => {
-  const scriptId =
-    id || `schema-software-${name.toLowerCase().replace(/[^a-z0-9]/g, "-")}`;
+  const scriptId = id || "schema-softwareapplication";
 
   const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
@@ -86,7 +85,7 @@ export const SoftwareAppSchema: React.FC<SoftwareAppSchemaProps> = ({
   if (reviews && reviews.length > 0) {
     schema.review = reviews.map((r) => ({
       "@type": "Review",
-      name: `${r.authorName} Review`,
+      name: r.authorName,
       author: {
         "@type": "Person",
         name: r.authorName,
