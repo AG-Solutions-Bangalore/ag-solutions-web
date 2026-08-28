@@ -35,6 +35,8 @@ export const ExportBizNewPage: React.FC = () => {
         applicationCategory="BusinessApplication"
         operatingSystem="Web Browser, Cloud-based"
         url="https://ag-solutions.in/export-biz"
+        ratingValue="5.0"
+        reviewCount="10"
         features={[
           "3-Click Document Generation",
           "Automated Shipping Bills & Invoices",

@@ -83,6 +83,13 @@ const BASE_ROUTES_CONFIG: Record<string, RouteSEO> = {
           priceCurrency: "INR",
           availability: "https://schema.org/InStock",
         },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "5.0",
+          reviewCount: "10",
+          bestRating: "5",
+          worstRating: "1",
+        },
       },
     ],
   },
