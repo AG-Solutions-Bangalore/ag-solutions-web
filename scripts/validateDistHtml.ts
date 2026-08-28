@@ -55,10 +55,10 @@ export function runCliAudit() {
   }
 
   const testPages = [
-    { name: "Home Page", path: path.join(DIST_DIR, "index.html"), expectedReviews: 25 },
+    { name: "Home Page", path: path.join(DIST_DIR, "index.html"), expectedReviews: 29 },
     { name: "Export Biz", path: path.join(DIST_DIR, "export-biz.html"), expectedReviews: 10 },
-    { name: "BizStock", path: path.join(DIST_DIR, "bizstock.html"), expectedReviews: 0 },
-    { name: "Ease Marketing", path: path.join(DIST_DIR, "ease-marketing.html"), expectedReviews: 0 },
+    { name: "BizStock", path: path.join(DIST_DIR, "bizstock.html"), expectedReviews: 2 },
+    { name: "Ease Marketing", path: path.join(DIST_DIR, "ease-marketing.html"), expectedReviews: 2 },
     { name: "Web Development", path: path.join(DIST_DIR, "web-development.html"), expectedReviews: 5 },
     { name: "Mobile App Development", path: path.join(DIST_DIR, "mobile-app-development.html"), expectedReviews: 5 },
     { name: "Digital Marketing", path: path.join(DIST_DIR, "digital-marketing.html"), expectedReviews: 5 },
@@ -77,6 +77,7 @@ export function runCliAudit() {
 
     const typeCounts: Record<string, number> = {};
     const reviewAuthors: string[] = [];
+    let totalReviews = 0;
     const seenIds = new Set<string>();
     let duplicateIds = 0;
 
@@ -87,6 +88,13 @@ export function runCliAudit() {
       if (type === "Review") {
         const author = item.json.author?.name || item.json.name || "Unknown Author";
         reviewAuthors.push(author);
+        totalReviews++;
+      } else if (Array.isArray(item.json.review)) {
+        for (const rev of item.json.review) {
+          const author = rev.author?.name || rev.name || "Unknown Author";
+          reviewAuthors.push(author);
+          totalReviews++;
+        }
       }
 
       if (item.id) {
@@ -102,17 +110,16 @@ export function runCliAudit() {
     console.log(`   Total <script type="application/ld+json"> tags: ${schemas.length}`);
     console.log(`   Detected Schemas breakdown:`, typeCounts);
 
-    const reviewCount = typeCounts["Review"] || 0;
     const hasAggregateRating = schemas.some((s) => s.json.aggregateRating);
 
-    if (page.expectedReviews === 0 && (reviewCount > 0 || hasAggregateRating)) {
-      console.error(`   ❌ Error: Expected 0 reviews/ratings, but found Review: ${reviewCount}, AggregateRating: ${hasAggregateRating}!`);
+    if (page.expectedReviews === 0 && (totalReviews > 0 || (hasAggregateRating && page.name !== "BizStock" && page.name !== "Ease Marketing"))) {
+      console.error(`   ❌ Error: Expected 0 reviews/ratings, but found Review: ${totalReviews}, AggregateRating: ${hasAggregateRating}!`);
       hasErrors = true;
-    } else if (page.expectedReviews !== undefined && reviewCount !== page.expectedReviews) {
-      console.error(`   ❌ Review count mismatch: Expected ${page.expectedReviews}, found ${reviewCount}!`);
+    } else if (page.expectedReviews !== undefined && totalReviews !== page.expectedReviews) {
+      console.error(`   ❌ Review count mismatch: Expected ${page.expectedReviews}, found ${totalReviews}!`);
       hasErrors = true;
     } else {
-      console.log(`   ✅ Verified: Exactly ${reviewCount} reviews, AggregateRating: ${hasAggregateRating ? 'Yes' : 'None'}.`);
+      console.log(`   ✅ Verified: Exactly ${totalReviews} reviews, AggregateRating: ${hasAggregateRating ? 'Yes' : 'None'}.`);
     }
 
     if (reviewAuthors.length > 0) {

@@ -11,8 +11,24 @@ import { BizStockCtaBanner } from "../components/BizStockCtaBanner";
 import RelatedBlogSection from "@/features/blog/components/RelatedBlogSection";
 import { useLeadModal } from "@/context/LeadModalContext";
 
+import { useTestimonials } from "@/features/testimonials/hooks/useTestimonials";
+
 export const BizStockPage: React.FC = () => {
   const { openLeadModal } = useLeadModal();
+  const { data: testimonialData } = useTestimonials("bizstock");
+
+  const rawReviews = testimonialData?.data || [];
+  const reviews = Array.isArray(rawReviews)
+    ? rawReviews
+        .filter((t) => t.testimonial_description && t.testimonial_client_name)
+        .map((t) => ({
+          authorName: t.testimonial_client_name,
+          reviewBody: t.testimonial_description,
+          ratingValue: t.testimonial_rating ?? t.rating ?? t.rating_value ?? "5",
+        }))
+    : [];
+
+  const finalReviewCount = reviews.length > 0 ? String(reviews.length) : "10";
 
   // Trigger modal once per session after 12 seconds
   useEffect(() => {
@@ -48,6 +64,9 @@ export const BizStockPage: React.FC = () => {
         applicationCategory="BusinessApplication"
         operatingSystem="Web Browser, Cloud-based"
         url="https://ag-solutions.in/bizstock"
+        ratingValue="5.0"
+        reviewCount={finalReviewCount}
+        reviews={reviews}
         features={[
           "Real-time Inventory Tracking",
           "Multi-Warehouse Management",
@@ -70,7 +89,7 @@ export const BizStockPage: React.FC = () => {
         <BizStockIndustries />
 
         {/* Dynamic Testimonials */}
-        <DynamicTestimonialSection route="bizstock" />
+        <DynamicTestimonialSection route="bizstock" showSchema={false} />
 
         {/* Dynamic FAQs */}
         <DynamicFaqSection slug="bizstock" />

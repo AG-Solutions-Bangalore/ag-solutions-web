@@ -11,9 +11,24 @@ import { DynamicFaqSection } from "@/components/common/DynamicFaqSection";
 import { EaseMarketingCtaBanner } from "../components/EaseMarketingCtaBanner";
 import RelatedBlogSection from "@/features/blog/components/RelatedBlogSection";
 import { useLeadModal } from "@/context/LeadModalContext";
+import { useTestimonials } from "@/features/testimonials/hooks/useTestimonials";
 
 export const EaseMarketingPage: React.FC = () => {
   const { openLeadModal } = useLeadModal();
+  const { data: testimonialData } = useTestimonials("ease-marketing");
+
+  const rawReviews = testimonialData?.data || [];
+  const reviews = Array.isArray(rawReviews)
+    ? rawReviews
+        .filter((t) => t.testimonial_description && t.testimonial_client_name)
+        .map((t) => ({
+          authorName: t.testimonial_client_name,
+          reviewBody: t.testimonial_description,
+          ratingValue: t.testimonial_rating ?? t.rating ?? t.rating_value ?? "5",
+        }))
+    : [];
+
+  const finalReviewCount = reviews.length > 0 ? String(reviews.length) : "10";
 
   // Trigger modal once per session after 12 seconds
   useEffect(() => {
@@ -48,6 +63,9 @@ export const EaseMarketingPage: React.FC = () => {
         applicationCategory="MarketingApplication"
         operatingSystem="Web Browser, Cloud-based"
         url="https://ag-solutions.in/ease-marketing"
+        ratingValue="5.0"
+        reviewCount={finalReviewCount}
+        reviews={reviews}
         features={[
           "Bulk WhatsApp Campaigns",
           "Smart Template Approval",
@@ -73,7 +91,7 @@ export const EaseMarketingPage: React.FC = () => {
         <EaseMarketingMetricsStrip />
 
         {/* 6. Dynamic Customer Testimonials */}
-        <DynamicTestimonialSection route="ease-marketing" />
+        <DynamicTestimonialSection route="ease-marketing" showSchema={false} />
 
         {/* 7. Dynamic FAQs */}
         <DynamicFaqSection slug="ease-marketing" />

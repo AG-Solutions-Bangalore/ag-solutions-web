@@ -301,27 +301,11 @@ const testSchemas: Array<{ route: string; id: string; schema: Record<string, unk
       },
       aggregateRating: {
         "@type": "AggregateRating",
-        ratingValue: "4.9",
-        reviewCount: "150",
+        ratingValue: "5.0",
+        reviewCount: "10",
         bestRating: "5",
         worstRating: "1",
       },
-      review: [
-        {
-          "@type": "Review",
-          name: "Rajesh Singhal Review",
-          author: {
-            "@type": "Person",
-            name: "Rajesh Singhal",
-          },
-          reviewBody: "Export Biz reduced our shipping bill preparation time by over 70%. Zero customs filing errors since we onboarded.",
-          reviewRating: {
-            "@type": "Rating",
-            ratingValue: "5",
-            bestRating: "5",
-          },
-        },
-      ],
     },
   },
 
