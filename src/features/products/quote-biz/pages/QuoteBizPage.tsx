@@ -30,6 +30,7 @@ export const QuoteBizPage: React.FC = () => {
       <SEO
         title="QuoteBiz – Smart Quotes. Better Business. | AG Solutions"
         description="QuoteBiz helps you create professional quotes in minutes, send to customers, track responses, and convert more leads into sales with real-time analytics."
+        canonical="https://ag-solutions.in/quote-biz"
         keywords={[
           "QuoteBiz",
           "quote-biz",

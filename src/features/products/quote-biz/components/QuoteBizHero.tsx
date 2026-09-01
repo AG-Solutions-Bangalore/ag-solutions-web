@@ -70,6 +70,22 @@ export const QuoteBizHero: React.FC = () => {
               QuoteBiz helps you create professional quotes in minutes, send to customers, track responses, and convert more leads into sales.
             </p>
 
+            {/* 4 Feature Highlights Strip */}
+            <div className="mt-8 sm:mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+              {highlights.map((item) => (
+                <div key={item.title} className="flex flex-col items-center group">
+                  <div
+                    className={`h-12 w-12 rounded-full ${item.iconBg} border flex items-center justify-center shadow-xs mb-2.5 transition-transform duration-300 group-hover:scale-110`}
+                  >
+                    {item.icon}
+                  </div>
+                  <h4 className="text-xs sm:text-[13px] font-bold text-dark leading-tight group-hover:text-pink transition-colors">
+                    {item.title}
+                  </h4>
+                </div>
+              ))}
+            </div>
+
             {/* CTA Buttons */}
             <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <button
@@ -88,22 +104,6 @@ export const QuoteBizHero: React.FC = () => {
               >
                 Book a Demo
               </button>
-            </div>
-
-            {/* 4 Feature Highlights Strip */}
-            <div className="mt-10 sm:mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-              {highlights.map((item) => (
-                <div key={item.title} className="flex flex-col items-center group">
-                  <div
-                    className={`h-12 w-12 rounded-full ${item.iconBg} border flex items-center justify-center shadow-xs mb-2.5 transition-transform duration-300 group-hover:scale-110`}
-                  >
-                    {item.icon}
-                  </div>
-                  <h4 className="text-xs sm:text-[13px] font-bold text-dark leading-tight group-hover:text-pink transition-colors">
-                    {item.title}
-                  </h4>
-                </div>
-              ))}
             </div>
           </m.div>
 

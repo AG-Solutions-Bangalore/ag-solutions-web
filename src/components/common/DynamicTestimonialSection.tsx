@@ -27,8 +27,9 @@ export const DynamicTestimonialSection: React.FC<DynamicTestimonialSectionProps>
   const { data: apiResponse, isLoading } = useTestimonials(route || "");
   const [currentPage, setCurrentPage] = useState(0);
 
-  // Combine prop or query data
-  const rawItems = propTestimonials || apiResponse?.data || [];
+  // Combine prop or query data (prefer live API data when available, fall back to propTestimonials)
+  const apiItems = Array.isArray(apiResponse?.data) && apiResponse.data.length > 0 ? apiResponse.data : null;
+  const rawItems = apiItems || propTestimonials || [];
   const items = Array.isArray(rawItems) ? rawItems.filter((t) => t.testimonial_description && t.testimonial_client_name) : [];
 
   // Conditional Rendering Rule: If no data is available, do not render the section

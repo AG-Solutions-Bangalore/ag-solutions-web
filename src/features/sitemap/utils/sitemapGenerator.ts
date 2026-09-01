@@ -213,6 +213,7 @@ export async function generateSitemapXmlString(): Promise<{ xml: string; totalUr
     { path: "/export-biz", name: "Export Biz" },
     { path: "/bizstock", name: "BizStock" },
     { path: "/ease-marketing", name: "Ease Marketing" },
+    { path: "/quote-biz", name: "QuoteBiz" },
     { path: "/portfolio", name: "Portfolio" },
     { path: "/blogs", name: "Blogs" },
     { path: "/contacts", name: "Contact Us" },

@@ -15,20 +15,13 @@ export function getImageUrl(path: string | undefined | null): string {
   // Normalize path removing leading relative markers
   let cleanPath = path.trim();
   if (cleanPath.startsWith("./")) {
-    cleanPath = cleanPath.substring(2);
-  }
-  if (!cleanPath.startsWith("/")) {
-    cleanPath = `/${cleanPath}`;
+    cleanPath = cleanPath.slice(2);
   }
 
-  // Remove leading /images prefix if present to align with remote server directory structure
-  const relativePath = cleanPath.startsWith("/images/")
-    ? cleanPath.substring(7)
-    : cleanPath.startsWith("/")
-    ? cleanPath.substring(1)
-    : cleanPath;
+  // Strip leading '/images/', 'images/', and any redundant leading slashes
+  cleanPath = cleanPath.replace(/^\/?images\//, "").replace(/^\/+/, "");
 
-  return `${SERVER_IMAGE_BASE}/${relativePath}`;
+  return `${SERVER_IMAGE_BASE}/${cleanPath}`;
 }
 
 export default getImageUrl;
