@@ -47,6 +47,7 @@ export const pageLoaders = {
   digitalMarketing: () => import("@/features/services/pages/DigitalMarketingPageV2"),
   exportBiz: () => import("@/features/products/export-biz/pages/ExportBizNewPage"),
   bizstock: () => import("@/features/products/bizstock/pages/BizStockPage"),
+  quoteBiz: () => import("@/features/products/quote-biz/pages/QuoteBizPage"),
   products: () => import("@/features/products/pages/ProductsPage"),
   easeMarketing: () => import("@/features/products/ease-marketing/pages/EaseMarketingPage"),
   growTogether: () => import("@/features/coming-soon/pages/ComingSoonPage"),
@@ -75,6 +76,7 @@ export const loadDigitalMarketingPage = pageLoaders.digitalMarketing;
 export const loadProductsPage = pageLoaders.products;
 export const loadExportBizPage = pageLoaders.exportBiz;
 export const loadBizStockPage = pageLoaders.bizstock;
+export const loadQuoteBizPage = pageLoaders.quoteBiz;
 export const loadEaseMarketingPage = pageLoaders.easeMarketing;
 export const loadGrowTogetherPage = pageLoaders.growTogether;
 export const loadBlogListPage = pageLoaders.blogList;
@@ -105,6 +107,8 @@ const routeLoaders: Record<string, () => Promise<unknown>> = {
   "/export-biz-new": loadExportBizPage,
   "/bizstock": loadBizStockPage,
   "/biz-stock": loadBizStockPage,
+  "/quote-biz": loadQuoteBizPage,
+  "/quote-biz/": loadQuoteBizPage,
   "/grow-together": loadGrowTogetherPage,
   "/blogs": loadBlogListPage,
   "/blog": loadBlogListPage,

@@ -27,7 +27,7 @@ const GLOBAL_ORGANIZATION_SCHEMA = {
   url: "https://ag-solutions.in/",
   logo: {
     "@type": "ImageObject",
-    url: "https://ag-solutions.in/images/logo.webp",
+    url: "https://ag-solutions.in/webapi/public/assets/images/web_images_new/logo.webp",
   },
   contactPoint: {
     "@type": "ContactPoint",
@@ -267,7 +267,7 @@ const BASE_ROUTES_CONFIG: Record<string, RouteSEO> = {
           url: "https://ag-solutions.in/",
           logo: {
             "@type": "ImageObject",
-            url: "https://ag-solutions.in/images/logo.webp",
+            url: "https://ag-solutions.in/webapi/public/assets/images/web_images_new/logo.webp",
           },
         },
       },
@@ -662,7 +662,7 @@ export async function prerenderAllRoutes() {
             "@id": `${SITE_ORIGIN}/#organization`,
             name: "AG Solutions",
             url: `${SITE_ORIGIN}/`,
-            logo: { "@type": "ImageObject", url: `${SITE_ORIGIN}/images/logo.webp` },
+            logo: { "@type": "ImageObject", url: "https://ag-solutions.in/webapi/public/assets/images/web_images_new/logo.webp" },
           },
           mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_ORIGIN}${blogRoute}` },
         });

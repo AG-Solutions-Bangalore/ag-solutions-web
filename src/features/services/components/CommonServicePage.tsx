@@ -6,6 +6,7 @@ import Industries from "@/features/home/components/Industries";
 import { useLeadModal } from "@/context/LeadModalContext";
 import { ArrowRight } from "lucide-react";
 import AnimatedCounter from "@/components/animation/AnimatedCounter";
+import { getImageUrl } from "@/utils/imageUrl";
 
 // Generic Icon type compatible with both react-icons and lucide-react
 export type ServiceIcon = ComponentType<{ className?: string; size?: number }>;
@@ -105,7 +106,7 @@ export function CommonServicePage({
     heroCtaText = "Get a Quote",
     onHeroCtaClick,
     heroFeatures = [],
-    heroImage = "/images/laptop.webp",
+    heroImage = getImageUrl("/images/laptop.webp"),
     heroImageAlt,
     heroImageTitle,
 
@@ -234,7 +235,7 @@ export function CommonServicePage({
 
                                     {/* Main Hero Image */}
                                     <img
-                                        src={heroImage}
+                                        src={getImageUrl(heroImage)}
                                         alt={heroImageAlt || heroTitle}
                                         title={heroImageTitle || heroTitle}
                                         className="relative z-10 w-full object-contain drop-shadow-xl transition-transform duration-500 hover:scale-[1.02]"

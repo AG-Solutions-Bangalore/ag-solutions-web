@@ -1,6 +1,7 @@
 import React from "react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SEO } from "@/components/seo/SEO";
+import { getImageUrl } from "@/utils/imageUrl";
 
 export const PortfolioSEO: React.FC = () => {
   const portfolioSchema = {
@@ -23,7 +24,7 @@ export const PortfolioSEO: React.FC = () => {
       url: "https://ag-solutions.in/",
       logo: {
         "@type": "ImageObject",
-        url: "https://ag-solutions.in/images/logo.webp",
+        url: getImageUrl("/images/logo.webp"),
       },
     },
   };

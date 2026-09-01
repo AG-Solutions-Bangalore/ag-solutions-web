@@ -2,6 +2,7 @@ import { m } from "framer-motion";
 import { useLeadModal } from "@/context/LeadModalContext";
 import { ArrowRight } from "lucide-react";
 import TypewriterText from "@/components/animation/TypewriterText";
+import { getImageUrl } from "@/utils/imageUrl";
 
 function HeroSection() {
     const { openLeadModal } = useLeadModal();
@@ -69,8 +70,8 @@ function HeroSection() {
                     <div className="relative flex justify-center lg:col-span-6">
                         <div className="relative w-full max-w-lg lg:max-w-xl flex items-center justify-center py-2 sm:py-4">
                             <img
-                                src="/images/laptop.webp"
-                                srcSet="/images/laptop-mobile.webp 475w, /images/laptop.webp 612w"
+                                src={getImageUrl("/images/laptop.webp")}
+                                srcSet={`${getImageUrl("/images/laptop-mobile.webp")} 475w, ${getImageUrl("/images/laptop.webp")} 612w`}
                                 sizes="(max-width: 1023px) 475px, 612px"
                                 alt="AG Solutions Digital Dashboard Laptop"
                                 title="AG Solutions Digital Dashboard"

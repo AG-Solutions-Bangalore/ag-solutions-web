@@ -1,5 +1,6 @@
 import React from "react";
 import JsonLd from "./JsonLd";
+import { getImageUrl } from "@/utils/imageUrl";
 
 export interface SoftwareReviewItem {
   authorName: string;
@@ -30,7 +31,7 @@ export const SoftwareAppSchema: React.FC<SoftwareAppSchemaProps> = ({
   applicationCategory = "BusinessApplication",
   operatingSystem = "Web Browser, Cloud-based, Windows, macOS, Linux",
   url = "https://ag-solutions.in/",
-  image = "https://ag-solutions.in/images/logo.webp",
+  image = getImageUrl("/images/logo.webp"),
   price = "0",
   priceCurrency = "INR",
   ratingValue,

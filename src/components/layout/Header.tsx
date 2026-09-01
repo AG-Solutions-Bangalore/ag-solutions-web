@@ -65,6 +65,8 @@ export function Header({ activeNav }: HeaderV2Props) {
         pathname === "/export-biz-new" ||
         pathname === "/bizstock" ||
         pathname === "/biz-stock" ||
+        pathname === "/quote-biz" ||
+        pathname === "/quote-biz/" ||
         pathname === "/ease-marketing" ||
         pathname === "/EASE-Marketing";
 
@@ -257,6 +259,15 @@ export function Header({ activeNav }: HeaderV2Props) {
                                         >
                                             BizStock
                                         </Link>
+                                        {/* <Link
+                                            to="/quote-biz"
+                                            title="QuoteBiz – Smart Quotes. Better Business."
+                                            onMouseEnter={() => preloadRoute("/quote-biz")}
+                                            onClick={() => setActiveDropdown(null)}
+                                            className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-sky-50 dark:hover:bg-sky-950/40 hover:text-sky-600 dark:hover:text-sky-400 rounded-xl transition-colors no-underline"
+                                        >
+                                            QuoteBiz
+                                        </Link> */}
                                         <Link
                                             to="/ease-marketing"
                                             title="Ease Marketing – Marketing & Automation"
@@ -454,6 +465,7 @@ export function Header({ activeNav }: HeaderV2Props) {
                                     setMobileServicesOpen(false);
                                     preloadRoute("/export-biz");
                                     preloadRoute("/bizstock");
+                                    preloadRoute("/bizstack");
                                     preloadRoute("/ease-marketing");
                                 }}
                                 className={`w-full flex items-center justify-between px-4 py-3 text-base font-semibold transition-colors bg-transparent border-none cursor-pointer ${isProductsPath ? "text-pink bg-pink-light/40" : "text-foreground hover:bg-muted/10"
@@ -483,6 +495,14 @@ export function Header({ activeNav }: HeaderV2Props) {
                                     >
                                         BizStock
                                     </Link>
+                                    {/* <Link
+                                        to="/quote-biz"
+                                        title="QuoteBiz – Smart Quotes. Better Business."
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-sky-600 dark:hover:text-sky-400 hover:bg-card rounded-lg no-underline transition-colors"
+                                    >
+                                        QuoteBiz
+                                    </Link> */}
                                     <Link
                                         to="/ease-marketing"
                                         title="Ease Marketing – Marketing & Automation"

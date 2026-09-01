@@ -1,5 +1,6 @@
 import React from "react";
 import JsonLd from "./JsonLd";
+import { getImageUrl } from "@/utils/imageUrl";
 
 export interface BlogPostingProps {
   headline?: string;
@@ -32,7 +33,7 @@ export const BlogPostingSchema: React.FC<BlogPostingProps> = ({
   image,
   authorName,
   publisherName = "AG Solutions",
-  publisherLogo = "https://ag-solutions.in/images/logo.webp",
+  publisherLogo = getImageUrl("/images/logo.webp"),
   datePublished,
   dateModified,
   url,

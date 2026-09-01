@@ -1,5 +1,6 @@
 import React from "react";
 import JsonLd from "./JsonLd";
+import { getImageUrl } from "@/utils/imageUrl";
 
 export const OrganizationSchema: React.FC = () => {
   const schema = {
@@ -9,8 +10,8 @@ export const OrganizationSchema: React.FC = () => {
     name: "AG Solutions",
     legalName: "AG Solutions",
     url: "https://ag-solutions.in/",
-    logo: "https://ag-solutions.in/images/logo.webp",
-    image: "https://ag-solutions.in/images/logo.webp",
+    logo: getImageUrl("/images/logo.webp"),
+    image: getImageUrl("/images/logo.webp"),
     description:
       "AG Solutions builds web applications, mobile apps, desktop software, digital marketing systems, and export documentation products.",
     telephone: "+91-8867171060",

@@ -10,6 +10,7 @@ import BlogSidebar from "../components/BlogSidebar";
 import BlogCard from "../components/BlogCard";
 import { ArrowLeft, Sparkles, ArrowRight } from "lucide-react";
 import { useLeadModal } from "@/context/LeadModalContext";
+import { getImageUrl } from "@/utils/imageUrl";
 
 export function BlogDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -137,7 +138,7 @@ export function BlogDetailPage() {
 
   const headerImageUrl = blog.blog_banner_image
     ? `${blogBaseUrl}${blog.blog_banner_image}`
-    : "/images/laptop.webp";
+    : getImageUrl("/images/laptop.webp");
 
   return (
     <>
