@@ -19,10 +19,10 @@ const serviceLinks = [
 ];
 
 const socialLinks = [
-    { href: "https://linkedin.com", label: "in" },
-    { href: "https://facebook.com", label: "fb" },
-    { href: "https://twitter.com", label: "tw" },
-    { href: "https://instagram.com", label: "ig" },
+    { href: "https://www.linkedin.com/in/ag-solutions-104223427", label: "in", name: "LinkedIn" },
+    { href: "https://www.facebook.com/profile.php?id=61591878191618", label: "fb", name: "Facebook" },
+    { href: "https://twitter.com", label: "tw", name: "Twitter" },
+    { href: "https://www.instagram.com/ag_solutions_official/", label: "ig", name: "Instagram" },
 ];
 
 function Footer() {
@@ -112,6 +112,8 @@ function Footer() {
                                 href={social.href}
                                 target="_blank"
                                 rel="noreferrer"
+                                aria-label={`Follow AG Solutions on ${social.name}`}
+                                title={`Follow AG Solutions on ${social.name}`}
                                 className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-ag-green font-bold text-xs hover:bg-lime-100 transition-colors"
                             >
                                 {social.label}
@@ -121,15 +123,15 @@ function Footer() {
                 </div>
             </div>
 
-            <div className="bg-ag-navy py-4 px-6 md:px-12 text-xs text-slate-400">
+            <div className="bg-ag-navy py-4 px-6 md:px-12 text-xs text-slate-300">
                 <div className="mx-auto max-w-7xl flex flex-col sm:flex-row justify-between items-center gap-3">
                     <div>© 2025 AG Solutions. All Rights Reserved.</div>
                     <div className="flex items-center gap-4">
-                        <Link to="/privacy-policy" className="text-slate-400 hover:text-white transition-colors no-underline">
+                        <Link to="/privacy-policy" className="text-slate-300 hover:text-white transition-colors no-underline">
                             Privacy Policy
                         </Link>
                         <span>|</span>
-                        <Link to="/terms-and-conditions" className="text-slate-400 hover:text-white transition-colors no-underline">
+                        <Link to="/terms-and-conditions" className="text-slate-300 hover:text-white transition-colors no-underline">
                             Terms & Conditions
                         </Link>
                     </div>

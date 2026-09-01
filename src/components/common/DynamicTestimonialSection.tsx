@@ -165,14 +165,46 @@ export const DynamicTestimonialSection: React.FC<DynamicTestimonialSectionProps>
                       </div>
 
                       <div>
-                        {/* 5-Star Rating */}
+                        {/* Dynamic Star Rating from API */}
                         <div className="flex items-center gap-1 mb-4">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className="h-4 w-4 fill-yellow text-yellow"
-                            />
-                          ))}
+                          {(() => {
+                            const raw = item.testimonial_rating ?? item.rating ?? item.rating_value;
+                            const ratingVal = raw !== undefined && raw !== null && raw !== "" ? Number(raw) : 5;
+                            return (
+                              <div className="flex items-center gap-1" title={`${ratingVal} out of 5 stars`}>
+                                {[0, 1, 2, 3, 4].map((i) => {
+                                  const diff = ratingVal - i;
+                                  if (diff >= 1) {
+                                    return (
+                                      <Star
+                                        key={i}
+                                        className="h-4 w-4 fill-yellow text-yellow"
+                                      />
+                                    );
+                                  }
+                                  if (diff >= 0.5) {
+                                    return (
+                                      <div key={i} className="relative h-4 w-4 inline-block">
+                                        <Star className="h-4 w-4 text-muted/30 fill-muted/20" />
+                                        <div className="absolute inset-0 overflow-hidden w-[50%]">
+                                          <Star className="h-4 w-4 fill-yellow text-yellow" />
+                                        </div>
+                                      </div>
+                                    );
+                                  }
+                                  return (
+                                    <Star
+                                      key={i}
+                                      className="h-4 w-4 text-muted/30 fill-muted/20"
+                                    />
+                                  );
+                                })}
+                                <span className="ml-1.5 text-xs font-semibold text-muted">
+                                  {ratingVal % 1 === 0 ? `${ratingVal}.0` : ratingVal}
+                                </span>
+                              </div>
+                            );
+                          })()}
                         </div>
 
                         {/* Review Body */}

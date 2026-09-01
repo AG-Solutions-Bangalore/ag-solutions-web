@@ -56,17 +56,30 @@ export default defineConfig({
             if (id.includes("react-router") || id.includes("react-router-dom")) {
               return "vendor-router";
             }
-            if (id.includes("react") || id.includes("react-dom")) {
-              return "vendor-react";
-            }
             if (id.includes("@tanstack") || id.includes("axios")) {
               return "vendor-query";
             }
             if (id.includes("framer-motion")) {
               return "vendor-motion";
             }
+            if (id.includes("lucide-react")) {
+              return "vendor-icons";
+            }
+            if (id.includes("react-helmet-async")) {
+              return "vendor-helmet";
+            }
             if (id.includes("lenis")) {
               return "vendor-lenis";
+            }
+            if (
+              id.includes("/react/") ||
+              id.includes("/react-dom/") ||
+              id.includes("/scheduler/") ||
+              id.includes("\\react\\") ||
+              id.includes("\\react-dom\\") ||
+              id.includes("\\scheduler\\")
+            ) {
+              return "vendor-react";
             }
             return "vendor-others";
           }

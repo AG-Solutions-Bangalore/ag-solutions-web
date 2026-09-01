@@ -67,8 +67,9 @@ function HomePage() {
   return (
     <>
       <SEO
-        title="AG Solutions - Solution Provider for New Age Businesses"
-        description="We help businesses transform ideas into scalable, secure and future-ready digital solutions."
+        title="AG Solutions | Web Development, Mobile App Development & Software Solutions Company"
+        description="AG Solutions is a leading software development company providing web development, mobile applications, digital marketing, and export compliance software."
+        keywords="web development company, mobile app development, export biz, ease marketing, ag solutions"
       />
 
       <div className="bg-background font-sans text-foreground antialiased transition-colors duration-200">
