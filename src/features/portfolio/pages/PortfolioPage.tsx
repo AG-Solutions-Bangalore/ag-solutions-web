@@ -236,7 +236,7 @@ export default function PortfolioPage() {
         imageAlt={item.imageAlt}
         imageTitle={item.imageTitle}
         onClick={() => setSelectedImage(item)}
-        className="rounded-none cursor-pointer hover:shadow-lg transition-shadow duration-300"
+        className="rounded-none cursor-pointer hover:shadow-lg transition-shadow duration-300 h-full"
       />
     );
   }
@@ -405,18 +405,15 @@ function SectionCarousel({ items, renderCard }: SectionCarouselProps) {
         <ChevronRight className="w-5 h-5" />
       </button>
 
-      {/* Carousel Container — removed scroll-smooth so auto-scroll doesn't chain
-          smooth animations that fight the Lenis vertical scroll. Removed
-          content-visibility/containIntrinsicSize which were causing layout
-          shifts that felt like a stuck scroll on first interaction. */}
+      {/* Carousel Container */}
       <div
         ref={setScrollEl}
-        className="flex gap-6 overflow-x-auto snap-x snap-mandatory py-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="flex items-stretch gap-6 overflow-x-auto snap-x snap-mandatory py-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         {displayItems.map((item, idx) => (
           <div
             key={`${item.id || item.title}-${idx}`}
-            className="shrink-0 w-full sm:w-[330px] md:w-[360px] snap-center"
+            className="shrink-0 w-full sm:w-[330px] md:w-[360px] snap-center flex flex-col"
           >
             {renderCard(item)}
           </div>
@@ -428,11 +425,11 @@ function SectionCarousel({ items, renderCard }: SectionCarouselProps) {
 
   function renderSkeletonGrid(count: number = 6) {
     return (
-      <div className="flex gap-6 overflow-x-hidden py-3">
+      <div className="flex items-stretch gap-6 overflow-x-hidden py-3">
         {Array.from({ length: count }).map((_, i) => (
-          <div key={i} className="shrink-0 w-full sm:w-[330px] md:w-[360px] animate-pulse border border-border bg-card overflow-hidden shadow-xs">
-            <div className="aspect-[3/2] bg-muted/20" />
-            <div className="py-6 px-6 text-center space-y-2.5">
+          <div key={i} className="shrink-0 w-full sm:w-[330px] md:w-[360px] animate-pulse border border-border bg-card overflow-hidden shadow-xs flex flex-col">
+            <div className="aspect-[3/2] w-full bg-muted/20" />
+            <div className="py-6 px-6 text-center space-y-2.5 flex-1 flex flex-col justify-center">
               <div className="h-4 bg-muted/40 rounded w-2/3 mx-auto" />
               <div className="h-3 bg-muted/20 rounded w-1/2 mx-auto" />
             </div>
