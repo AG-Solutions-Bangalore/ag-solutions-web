@@ -2,12 +2,6 @@ import React from "react";
 import JsonLd from "./JsonLd";
 import { getImageUrl } from "@/utils/imageUrl";
 
-export interface SoftwareReviewItem {
-  authorName: string;
-  reviewBody: string;
-  ratingValue?: number | string;
-}
-
 export interface SoftwareAppSchemaProps {
   id?: string;
   name: string;
@@ -18,10 +12,17 @@ export interface SoftwareAppSchemaProps {
   image?: string;
   price?: string | number;
   priceCurrency?: string;
+  /**
+   * @deprecated Do NOT add aggregateRating to a SoftwareApplication schema.
+   * Google's rich-result test interprets `aggregateRating.reviewCount` as a
+   * review entity attributed to the SoftwareApp, which inflates the
+   * Review-snippets count and associates reviews with the product instead of
+   * the Organization (AG Solutions). The brand rating lives on the
+   * Organization schema instead.
+   */
   ratingValue?: number | string;
   reviewCount?: number | string;
   features?: string[];
-  reviews?: SoftwareReviewItem[];
 }
 
 export const SoftwareAppSchema: React.FC<SoftwareAppSchemaProps> = ({
@@ -34,10 +35,7 @@ export const SoftwareAppSchema: React.FC<SoftwareAppSchemaProps> = ({
   image = getImageUrl("/images/logo.webp"),
   price = "0",
   priceCurrency = "INR",
-  ratingValue,
-  reviewCount,
   features = [],
-  reviews = [],
 }) => {
   const scriptId = id || "schema-softwareapplication";
 
@@ -69,39 +67,16 @@ export const SoftwareAppSchema: React.FC<SoftwareAppSchemaProps> = ({
     },
   };
 
-  if (ratingValue && reviewCount) {
-    schema.aggregateRating = {
-      "@type": "AggregateRating",
-      ratingValue: String(ratingValue),
-      reviewCount: String(reviewCount),
-      bestRating: "5",
-      worstRating: "1",
-    };
-  }
-
   if (features && features.length > 0) {
     schema.featureList = features.join(", ");
   }
 
-  if (reviews && reviews.length > 0) {
-    schema.review = reviews.map((r) => ({
-      "@type": "Review",
-      name: r.authorName,
-      author: {
-        "@type": "Person",
-        name: r.authorName,
-      },
-      reviewBody: r.reviewBody,
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: String(r.ratingValue || "5"),
-        bestRating: "5",
-      },
-    }));
-  }
+  // Intentionally NO `aggregateRating` and NO `review` here. Both would cause
+  // Google's rich-result test to count implicit reviews against this
+  // SoftwareApp entity. Brand-wide reviews live on the Organization schema
+  // and the standalone Review schemas (see prerenderSeo.ts).
 
   return <JsonLd id={scriptId} schema={schema} />;
 };
 
 export default SoftwareAppSchema;
-

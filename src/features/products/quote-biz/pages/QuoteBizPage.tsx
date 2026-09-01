@@ -9,9 +9,27 @@ import { QuoteBizCtaBanner } from "../components/QuoteBizCtaBanner";
 import { QuoteBizIndustries } from "../components/QuoteBizIndustries";
 import { QuoteBizProcess } from "../components/QuoteBizProcess";
 import { QuoteBizTestimonials } from "../components/QuoteBizTestimonials";
+import { useTestimonials } from "@/features/testimonials/hooks/useTestimonials";
+
+const QUOTEBIZ_MAX_REVIEWS = 5;
 
 export const QuoteBizPage: React.FC = () => {
   const { openLeadModal } = useLeadModal();
+  const { data: testimonialData } = useTestimonials("quote-biz");
+
+  // Mirror the EaseMarketing testimonial pattern so the UI only ever shows
+  // the same set of testimonials that get injected into the prerendered
+  // Review schemas (no inflated review count in Google's rich-results test).
+  const rawReviews = testimonialData?.data || [];
+  const filteredReviews = Array.isArray(rawReviews)
+    ? rawReviews.filter(
+        (t) => t.testimonial_description && t.testimonial_client_name
+      )
+    : [];
+
+  // Cap to 5 so the UI, the prerendered standalone Review schemas, and the
+  // count surfaced to the rich-results test all stay in sync.
+  const limitedReviews = filteredReviews.slice(0, QUOTEBIZ_MAX_REVIEWS);
 
   // Trigger lead modal once per session after 12 seconds
   useEffect(() => {
@@ -49,25 +67,6 @@ export const QuoteBizPage: React.FC = () => {
         applicationCategory="BusinessApplication"
         operatingSystem="Web Browser, iOS, Android, Cloud-based"
         url="https://ag-solutions.in/quote-biz"
-        ratingValue="5.0"
-        reviewCount="12"
-        reviews={[
-          {
-            authorName: "Ravi Sharma",
-            reviewBody: "QuoteBiz has transformed our quoting process. We create quotes 3x faster and close more deals.",
-            ratingValue: "5",
-          },
-          {
-            authorName: "Sneha Patel",
-            reviewBody: "The tracking feature is a game-changer. We always know when to follow up and close the deal.",
-            ratingValue: "5",
-          },
-          {
-            authorName: "Arjun Mehta",
-            reviewBody: "Professional quotes, easy to use and helps us maintain a great brand image.",
-            ratingValue: "5",
-          },
-        ]}
         features={[
           "Instant Quote Creation & Custom Templates",
           "Real-time Quote Open & View Tracking",
@@ -88,7 +87,7 @@ export const QuoteBizPage: React.FC = () => {
         <QuoteBizIndustries />
 
         {/* 5. Customer Testimonials */}
-        <QuoteBizTestimonials />
+        <QuoteBizTestimonials testimonials={limitedReviews} />
 
         {/* 6. Mid-Page CTA Banner */}
         <QuoteBizCtaBanner />

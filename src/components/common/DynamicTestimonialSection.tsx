@@ -27,10 +27,19 @@ export const DynamicTestimonialSection: React.FC<DynamicTestimonialSectionProps>
   const { data: apiResponse, isLoading } = useTestimonials(route || "");
   const [currentPage, setCurrentPage] = useState(0);
 
-  // Combine prop or query data (prefer live API data when available, fall back to propTestimonials)
-  const apiItems = Array.isArray(apiResponse?.data) && apiResponse.data.length > 0 ? apiResponse.data : null;
-  const rawItems = apiItems || propTestimonials || [];
-  const items = Array.isArray(rawItems) ? rawItems.filter((t) => t.testimonial_description && t.testimonial_client_name) : [];
+  // When the parent passes an explicit `testimonials` prop (e.g. a pre-sliced
+  // list capped to match the prerendered review count), use it. Otherwise fall
+  // back to the live API data. This prevents the section from doubling the
+  // testimonials shown to the user vs. what's emitted in the schema.
+  const hasPropTestimonials = Array.isArray(propTestimonials) && propTestimonials.length > 0;
+  const apiItems =
+    !hasPropTestimonials && Array.isArray(apiResponse?.data) && apiResponse.data.length > 0
+      ? apiResponse.data
+      : null;
+  const rawItems = hasPropTestimonials ? propTestimonials : (apiItems || []);
+  const items = Array.isArray(rawItems)
+    ? rawItems.filter((t) => t.testimonial_description && t.testimonial_client_name)
+    : [];
 
   // Conditional Rendering Rule: If no data is available, do not render the section
   if (items.length === 0 && !isLoading) {

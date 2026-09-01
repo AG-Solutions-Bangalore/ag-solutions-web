@@ -12,24 +12,8 @@ import { CtaBanner } from "../components/CtaBanner";
 import RelatedBlogSection from "@/features/blog/components/RelatedBlogSection";
 import { useLeadModal } from "@/context/LeadModalContext";
 
-import { useTestimonials } from "@/features/testimonials/hooks/useTestimonials";
-
 export const ExportBizNewPage: React.FC = () => {
   const { openLeadModal } = useLeadModal();
-  const { data: testimonialData } = useTestimonials("export-biz");
-
-  const rawReviews = testimonialData?.data || [];
-  const reviews = Array.isArray(rawReviews)
-    ? rawReviews
-        .filter((t) => t.testimonial_description && t.testimonial_client_name)
-        .map((t) => ({
-          authorName: t.testimonial_client_name,
-          reviewBody: t.testimonial_description,
-          ratingValue: t.testimonial_rating ?? t.rating ?? t.rating_value ?? "5",
-        }))
-    : [];
-
-  const finalReviewCount = reviews.length > 0 ? String(reviews.length) : "10";
 
   // 10-Second Auto-Trigger Popup (Runs once per session unless already interacted)
   useEffect(() => {
@@ -51,9 +35,6 @@ export const ExportBizNewPage: React.FC = () => {
         applicationCategory="BusinessApplication"
         operatingSystem="Web Browser, Cloud-based"
         url="https://ag-solutions.in/export-biz"
-        ratingValue="5.0"
-        reviewCount={finalReviewCount}
-        reviews={reviews}
         features={[
           "3-Click Document Generation",
           "Automated Shipping Bills & Invoices",

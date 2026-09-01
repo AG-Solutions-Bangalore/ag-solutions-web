@@ -26,6 +26,14 @@ export const JsonLd: React.FC<JsonLdProps> = React.memo(({ id, schema }) => {
 
     let el = document.getElementById(scriptId) as HTMLScriptElement | null;
     if (el) {
+      // Element already exists. If it was prerendered (carries canonical
+      // prerendered schemas, e.g. an Organization with dynamically-computed
+      // aggregateRating), leave it alone — overwriting would strip fields
+      // the React component doesn't know about (e.g. aggregateRating on
+      // Organization). Only update if the existing element is empty.
+      if (el.textContent && el.textContent.trim().length > 0) {
+        return;
+      }
       el.textContent = jsonString;
     } else {
       el = document.createElement("script");
@@ -35,13 +43,9 @@ export const JsonLd: React.FC<JsonLdProps> = React.memo(({ id, schema }) => {
       el.textContent = jsonString;
       document.head.appendChild(el);
     }
-
-    return () => {
-      const scriptEl = document.getElementById(scriptId);
-      if (scriptEl) {
-        scriptEl.remove();
-      }
-    };
+    // Intentionally no cleanup function — if we removed the prerendered
+    // <script> on unmount, route changes would wipe out the canonical
+    // schema and Google's crawler would lose aggregateRating, etc.
   }, [scriptId, jsonString]);
 
   return null;

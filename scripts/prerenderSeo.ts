@@ -17,6 +17,10 @@ interface RouteSEO {
   canonical?: string;
   ogType?: string;
   schemas: Record<string, unknown>[];
+  /** Maximum number of standalone Review schemas to inject for this route.
+   *  Keep this in sync with what the React page actually renders so the
+   *  rich-result test never reports more reviews than the page shows. */
+  maxReviews?: number;
 }
 
 const GLOBAL_ORGANIZATION_SCHEMA = {
@@ -24,18 +28,37 @@ const GLOBAL_ORGANIZATION_SCHEMA = {
   "@type": "Organization",
   "@id": "https://ag-solutions.in/#organization",
   name: "AG Solutions",
+  legalName: "AG Solutions",
   url: "https://ag-solutions.in/",
-  logo: {
-    "@type": "ImageObject",
-    url: "https://ag-solutions.in/webapi/public/assets/images/web_images_new/logo.webp",
+  logo: "https://ag-solutions.in/webapi/public/assets/images/web_images_new/logo.webp",
+  image: "https://ag-solutions.in/webapi/public/assets/images/web_images_new/logo.webp",
+  description:
+    "AG Solutions builds web applications, mobile apps, desktop software, digital marketing systems, and export documentation products.",
+  telephone: "+91-8867171060",
+  email: "info@ag-solutions.in",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Jayanagara 9th Block",
+    addressLocality: "Bengaluru",
+    addressRegion: "Karnataka",
+    postalCode: "560069",
+    addressCountry: "IN",
   },
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: "+91-9511852955",
-    contactType: "Customer Support",
-    areaServed: "IN",
-    availableLanguage: ["en", "hi"],
-  },
+  sameAs: [
+    "https://www.linkedin.com/in/ag-solutions-104223427",
+    "https://www.facebook.com/profile.php?id=61591878191618",
+    "https://www.instagram.com/ag_solutions_official/",
+  ],
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: "+91-8867171060",
+      contactType: "customer service",
+      email: "info@ag-solutions.in",
+      areaServed: "IN",
+      availableLanguage: ["English", "Hindi", "Kannada"],
+    },
+  ],
 };
 
 const GLOBAL_WEBSITE_SCHEMA = {
@@ -44,10 +67,15 @@ const GLOBAL_WEBSITE_SCHEMA = {
   "@id": "https://ag-solutions.in/#website",
   name: "AG Solutions",
   url: "https://ag-solutions.in/",
+  description:
+    "AG Solutions builds scalable web applications, mobile apps, desktop software, digital marketing systems, and export documentation products.",
   publisher: {
-    "@type": "Organization",
     "@id": "https://ag-solutions.in/#organization",
-    name: "AG Solutions",
+  },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://ag-solutions.in/blogs?search={search_term_string}",
+    "query-input": "required name=search_term_string",
   },
 };
 
@@ -83,20 +111,38 @@ const BASE_ROUTES_CONFIG: Record<string, RouteSEO> = {
           priceCurrency: "INR",
           availability: "https://schema.org/InStock",
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "5.0",
-          reviewCount: "10",
-          bestRating: "5",
-          worstRating: "1",
+      },
+    ],
+  },
+  "/export-biz-new": {
+    title: "Export Biz - Export Documentation & Compliance Software | AG Solutions",
+    description: "Export Biz automates manual export documentation into structured digital workflows, generating Invoices, Packing Lists, and shipping bills in seconds.",
+    keywords: "export documentation software, export biz, shipping bills, export invoice software",
+    canonical: "https://ag-solutions.in/export-biz",
+    schemas: [
+      GLOBAL_ORGANIZATION_SCHEMA,
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "@id": "https://ag-solutions.in/export-biz#software",
+        name: "Export Biz - Export Documentation Software",
+        description: "Intelligent export documentation and customs compliance software by AG Solutions.",
+        applicationCategory: "BusinessApplication",
+        operatingSystem: "Windows, Web Browser, Cloud-based",
+        url: "https://ag-solutions.in/export-biz",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "INR",
+          availability: "https://schema.org/InStock",
         },
       },
     ],
   },
   "/bizstock": {
-    title: "BizStock - Business Management Software | AG Solutions",
-    description: "BizStock ERP software for smart inventory tracking, multi-warehouse sync, automatic purchase orders, and barcode scanning.",
-    keywords: "inventory management software, stock management erp, warehouse software",
+    title: "BizStock – Business Management Software | AG Solutions",
+    description: "BizStock helps businesses track inventory, manage sales & purchases, and gain real-time visibility to make smarter decisions and grow faster.",
+    keywords: "BizStock, inventory management software, smart stock management, warehouse management system, purchase management, sales management, low stock alerts, AG Solutions",
     schemas: [
       GLOBAL_ORGANIZATION_SCHEMA,
       {
@@ -104,9 +150,9 @@ const BASE_ROUTES_CONFIG: Record<string, RouteSEO> = {
         "@type": "SoftwareApplication",
         "@id": "https://ag-solutions.in/bizstock#software",
         name: "BizStock - Inventory & Stock Management Software",
-        description: "Real-time inventory tracking, warehouse management, and stock ERP system by AG Solutions.",
+        description: "Smart inventory management and warehouse tracking software by AG Solutions to track stock, streamline orders, and maximize business growth.",
         applicationCategory: "BusinessApplication",
-        operatingSystem: "Web Browser, Android, iOS, Windows",
+        operatingSystem: "Web Browser, Cloud-based",
         url: "https://ag-solutions.in/bizstock",
         offers: {
           "@type": "Offer",
@@ -114,12 +160,30 @@ const BASE_ROUTES_CONFIG: Record<string, RouteSEO> = {
           priceCurrency: "INR",
           availability: "https://schema.org/InStock",
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "5.0",
-          reviewCount: "10",
-          bestRating: "5",
-          worstRating: "1",
+      },
+    ],
+  },
+  "/biz-stock": {
+    title: "BizStock – Business Management Software | AG Solutions",
+    description: "BizStock helps businesses track inventory, manage sales & purchases, and gain real-time visibility to make smarter decisions and grow faster.",
+    keywords: "BizStock, inventory management software, smart stock management, warehouse management system, purchase management, sales management, low stock alerts, AG Solutions",
+    canonical: "https://ag-solutions.in/bizstock",
+    schemas: [
+      GLOBAL_ORGANIZATION_SCHEMA,
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "@id": "https://ag-solutions.in/bizstock#software",
+        name: "BizStock - Inventory & Stock Management Software",
+        description: "Smart inventory management and warehouse tracking software by AG Solutions to track stock, streamline orders, and maximize business growth.",
+        applicationCategory: "BusinessApplication",
+        operatingSystem: "Web Browser, Cloud-based",
+        url: "https://ag-solutions.in/bizstock",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "INR",
+          availability: "https://schema.org/InStock",
         },
       },
     ],
@@ -145,12 +209,55 @@ const BASE_ROUTES_CONFIG: Record<string, RouteSEO> = {
           priceCurrency: "INR",
           availability: "https://schema.org/InStock",
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "5.0",
-          reviewCount: "10",
-          bestRating: "5",
-          worstRating: "1",
+      },
+    ],
+  },
+  "/EASE-Marketing": {
+    title: "Ease Marketing - WhatsApp Marketing & Automation Software | AG Solutions",
+    description: "Automate WhatsApp campaigns, broadcast messages, CRM customer workflows, and multi-channel lead tracking with Ease Marketing.",
+    keywords: "whatsapp marketing software, ease marketing, bulk whatsapp tool, marketing automation",
+    canonical: "https://ag-solutions.in/ease-marketing",
+    schemas: [
+      GLOBAL_ORGANIZATION_SCHEMA,
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "@id": "https://ag-solutions.in/ease-marketing#software",
+        name: "Ease Marketing - WhatsApp Marketing & Automation Software",
+        description: "High-converting WhatsApp marketing, automated messaging, and campaign tracking software by AG Solutions.",
+        applicationCategory: "MarketingApplication",
+        operatingSystem: "Web Browser, Cloud-based",
+        url: "https://ag-solutions.in/ease-marketing",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "INR",
+          availability: "https://schema.org/InStock",
+        },
+      },
+    ],
+  },
+  "/quote-biz": {
+    title: "QuoteBiz – Smart Quotes. Better Business. | AG Solutions",
+    description: "QuoteBiz helps you create professional quotes in minutes, send to customers, track responses, and convert more leads into sales with real-time analytics.",
+    keywords: "QuoteBiz, quote-biz, quote management software, smart quotations, quotation maker, invoice generator, sales proposal tool, quote tracking app, AG Solutions",
+    maxReviews: 5,
+    schemas: [
+      GLOBAL_ORGANIZATION_SCHEMA,
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "@id": "https://ag-solutions.in/quote-biz#software",
+        name: "QuoteBiz - Smart Quotation & Proposal Management Software",
+        description: "Create professional quotes in minutes, track customer engagement in real-time, and convert accepted quotes into tax invoices effortlessly.",
+        applicationCategory: "BusinessApplication",
+        operatingSystem: "Web Browser, iOS, Android, Cloud-based",
+        url: "https://ag-solutions.in/quote-biz",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "INR",
+          availability: "https://schema.org/InStock",
         },
       },
     ],
@@ -318,11 +425,20 @@ import { generateSitemap, fetchLiveBlogArticles } from "./generateSitemap";
 /**
  * Dynamically fetch testimonials from API for a given route.
  * Returns Review schemas only if real API items exist.
+ * Caps results to `maxReviews` so the prerendered schema count matches
+ * the testimonials actually rendered on the page.
  */
-async function fetchDynamicTestimonials(route: string): Promise<Record<string, unknown>[]> {
+async function fetchDynamicTestimonials(route: string, maxReviews?: number): Promise<Record<string, unknown>[]> {
   try {
-    let apiRoute = route === "/" ? "home" : route.replace(/^\//, "");
-    if (apiRoute === "bizstock") apiRoute = "biz-stock";
+    let apiRoute = route === "/" ? "home" : route.replace(/^\//, "").replace(/\//g, "-");
+    if (apiRoute.includes("bizstock") || apiRoute.includes("biz-stock")) apiRoute = "biz-stock";
+    if (apiRoute.includes("export-biz")) apiRoute = "export-biz";
+    if (apiRoute.includes("ease-marketing") || apiRoute.includes("EASE-Marketing")) apiRoute = "ease-marketing";
+    if (apiRoute.includes("quote-biz")) apiRoute = "quote-biz";
+    if (apiRoute.includes("web-development")) apiRoute = "web-development";
+    if (apiRoute.includes("mobile-app")) apiRoute = "mobile-app-development";
+    if (apiRoute.includes("digital-marketing")) apiRoute = "digital-marketing";
+
     let res = await fetch(`${API_BASE}/getTestimonial/${apiRoute}`, {
       headers: {
         "Accept": "application/json, text/plain, */*",
@@ -340,24 +456,34 @@ async function fetchDynamicTestimonials(route: string): Promise<Record<string, u
     const json = await res.json();
     const data = json?.data;
     if (!Array.isArray(data) || data.length === 0) return [];
-    
-    return data
-      .filter((item: any) => item?.testimonial_client_name && item?.testimonial_description)
+
+    const filtered = data.filter(
+      (item: any) => item?.testimonial_client_name && item?.testimonial_description
+    );
+
+    const capped = typeof maxReviews === "number" && maxReviews > 0
+      ? filtered.slice(0, maxReviews)
+      : filtered;
+
+    return capped
       .map((item: any, i: number) => {
-        const authorName = item.testimonial_client_name;
+        const rawAuthor = String(item.testimonial_client_name || "Client").trim();
+        // Clean author name so roles like "(Business Owner )", "– Sales Manager", or "- CEO" don't corrupt Person schema entity
+        const cleanAuthorName = rawAuthor.replace(/\s*([–\-\(].*)/g, "").trim() || rawAuthor;
         const rawRating = item?.testimonial_rating ?? item?.rating ?? item?.rating_value;
         const rating = (rawRating !== undefined && rawRating !== null && rawRating !== "" && Number(rawRating) > 0)
           ? String(rawRating)
           : "5";
-        const slug = String(authorName).toLowerCase().replace(/[^a-z0-9]/g, "-");
-        return {
+        const slug = cleanAuthorName.toLowerCase().replace(/[^a-z0-9]/g, "-");
+        const review: Record<string, unknown> = {
           "@context": "https://schema.org",
           "@type": "Review",
           _scriptId: `schema-review-${slug}-${i}`,
-          name: authorName,
+          name: cleanAuthorName,
           author: {
             "@type": "Person",
-            name: authorName,
+            "@id": `https://ag-solutions.in/#person-${slug}`,
+            name: cleanAuthorName,
           },
           reviewBody: item.testimonial_description,
           reviewRating: {
@@ -365,11 +491,26 @@ async function fetchDynamicTestimonials(route: string): Promise<Record<string, u
             ratingValue: rating,
             bestRating: "5",
           },
+          // CRITICAL: must use the same `@id` as the Organization schema on the
+          // page so Google's rich-result test can link the Review to the
+          // referenced entity. Without this anchor Google drops the review.
           itemReviewed: {
             "@type": "Organization",
+            "@id": "https://ag-solutions.in/#organization",
             name: "AG Solutions",
+            url: "https://ag-solutions.in/",
           },
         };
+
+        const dateStr = item?.testimonial_created_date;
+        if (dateStr) {
+          const iso = new Date(dateStr);
+          if (!Number.isNaN(iso.getTime())) {
+            review.datePublished = iso.toISOString();
+          }
+        }
+
+        return review;
       });
   } catch {
     return [];
@@ -382,7 +523,15 @@ async function fetchDynamicTestimonials(route: string): Promise<Record<string, u
  */
 async function fetchDynamicFAQs(route: string): Promise<Record<string, unknown> | null> {
   try {
-    const slug = route === "/" ? "home" : route.replace(/^\//, "");
+    let slug = route === "/" ? "home" : route.replace(/^\//, "").replace(/\//g, "-");
+    if (slug.includes("bizstock") || slug.includes("biz-stock")) slug = "bizstock";
+    if (slug.includes("export-biz")) slug = "export-biz";
+    if (slug.includes("ease-marketing") || slug.includes("EASE-Marketing")) slug = "ease-marketing";
+    if (slug.includes("quote-biz")) slug = "quote-biz";
+    if (slug.includes("web-development")) slug = "web-development";
+    if (slug.includes("mobile-app")) slug = "mobile-app-development";
+    if (slug.includes("digital-marketing")) slug = "digital-marketing";
+
     const res = await fetch(`${API_BASE}/getFAQBySlug/${slug}`, {
       headers: { Accept: "application/json" },
       signal: AbortSignal.timeout(6000),
@@ -492,25 +641,48 @@ function getSchemaScriptId(s: Record<string, unknown>, idx: number): string {
 }
 
 function buildHtmlForRoute(baseHtml: string, route: string, seo: RouteSEO): string {
-  let html = baseHtml;
-  const canonical = `${SITE_ORIGIN}${route === "/" ? "/" : route}`;
+  // Ensure baseHtml is 100% clean of any previously injected schemas or schema blocks
+  let html = baseHtml
+    .replace(/<!-- Prerendered Dynamic JSON-LD Schemas -->[\s\S]*?<\/head>/i, "</head>")
+    .replace(/<script id="schema-[^"]*"[^>]*>[\s\S]*?<\/script>\s*/gi, "")
+    .replace(/<title[^>]*>.*?<\/title>\s*/gi, "")
+    .replace(/<meta\s+name=["']description["'][^>]*>\s*/gi, "")
+    .replace(/<meta\s+name=["']keywords["'][^>]*>\s*/gi, "")
+    .replace(/<meta\s+name=["']author["'][^>]*>\s*/gi, "")
+    .replace(/<meta\s+name=["']publisher["'][^>]*>\s*/gi, "")
+    .replace(/<meta\s+name=["']robots["'][^>]*>\s*/gi, "")
+    .replace(/<link\s+rel=["']canonical["'][^>]*>\s*/gi, "")
+    .replace(/<meta\s+property=["']og:[^"']*["'][^>]*>\s*/gi, "")
+    .replace(/<meta\s+name=["']twitter:[^"']*["'][^>]*>\s*/gi, "");
 
-  // 1. Title & Meta
-  html = upsertTag(html, /<title>.*?<\/title>/i, `<title>${escapeHtml(seo.title)}</title>`);
-  html = upsertTag(html, /<meta\s+name=["']description["'][^>]*>/i, `<meta name="description" content="${escapeAttr(seo.description)}" />`);
-  html = upsertTag(html, /<meta\s+name=["']author["'][^>]*>/i, `<meta name="author" content="AG Solutions" />`);
-  html = upsertTag(html, /<meta\s+name=["']publisher["'][^>]*>/i, `<meta name="publisher" content="AG Solutions" />`);
-  if (seo.keywords) {
-    html = upsertTag(html, /<meta\s+name=["']keywords["'][^>]*>/i, `<meta name="keywords" content="${escapeAttr(seo.keywords)}" />`);
-  }
-  html = upsertTag(html, /<link\s+rel=["']canonical["'][^>]*>/i, `<link rel="canonical" href="${canonical}" />`);
+  const canonical = seo.canonical || `${SITE_ORIGIN}${route === "/" ? "/" : route}`;
 
-  // 2. OpenGraph
-  html = upsertTag(html, /<meta\s+property=["']og:title["'][^>]*>/i, `<meta property="og:title" content="${escapeAttr(seo.title)}" />`);
-  html = upsertTag(html, /<meta\s+property=["']og:description["'][^>]*>/i, `<meta property="og:description" content="${escapeAttr(seo.description)}" />`);
-  html = upsertTag(html, /<meta\s+property=["']og:url["'][^>]*>/i, `<meta property="og:url" content="${canonical}" />`);
+  // 1. Tags matching React Helmet structure with data-rh="true"
+  const headMeta = [
+    `<title data-rh="true">${escapeHtml(seo.title)}</title>`,
+    `<meta data-rh="true" name="description" content="${escapeAttr(seo.description)}" />`,
+    seo.keywords ? `<meta data-rh="true" name="keywords" content="${escapeAttr(seo.keywords)}" />` : "",
+    `<meta data-rh="true" name="robots" content="index, follow" />`,
+    `<meta data-rh="true" name="author" content="AG Solutions" />`,
+    `<meta data-rh="true" name="publisher" content="AG Solutions" />`,
+    `<link data-rh="true" rel="canonical" href="${canonical}" />`,
+    `<meta data-rh="true" property="og:type" content="${seo.ogType || 'website'}" />`,
+    `<meta data-rh="true" property="og:url" content="${canonical}" />`,
+    `<meta data-rh="true" property="og:title" content="${escapeAttr(seo.title)}" />`,
+    `<meta data-rh="true" property="og:description" content="${escapeAttr(seo.description)}" />`,
+    `<meta data-rh="true" property="og:image" content="https://ag-solutions-website.pages.dev/og-default.png" />`,
+    `<meta data-rh="true" property="og:image:alt" content="AG Solutions - Scalable Web Systems Logo" />`,
+    `<meta data-rh="true" property="og:site_name" content="AG Solutions" />`,
+    `<meta data-rh="true" name="twitter:card" content="summary_large_image" />`,
+    `<meta data-rh="true" name="twitter:creator" content="@agsolutions" />`,
+    `<meta data-rh="true" name="twitter:url" content="${canonical}" />`,
+    `<meta data-rh="true" name="twitter:title" content="${escapeAttr(seo.title)}" />`,
+    `<meta data-rh="true" name="twitter:description" content="${escapeAttr(seo.description)}" />`,
+    `<meta data-rh="true" name="twitter:image" content="https://ag-solutions-website.pages.dev/og-default.png" />`,
+    `<meta data-rh="true" name="twitter:image:alt" content="AG Solutions - Scalable Web Systems Logo" />`,
+  ].filter(Boolean).join("\n    ");
 
-  // 3. Pre-inject JSON-LD Schemas directly into HTML head with data-rh="true" to sync with React Helmet
+  // 2. Pre-inject JSON-LD Schemas directly into HTML head with data-rh="true" to sync with React Helmet
   const schemaTags = seo.schemas
     .map((s, idx) => {
       const scriptId = getSchemaScriptId(s, idx);
@@ -519,7 +691,7 @@ function buildHtmlForRoute(baseHtml: string, route: string, seo: RouteSEO): stri
     })
     .join("\n    ");
 
-  html = html.replace("</head>", `    <!-- Prerendered Dynamic JSON-LD Schemas -->\n    ${schemaTags}\n  </head>`);
+  html = html.replace("</head>", `    ${headMeta}\n    <!-- Prerendered Dynamic JSON-LD Schemas -->\n    ${schemaTags}\n  </head>`);
 
   return html;
 }
@@ -545,30 +717,17 @@ export async function prerenderAllRoutes() {
       schemas.push(dynamicFaq);
     }
 
-    // Fetch dynamic Testimonials from API for this route
-    const dynamicReviews = await fetchDynamicTestimonials(route);
+    // Fetch dynamic Testimonials from API for this route and inject as standalone Review schemas
+    const dynamicReviews = await fetchDynamicTestimonials(route, baseSeo.maxReviews);
     if (dynamicReviews.length > 0) {
-      const softwareSchema = schemas.find((s) => s["@type"] === "SoftwareApplication");
-      if (softwareSchema) {
-        softwareSchema.review = dynamicReviews.map((r) => ({
-          "@type": "Review",
-          name: (r.author as any)?.name || (r as any).name || "Client Review",
-          author: r.author,
-          reviewBody: r.reviewBody,
-          reviewRating: r.reviewRating,
-        }));
-        if (!softwareSchema.aggregateRating) {
-          softwareSchema.aggregateRating = {
-            "@type": "AggregateRating",
-            ratingValue: "5.0",
-            reviewCount: String(dynamicReviews.length),
-            bestRating: "5",
-            worstRating: "1",
-          };
-        }
-      } else {
-        schemas.push(...dynamicReviews);
-      }
+      schemas.push(...dynamicReviews);
+      // Intentionally NOT adding aggregateRating to the Organization schema.
+      // Google counts the Organization entity itself as 1 extra Review snippet
+      // whenever aggregateRating is present, inflating the rich-results count
+      // by +1 on every route. We keep reviews as standalone entities only so
+      // the count is exact (matches the UI). The "Missing field
+      // aggregateRating (optional)" warning that returns is informational
+      // only — reviews are still eligible for rich results.
     }
 
     const routeSeo: RouteSEO = {

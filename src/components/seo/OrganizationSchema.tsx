@@ -2,8 +2,17 @@ import React from "react";
 import JsonLd from "./JsonLd";
 import { getImageUrl } from "@/utils/imageUrl";
 
+/**
+ * Organization schema (AG Solutions brand entity).
+ *
+ * NOTE: Do NOT add `aggregateRating` here. Google counts any entity that
+ * carries an `aggregateRating` as 1 extra Review-snippet entity, inflating
+ * the rich-results count by +1 on every route. Reviews are kept as
+ * standalone Review schemas (injected by scripts/prerenderSeo.ts) so the
+ * count exactly matches the UI.
+ */
 export const OrganizationSchema: React.FC = () => {
-  const schema = {
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": "https://ag-solutions.in/#organization",
@@ -25,7 +34,7 @@ export const OrganizationSchema: React.FC = () => {
       addressCountry: "IN",
     },
     sameAs: [
-      "https://www.linkedin.com/in/ag-solutions-104223427",
+      "https://www.linkedin.com/ag-solutions-104223427",
       "https://www.facebook.com/profile.php?id=61591878191618",
       "https://www.instagram.com/ag_solutions_official/",
     ],
@@ -44,6 +53,4 @@ export const OrganizationSchema: React.FC = () => {
   return <JsonLd id="schema-organization" schema={schema} />;
 };
 
-
 export default OrganizationSchema;
-

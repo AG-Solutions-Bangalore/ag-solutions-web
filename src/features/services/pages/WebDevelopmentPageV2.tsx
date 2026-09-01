@@ -15,8 +15,12 @@ function WebDevelopmentPageV2() {
         serviceType="Web Development"
         url="https://ag-solutions.in/web-development"
       />
+      {/* showSchema={false} so we don't double-count them: the prerender
+          already injects the matching standalone Review schemas for this
+          route, and the Organization's aggregateRating is computed from
+          that same count in prerenderSeo.ts. */}
       <CommonServicePage {...webDevelopmentServiceData}>
-        <DynamicTestimonialSection route="web-development" />
+        <DynamicTestimonialSection route="web-development" showSchema={false} />
         <DynamicFaqSection slug="web-development" />
         <Industries />
         <RelatedBlogSection
