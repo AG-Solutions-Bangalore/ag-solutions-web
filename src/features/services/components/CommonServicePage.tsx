@@ -1,98 +1,31 @@
-import type { ReactNode, ComponentType } from "react";
 import { m } from "framer-motion";
-import SEO from "@/components/seo/SEO";
+import { ServiceSEO } from "../seo";
 import Industries from "@/features/home/components/Industries";
 
 import { useLeadModal } from "@/context/LeadModalContext";
 import { ArrowRight } from "lucide-react";
 import AnimatedCounter from "@/components/animation/AnimatedCounter";
 import { getImageUrl } from "@/utils/imageUrl";
+import type {
+    CommonServicePageProps,
+    HeroFeature,
+    ProcessStep,
+    ServiceIcon,
+    ServiceOfferingItem,
+    StatItem,
+    WhyChooseFeature,
+} from "../types/servicePage";
 
-// Generic Icon type compatible with both react-icons and lucide-react
-export type ServiceIcon = ComponentType<{ className?: string; size?: number }>;
-
-export interface HeroFeature {
-    label: string;
-    icon: ServiceIcon;
-    bgColor: string; // e.g. "bg-ag-teal", "bg-ag-pink", "bg-ag-yellow", "bg-ag-green"
-}
-
-export interface ServiceOfferingItem {
-    title: string;
-    description: string;
-    icon: ServiceIcon;
-    bgColor: string;
-    accentColor?: string;
-}
-
-export interface WhyChooseFeature {
-    title: string;
-    description: string;
-    icon: ServiceIcon;
-    bgColor: string;
-}
-
-export interface ProcessStep {
-    step: string; // e.g. "01"
-    title: string;
-    description: string;
-    icon: ServiceIcon;
-    bgColor: string;
-    textColor: string;
-}
-
-export interface StatItem {
-    number: string; // e.g. "120+"
-    label: string;
-    icon?: ServiceIcon;
-    bgColor?: string;
-    textColor?: string;
-}
-
-export interface CommonServicePageProps {
-    seoTitle?: string;
-    seoDescription?: string;
-
-    // Hero Props
-    heroBadge: string;
-    heroTitle: string;
-    heroTitleHighlight: string;
-    heroDescription: string;
-    heroCtaText?: string;
-    heroCtaLink?: string;
-    onHeroCtaClick?: () => void;
-    heroFeatures?: HeroFeature[];
-    heroImage?: string;
-    heroImageAlt?: string;
-    heroImageTitle?: string;
-
-    // Offerings Props
-    offerTag?: string;
-    offerTitle: string;
-    offerItems: ServiceOfferingItem[];
-
-    // Why Choose Us Props
-    whyTag?: string;
-    whyTitleMain: string;
-    whyTitleHighlight: string;
-    whyDescription: string;
-    whyCtaText?: string;
-    whyCtaLink?: string;
-    whyFeatures: WhyChooseFeature[];
-
-    // Process Props
-    processTag?: string;
-    processTitle: string;
-    processSteps: ProcessStep[];
-
-    // Stats Banner Props
-    statsTitleMain: string;
-    statsTitleHighlight: string;
-    stats: StatItem[];
-
-    // Optional Additional Content
-    children?: ReactNode;
-}
+// Re-export so any existing import path keeps working
+export type {
+    CommonServicePageProps,
+    HeroFeature,
+    ProcessStep,
+    ServiceIcon,
+    ServiceOfferingItem,
+    StatItem,
+    WhyChooseFeature,
+};
 
 export function CommonServicePage({
     seoTitle,
@@ -140,7 +73,7 @@ export function CommonServicePage({
     return (
         <>
             {seoTitle && (
-                <SEO
+                <ServiceSEO
                     title={seoTitle}
                     description={
                         seoDescription ||

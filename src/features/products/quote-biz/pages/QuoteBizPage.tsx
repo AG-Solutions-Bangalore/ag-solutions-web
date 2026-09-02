@@ -1,5 +1,4 @@
-import { SoftwareAppSchema } from "@/components/seo";
-import { SEO } from "@/components/seo/SEO";
+import { QuoteBizSEO } from "../seo";
 import React, { useEffect } from "react";
 import { QuoteBizHero } from "../components/QuoteBizHero";
 // import { QuoteBizFeatures } from "../components/QuoteBizFeatures";
@@ -45,36 +44,7 @@ export const QuoteBizPage: React.FC = () => {
 
   return (
     <>
-      <SEO
-        title="QuoteBiz – Smart Quotes. Better Business. | AG Solutions"
-        description="QuoteBiz helps you create professional quotes in minutes, send to customers, track responses, and convert more leads into sales with real-time analytics."
-        canonical="https://ag-solutions.in/quote-biz"
-        keywords={[
-          "QuoteBiz",
-          "quote-biz",
-          "quote management software",
-          "smart quotations",
-          "quotation maker",
-          "invoice generator",
-          "sales proposal tool",
-          "quote tracking app",
-          "AG Solutions",
-        ]}
-      />
-      <SoftwareAppSchema
-        name="QuoteBiz - Smart Quotation & Proposal Management Software"
-        description="Create professional quotes in minutes, track customer engagement in real-time, and convert accepted quotes into tax invoices effortlessly."
-        applicationCategory="BusinessApplication"
-        operatingSystem="Web Browser, iOS, Android, Cloud-based"
-        url="https://ag-solutions.in/quote-biz"
-        features={[
-          "Instant Quote Creation & Custom Templates",
-          "Real-time Quote Open & View Tracking",
-          "One-Click Quotation to Invoice Conversion",
-          "Mobile App & Cloud Web Dashboard",
-          "Multi-Industry Quote Workflows",
-        ]}
-      />
+      <QuoteBizSEO />
 
       <div className="bg-background font-sans text-dark antialiased">
         {/* 1. Hero Section */}

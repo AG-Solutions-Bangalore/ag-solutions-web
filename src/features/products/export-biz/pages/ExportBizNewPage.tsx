@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import CommonServicePage from "@/features/services/components/CommonServicePage";
 import { exportBizServiceData } from "@/features/services/data/serviceData";
-import { SoftwareAppSchema } from "@/components/seo";
+import { SoftwareAppSchema } from "@/features/products/seo/SoftwareAppSchema";
 import { GlobalTradePartnerSection } from "../components/GlobalTradePartnerSection";
 import { DocumentEcosystemV2 } from "../components/DocumentEcosystemV2";
 import { CompareSection } from "../components/CompareSection";
@@ -30,19 +30,12 @@ export const ExportBizNewPage: React.FC = () => {
   return (
     <>
       <SoftwareAppSchema
-        name="Export Biz - Export Documentation Software"
-        description="Specialized export documentation and compliance software for exporters, manufacturers, and global trade houses by AG Solutions."
+        name="Export Biz - Export Documentation & Compliance Software"
         applicationCategory="BusinessApplication"
         operatingSystem="Web Browser, Cloud-based"
+        description="Export Biz automates manual export documentation into structured digital workflows, generating Invoices, Packing Lists, and shipping bills in seconds."
         url="https://ag-solutions.in/export-biz"
-        features={[
-          "3-Click Document Generation",
-          "Automated Shipping Bills & Invoices",
-          "DGFT & Customs Scheme Tracking",
-          "Digital Document Filing & Audit Trail",
-        ]}
       />
-
       <CommonServicePage
         {...exportBizServiceData}
         onHeroCtaClick={() => openLeadModal("Export Biz Software")}

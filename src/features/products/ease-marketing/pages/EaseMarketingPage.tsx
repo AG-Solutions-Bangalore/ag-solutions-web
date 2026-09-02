@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { SEO } from "@/components/seo/SEO";
-import { SoftwareAppSchema } from "@/components/seo";
+import { EaseMarketingSEO } from "../seo";
 import { EaseMarketingHero } from "../components/EaseMarketingHero";
 import { EaseMarketingFeatures } from "../components/EaseMarketingFeatures";
 import { EaseMarketingPipeline } from "../components/EaseMarketingPipeline";
@@ -29,32 +28,7 @@ export const EaseMarketingPage: React.FC = () => {
 
   return (
     <>
-      <SEO
-        title="Ease Marketing - Market Smarter. Connect Better. | AG Solutions"
-        description="Ease Marketing helps businesses manage, automate, and track high-converting WhatsApp marketing campaigns with bulk messaging, templates, and real-time analytics."
-        keywords={[
-          "Ease Marketing",
-          "WhatsApp marketing software",
-          "WhatsApp bulk messaging",
-          "WhatsApp automation tools",
-          "campaign management software",
-          "WhatsApp CRM",
-          "AG Solutions",
-        ]}
-      />
-      <SoftwareAppSchema
-        name="Ease Marketing - WhatsApp Marketing & Automation Software"
-        description="High-converting WhatsApp marketing, automated messaging, and campaign tracking software by AG Solutions."
-        applicationCategory="MarketingApplication"
-        operatingSystem="Web Browser, Cloud-based"
-        url="https://ag-solutions.in/ease-marketing"
-        features={[
-          "Bulk WhatsApp Campaigns",
-          "Smart Template Approval",
-          "Automated Drip Follow-ups",
-          "Real-time Analytics & Click Tracking",
-        ]}
-      />
+      <EaseMarketingSEO />
 
       <div className="bg-background font-sans text-dark antialiased">
         {/* 1. Hero Section */}

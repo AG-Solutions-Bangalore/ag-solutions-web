@@ -1,5 +1,5 @@
 import { m } from "framer-motion";
-import SEO from "@/components/seo/SEO";
+import { ComingSoonSEO } from "../seo";
 import { Sparkles, ArrowRight, Home, Clock, Layers, Rocket } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLeadModal } from "@/context/LeadModalContext";
@@ -19,10 +19,7 @@ export function ComingSoonPage({
 
   return (
     <>
-      <SEO
-        title={`${title} - Coming Soon | AG Solutions`}
-        description={description}
-      />
+      <ComingSoonSEO title={title} description={description} />
       <div className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-background py-16 sm:py-24 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
         {/* Background Ambient Glows & Grids */}
         <div className="pointer-events-none absolute -left-20 top-1/4 h-80 w-80 rounded-full bg-pink-light/60 dark:bg-pink/15 blur-3xl animate-pulse" />

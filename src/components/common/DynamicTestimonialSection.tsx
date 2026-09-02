@@ -3,7 +3,7 @@ import { m, AnimatePresence } from "framer-motion";
 import { Star, Quote, ChevronLeft, ChevronRight, Sparkles, UserCheck } from "lucide-react";
 import { useTestimonials } from "@/features/testimonials/hooks/useTestimonials";
 import type { TestimonialItem } from "@/features/testimonials/types/testimonial.types";
-import { TestimonialSchema } from "@/components/seo";
+import { TestimonialSchema } from "@/shared/seo";
 
 export interface DynamicTestimonialSectionProps {
   route?: string;

@@ -1,6 +1,6 @@
 import React from "react";
-import { JsonLd } from "@/components/seo/JsonLd";
-import { SEO } from "@/components/seo/SEO";
+import { JsonLd } from "@/shared/seo/JsonLd";
+import { SEO } from "@/shared/seo/SEO";
 
 export const ContactSEO: React.FC = () => {
   const contactSchema = {

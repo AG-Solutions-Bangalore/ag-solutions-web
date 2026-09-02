@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
-import SEO from "@/components/seo/SEO";
+import { HomeSEO } from "../seo";
 import HeroSection from "../components/HeroSection";
 
 // Below-the-fold components are lazy-loaded so they don't ship in the
@@ -66,11 +66,7 @@ function DeferredHomeContent() {
 function HomePage() {
   return (
     <>
-      <SEO
-        title="AG Solutions | Web Development, Mobile App Development & Software Solutions Company"
-        description="AG Solutions is a leading software development company providing web development, mobile applications, digital marketing, and export compliance software."
-        keywords="web development company, mobile app development, export biz, ease marketing, ag solutions"
-      />
+      <HomeSEO />
 
       <div className="bg-background font-sans text-foreground antialiased transition-colors duration-200">
         <HeroSection />

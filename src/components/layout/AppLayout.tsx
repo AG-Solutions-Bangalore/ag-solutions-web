@@ -5,7 +5,7 @@ import FooterV2 from "./Footer";
 import { LeadModalProvider } from "@/context/LeadModalContext";
 import LeadCaptureModal from "@/components/modal/LeadCaptureModal";
 import WhatsAppButton from "@/components/common/WhatsAppButton";
-import { OrganizationSchema, WebSiteSchema } from "@/components/seo";
+import { OrganizationSchema, WebSiteSchema } from "@/shared/seo";
 
 interface LayoutV2Props {
     children?: ReactNode;
