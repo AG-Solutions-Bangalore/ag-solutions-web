@@ -6,8 +6,7 @@ import { getImageUrl } from "@/utils/imageUrl";
  * Organization schema (AG Solutions brand entity).
  *
  * Routes with API testimonials replace this full brand schema during SSG with
- * the approved minimal Organization + review array schema. Do not add review
- * or aggregate-rating fields here.
+ * the approved LocalBusiness testimonial schema. Do not add review fields here.
  */
 export const OrganizationSchema: React.FC = () => {
   const schema: Record<string, unknown> = {

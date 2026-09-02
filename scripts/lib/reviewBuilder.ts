@@ -62,10 +62,17 @@ export function buildReviewSchema(norm: NormalisedTestimonial): Record<string, u
     },
   };
 
+  if (norm.dateStr) {
+    review.datePublished = norm.dateStr.includes("T")
+      ? norm.dateStr.split("T")[0]
+      : norm.dateStr;
+  }
+
   review.reviewRating = {
     "@type": "Rating",
     ratingValue: norm.genuineRating || "5",
     bestRating: "5",
+    worstRating: "1",
   };
 
   review.reviewBody = norm.reviewBody;

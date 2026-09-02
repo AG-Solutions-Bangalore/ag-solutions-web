@@ -68,15 +68,10 @@ function auditSinglePage(page: TestPage): boolean {
 }
 
 function verifyReviewCount(page: TestPage, totalReviews: number, hasAggregateRating: boolean): boolean {
-  if (hasAggregateRating) {
-    console.error("   ❌ AggregateRating is not allowed in testimonial markup.");
-    return false;
-  }
-
   if (page.expectedReviews === 0) {
-    if (totalReviews > 0) {
+    if (totalReviews > 0 || hasAggregateRating) {
       console.error(
-        `   ❌ Error: Expected 0 reviews, but found ${totalReviews}!`
+        `   ❌ Error: Expected 0 reviews/ratings, but found Review: ${totalReviews}, AggregateRating: ${hasAggregateRating}!`
       );
       return false;
     }
@@ -87,7 +82,7 @@ function verifyReviewCount(page: TestPage, totalReviews: number, hasAggregateRat
     return false;
   } else {
     console.log(
-      `   ✅ Verified: Exactly ${totalReviews} reviews, AggregateRating: None.`
+      `   ✅ Verified: Exactly ${totalReviews} reviews, AggregateRating: ${hasAggregateRating ? "Yes" : "None"}.`
     );
   }
   return true;
