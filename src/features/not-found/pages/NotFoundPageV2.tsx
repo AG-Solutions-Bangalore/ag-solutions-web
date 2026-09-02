@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { m, AnimatePresence } from "framer-motion";
-import SEO from "@/components/seo/SEO";
+import { NotFoundSEO } from "../seo";
 import FlipButton from "@/components/ui/FlipButton";
 import { useLeadModal } from "@/context/LeadModalContext";
 import {
@@ -135,11 +135,7 @@ export default function NotFoundPageV2() {
 
   return (
     <>
-      <SEO
-        title="404 - Page Not Found | AG Solutions"
-        description="The page you are looking for could not be found. Explore AG Solutions web development, mobile apps, digital marketing services, and enterprise products."
-        robots="noindex, follow"
-      />
+      <NotFoundSEO />
 
       <div className="relative min-h-[85vh] overflow-hidden bg-background px-4 py-16 sm:px-6 lg:px-8 transition-colors duration-200">
         {/* Background Ambient Glows */}

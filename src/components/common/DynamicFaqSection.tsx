@@ -3,7 +3,7 @@ import { m, AnimatePresence } from "framer-motion";
 import { Plus, Minus, HelpCircle, Sparkles } from "lucide-react";
 import { useFAQs } from "@/features/services/hooks/useFAQs";
 import type { FAQData } from "@/features/services/api/serviceApi";
-import { FAQSchema } from "@/components/seo";
+import { FAQSchema } from "@/features/blog/seo";
 
 export interface DynamicFaqSectionProps {
   slug?: string;

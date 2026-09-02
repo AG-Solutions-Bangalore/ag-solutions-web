@@ -32,7 +32,7 @@ export const Card: React.FC<CardProps> = ({
     <>
       {/* Image zoom wrapper */}
       {image && (
-        <div className="relative aspect-[3/2] overflow-hidden bg-slate-100 shrink-0">
+        <div className="relative aspect-[3/2] w-full overflow-hidden bg-slate-100 shrink-0">
           <img
             src={image}
             alt={imageAlt || title}
@@ -52,22 +52,24 @@ export const Card: React.FC<CardProps> = ({
       )}
 
       {/* Body content */}
-      <div className="p-6 flex flex-col flex-1">
-        {subtitle && (
-          <span className="text-[13px] text-teal font-semibold leading-none mb-2.5 block uppercase tracking-wider">
-            {subtitle}
-          </span>
-        )}
+      <div className="p-6 flex flex-col flex-1 justify-between">
+        <div>
+          {subtitle && (
+            <span className="text-[13px] text-teal font-semibold leading-none mb-2.5 block uppercase tracking-wider truncate">
+              {subtitle}
+            </span>
+          )}
 
-        <h3 className="m-0 text-xl font-bold leading-snug tracking-tight text-dark dark:text-foreground transition-colors duration-300 group-hover:text-pink">
-          {title}
-        </h3>
+          <h3 className="m-0 text-lg sm:text-xl font-bold leading-snug tracking-tight text-dark dark:text-foreground transition-colors duration-300 group-hover:text-pink line-clamp-2 min-h-[2.75rem] flex items-start">
+            {title}
+          </h3>
 
-        {description && (
-          <p className="m-0 mt-3 text-[14.5px] leading-relaxed text-muted font-normal flex-1 line-clamp-3">
-            {description}
-          </p>
-        )}
+          {description && (
+            <p className="m-0 mt-3 text-[14.5px] leading-relaxed text-muted font-normal line-clamp-3">
+              {description}
+            </p>
+          )}
+        </div>
 
         {footer && (
           <div className="pt-5 mt-5 border-t border-border flex items-center">
@@ -78,7 +80,7 @@ export const Card: React.FC<CardProps> = ({
     </>
   );
 
-  const rootClassName = `group overflow-hidden border border-border bg-card text-card-foreground shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col no-underline text-inherit ${
+  const rootClassName = `group overflow-hidden border border-border bg-card text-card-foreground shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col h-full w-full no-underline text-inherit ${
     onClick ? "cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-pink focus-visible:ring-offset-4" : ""
   } ${className}`;
 

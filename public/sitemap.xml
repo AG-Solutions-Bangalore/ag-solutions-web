@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ag-solutions.in/</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-09-02</lastmod>
   </url>
   <url>
     <loc>https://ag-solutions.in/about</loc>
@@ -50,6 +50,10 @@
   </url>
   <url>
     <loc>https://ag-solutions.in/bizstock</loc>
+    <lastmod>2026-08-03</lastmod>
+  </url>
+  <url>
+    <loc>https://ag-solutions.in/quote-biz</loc>
     <lastmod>2026-08-03</lastmod>
   </url>
   <url>
@@ -138,10 +142,10 @@
   </url>
   <url>
     <loc>https://ag-solutions.in/services</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-09-02</lastmod>
   </url>
   <url>
     <loc>https://ag-solutions.in/products</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-09-02</lastmod>
   </url>
 </urlset>

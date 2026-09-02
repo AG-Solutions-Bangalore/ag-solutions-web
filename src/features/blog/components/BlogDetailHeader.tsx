@@ -11,6 +11,7 @@ import { FaTwitter, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
 import { formatDate } from "@/utils/formatDate";
 import { estimateReadTime } from "./BlogCard";
 import type { BlogItem } from "../types/blog.types";
+import { getImageUrl } from "@/utils/imageUrl";
 
 interface BlogDetailHeaderProps {
   blog: BlogItem;
@@ -143,7 +144,7 @@ export default function BlogDetailHeader({ blog, imageUrl }: BlogDetailHeaderPro
           alt={blog.blog_banner_image_alt || blog.blog_title}
           className="h-full w-full object-cover"
           onError={(e) => {
-            (e.target as HTMLImageElement).src = "/images/laptop.webp";
+            (e.target as HTMLImageElement).src = getImageUrl("/images/laptop.webp");
           }}
         />
       </div>

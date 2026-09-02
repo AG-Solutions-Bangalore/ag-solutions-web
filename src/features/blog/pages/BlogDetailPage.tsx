@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
-import SEO from "@/components/seo/SEO";
-import { FAQSchema, BlogPostingSchema, BreadcrumbSchema } from "@/components/seo";
+import { BlogDetailSEO } from "../seo";
 import { useBlogBySlug, useBlogs } from "../hooks/useBlogs";
 import BlogDetailHeader from "../components/BlogDetailHeader";
 import BlogFaqAccordion from "../components/BlogFaqAccordion";
@@ -10,6 +9,7 @@ import BlogSidebar from "../components/BlogSidebar";
 import BlogCard from "../components/BlogCard";
 import { ArrowLeft, Sparkles, ArrowRight } from "lucide-react";
 import { useLeadModal } from "@/context/LeadModalContext";
+import { getImageUrl } from "@/utils/imageUrl";
 
 export function BlogDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -137,38 +137,25 @@ export function BlogDetailPage() {
 
   const headerImageUrl = blog.blog_banner_image
     ? `${blogBaseUrl}${blog.blog_banner_image}`
-    : "/images/laptop.webp";
+    : getImageUrl("/images/laptop.webp");
 
   return (
     <>
-      <SEO
-        title={`${blog.blog_meta_title || blog.blog_title} - AG Solutions`}
-        description={blog.blog_meta_description || blog.blog_short_description}
-        keywords={blog.blog_meta_keywords ? blog.blog_meta_keywords.split(",") : [blog.blog_title]}
-        canonical={`https://ag-solutions.in/blogs/${blog.blog_slug}`}
-        ogType="article"
-        ogTitle={blog.blog_title}
-        ogDescription={blog.blog_meta_description || blog.blog_short_description}
-        ogImage={headerImageUrl}
-        twitterTitle={blog.blog_title}
-        twitterDescription={blog.blog_meta_description || blog.blog_short_description}
-        twitterImage={headerImageUrl}
+      <BlogDetailSEO
+        blogTitle={blog.blog_title}
+        blogSlug={blog.blog_slug}
+        blogShortDescription={blog.blog_short_description}
+        blogMetaTitle={blog.blog_meta_title}
+        blogMetaDescription={blog.blog_meta_description}
+        blogMetaKeywords={blog.blog_meta_keywords}
+        blogBannerImage={blog.blog_banner_image}
+        blogBaseUrl={blogBaseUrl}
+        blogCreatedDate={blog.blog_created_date}
+        blogUpdatedDate={blog.blog_updated_date}
+        createdBy={blog.created_by}
+        breadcrumbItems={breadcrumbItems}
+        faqs={faqSchemaList}
       />
-      <BlogPostingSchema
-        headline={blog.blog_title}
-        description={blog.blog_meta_description || blog.blog_short_description}
-        image={headerImageUrl}
-        url={`https://ag-solutions.in/blogs/${blog.blog_slug}`}
-        datePublished={blog.blog_created_date}
-        dateModified={blog.blog_updated_date || blog.blog_created_date}
-        authorName={blog.created_by}
-      />
-      {breadcrumbItems.length > 0 && (
-        <BreadcrumbSchema items={breadcrumbItems} />
-      )}
-      {faqSchemaList.length > 0 && (
-        <FAQSchema faqs={faqSchemaList} />
-      )}
 
       <div className="bg-background min-h-screen text-foreground antialiased transition-colors duration-200">
         {/* Main Article Container */}

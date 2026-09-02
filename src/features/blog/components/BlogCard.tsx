@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Calendar, Clock, ArrowUpRight, User } from "lucide-react";
 import type { BlogItem } from "../types/blog.types";
 import { formatDate } from "@/utils/formatDate";
+import { getImageUrl } from "@/utils/imageUrl";
 
 interface BlogCardProps {
   blog: BlogItem;
@@ -53,7 +54,7 @@ export default function BlogCard({ blog, imageBaseUrl, index = 0 }: BlogCardProp
 
   const imageUrl = blog.blog_banner_image
     ? `${imageBaseUrl}${blog.blog_banner_image}`
-    : "/images/laptop.webp";
+    : getImageUrl("/images/laptop.webp");
 
   const postUrl = blog.blog_slug ? `/blogs/${blog.blog_slug}` : "/blogs";
   const readTime = estimateReadTime(blog.blog_description || blog.blog_short_description);
@@ -81,7 +82,7 @@ export default function BlogCard({ blog, imageBaseUrl, index = 0 }: BlogCardProp
             className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
             loading="lazy"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = "/images/laptop.webp";
+              (e.target as HTMLImageElement).src = getImageUrl("/images/laptop.webp");
             }}
           />
           {/* Subtle gradient overlay on hover */}

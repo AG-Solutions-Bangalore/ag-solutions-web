@@ -77,6 +77,15 @@ export const ROUTE_REGISTRY: RouteRegistryItem[] = [
     apiRequirements: ["LeadCapture API"],
   },
   {
+    path: "/quote-biz",
+    name: "QuoteBiz",
+    category: "Products",
+    status: "Production Ready",
+    owner: "Developer E",
+    dependencies: ["QuoteBizHero", "QuoteBizFeatures", "QuoteBizProcess", "QuoteBizIndustries", "QuoteBizTestimonials", "QuoteBizCtaBanner", "QuoteBizAppsPreview", "QuoteBizClientLogos", "QuoteBizFaq"],
+    apiRequirements: ["LeadCapture API"],
+  },
+  {
     path: "/ease-marketing",
     name: "EASE Marketing",
     category: "Products",

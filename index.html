@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/icons/favicon-32x32.png" />
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="/icons/favicon-32x32.png">
+    <link rel="alternate" type="text/markdown" href="/llms.txt" title="LLM Summary">
     <script>
       // Automatic stale build recovery for React SPA deployments
       window.addEventListener('error', function (e) {
@@ -27,43 +28,42 @@
     </script>
 
     <!-- Preconnect to external assets -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Preload above-the-fold critical LCP assets with responsive hints -->
     <link
       rel="preload"
       as="image"
-      href="/images/laptop.webp"
+      href="https://ag-solutions.in/webapi/public/assets/images/web_images_new/laptop.webp"
       type="image/webp"
       fetchpriority="high"
-      imagesrcset="/images/laptop-mobile.webp 475w, /images/laptop.webp 612w"
+      imagesrcset="https://ag-solutions.in/webapi/public/assets/images/web_images_new/laptop-mobile.webp 475w, https://ag-solutions.in/webapi/public/assets/images/web_images_new/laptop.webp 612w"
       imagesizes="(max-width: 1023px) 475px, 612px"
-    />
-    <link rel="preload" href="/images/logo.webp" as="image" type="image/webp" />
+    >
 
     <!-- Google Fonts loading (Non-render-blocking) -->
     <link
       rel="preload"
       as="style"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    />
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap"
+    >
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap"
       media="print"
       onload="this.media='all'"
-    />
+    >
     <noscript>
       <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      />
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap"
+      >
     </noscript>
 
     <!-- Critical above-the-fold CSS (inlined for fastest LCP) -->
     <style>
-      :root{--pink:#ec4899;--pink-hover:#db2777;--pink-light:#fce7f3;--teal:#14b8a6;--teal-light:#ccfbf1;--background:#ffffff;--foreground:#0f172a;--dark:#0f172a;--muted:#64748b;--card:#ffffff;--border:#e2e8f0;--pink-border:#f9a8d4}
+      :root{--pink:#E63164;--pink-hover:#c92050;--pink-light:#fff0f4;--teal:#008794;--teal-light:#e6f7f8;--background:#ffffff;--foreground:#0f172a;--dark:#0f172a;--muted:#64748b;--card:#ffffff;--border:#e2e8f0;--pink-border:#fbcfe8}
       html,body{margin:0;padding:0;background:var(--background);color:var(--foreground);font-family:"Roboto",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
       #root{min-height:100vh}
       .sticky-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
@@ -80,11 +80,11 @@
 
     <!-- Main CSS is loaded asynchronously via a Vite transformIndexHtml plugin (see vite.config.ts) -->
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta
       name="description"
-      content="AG Solutions builds web applications, mobile apps, desktop software, digital marketing systems, and export documentation products."
-    />
+      content="AG Solutions is a leading software development company providing web development, mobile applications, digital marketing, and export compliance software."
+    >
     <title>AG Solutions | Web Development, Mobile App Development & Software Solutions Company</title>
 
     <!-- Deferred Non-Blocking Google Tag Manager & Google Analytics -->
@@ -125,18 +125,18 @@
         window.__analytics_scheduled = true;
 
         if ('requestIdleCallback' in window) {
-          requestIdleCallback(initAnalytics, { timeout: 8000 });
+          requestIdleCallback(initAnalytics, { timeout: 10000 });
         } else {
-          setTimeout(initAnalytics, 0);
+          setTimeout(initAnalytics, 10000);
         }
       }
 
-      ['pointerdown', 'keydown', 'scroll'].forEach(function(eventName) {
+      ['pointerdown', 'touchstart', 'keydown', 'scroll'].forEach(function(eventName) {
         window.addEventListener(eventName, scheduleAnalytics, { once: true, passive: true });
       });
 
       window.addEventListener('load', function() {
-        setTimeout(scheduleAnalytics, 5000);
+        setTimeout(scheduleAnalytics, 9000);
       }, { once: true });
     </script>
   </head>

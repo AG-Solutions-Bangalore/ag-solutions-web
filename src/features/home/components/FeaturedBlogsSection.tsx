@@ -5,6 +5,7 @@ import { useFeaturedBlogs } from "@/features/blog/hooks/useBlogs";
 
 
 import { formatDate } from "@/utils/formatDate";
+import { getImageUrl } from "@/utils/imageUrl";
 
 // Fallback featured posts
 const fallbackFeaturedPosts = [
@@ -16,7 +17,7 @@ const fallbackFeaturedPosts = [
     date: "Dec 18, 2025",
     readTime: "5 min read",
     tagColor: "bg-pink/15 text-pink border-pink/30",
-    image: "/images/laptop.webp",
+    image: getImageUrl("/images/laptop.webp"),
     link: "/blogs",
   },
   {
@@ -27,7 +28,7 @@ const fallbackFeaturedPosts = [
     date: "Dec 18, 2025",
     readTime: "6 min read",
     tagColor: "bg-teal/15 text-teal border-teal/30",
-    image: "/images/ag-sl-desk.webp",
+    image: getImageUrl("/images/ag-sl-desk.webp"),
     link: "/blogs",
   },
   {
@@ -38,7 +39,7 @@ const fallbackFeaturedPosts = [
     date: "Dec 18, 2025",
     readTime: "4 min read",
     tagColor: "bg-yellow/15 text-yellow border-yellow/30",
-    image: "/images/MA.webp",
+    image: getImageUrl("/images/MA.webp"),
     link: "/blogs",
   },
 ];
@@ -80,7 +81,7 @@ export function FeaturedBlogsSection() {
             tagColor,
             image: item.blog_banner_image
               ? `${blogBaseUrl}${item.blog_banner_image}`
-              : "/images/laptop.webp",
+              : getImageUrl("/images/laptop.webp"),
             link: item.blog_slug ? `/blog/${item.blog_slug}` : "/blogs",
           };
         })
@@ -175,7 +176,7 @@ export function FeaturedBlogsSection() {
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = "/images/laptop.webp";
+                        (e.target as HTMLImageElement).src = getImageUrl("/images/laptop.webp");
                       }}
                     />
                     <div className="absolute top-3 left-3">

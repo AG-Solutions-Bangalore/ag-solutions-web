@@ -3,11 +3,14 @@ import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "next-themes";
-import { LazyMotion, domAnimation } from "framer-motion";
+import { LazyMotion } from "framer-motion";
 import "./index.css";
 import App from "./App.tsx";
 import { BrowserRouter } from "react-router-dom";
 import { queryClient } from "@/utils/queryClient";
+
+const loadMotionFeatures = () =>
+  import("framer-motion").then((res) => res.domAnimation);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -16,12 +19,10 @@ createRoot(document.getElementById("root")!).render(
         <HelmetProvider>
           <ThemeProvider attribute="class" defaultTheme="light">
             {/*
-              LazyMotion + domAnimation trims ~25 KiB from the framer-motion bundle
-              by only loading the animation features actually used by `m` components.
-              Combined with `m.X` (not `motion.X`) throughout, this gives us a tree-
-              shaken motion library.
+              LazyMotion with asynchronous feature loading avoids executing animation
+              logic during critical initial render & hydration on mobile.
             */}
-            <LazyMotion features={domAnimation} strict>
+            <LazyMotion features={loadMotionFeatures} strict>
               <App />
             </LazyMotion>
           </ThemeProvider>

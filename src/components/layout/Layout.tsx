@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import HeaderV2 from "./Header";
 import { LeadModalProvider, useLeadModal } from "@/context/LeadModalContext";
 import WhatsAppButton from "@/components/common/WhatsAppButton";
-import { OrganizationSchema, WebSiteSchema } from "@/components/seo";
+import { OrganizationSchema, WebSiteSchema } from "@/shared/seo";
 
 const LeadCaptureModal = lazy(() => import("@/components/modal/LeadCaptureModal"));
 // Footer is below-the-fold on every page. Lazy-load it so its react-icons/fa

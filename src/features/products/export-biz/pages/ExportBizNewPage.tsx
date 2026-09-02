@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import CommonServicePage from "@/features/services/components/CommonServicePage";
 import { exportBizServiceData } from "@/features/services/data/serviceData";
-import { SoftwareAppSchema } from "@/components/seo";
+import { SoftwareAppSchema } from "@/features/products/seo/SoftwareAppSchema";
 import { GlobalTradePartnerSection } from "../components/GlobalTradePartnerSection";
 import { DocumentEcosystemV2 } from "../components/DocumentEcosystemV2";
 import { CompareSection } from "../components/CompareSection";
@@ -12,24 +12,8 @@ import { CtaBanner } from "../components/CtaBanner";
 import RelatedBlogSection from "@/features/blog/components/RelatedBlogSection";
 import { useLeadModal } from "@/context/LeadModalContext";
 
-import { useTestimonials } from "@/features/testimonials/hooks/useTestimonials";
-
 export const ExportBizNewPage: React.FC = () => {
   const { openLeadModal } = useLeadModal();
-  const { data: testimonialData } = useTestimonials("export-biz");
-
-  const rawReviews = testimonialData?.data || [];
-  const reviews = Array.isArray(rawReviews)
-    ? rawReviews
-        .filter((t) => t.testimonial_description && t.testimonial_client_name)
-        .map((t) => ({
-          authorName: t.testimonial_client_name,
-          reviewBody: t.testimonial_description,
-          ratingValue: t.testimonial_rating ?? t.rating ?? t.rating_value ?? "5",
-        }))
-    : [];
-
-  const finalReviewCount = reviews.length > 0 ? String(reviews.length) : "10";
 
   // 10-Second Auto-Trigger Popup (Runs once per session unless already interacted)
   useEffect(() => {
@@ -46,22 +30,12 @@ export const ExportBizNewPage: React.FC = () => {
   return (
     <>
       <SoftwareAppSchema
-        name="Export Biz - Export Documentation Software"
-        description="Specialized export documentation and compliance software for exporters, manufacturers, and global trade houses by AG Solutions."
+        name="Export Biz - Export Documentation & Compliance Software"
         applicationCategory="BusinessApplication"
         operatingSystem="Web Browser, Cloud-based"
+        description="Export Biz automates manual export documentation into structured digital workflows, generating Invoices, Packing Lists, and shipping bills in seconds."
         url="https://ag-solutions.in/export-biz"
-        ratingValue="5.0"
-        reviewCount={finalReviewCount}
-        reviews={reviews}
-        features={[
-          "3-Click Document Generation",
-          "Automated Shipping Bills & Invoices",
-          "DGFT & Customs Scheme Tracking",
-          "Digital Document Filing & Audit Trail",
-        ]}
       />
-
       <CommonServicePage
         {...exportBizServiceData}
         onHeroCtaClick={() => openLeadModal("Export Biz Software")}

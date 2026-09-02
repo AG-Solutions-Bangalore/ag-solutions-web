@@ -1,4 +1,4 @@
-import SEO from "@/components/seo/SEO";
+import { AboutSEO } from "../seo";
 import AboutHero from "../components/AboutHero";
 import AboutStats from "../components/AboutStats";
 import AboutValues from "../components/AboutValues";
@@ -11,10 +11,7 @@ import { DynamicFaqSection } from "@/components/common/DynamicFaqSection";
 function AboutPageV2() {
   return (
     <>
-      <SEO
-        title="About AG Solutions | IT Solutions for New Age Businesses"
-        description="Learn about AG Solutions, our core values, mission, team, and why businesses worldwide trust us as their IT solution partner."
-      />
+      <AboutSEO />
 
       <div className="bg-white font-sans text-accent-dark antialiased">
         <AboutHero />

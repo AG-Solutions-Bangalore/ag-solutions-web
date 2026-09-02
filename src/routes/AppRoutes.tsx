@@ -11,6 +11,7 @@ const MobileAppPage = lazy(pageLoaders.mobileApp);
 const DigitalMarketingPage = lazy(pageLoaders.digitalMarketing);
 const ExportBizPage = lazy(pageLoaders.exportBiz);
 const BizStockPage = lazy(pageLoaders.bizstock);
+const QuoteBizPage = lazy(pageLoaders.quoteBiz);
 const EaseMarketingPage = lazy(pageLoaders.easeMarketing);
 const ProductsPage = lazy(pageLoaders.products);
 const ComingSoonPage = lazy(pageLoaders.comingSoon);
@@ -63,6 +64,10 @@ export function AppRoutes() {
         <Route path="biz-stock" element={<BizStockPage />} />
         <Route path="products/bizstock" element={<BizStockPage />} />
         <Route path="products/biz-stock" element={<BizStockPage />} />
+
+        <Route path="quote-biz" element={<QuoteBizPage />} />
+        <Route path="quote-biz/" element={<QuoteBizPage />} />
+        <Route path="products/quote-biz" element={<QuoteBizPage />} />
 
         <Route path="ease-marketing" element={<EaseMarketingPage />} />
         <Route path="products/ease-marketing" element={<EaseMarketingPage />} />

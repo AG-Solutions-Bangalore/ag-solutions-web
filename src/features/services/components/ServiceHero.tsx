@@ -1,5 +1,6 @@
 import FlipButton from "@/components/ui/FlipButton";
 import { Laptop, Gauge, ShieldCheck, TrendingUp } from "lucide-react";
+import { getImageUrl } from "@/utils/imageUrl";
 
 const heroFeatures = [
     {
@@ -89,7 +90,7 @@ function ServiceHero() {
 
                             {/* Main Laptop / Desktop Image Asset */}
                             <img
-                                src="/images/laptop.webp"
+                                src={getImageUrl("/images/laptop.webp")}
                                 alt="Powerful Web Development Services"
                                 width={612}
                                 height={408}

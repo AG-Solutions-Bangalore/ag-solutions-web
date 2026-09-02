@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import SEO from "@/components/seo/SEO";
+import { BlogListSEO } from "../seo";
 import { useBlogs } from "../hooks/useBlogs";
 import BlogHero from "../components/BlogHero";
 import BlogFeaturedHero from "../components/BlogFeaturedHero";
@@ -89,17 +89,7 @@ export function BlogListPage() {
 
   return (
     <>
-      <SEO
-        title="Tech & Business Insights Blog - AG Solutions"
-        description="Explore the latest articles, engineering tutorials, software architecture patterns, and digital marketing insights from AG Solutions."
-        keywords={[
-          "AG Solutions blog",
-          "tech insights",
-          "software engineering articles",
-          "mobile app development blog",
-          "web development trends",
-        ]}
-      />
+      <BlogListSEO />
 
       <div className="bg-background min-h-screen text-foreground antialiased transition-colors duration-200">
         {/* 1. Hero with Search and Category filters */}

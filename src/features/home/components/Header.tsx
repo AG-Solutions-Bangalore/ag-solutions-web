@@ -67,6 +67,8 @@ function Header({ activeNav = "home" }: HeaderProps) {
                                 title="AG Solutions Services"
                                 onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
                                 onMouseEnter={() => setServicesDropdownOpen(true)}
+                                aria-expanded={servicesDropdownOpen}
+                                aria-haspopup="true"
                                 className="flex items-center gap-1 text-sm font-semibold text-ag-dark hover:text-ag-pink transition-colors bg-transparent border-none cursor-pointer py-1"
                             >
                                 <span>Services</span>
@@ -135,6 +137,7 @@ function Header({ activeNav = "home" }: HeaderProps) {
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         className="md:hidden p-2 text-ag-dark hover:text-ag-pink bg-transparent border-none cursor-pointer"
                         aria-label="Toggle Navigation"
+                        aria-expanded={mobileMenuOpen}
                     >
                         {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                     </button>

@@ -3,7 +3,7 @@ import { m, AnimatePresence } from "framer-motion";
 import { Star, Quote, ChevronLeft, ChevronRight, Sparkles, UserCheck } from "lucide-react";
 import { useTestimonials } from "@/features/testimonials/hooks/useTestimonials";
 import type { TestimonialItem } from "@/features/testimonials/types/testimonial.types";
-import { TestimonialSchema } from "@/components/seo";
+import { TestimonialSchema } from "@/shared/seo";
 
 export interface DynamicTestimonialSectionProps {
   route?: string;
@@ -27,9 +27,19 @@ export const DynamicTestimonialSection: React.FC<DynamicTestimonialSectionProps>
   const { data: apiResponse, isLoading } = useTestimonials(route || "");
   const [currentPage, setCurrentPage] = useState(0);
 
-  // Combine prop or query data
-  const rawItems = propTestimonials || apiResponse?.data || [];
-  const items = Array.isArray(rawItems) ? rawItems.filter((t) => t.testimonial_description && t.testimonial_client_name) : [];
+  // When the parent passes an explicit `testimonials` prop (e.g. a pre-sliced
+  // list capped to match the prerendered review count), use it. Otherwise fall
+  // back to the live API data. This prevents the section from doubling the
+  // testimonials shown to the user vs. what's emitted in the schema.
+  const hasPropTestimonials = Array.isArray(propTestimonials) && propTestimonials.length > 0;
+  const apiItems =
+    !hasPropTestimonials && Array.isArray(apiResponse?.data) && apiResponse.data.length > 0
+      ? apiResponse.data
+      : null;
+  const rawItems = hasPropTestimonials ? propTestimonials : (apiItems || []);
+  const items = Array.isArray(rawItems)
+    ? rawItems.filter((t) => t.testimonial_description && t.testimonial_client_name)
+    : [];
 
   // Conditional Rendering Rule: If no data is available, do not render the section
   if (items.length === 0 && !isLoading) {
@@ -155,14 +165,46 @@ export const DynamicTestimonialSection: React.FC<DynamicTestimonialSectionProps>
                       </div>
 
                       <div>
-                        {/* 5-Star Rating */}
+                        {/* Dynamic Star Rating from API */}
                         <div className="flex items-center gap-1 mb-4">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className="h-4 w-4 fill-yellow text-yellow"
-                            />
-                          ))}
+                          {(() => {
+                            const raw = item.testimonial_rating ?? item.rating ?? item.rating_value;
+                            const ratingVal = raw !== undefined && raw !== null && raw !== "" ? Number(raw) : 5;
+                            return (
+                              <div className="flex items-center gap-1" title={`${ratingVal} out of 5 stars`}>
+                                {[0, 1, 2, 3, 4].map((i) => {
+                                  const diff = ratingVal - i;
+                                  if (diff >= 1) {
+                                    return (
+                                      <Star
+                                        key={i}
+                                        className="h-4 w-4 fill-yellow text-yellow"
+                                      />
+                                    );
+                                  }
+                                  if (diff >= 0.5) {
+                                    return (
+                                      <div key={i} className="relative h-4 w-4 inline-block">
+                                        <Star className="h-4 w-4 text-muted/30 fill-muted/20" />
+                                        <div className="absolute inset-0 overflow-hidden w-[50%]">
+                                          <Star className="h-4 w-4 fill-yellow text-yellow" />
+                                        </div>
+                                      </div>
+                                    );
+                                  }
+                                  return (
+                                    <Star
+                                      key={i}
+                                      className="h-4 w-4 text-muted/30 fill-muted/20"
+                                    />
+                                  );
+                                })}
+                                <span className="ml-1.5 text-xs font-semibold text-muted">
+                                  {ratingVal % 1 === 0 ? `${ratingVal}.0` : ratingVal}
+                                </span>
+                              </div>
+                            );
+                          })()}
                         </div>
 
                         {/* Review Body */}

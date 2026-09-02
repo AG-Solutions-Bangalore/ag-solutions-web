@@ -4,7 +4,7 @@ import { PageHero, SectionTitle } from "@/components/layout";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 import { layoutContainerClass } from "@/components/layout/styles";
 import { FileSpreadsheet, Boxes, Megaphone, Users2 } from "lucide-react";
-import { SEO } from "@/components/seo/SEO";
+import { ProductsSEO } from "../seo";
 import { getImageUrl } from "@/utils/imageUrl";
 import { DynamicTestimonialSection } from "@/components/common/DynamicTestimonialSection";
 import { DynamicFaqSection } from "@/components/common/DynamicFaqSection";
@@ -80,11 +80,7 @@ const products: readonly ProductCard[] = [
 export const ProductsPage: React.FC = () => {
   return (
     <>
-      <SEO
-        title="Products - AG Solutions"
-        description="Explore AG Solutions products: EXPORT BIZ, EASE Marketing, and Grow Together collaboration tool."
-        keywords={["EDMS", "Export Biz", "EASE Marketing", "Grow Together", "AG Solutions products"]}
-      />
+      <ProductsSEO />
 
       <PageHero
         title="Our Products"
