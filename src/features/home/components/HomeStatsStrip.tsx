@@ -1,4 +1,3 @@
-import { m } from "framer-motion";
 import { Users, Briefcase, Award, Headphones } from "lucide-react";
 import AnimatedCounter from "@/components/animation/AnimatedCounter";
 
@@ -37,26 +36,16 @@ export function HomeStatsStrip() {
   return (
     <section className="bg-background py-4 sm:py-6 transition-colors duration-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <m.div
-          className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-7 shadow-xs"
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-7 shadow-xs">
           {/* Subtle Ambient Glow */}
           <div className="absolute -inset-4 rounded-full bg-teal/5 blur-2xl pointer-events-none" />
 
           <div className="relative z-10 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4 items-center">
-            {stats.map((stat, idx) => {
+            {stats.map((stat) => {
               const Icon = stat.icon;
               return (
-                <m.div
+                <div
                   key={stat.label}
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.08 }}
                   className="group flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left gap-3 sm:gap-4 p-2 rounded-xl transition-all duration-300 hover:bg-muted/5 cursor-default"
                 >
                   <div
@@ -72,11 +61,11 @@ export function HomeStatsStrip() {
                       {stat.label}
                     </div>
                   </div>
-                </m.div>
+                </div>
               );
             })}
           </div>
-        </m.div>
+        </div>
       </div>
     </section>
   );

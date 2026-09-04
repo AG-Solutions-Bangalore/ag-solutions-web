@@ -34,7 +34,7 @@ export const OrganizationSchema: React.FC = () => {
       // Canonical LinkedIn handle — must match the prerender SSG output and
       // the Footer/ContactPage links, otherwise Google sees two different
       // Organization entities and may split trust signals across them.
-      "https://www.linkedin.com/in/ag-solutions-104223427",
+      "https://www.linkedin.com/in/ag-solutions-2b1b50422/",
       "https://www.facebook.com/profile.php?id=61591878191618",
       "https://www.instagram.com/ag_solutions_official/",
     ],

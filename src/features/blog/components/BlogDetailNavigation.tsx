@@ -15,6 +15,8 @@ export default function BlogDetailNavigation({ previous, next }: BlogDetailNavig
       {previous?.blog_slug ? (
         <Link
           to={`/blogs/${previous.blog_slug}`}
+          title={previous.blog_title || "Previous Story"}
+          aria-label={previous.blog_title || "Previous Story"}
           className="p-5 sm:p-6 rounded-3xl border border-border bg-card hover:border-teal/60 hover:shadow-lg transition-all group flex flex-col justify-between no-underline"
         >
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-muted group-hover:text-teal mb-2.5">
@@ -32,6 +34,8 @@ export default function BlogDetailNavigation({ previous, next }: BlogDetailNavig
       {next?.blog_slug ? (
         <Link
           to={`/blogs/${next.blog_slug}`}
+          title={next.blog_title || "Next Story"}
+          aria-label={next.blog_title || "Next Story"}
           className="p-5 sm:p-6 rounded-3xl border border-border bg-card hover:border-pink/60 hover:shadow-lg transition-all group flex flex-col justify-between items-end text-right no-underline"
         >
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-muted group-hover:text-pink mb-2.5">

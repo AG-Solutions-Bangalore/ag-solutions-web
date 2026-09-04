@@ -166,11 +166,14 @@ export default function BlogSidebar({
                   href={sponsorLink}
                   target={isAbsoluteUrl ? "_blank" : "_self"}
                   rel="noopener noreferrer"
+                  title={sponsor.sponsors_image_title || sponsor.sponsors_url || "AG Solutions Partner Sponsor"}
+                  aria-label={sponsor.sponsors_image_title || sponsor.sponsors_url || "AG Solutions Partner Sponsor"}
                   className="flex items-center justify-center p-3 rounded-2xl bg-background border border-border hover:border-teal hover:shadow-md transition-all group aspect-[4/3] overflow-hidden"
                 >
                   <img
                     src={sImgUrl}
-                    alt="Partner Sponsor Logo"
+                    alt={sponsor.sponsors_image_alt || "AG Solutions Partner Sponsor"}
+                    title={sponsor.sponsors_image_title || "AG Solutions Partner Sponsor"}
                     className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
                   />
                 </a>

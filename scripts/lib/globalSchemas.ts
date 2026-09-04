@@ -28,7 +28,7 @@ export const GLOBAL_ORGANIZATION_SCHEMA = {
     addressCountry: "IN",
   },
   sameAs: [
-    "https://www.linkedin.com/in/ag-solutions-104223427",
+    "https://www.linkedin.com/in/ag-solutions-2b1b50422/",
     "https://www.facebook.com/profile.php?id=61591878191618",
     "https://www.instagram.com/ag_solutions_official/",
   ],

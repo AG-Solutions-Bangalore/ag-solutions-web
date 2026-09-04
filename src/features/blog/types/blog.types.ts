@@ -31,7 +31,10 @@ export interface BlogListResponse {
 
 export interface SponsorItem {
   sponsors_image: string;
+  sponsors_image_alt?: string | null;
+  sponsors_image_title?: string | null;
   sponsors_url: string | null;
+  sponsors_name?: string | null;
 }
 
 export interface BlogFAQItem {

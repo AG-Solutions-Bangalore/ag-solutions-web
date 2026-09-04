@@ -4,6 +4,7 @@ import SkipToContent from "./components/accessibility/SkipToContent";
 import { createCampaignVisit } from "./features/products/api/campaignApi";
 import AppRoutes from "./routes";
 import { extractUtmParams, storeUtmParams } from "./utils/utmUtils";
+import { reportWebVitals } from "./utils/reportWebVitals";
 
 // Type-only import keeps the type without bundling Lenis into the main chunk.
 // The value is dynamically imported below only on desktop, so mobile users
@@ -59,6 +60,13 @@ function ScrollToTop() {
 }
 
 function App() {
+
+  // Web Vitals reporting (LCP/INP/CLS/FCP/TTFB). Runs once after mount
+  // so it never affects the metrics themselves.
+  useEffect(() => {
+    const id = window.setTimeout(() => reportWebVitals(), 0);
+    return () => window.clearTimeout(id);
+  }, []);
 
   useEffect(() => {
     // Prevent browser auto-restoration from clamping scroll to unrendered document height on refresh

@@ -2,11 +2,32 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Fallback metrics: when Roboto swaps in after first paint, the new glyph
+   widths could otherwise cause a small CLS shift on the hero copy. Adjusting
+   `size-adjust` and `ascent-override` to match Roboto's metrics keeps the
+   layout box stable across the swap. */
+@font-face {
+  font-family: "Roboto-fallback";
+  src: local("Arial");
+  size-adjust: 100%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Space Grotesk-fallback";
+  src: local("Arial");
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+}
+
 /* 1. Tailwind CSS v4 Theme Token Registration */
 @theme inline {
-  --font-sans: "Roboto", system-ui, -apple-system, sans-serif;
-  --font-heading: "Space Grotesk", sans-serif;
-  --font-space-grotesk: "Space Grotesk", sans-serif;
+  --font-sans: "Roboto", "Roboto-fallback", system-ui, -apple-system, sans-serif;
+  --font-heading: "Space Grotesk", "Space Grotesk-fallback", sans-serif;
+  --font-space-grotesk: "Space Grotesk", "Space Grotesk-fallback", sans-serif;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -778,4 +799,21 @@
   pointer-events: none;
   opacity: 1;
   transition: opacity 0.3s ease;
+}
+
+/* ==========================================
+   Hero Section — CSS-only entrance animation
+   Replaces framer-motion on the LCP-critical
+   text column so content is visible without
+   waiting for JS to execute.
+========================================== */
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

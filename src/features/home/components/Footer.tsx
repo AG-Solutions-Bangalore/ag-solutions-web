@@ -19,7 +19,7 @@ const serviceLinks = [
 ];
 
 const socialLinks = [
-    { href: "https://www.linkedin.com/in/ag-solutions-104223427", label: "in", name: "LinkedIn" },
+    { href: "https://www.linkedin.com/in/ag-solutions-2b1b50422/", label: "in", name: "LinkedIn" },
     { href: "https://www.facebook.com/profile.php?id=61591878191618", label: "fb", name: "Facebook" },
     { href: "https://twitter.com", label: "tw", name: "Twitter" },
     { href: "https://www.instagram.com/ag_solutions_official/", label: "ig", name: "Instagram" },

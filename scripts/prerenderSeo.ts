@@ -85,6 +85,12 @@ export async function prerenderAllRoutes(): Promise<void> {
 
   // ── 3. Sync sitemap ─────────────────────────────────────────────────
   await generateSitemap();
+
+  // ── 4. Sync serve.json to dist ───────────────────────────────────────
+  const rootServeConfig = path.join(process.cwd(), "serve.json");
+  if (fs.existsSync(rootServeConfig)) {
+    fs.copyFileSync(rootServeConfig, path.join(DIST_DIR, "serve.json"));
+  }
 }
 
 prerenderAllRoutes().catch((err) => {

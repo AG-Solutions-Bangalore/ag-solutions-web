@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { m } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import { useCreateNewsletter } from "@/features/newsletter/hooks/useCreateNewsletter";
 
@@ -38,11 +37,7 @@ export function NewsletterSection() {
   return (
     <section className="relative w-full dark:bg-[#0C1220] bg-[#F8FAFC]  py-3 sm:py-4 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
       <div className="mx-auto max-w-7xl">
-        <m.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        <div
           className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-r from-[#07134b] via-[#0e2c8d] to-[#1c4ee0] p-4 sm:p-6 lg:px-8 lg:py-5 text-white shadow-2xl"
         >
           {/* Subtle Ambient Glow */}
@@ -109,7 +104,7 @@ export function NewsletterSection() {
               />
             </div>
           </div>
-        </m.div>
+        </div>
       </div>
     </section>
   );

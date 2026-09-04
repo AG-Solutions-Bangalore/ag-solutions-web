@@ -37,11 +37,11 @@ export default function BlogDetailHeader({ blog, imageUrl }: BlogDetailHeaderPro
     <header className="mb-10">
       {/* Breadcrumbs */}
       <nav className="flex items-center gap-2 text-xs sm:text-sm text-muted mb-6">
-        <Link to="/" className="hover:text-teal transition-colors no-underline font-medium">
+        <Link to="/" title="AG Solutions Homepage" className="hover:text-teal transition-colors no-underline font-medium">
           Home
         </Link>
         <span>/</span>
-        <Link to="/blogs" className="hover:text-teal transition-colors no-underline font-medium">
+        <Link to="/blogs" title="AG Solutions Blog" className="hover:text-teal transition-colors no-underline font-medium">
           Blogs
         </Link>
         <span>/</span>
@@ -142,6 +142,7 @@ export default function BlogDetailHeader({ blog, imageUrl }: BlogDetailHeaderPro
         <img
           src={imageUrl}
           alt={blog.blog_banner_image_alt || blog.blog_title}
+          title={blog.blog_banner_image_alt || blog.blog_title}
           className="h-full w-full object-cover"
           onError={(e) => {
             (e.target as HTMLImageElement).src = getImageUrl("/images/laptop.webp");
