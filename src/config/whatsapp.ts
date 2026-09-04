@@ -5,7 +5,7 @@
 export const WHATSAPP_CONFIG = {
   phoneNumber: "+91 8867171060", // Official business phone
   defaultMessage:
-    "Hi AG Solutions! I'm interested in your Web Development & Mobile App Development services. Could you please share more details?",
+    "Hi AG Solutions! I’m interested in your Web Development, Mobile App, Software, and Digital Marketing services. I’d like to know more about how you can help my business. Could you please share more details?",
   generateUrl: (pageName?: string) => {
     const rawNumber = (
       import.meta.env.VITE_WHATSAPP_NUMBER || WHATSAPP_CONFIG.phoneNumber
@@ -34,7 +34,7 @@ export const WHATSAPP_CONFIG = {
       lowerPage.includes("contact")
     ) {
       message =
-        "Hi AG Solutions! I'm interested in your Web Development & Mobile App Development services. Could you please share more details?";
+        "Hi AG Solutions! I’m interested in your Web Development, Mobile App, Software, and Digital Marketing services. I’d like to know more about how you can help my business. Could you please share more details?";
     } else {
       message = `Hi AG Solutions! I am contacting you from your website regarding ${pageName}. I would like to know more about your services.`;
     }
