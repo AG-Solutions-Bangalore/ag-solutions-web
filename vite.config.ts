@@ -2,7 +2,29 @@ import { defineConfig, type Plugin } from "vite";
 import react, { reactCompilerPreset } from "@vitejs/plugin-react";
 import babel from "@rolldown/plugin-babel";
 import tailwindcss from "@tailwindcss/vite";
+import { visualizer } from "rollup-plugin-visualizer";
 import { fileURLToPath, URL } from "node:url";
+import compression from "compression";
+
+/**
+ * Enable gzip compression and cache-control headers on Vite preview server
+ * so local testing in browser matches production server (Netlify/Vercel/Cloudflare).
+ */
+function previewOptimization(): Plugin {
+  return {
+    name: "ag:preview-optimization",
+    configurePreviewServer(server) {
+      server.middlewares.use((req, res, next) => {
+        if (req.url && req.url.startsWith("/assets/")) {
+          res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+        }
+        next();
+      });
+      // @ts-expect-error Connect/Vite middleware signature compatibility
+      server.middlewares.use(compression());
+    },
+  };
+}
 
 /**
  * Make the main CSS bundle non-render-blocking.
@@ -40,6 +62,13 @@ export default defineConfig({
     tailwindcss(),
     babel({ presets: [reactCompilerPreset()] }),
     nonBlockingCss(),
+    previewOptimization(),
+    visualizer({
+      filename: "dist/stats.html",
+      gzipSize: true,
+      brotliSize: true,
+      template: "treemap",
+    }),
   ],
   resolve: {
     alias: {

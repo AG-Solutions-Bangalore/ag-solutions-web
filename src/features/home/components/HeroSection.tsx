@@ -1,8 +1,16 @@
-import { m } from "framer-motion";
 import { useLeadModal } from "@/context/LeadModalContext";
 import { ArrowRight } from "lucide-react";
 import TypewriterText from "@/components/animation/TypewriterText";
-import { getImageUrl } from "@/utils/imageUrl";
+
+/**
+ * LCP image is served from the public/ folder so it travels over the same
+ * origin as the rest of the page (no cross-origin TCP/TLS handshake) and
+ * can be preloaded with `fetchpriority="high"` in index.html.
+ *
+ * Keep both variants colocated at /images/laptop*.webp.
+ */
+const LCP_IMG_DESKTOP = "/images/laptop.webp";
+const LCP_IMG_MOBILE = "/images/laptop-mobile.webp";
 
 function HeroSection() {
     const { openLeadModal } = useLeadModal();
@@ -15,11 +23,9 @@ function HeroSection() {
 
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-8">
-                    <m.div
+                    <div
                         className="lg:col-span-6 z-10 text-center lg:text-left"
-                        initial={{ opacity: 0, x: -30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        style={{ animation: "hero-fade-in 0.6s ease-out both" }}
                     >
                         <div className="inline-flex items-center gap-2 rounded-full bg-card border border-border px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-dark shadow-2xs backdrop-blur-xs">
                             <span className="h-2 w-2 rounded-full bg-pink shrink-0" />
@@ -65,14 +71,14 @@ function HeroSection() {
                                 <ArrowRight className="h-4 w-4" />
                             </button>
                         </div>
-                    </m.div>
+                    </div>
 
                     <div className="relative flex justify-center lg:col-span-6">
                         <div className="relative w-full max-w-lg lg:max-w-xl flex items-center justify-center py-2 sm:py-4">
                             <img
-                                src={getImageUrl("/images/laptop.webp")}
-                                srcSet={`${getImageUrl("/images/laptop-mobile.webp")} 475w, ${getImageUrl("/images/laptop.webp")} 612w`}
-                                sizes="(max-width: 1023px) 475px, 612px"
+                                src={LCP_IMG_DESKTOP}
+                                srcSet={`${LCP_IMG_MOBILE} 380w, ${LCP_IMG_DESKTOP} 612w`}
+                                sizes="(max-width: 640px) 100vw, (max-width: 1023px) 380px, 612px"
                                 alt="AG Solutions Digital Dashboard Laptop"
                                 title="AG Solutions Digital Dashboard"
                                 width={612}
@@ -80,7 +86,7 @@ function HeroSection() {
                                 fetchPriority="high"
                                 decoding="async"
                                 loading="eager"
-                                className="relative z-10 w-full h-auto object-contain drop-shadow-xl transition-transform duration-500 hover:scale-[1.02]"
+                                className="lcp-img relative z-10 drop-shadow-xl transition-transform duration-500 hover:scale-[1.02]"
                             />
                         </div>
                     </div>

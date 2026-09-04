@@ -31,7 +31,7 @@ const productLinks = [
 
 const socialLinks = [
     {
-        href: "https://www.linkedin.com/in/ag-solutions-104223427/",
+        href: "https://www.linkedin.com/in/ag-solutions-2b1b50422/",
         icon: FaLinkedinIn,
         label: "LinkedIn",
         title: "AG Solutions on LinkedIn",

@@ -1,152 +1,246 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/x-icon" href="/icons/favicon-32x32.png">
-    <link rel="alternate" type="text/markdown" href="/llms.txt" title="LLM Summary">
-    <script>
-      // Automatic stale build recovery for React SPA deployments
-      window.addEventListener('error', function (e) {
-        var target = e.target || e.srcElement;
-        if (target && target.tagName === 'SCRIPT' && /assets\/.*\.js/.test(target.src || '')) {
-          var lastReload = sessionStorage.getItem('ag_chunk_reload');
-          var now = Date.now();
-          if (!lastReload || now - parseInt(lastReload, 10) > 10000) {
-            sessionStorage.setItem('ag_chunk_reload', String(now));
-            window.location.reload();
-          }
-        }
-      }, true);
-      window.addEventListener('vite:preloadError', function () {
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="/icons/favicon-32x32.png">
+  <link rel="alternate" type="text/markdown" href="/llms.txt" title="LLM Summary">
+  <script>
+    // Automatic stale build recovery for React SPA deployments
+    window.addEventListener('error', function (e) {
+      var target = e.target || e.srcElement;
+      if (target && target.tagName === 'SCRIPT' && /assets\/.*\.js/.test(target.src || '')) {
         var lastReload = sessionStorage.getItem('ag_chunk_reload');
         var now = Date.now();
         if (!lastReload || now - parseInt(lastReload, 10) > 10000) {
           sessionStorage.setItem('ag_chunk_reload', String(now));
           window.location.reload();
         }
-      });
-    </script>
-
-    <!-- Preconnect to external assets -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- Preload above-the-fold critical LCP assets with responsive hints -->
-    <link
-      rel="preload"
-      as="image"
-      href="https://ag-solutions.in/webapi/public/assets/images/web_images_new/laptop.webp"
-      type="image/webp"
-      fetchpriority="high"
-      imagesrcset="https://ag-solutions.in/webapi/public/assets/images/web_images_new/laptop-mobile.webp 475w, https://ag-solutions.in/webapi/public/assets/images/web_images_new/laptop.webp 612w"
-      imagesizes="(max-width: 1023px) 475px, 612px"
-    >
-
-    <!-- Google Fonts loading (Non-render-blocking) -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap"
-    >
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap"
-      media="print"
-      onload="this.media='all'"
-    >
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap"
-      >
-    </noscript>
-
-    <!-- Critical above-the-fold CSS (inlined for fastest LCP) -->
-    <style>
-      :root{--pink:#E63164;--pink-hover:#c92050;--pink-light:#fff0f4;--teal:#008794;--teal-light:#e6f7f8;--background:#ffffff;--foreground:#0f172a;--dark:#0f172a;--muted:#64748b;--card:#ffffff;--border:#e2e8f0;--pink-border:#fbcfe8}
-      html,body{margin:0;padding:0;background:var(--background);color:var(--foreground);font-family:"Roboto",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
-      #root{min-height:100vh}
-      .sticky-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
-      .header-inner{max-width:80rem;margin:0 auto;padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;min-height:4rem}
-      @media (min-width:640px){.header-inner{padding:1rem 1.5rem;min-height:5rem}}
-      .hero-section{background:var(--background);padding:1.5rem 0}
-      @media (min-width:640px){.hero-section{padding:2.5rem 0}}
-      .hero-grid{max-width:80rem;margin:0 auto;padding:0 1rem;display:grid;grid-template-columns:1fr;gap:2rem;align-items:center}
-      @media (min-width:1024px){.hero-grid{grid-template-columns:repeat(12,minmax(0,1fr));gap:2rem;padding:0 2rem}}
-      .hero-img{position:relative;z-index:10;width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 20px 13px rgb(0 0 0/.03)) drop-shadow(0 8px 5px rgb(0 0 0/.08))}
-      .lcp-placeholder{aspect-ratio:612/408;width:100%;max-width:32rem;background:linear-gradient(135deg,var(--pink-light),var(--teal-light));border-radius:1rem;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.875rem}
-      @media (min-width:1024px){.lcp-placeholder{max-width:36rem}}
-    </style>
-
-    <!-- Main CSS is loaded asynchronously via a Vite transformIndexHtml plugin (see vite.config.ts) -->
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta
-      name="description"
-      content="AG Solutions is a leading software development company providing web development, mobile applications, digital marketing, and export compliance software."
-    >
-    <title>AG Solutions | Web Development, Mobile App Development & Software Solutions Company</title>
-
-    <!-- Deferred Non-Blocking Google Tag Manager & Google Analytics -->
-    <script>
-      function initAnalytics() {
-        if (window.__analytics_initialized) return;
-        window.__analytics_initialized = true;
-
-        // 1. Google Tag Manager
-        (function(w,d,s,l,i){
-          w[l]=w[l]||[];
-          w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
-          var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),
-              dl=l!='dataLayer'?'&l='+l:'';
-          j.async=true;
-          j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-          f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GT-W6VNKGP');
-
-        // 2. Google Analytics (gtag.js)
-        var gtagScript = document.createElement('script');
-        gtagScript.async = true;
-        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-JFGJ3JE7HK';
-        document.head.appendChild(gtagScript);
-
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { window.dataLayer.push(arguments); }
-        window.gtag = gtag;
-        gtag('js', new Date());
-        gtag('config', 'G-JFGJ3JE7HK');
-        gtag('config', 'GT-W6VNKGP');
       }
-
-      // Keep third-party scripts out of the critical rendering path.
-      function scheduleAnalytics() {
-        if (window.__analytics_scheduled) return;
-        window.__analytics_scheduled = true;
-
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(initAnalytics, { timeout: 10000 });
-        } else {
-          setTimeout(initAnalytics, 10000);
-        }
+    }, true);
+    window.addEventListener('vite:preloadError', function () {
+      var lastReload = sessionStorage.getItem('ag_chunk_reload');
+      var now = Date.now();
+      if (!lastReload || now - parseInt(lastReload, 10) > 10000) {
+        sessionStorage.setItem('ag_chunk_reload', String(now));
+        window.location.reload();
       }
+    });
+  </script>
 
-      ['pointerdown', 'touchstart', 'keydown', 'scroll'].forEach(function(eventName) {
-        window.addEventListener(eventName, scheduleAnalytics, { once: true, passive: true });
-      });
+  <!-- Preconnect to external assets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-      window.addEventListener('load', function() {
-        setTimeout(scheduleAnalytics, 9000);
-      }, { once: true });
-    </script>
-  </head>
-  <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GT-W6VNKGP"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+  <!-- Preload above-the-fold critical LCP assets with responsive hints.
+       Local origin so the request piggybacks on the same connection that
+       served the HTML — no DNS / TCP / TLS handshake with the CDN.
+       380w ships for mobile (real phones + DPR=2), 612w for desktop. -->
+  <link rel="preload" as="image" href="/images/laptop.webp" type="image/webp" fetchpriority="high"
+    imagesrcset="/images/laptop-mobile.webp 380w, /images/laptop.webp 612w"
+    imagesizes="(max-width: 640px) 100vw, (max-width: 1023px) 380px, 612px">
 
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <!-- Google Fonts loading (Non-render-blocking).
+       Roboto: 400 / 500 / 600 / 700 / 800 / 900 — covers every weight actually
+       used in the codebase. Space Grotesk is only ever font-bold, so a single
+       700 weight is enough. The non-blocking preload+swap pattern lets the
+       browser fetch the CSS in parallel with the rest of the page. -->
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Space+Grotesk:wght@700&display=swap">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Space+Grotesk:wght@700&display=swap"
+    media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Space+Grotesk:wght@700&display=swap">
+  </noscript>
+
+  <!-- Critical above-the-fold CSS (inlined for fastest LCP).
+       Keep this extremely small — only the tokens & base styles needed to
+       avoid a flash before the deferred main CSS arrives. -->
+  <style>
+    :root {
+      --pink: #E63164;
+      --pink-hover: #c92050;
+      --pink-light: #fff0f4;
+      --teal: #008794;
+      --teal-light: #e6f7f8;
+      --background: #ffffff;
+      --foreground: #0f172a;
+      --dark: #0f172a;
+      --muted: #64748b;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --pink-border: #fbcfe8;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--background);
+      color: var(--foreground);
+      font-family: "Roboto", system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    #root { min-height: 100vh; }
+
+    /* Nav placeholder — reserves header height so hero sits below it */
+    .s-nav {
+      height: 64px;
+      background: var(--background);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Hero section */
+    .s-hero {
+      position: relative;
+      overflow: hidden;
+      background: var(--background);
+      padding: 1.5rem 1rem 1.5rem;
+    }
+    .s-hero-inner {
+      max-width: 80rem;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      gap: 2rem;
+    }
+    @media (min-width: 1024px) {
+      .s-hero { padding: 3rem 2rem 2.5rem; }
+      .s-hero-inner {
+        grid-template-columns: repeat(12, 1fr);
+        gap: 2rem;
+      }
+      .s-hero-text { grid-column: span 6; }
+      .s-hero-img  { grid-column: span 6; }
+    }
+    .s-hero-img-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.5rem 0;
+    }
+
+    /* LCP image — matches React rendered output exactly */
+    .lcp-img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 612 / 408;
+      max-width: 36rem;
+      display: block;
+      object-fit: contain;
+      border-radius: 1rem;
+    }
+    @media (max-width: 1023px) {
+      .lcp-img { max-width: 32rem; }
+    }
+
+    /* Hide the static shell once React mounts (React replaces #root) */
+    .s-shell { opacity: 1; }
+  </style>
+
+  <!-- Main CSS is loaded asynchronously via a Vite transformIndexHtml plugin (see vite.config.ts) -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="AG Solutions is a leading software development company providing web development, mobile applications, digital marketing, and export compliance software.">
+  <title>Web Development & Mobile App Development Company | AG Solutions</title>
+
+  <!-- Deferred Non-Blocking Google Tag Manager & Google Analytics -->
+  <script>
+    function initAnalytics() {
+      if (window.__analytics_initialized) return;
+      window.__analytics_initialized = true;
+
+      // 1. Google Tag Manager
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GT-W6VNKGP');
+
+      // 2. Google Analytics (gtag.js)
+      var gtagScript = document.createElement('script');
+      gtagScript.async = true;
+      gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-JFGJ3JE7HK';
+      document.head.appendChild(gtagScript);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { window.dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-JFGJ3JE7HK');
+      gtag('config', 'GT-W6VNKGP');
+    }
+
+    // Keep third-party scripts out of the critical rendering path.
+    function scheduleAnalytics() {
+      if (window.__analytics_scheduled) return;
+      window.__analytics_scheduled = true;
+
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(initAnalytics, { timeout: 10000 });
+      } else {
+        setTimeout(initAnalytics, 10000);
+      }
+    }
+
+    ['pointerdown', 'touchstart', 'keydown', 'scroll'].forEach(function (eventName) {
+      window.addEventListener(eventName, scheduleAnalytics, { once: true, passive: true });
+    });
+
+    window.addEventListener('load', function () {
+      setTimeout(scheduleAnalytics, 9000);
+    }, { once: true });
+  </script>
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GT-W6VNKGP" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <div id="root">
+    <!--
+      Static hero shell — paints the LCP image immediately before React boots.
+      React's createRoot().render() replaces this entire div when it mounts.
+      DO NOT add interactive elements here (no onclick, no forms).
+    -->
+    <div class="s-shell" aria-hidden="true">
+      <!-- Nav height placeholder -->
+      <div class="s-nav"></div>
+      <!-- Hero section -->
+      <section class="s-hero">
+        <div class="s-hero-inner">
+          <div class="s-hero-text"></div>
+          <div class="s-hero-img">
+            <div class="s-hero-img-wrap">
+              <img
+                src="/images/laptop.webp"
+                srcset="/images/laptop-mobile.webp 380w, /images/laptop.webp 612w"
+                sizes="(max-width: 640px) 100vw, (max-width: 1023px) 380px, 612px"
+                alt="AG Solutions Digital Dashboard Laptop"
+                width="612"
+                height="408"
+                fetchpriority="high"
+                decoding="async"
+                class="lcp-img"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>

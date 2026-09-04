@@ -10,6 +10,7 @@ import BlogCard from "../components/BlogCard";
 import { ArrowLeft, Sparkles, ArrowRight } from "lucide-react";
 import { useLeadModal } from "@/context/LeadModalContext";
 import { getImageUrl } from "@/utils/imageUrl";
+import { annotateBlogHtml } from "@/utils/blogContent";
 
 export function BlogDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -139,6 +140,14 @@ export function BlogDetailPage() {
     ? `${blogBaseUrl}${blog.blog_banner_image}`
     : getImageUrl("/images/laptop.webp");
 
+  // Post-process the article body so every <a>/<img> has a `title` attribute
+  // (the upstream CMS sometimes omits them, which leaves SEO crawlers and
+  // image rich-results without hover-tooltips or alt fallbacks).
+  const annotatedBodyHtml = useMemo(
+    () => annotateBlogHtml(blog.blog_description || blog.blog_short_description),
+    [blog.blog_description, blog.blog_short_description]
+  );
+
   return (
     <>
       <BlogDetailSEO
@@ -177,7 +186,7 @@ export function BlogDetailPage() {
                   [&>img]:rounded-3xl [&>img]:shadow-lg [&>img]:my-8 [&>img]:w-full [&>img]:border [&>img]:border-border
                   [&>a]:text-teal [&>a]:underline hover:[&>a]:text-pink transition-colors"
                 dangerouslySetInnerHTML={{
-                  __html: blog.blog_description || blog.blog_short_description,
+                  __html: annotatedBodyHtml,
                 }}
               />
 

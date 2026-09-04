@@ -528,7 +528,7 @@ export default function ContactPage() {
                 </span>
                 <div className="flex items-center gap-3">
                   <a
-                    href="https://www.linkedin.com/in/ag-solutions-104223427/"
+                    href="https://www.linkedin.com/in/ag-solutions-2b1b50422/"
                     target="_blank"
                     rel="noreferrer"
                     className="flex h-9 w-9 items-center justify-center rounded-full bg-[#0077B5] text-white shadow-xs transition-transform duration-300 hover:scale-110"
